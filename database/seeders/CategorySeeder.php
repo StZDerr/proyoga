@@ -1,0 +1,34 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\MainCategory;
+use App\Models\SubCategory;
+
+class CategorySeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        // Создаем главную категорию "Выездные сессии "Путешествия к себе""
+        $mainCategory = MainCategory::create([
+            'title' => 'Выездные сессии "Путешествия к себе"'
+        ]);
+
+        // Создаем подкатегорию для этой главной категории
+        SubCategory::create([
+            'main_category_id' => $mainCategory->id,
+            'title' => 'Выездные сессии "Путешествия к себе"',
+            'description' => 'В "Исток и я" проходят занятия по йоге, пилатесу, дыхательным и телесным практикам, арт-терапии и медитациям, а также регулярные ретриты, женские и мужские круги, трансформационные программы и выездные сессии на природе.
+Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли возвращаться к своему Истоку.
+Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли возвращаться к своему Истоку.',
+            'image' => null // Можете указать путь к изображению, если есть
+        ]);
+
+        $this->command->info('Категории "Выездные сессии" успешно созданы!');
+    }
+}

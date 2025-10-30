@@ -5,15 +5,17 @@
 ### 1. Требования к серверу
 
 **Минимальные требования:**
-- PHP 8.2+
-- MySQL 8.0+ или PostgreSQL 13+
-- Nginx 1.18+ или Apache 2.4+
-- Node.js 18+
-- Composer 2.0+
-- Redis (рекомендуется)
-- SSL сертификат
+
+-   PHP 8.2+
+-   MySQL 8.0+ или PostgreSQL 13+
+-   Nginx 1.18+ или Apache 2.4+
+-   Node.js 18+
+-   Composer 2.0+
+-   Redis (рекомендуется)
+-   SSL сертификат
 
 **Расширения PHP:**
+
 ```bash
 sudo apt install php8.2-fpm php8.2-mysql php8.2-redis php8.2-gd php8.2-xml php8.2-mbstring php8.2-curl php8.2-zip php8.2-intl
 ```
@@ -65,10 +67,11 @@ nano .env
 ```
 
 **Обязательно измените в .env:**
-- `APP_URL` - ваш домен
-- `DB_*` - настройки базы данных
-- `MAIL_*` - настройки почты
-- `REDIS_*` - если используете Redis
+
+-   `APP_URL` - ваш домен
+-   `DB_*` - настройки базы данных
+-   `MAIL_*` - настройки почты
+-   `REDIS_*` - если используете Redis
 
 ### 5. Установка зависимостей
 
@@ -167,10 +170,11 @@ chmod +x deploy.sh
 
 1. В GitHub репозитории перейдите в Settings → Secrets and variables → Actions
 2. Добавьте секреты:
-   - `HOST` - IP адрес сервера
-   - `USERNAME` - имя пользователя для SSH
-   - `PRIVATE_KEY` - приватный SSH ключ
-   - `PORT` - порт SSH (обычно 22)
+
+    - `HOST` - IP адрес сервера
+    - `USERNAME` - имя пользователя для SSH
+    - `PRIVATE_KEY` - приватный SSH ключ
+    - `PORT` - порт SSH (обычно 22)
 
 3. При каждом push в main ветку деплой будет происходить автоматически
 

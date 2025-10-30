@@ -29,7 +29,7 @@
                     <a href="{{ route('admin') }}" class="button"
                         style="background-color: #6c757d; margin-right: 10px;">Админка</a>
                 @endauth
-                <a href="#" class="button" id="bid">Записаться на занятие</a>
+                {{-- <a href="#" class="button" id="bid">Записаться на занятие</a> --}}
             </div>
             <div class="menu">
                 <a href="{{ route('tea') }}" class="menuItem">Чайная зона</a>

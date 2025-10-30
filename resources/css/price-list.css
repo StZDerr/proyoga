@@ -36,7 +36,7 @@
 }
 
 .price-list .category-btn.inactive {
-    background-color: #ebf1ee;
+    /* background-color: #ebf1ee; */
     color: var(--secondary-color-1d7d6f);
 }
 
