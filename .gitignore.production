@@ -1,0 +1,46 @@
+# Добавить в .gitignore для продакшена
+# НЕ коммитьте эти файлы с реальными данными продакшена
+
+# Локальная среда разработки
+.env.local
+
+# Логи
+storage/logs/*.log
+
+# Кеш
+bootstrap/cache/*.php
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+
+# Compiled assets (будут пересобраны на сервере)
+public/build/*
+public/hot
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.tmp
+
+# Vendor (будет установлен через composer)
+vendor/
+
+# Node modules (будут установлены через npm)
+node_modules/
+
+# Производственные конфиги (настраиваются на сервере)
+.env.production.local

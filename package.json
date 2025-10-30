@@ -4,7 +4,9 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "build:production": "NODE_ENV=production vite build --mode production",
+        "dev": "vite",
+        "prod": "npm run build:production"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
