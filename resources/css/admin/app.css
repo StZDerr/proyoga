@@ -1,0 +1,85 @@
+@import "@tabler/core/dist/css/tabler.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Дополнительные стили для админ панели */
+.navbar-brand-autodark {
+    color: #fff !important;
+}
+
+.status-dot-animated {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.chart-lg {
+    height: 250px;
+}
+
+.chart-sm {
+    height: 40px;
+}
+
+.card-body-scrollable {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.avatar {
+    --tblr-avatar-size: 2.5rem;
+    --tblr-avatar-status-size: 0.75rem;
+    position: relative;
+    display: inline-block;
+    width: var(--tblr-avatar-size);
+    height: var(--tblr-avatar-size);
+    font-size: calc(var(--tblr-avatar-size) / 2.5);
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: var(--tblr-secondary);
+    border-radius: var(--tblr-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Темная тема для сайдбара */
+.navbar-vertical[data-bs-theme="dark"] {
+    background-color: #1e293b;
+    border-right: 1px solid #334155;
+}
+
+.navbar-vertical[data-bs-theme="dark"] .nav-link {
+    color: #cbd5e1;
+}
+
+.navbar-vertical[data-bs-theme="dark"] .nav-link:hover,
+.navbar-vertical[data-bs-theme="dark"] .nav-link.active {
+    color: #fff;
+    background-color: #334155;
+}
+
+.navbar-vertical[data-bs-theme="dark"] .navbar-brand {
+    color: #fff;
+}
+
+/* Анимации для карточек */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

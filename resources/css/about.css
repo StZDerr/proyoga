@@ -1,0 +1,221 @@
+.about .d-flex {
+    gap: 40px;
+}
+.about .about-img img {
+    width: 500px;
+}
+.about .about-text .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: var(--primary-color-button-123d4d);
+}
+.about .about-text .desc {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 32px;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.about-space .container {
+    background-color: var(--primary-color-button-123d4d);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.about-space .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: white;
+}
+.about-space .title span {
+    color: var(--primary-color-title-text);
+}
+
+.about-space .text {
+    margin: 2rem 0;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 32px;
+    color: #fefefc;
+}
+
+.about-space .about-space-features-text {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 28px;
+    color: #fefefc;
+}
+
+/* Стили для свайпера преподавателей */
+.teachers-swiper-container {
+    padding: 0 60px; /* Отступы для стрелок */
+}
+
+/* Все слайды растягиваются по высоте */
+.teachers-swiper .swiper-slide {
+    height: auto !important; /* Swiper может задавать height */
+    display: flex;
+}
+
+/* Карточки внутри слайдов — растягиваются */
+.teachers-swiper .swiper-slide .teacher-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ✅ Центрируем содержимое по горизонтали */
+    justify-content: flex-start; /* Содержимое сверху вниз */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #f0f0f0;
+    display: block; /* ✅ Убираем влияние line-height */
+    margin-left: auto; /* ✅ */
+    margin-right: auto; /* ✅ */
+}
+
+.teacher-name {
+    font-family: "Tenor Sans", serif;
+    font-size: var(--font-size-text-desc-20px);
+    font-weight: 400;
+    color: var(--primary-color-button-123d4d);
+    margin-bottom: 5px;
+}
+
+.teacher-position {
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size-text-desc-16px);
+    font-weight: 500;
+    color: #1d7d6f;
+    margin: 0;
+}
+
+/* Bootstrap icons are used instead of Swiper icons */
+
+/* Общий стиль кастомных стрелок */
+.teachers-prev,
+.teachers-next {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: white !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* Позиционирование стрелок снаружи */
+.teachers-prev {
+    left: -25px;
+}
+.teachers-next {
+    right: -25px;
+}
+
+/* Чёрные SVG-стрелки */
+.teachers-prev svg,
+.teachers-next svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #000000;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Убираем любые ховеры и трансформации */
+.teachers-prev:hover,
+.teachers-next:hover {
+    transform: translateY(-50%) !important;
+}
+
+/* Адаптивность для свайпера преподавателей */
+@media (max-width: 768px) {
+    .teachers-swiper-container {
+        padding: 0 50px;
+    }
+
+    .teacher-card img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .teachers-prev,
+    .teachers-next {
+        width: 36px;
+        height: 36px;
+    }
+
+    .teachers-prev {
+        left: 5px;
+    }
+
+    .teachers-next {
+        right: 5px;
+    }
+}
+
+.teachers .section-title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    /* line-height: 56px; */
+    color: var(--primary-color-button-123d4d);
+}
+
+.teachers span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    /* line-height: 32px; */
+    color: var(--secondary-color-1d7d6f);
+}
+.teachers .button {
+    padding: 1rem;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--primary-color-button-123d4d);
+    background-color: white;
+}
+
+/* Скрываем стандартные стрелки Swiper */
+.teachers .swiper-button-prev::after,
+.teachers .swiper-button-next::after {
+    display: none;
+}
+
+.teachers .swiper-button-prev,
+.teachers .swiper-button-next {
+    color: white !important;
+}

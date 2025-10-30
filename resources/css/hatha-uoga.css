@@ -1,0 +1,226 @@
+.containerMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 25px 100px;
+    gap: 50px;
+}
+
+.containerMain .container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+}
+
+.containerMain .container.serviceBanner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 25px;
+}
+
+.containerMain .container.serviceBanner .serviceContent {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.containerMain .container.serviceBanner .serviceContent .breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.containerMain
+    .container.serviceBanner
+    .serviceContent
+    .breadcrumbs
+    .breadcrumbsItem {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1d7d6f;
+}
+
+.containerMain .container.serviceBanner .serviceContent .breadcrumbs .breadNav {
+    width: auto;
+    height: 8px;
+}
+
+.containerMain
+    .container.serviceBanner
+    .serviceContent
+    .breadcrumbs
+    .breadcrumbsItem.active {
+    color: #888888;
+}
+
+.containerMain .container.serviceBanner .serviceContent .mainTitle {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: 60px;
+    color: #123d4d;
+    text-transform: uppercase;
+}
+
+.containerMain .container.serviceBanner .serviceContent .button {
+    text-align: center;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #123d4d;
+    border-radius: 30px;
+    padding: 15px 20px;
+    width: 350px;
+    justify-content: center;
+}
+
+.containerMain .container.serviceBanner .serviceIMG {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.containerMain .container .subTitle {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: 40px;
+    color: #007677;
+}
+
+.containerMain .container .textTitle {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: 24px;
+    color: #007677;
+}
+
+.containerMain .container .text {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    color: #123d4d;
+    line-height: 1.5em;
+}
+.containerMain .container .text.other {
+    padding: 25px;
+    background-color: #ebf1ee;
+    border-radius: 20px;
+}
+
+@media (max-width: 1440px) {
+    .containerMain {
+        padding: 25px 50px;
+    }
+
+    .containerMain .container {
+        max-width: 100%;
+    }
+
+    .containerMain .container.serviceBanner .serviceContent .mainTitle {
+        font-size: 50px;
+    }
+
+    .containerMain .container .subTitle {
+        font-size: 30px;
+    }
+
+    .containerMain .container .textTitle {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .containerMain {
+        padding: 25px;
+    }
+
+    .containerMain .container.serviceBanner {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .containerMain .container.serviceBanner .serviceContent .breadcrumbs {
+        justify-content: center;
+    }
+
+    .containerMain
+        .container.serviceBanner
+        .serviceContent
+        .breadcrumbs
+        .breadcrumbsItem {
+        font-size: 12px;
+    }
+
+    .containerMain .container.serviceBanner .serviceContent .mainTitle {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .containerMain .container.serviceBanner .serviceContent .button {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .containerMain .container.serviceBanner .serviceIMG {
+        height: 100%;
+    }
+
+    .containerMain .container .subTitle {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .containerMain .container .textTitle {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .containerMain .container .text {
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 700px) {
+    .containerMain {
+        padding: 25px 10px;
+        gap: 25px;
+    }
+
+    .containerMain
+        .container.serviceBanner
+        .serviceContent
+        .breadcrumbs
+        .breadcrumbsItem {
+        font-size: 12px;
+    }
+
+    .containerMain .container.serviceBanner .serviceContent .mainTitle {
+        font-size: 30px;
+    }
+
+    .containerMain .container.serviceBanner .serviceContent .button {
+        font-size: 14px;
+    }
+
+    .containerMain .container .subTitle {
+        font-size: 18px;
+    }
+
+    .containerMain .container .textTitle {
+        font-size: 16px;
+    }
+
+    .containerMain .container .text {
+        font-size: 12px;
+    }
+}

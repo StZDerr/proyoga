@@ -1,6 +1,947 @@
-main {
-    background: #fdfdfd;
-    border-radius: 10px;
+/* :root {
+    --primary-color-title-text: #a0ce83;
+    --primary-color-button-123d4d: #123d4d;
+    --secondary-color-1d7d6f: #1d7d6f;
+    --font-size-text-desc-40px: clamp(1.25rem, 1.0455rem + 0.9091vw, 2.5rem);
+    --font-size-text-desc-28px: clamp(0.875rem, 0.7318rem + 0.6364vw, 1.75rem);
+    --font-size-text-desc-20px: clamp(0.625rem, 0.5227rem + 0.4545vw, 1.25rem);
+    --font-size-text-desc-16px: clamp(0.5rem, 0.4182rem + 0.3636vw, 1rem);
+} */
+
+.background-gor {
+    background: url("/public/images/svg/gory.svg") no-repeat center bottom;
+    background-size: cover;
+}
+
+.main .title-text {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 56px;
+    color: #a0ce83;
+}
+.main .lead {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: clamp(3.125rem, 2.6136rem + 2.2727vw, 6.25rem);
+    line-height: 100px;
+    color: #123d4d;
+}
+
+/* Стили для Swiper */
+.my-custom-swiper-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+    overflow: visible; /* Позволяет увеличенному слайду выходить за границы */
+}
+
+.main .my-custom-swiper-container img {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.my-custom-swiper-container .swiper-slide {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.5;
+    height: auto;
+    transform: scale(0.67); /* Базовый размер для неактивных слайдов */
+}
+
+.my-custom-swiper-container .swiper-slide-active {
+    transform: scale(
+        1
+    ) !important; /* Центральный слайд - полный размер (на 50% больше чем 0.67) */
+    opacity: 1 !important;
+    z-index: 2;
+}
+
+.my-custom-swiper-container .swiper-slide-next,
+.my-custom-swiper-container .swiper-slide-prev {
+    transform: scale(0.67) !important; /* Соседние слайды - меньший размер */
+    opacity: 0.7 !important;
+    z-index: 1;
+}
+
+/* Стили для карточек */
+.my-custom-swiper-container .card {
+    border: none !important;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.my-custom-swiper-container .card-body {
+    border: none !important;
+    padding: 1.5rem;
+}
+
+.my-custom-swiper-container .swiper-slide-active .card {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    /* Убираем translateY, чтобы не конфликтовало со scale слайда */
+}
+
+.my-custom-swiper-container .card-title {
+    font-family: "Tenor Sans", serif;
+    font-weight: 400;
+    color: #123d4d;
+    margin-bottom: 15px;
+}
+
+/* Стили для пагинации */
+.my-custom-swiper-container .swiper-pagination-bullet {
+    opacity: 0.5;
+    background: #acd6d2;
+}
+
+.my-custom-swiper-container .swiper-pagination-bullet-active {
+    background: var(--secondary-color-1d7d6f);
+    opacity: 1;
+}
+
+/* Дополнительное удаление всех возможных границ */
+.my-custom-swiper-container .card,
+.my-custom-swiper-container .card-body,
+.my-custom-swiper-container .swiper-slide {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.my-custom-swiper-container .swiper-slide-active .card {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Убираем границы у изображений */
+.my-custom-swiper-container img {
+    border: none !important;
+    outline: none !important;
+}
+
+/* Убираем все возможные рамки и фокусы */
+.my-custom-swiper-container *,
+.my-custom-swiper-container *:focus,
+.my-custom-swiper-container *:active,
+.my-custom-swiper-container *:hover {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Восстанавливаем тень только для активной карточки */
+.my-custom-swiper-container .swiper-slide-active .card {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Убираем стандартные стили Bootstrap для карточек */
+.my-custom-swiper-container .card.shadow-sm {
+    box-shadow: none !important;
+}
+
+/* Убираем фокусные рамки для всех интерактивных элементов */
+.my-custom-swiper-container button,
+.my-custom-swiper-container a,
+.my-custom-swiper-container input,
+.my-custom-swiper-container .swiper-slide {
+    outline: none !important;
+    border: none !important;
+    -webkit-focus-ring-color: transparent !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+.my-custom-swiper-container .swiper-pagination {
+    position: relative; /* по умолчанию absolute */
+    bottom: 20px; /* сдвигаем ниже */
+}
+
+.main .swiper-info-text {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 32px;
+    text-align: center;
+    color: var(--primary-color-button-123d4d);
+}
+.main .container-button .button-bid {
+    background-color: var(--primary-color-button-123d4d);
+    color: #fff;
+    border-radius: 1.8rem;
+    padding: 1rem;
+}
+
+.main .container-button .button-bid a {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 24px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main .container-button .button-calendar {
+    border: 2px solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    padding: 1rem;
+}
+.marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* расстояние между лентами */
+}
+
+/* Общие стили ленты */
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.marquee-item img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.marquee-item span {
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size-text-desc-28px);
+    color: white;
+}
+
+/* Первая лента — фон #123d4d и поворот 2.2° */
+.marquee-light {
+    background: #123d4d;
+    transform: rotate(2.2deg);
+    transform-origin: left center;
+}
+
+/* Вторая лента — фон #var(--secondary-color-1d7d6f); и поворот -6.88° */
+.marquee-dark {
+    background: var(--secondary-color-1d7d6f);
+    transform: rotate(-3deg);
+    transform-origin: left center;
+}
+
+/* Анимация бегущей строки */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Вторая лента движется в обратном направлении */
+.marquee-dark .marquee-content {
+    animation-direction: reverse;
+}
+
+.about .d-flex {
+    gap: 40px;
+}
+.about .about-img img {
+    width: 500px;
+}
+.about .about-text .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: var(--primary-color-button-123d4d);
+}
+.about .about-text .desc {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 32px;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.directions .section-title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: var(--primary-color-button-123d4d);
+}
+
+.directions span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--secondary-color-1d7d6f);
+}
+.directions .button {
+    padding: 1rem;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    color: var(--primary-color-button-123d4d);
+    font-size: var(--font-size-text-desc-28px);
+}
+
+.directions .main-directions img {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.directions .main-directions .card-directions {
+    background-color: #ebf2ee;
+    border-radius: 1rem;
+}
+
+.directions .main-directions .card-directions .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 32px;
+    color: var(--primary-color-button-123d4d);
+}
+
+.directions .main-directions .card-directions .text {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 24px;
+    color: #007677;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* ограничиваем 2 строками */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: calc(24px * 4); /* фиксируем высоту на 2 строки */
+    padding: 0 1rem;
+}
+
+.price-list .text .section-title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: var(--primary-color-button-123d4d);
+}
+.price-list span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--secondary-color-1d7d6f);
+}
+.price-list .button {
+    padding: 1rem;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    color: var(--primary-color-button-123d4d);
+    font-size: var(--font-size-text-desc-28px);
+    color: white;
+    background-color: var(--primary-color-button-123d4d);
+}
+
+.price-list .category-btn {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 24px;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 10px !important;
+    border: none;
+    transition: all 0.3s ease;
+    min-width: 220px;
+    cursor: pointer;
+}
+
+.price-list .category-btn.inactive {
+    background-color: #ebf1ee;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.price-list .category-btn.active {
+    background-color: #123d4d;
+    color: #fefefc;
+    box-shadow: 0 6px 12px rgba(18, 61, 77, 0.25);
+    transform: translateY(-2px);
+}
+
+.price-list .category-btn:hover:not(.active) {
+    background-color: #dde8e4;
+    color: #16665a;
+    transform: translateY(-1px);
+}
+
+.price-list .content-text {
+    display: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size-text-desc-20px);
+    margin-top: 2rem;
+    padding: 1.8rem;
+}
+
+.price-list .content-text.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.price-list .btn-container {
+    gap: 1.5rem;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse; /* Изменили на collapse для правильного отображения границ */
+    margin-top: 1rem;
+}
+
+/* Границы для всех строк */
+.table-title-row,
+.table-item-row {
+    border-top: 1px solid #acd6d2;
+    border-bottom: 1px solid #acd6d2;
+}
+
+/* Границы для ячеек */
+.table-title-row td,
+.table-item-row td {
+    border-top: 1px solid #acd6d2;
+    border-bottom: 1px solid #acd6d2;
+}
+
+/* Убираем двойную границу между строками */
+.table-item-row + .table-item-row {
+    border-top: none;
+}
+
+.table-item-row + .table-item-row td {
+    border-top: none;
+}
+
+/* Заголовок */
+.table-title {
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.02em;
+    color: #097173;
+    padding: 12px 0;
+    background-color: #f8fffe; /* лёгкий фон */
+}
+
+/* Название занятия */
+.table-item-name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    color: #103e4e;
+    padding: 12px 0;
+    width: 65%;
+}
+
+/* Правая колонка */
+.table-item-info {
+    text-align: right;
+    padding: 12px 0;
+    width: 35%;
+}
+
+.table-item-duration {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    color: #888888;
+}
+
+.table-item-price {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    color: #2d3134;
+    margin-top: 4px;
+}
+
+/* Адаптивность: на мобильных — вертикальное расположение */
+@media (max-width: 768px) {
+    .table-item-name,
+    .table-item-info {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+    .table-item-info {
+        text-align: right;
+        margin-top: 4px;
+    }
+}
+
+/* Стили для свайпера преподавателей */
+.teachers-swiper-container {
+    padding: 0 60px; /* Отступы для стрелок */
+}
+
+/* Все слайды растягиваются по высоте */
+.teachers-swiper .swiper-slide {
+    height: auto !important; /* Swiper может задавать height */
+    display: flex;
+}
+
+/* Карточки внутри слайдов — растягиваются */
+.teachers-swiper .swiper-slide .teacher-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ✅ Центрируем содержимое по горизонтали */
+    justify-content: flex-start; /* Содержимое сверху вниз */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #f0f0f0;
+    display: block; /* ✅ Убираем влияние line-height */
+    margin-left: auto; /* ✅ */
+    margin-right: auto; /* ✅ */
+}
+
+.teacher-name {
+    font-family: "Tenor Sans", serif;
+    font-size: var(--font-size-text-desc-20px);
+    font-weight: 400;
+    color: var(--primary-color-button-123d4d);
+    margin-bottom: 5px;
+}
+
+.teacher-position {
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size-text-desc-16px);
+    font-weight: 500;
+    color: #1d7d6f;
+    margin: 0;
+}
+
+/* Bootstrap icons are used instead of Swiper icons */
+
+/* Общий стиль кастомных стрелок */
+.teachers-prev,
+.teachers-next {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: white !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* Позиционирование стрелок снаружи */
+.teachers-prev {
+    left: -25px;
+}
+.teachers-next {
+    right: -25px;
+}
+
+/* Чёрные SVG-стрелки */
+.teachers-prev svg,
+.teachers-next svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #000000;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.teachers .section-title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    /* line-height: 56px; */
+    color: var(--primary-color-button-123d4d);
+}
+
+.teachers span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    /* line-height: 32px; */
+    color: var(--secondary-color-1d7d6f);
+}
+.teachers .button {
+    padding: 1rem;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--primary-color-button-123d4d);
+    background-color: white;
+}
+
+/* Скрываем стандартные стрелки Swiper */
+.teachers .swiper-button-prev::after,
+.teachers .swiper-button-next::after {
+    display: none;
+}
+
+.teachers .swiper-button-prev,
+.teachers .swiper-button-next {
+    color: white !important;
+}
+
+/* Убираем любые ховеры и трансформации */
+.teachers-prev:hover,
+.teachers-next:hover {
+    transform: translateY(-50%) !important;
+}
+
+/* Адаптивность для свайпера преподавателей */
+@media (max-width: 768px) {
+    .teachers-swiper-container {
+        padding: 0 50px;
+    }
+
+    .teacher-card img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .teachers-prev,
+    .teachers-next {
+        width: 36px;
+        height: 36px;
+    }
+
+    .teachers-prev {
+        left: 5px;
+    }
+
+    .teachers-next {
+        right: 5px;
+    }
+}
+
+.about-space .container {
+    background-color: var(--primary-color-button-123d4d);
     padding: 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+}
+.about-space .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: white;
+}
+.about-space .title span {
+    color: var(--primary-color-title-text);
+}
+
+.about-space .text {
+    margin: 2rem 0;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 32px;
+    color: #fefefc;
+}
+
+.about-space .about-space-features-text {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 28px;
+    color: #fefefc;
+}
+
+.calendar .section-title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: var(--primary-color-button-123d4d);
+}
+.calendar span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--secondary-color-1d7d6f);
+}
+.calendar .button {
+    padding: 1rem;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--primary-color-button-123d4d);
+    background-color: white;
+}
+.calendar .button:hover {
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+}
+
+.retreats .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 56px;
+    color: var(--primary-color-button-123d4d);
+}
+.retreats .desc {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+    color: var(--secondary-color-1d7d6f);
+}
+.retreats img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 1rem;
+}
+.retreats .btn-more {
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: var(--primary-color-button-123d4d);
+    color: white;
+    border-radius: 1.8rem;
+}
+
+.main-test .background-color-EBF1EE {
+    background-color: #ebf1ee;
+    border-radius: 1rem;
+}
+.main-test .background-color-EBF1EE img {
+    width: 100%;
+    border-radius: 1rem;
+}
+.main-test .background-color-EBF1EE .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 32px;
+    color: var(--primary-color-button-123d4d);
+}
+.main-test .background-color-EBF1EE .desc {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 28px;
+    color: var(--secondary-color-1d7d6f);
+}
+.main-test .background-color-EBF1EE .button {
+    padding: 1rem 2rem;
+    background-color: var(--primary-color-button-123d4d);
+    color: white;
+    border-radius: 1.8rem;
+    font-size: var(--font-size-text-desc-20px);
+}
+.photo-gallery .section-title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 50px;
+    color: var(--primary-color-button-123d4d);
+}
+.photo-gallery span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    color: var(--secondary-color-1d7d6f);
+}
+
+/* Обертка для галереи с отступами для стрелок */
+.photo-gallery .gallery3-wrapper {
+    position: relative;
+    padding: 0 80px; /* Отступы для стрелок */
+}
+
+.photo-gallery .gallery3-swiper {
+    position: relative;
+    overflow: hidden; /* Скрываем лишние слайды */
+    width: 100%;
+}
+
+.photo-gallery .gallery3-swiper .swiper-slide {
+    transition: all 0.4s ease;
+    transform: scale(0.8); /* Уменьшаем неактивные слайды */
+    opacity: 0.7; /* Делаем их полупрозрачными */
+}
+
+.photo-gallery .gallery3-swiper .swiper-slide-active {
+    transform: scale(1); /* Активный слайд в полном размере */
+    opacity: 1; /* Полная непрозрачность */
+    z-index: 2; /* Поднимаем активный слайд выше */
+}
+
+.photo-gallery .gallery3-swiper .swiper-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photo-gallery .gallery3-swiper .swiper-slide img:hover {
+    transform: scale(1.02);
+}
+
+/* Скрываем стандартные стрелки Swiper */
+.photo-gallery .gallery3-swiper .swiper-button-prev::after,
+.photo-gallery .gallery3-swiper .swiper-button-next::after {
+    display: none;
+}
+
+.photo-gallery .gallery3-swiper .swiper-button-prev,
+.photo-gallery .gallery3-swiper .swiper-button-next {
+    color: white !important;
+}
+/* Общий стиль кастомных стрелок */
+.photo-gallery .gallery3-prev,
+.photo-gallery .gallery3-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для лучшей видимости */
+}
+
+/* Позиционирование стрелок снаружи слайдов */
+.photo-gallery .gallery3-prev {
+    left: 0; /* Слева от обертки */
+}
+.photo-gallery .gallery3-next {
+    right: 0; /* Справа от обертки */
+}
+
+/* Чёрные SVG-стрелки */
+.photo-gallery .gallery3-prev svg,
+.photo-gallery .gallery3-next svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #000000;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Убираем трансформации при hover */
+.photo-gallery .gallery3-prev:hover,
+.photo-gallery .gallery3-next:hover {
+    transform: translateY(-50%);
+    background: #f8f9fa;
+}
+
+/* Адаптивность для галереи */
+@media (max-width: 768px) {
+    .photo-gallery .gallery3-wrapper {
+        padding: 0 60px; /* Меньше отступы на мобильных */
+    }
+
+    .photo-gallery .gallery3-prev,
+    .photo-gallery .gallery3-next {
+        width: 40px;
+        height: 40px;
+    }
+
+    .photo-gallery .gallery3-prev svg,
+    .photo-gallery .gallery3-next svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.photo-gallery .swiper-button-prev,
+.photo-gallery .swiper-button-next {
+    color: white !important;
+}
+
+.questions .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 56px;
+    color: var(--primary-color-button-123d4d);
+}
+
+.questions .accordion .accordion-header .accordion-button {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 32px;
+    color: var(--primary-color-button-123d4d) !important;
+}
+
+.questions .accordion .accordion-body {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 32px;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.questions .accordion .accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: inherit;
+    box-shadow: none;
 }

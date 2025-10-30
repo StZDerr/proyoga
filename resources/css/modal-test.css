@@ -1,0 +1,364 @@
+/* Стили для модального окна теста на гибкость */
+
+/* Основные стили модального окна */
+.modal-content {
+    background-color: #ebf1ee;
+    border-radius: 16px;
+    border: none;
+}
+
+.modal-content .modal-body img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Стили для заголовка вопроса */
+.test-question h6 {
+    font-family: "Tenor Sans", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0%;
+    color: #123d4d;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* Контейнер для вопроса */
+.test-question {
+    padding: 20px 0;
+}
+
+.test-question p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Стили для вариантов ответа */
+.test-option {
+    margin-bottom: 15px;
+}
+
+.test-option input[type="radio"] {
+    display: none; /* Скрываем стандартные radio buttons */
+}
+
+.test-option label {
+    cursor: pointer;
+    display: block;
+    padding: 15px 25px;
+    background-color: transparent;
+    border: 2px solid #123d4d;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #123d4d;
+    text-align: center;
+    font-weight: 500;
+}
+
+.test-option label:hover {
+    background-color: rgba(29, 125, 111, 0.1);
+    border-color: #1d7d6f;
+}
+
+.test-option input[type="radio"]:checked + label {
+    background-color: #1d7d6f;
+    color: white;
+    border-color: #1d7d6f;
+}
+
+/* Прогресс бар */
+.progress {
+    height: 8px;
+    background-color: rgba(18, 61, 77, 0.1);
+    border-radius: 4px;
+}
+
+.progress-bar {
+    background-color: #1d7d6f !important;
+    border-radius: 4px;
+}
+
+/* Модальное окно большого размера */
+.modal-lg {
+    max-width: 1400px !important;
+}
+
+/* Стили для лоадера */
+#test-loader {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-border.text-primary {
+    color: #1d7d6f !important;
+}
+
+/* Контейнер для контента теста */
+.test-content-wrapper {
+    position: relative;
+    min-height: 500px;
+}
+
+/* Навигационные кнопки */
+.test-navigation {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.nav-btn {
+    position: absolute;
+    bottom: 0;
+    border-radius: 30px;
+    border: 2px solid #1d7d6f;
+    background-color: #1d7d6f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    padding: 1rem;
+}
+
+.nav-btn:hover {
+    background-color: #123d4d;
+    border-color: #123d4d;
+    transform: scale(1.05);
+}
+
+.nav-btn:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-btn.prev-btn {
+    left: 20px;
+}
+
+.nav-btn.next-btn {
+    right: 20px;
+}
+
+.next-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+/* Скрываем стандартные кнопки в footer */
+.modal-footer .btn {
+    display: none !important;
+}
+
+/* Стили для формы контактов */
+#contact-form {
+    padding: 20px 0;
+}
+
+#contact-form h5 {
+    font-family: "Tenor Sans", serif;
+    font-size: 24px;
+    color: #123d4d;
+    margin-bottom: 25px;
+}
+
+#contact-form .form-label {
+    color: #123d4d;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+#contact-form .form-control {
+    border: 2px solid #123d4d;
+    border-radius: 25px;
+    padding: 12px 20px;
+    background-color: transparent;
+}
+
+#contact-form .form-control:focus {
+    border-color: #1d7d6f;
+    box-shadow: 0 0 0 0.2rem rgba(29, 125, 111, 0.25);
+}
+
+/* Кнопка отправки */
+.submit-btn {
+    background-color: #1d7d6f;
+    border: 2px solid #1d7d6f;
+    border-radius: 100px;
+    padding: 12px 30px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #123d4d;
+    border-color: #123d4d;
+    transform: scale(1.05);
+}
+
+/* Стили для результата */
+#test-result .alert-success {
+    background-color: rgba(29, 125, 111, 0.1);
+    border: 2px solid #1d7d6f;
+    color: #123d4d;
+    border-radius: 16px;
+}
+
+#test-result h5 {
+    color: #1d7d6f;
+    font-family: "Tenor Sans", serif;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .modal-lg {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+
+    .modal-dialog {
+        margin: 1rem;
+    }
+
+    /* На мобильных изображение и текст в столбец */
+    .test-mobile-layout {
+        flex-direction: column !important;
+    }
+
+    .test-mobile-layout .col-6:first-child {
+        order: 1;
+        margin-bottom: 20px;
+    }
+
+    .test-mobile-layout .col-6:last-child {
+        order: 2;
+    }
+
+    /* Заголовок вопроса на мобильных */
+    .test-question h6 {
+        font-size: 24px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    /* Навигационные кнопки на мобильных */
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .nav-btn.prev-btn {
+        left: 15px;
+    }
+
+    .nav-btn.next-btn {
+        right: 15px;
+    }
+
+    .next-btn-content {
+        flex-direction: column;
+        gap: 2px;
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        right: 15px;
+        bottom: 15px;
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+
+    /* Опции ответов на мобильных */
+    .test-option label {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    /* Контейнер для контента теста на мобильных */
+    .test-content-wrapper {
+        min-height: 400px;
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 576px) {
+    .test-question h6 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .next-btn-content {
+        font-size: 10px;
+    }
+}
+
+/* Дополнительные стили для улучшения UX */
+.modal-header {
+    border-bottom: 2px solid rgba(18, 61, 77, 0.1);
+}
+
+.modal-title {
+    color: #123d4d;
+    font-family: "Tenor Sans", serif;
+    font-weight: 400;
+}
+
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #123d4d;
+}
+
+.btn-close:hover {
+    color: #1d7d6f;
+}
+
+/* Анимации */
+.test-question {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.test-option label {
+    transform: scale(1);
+}
+
+.test-option label:active {
+    transform: scale(0.98);
+}

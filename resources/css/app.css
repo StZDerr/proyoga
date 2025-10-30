@@ -1,6 +1,81 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fontsource/tenor-sans";
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/500.css";
+@import "@fontsource/montserrat/700.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+:root {
+    --primary-color-title-text: #a0ce83;
+    --primary-color-button-123d4d: #123d4d;
+    --secondary-color-1d7d6f: #1d7d6f;
+    --font-size-text-desc-40px: clamp(1.25rem, 1.0455rem + 0.9091vw, 2.5rem);
+    --font-size-text-desc-28px: clamp(0.875rem, 0.7318rem + 0.6364vw, 1.75rem);
+    --font-size-text-desc-20px: clamp(0.625rem, 0.5227rem + 0.4545vw, 1.25rem);
+    --font-size-text-desc-16px: clamp(0.5rem, 0.4182rem + 0.3636vw, 1rem);
+}
 
-body {
-    font-family: "Segoe UI", Roboto, sans-serif;
-    color: #222;
+.background-gor {
+    background: url("/public/images/svg/gory.svg") no-repeat center bottom;
+    background-size: cover;
+}
+
+.background-gor .headerTeaZone .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: clamp(1.875rem, 1.5682rem + 1.3636vw, 3.75rem);
+    line-height: 72px;
+    text-transform: uppercase;
+    color: var(--primary-color-button-123d4d);
+}
+.background-gor .headerTeaZone .desc {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 32px;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.breadcrumbs {
+    margin-bottom: 1rem;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+}
+
+/* Все ссылки, кроме последнего элемента */
+.breadcrumb-item a {
+    color: #1d7d6f;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #155e52;
+}
+
+/* Последний элемент (не ссылка) */
+.breadcrumb-item.active {
+    color: #888888;
+}
+
+/* Разделитель */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: #888888;
+    margin: 0 8px;
 }

@@ -1,0 +1,10 @@
+/* Стили для заголовка страницы контактов */
+.contacts-header .title-text {
+    color: var(--primary-color-button-123d4d);
+    font-family: "Tenor Sans", serif;
+}
+
+.contacts-header .lead {
+    color: var(--secondary-color-1d7d6f);
+    font-family: "Montserrat", sans-serif;
+}
