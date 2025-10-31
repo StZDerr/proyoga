@@ -29,7 +29,7 @@
                     <img src="{{ asset('images/svg/reiting2gis.svg') }}" alt="2ГИС" />
                 </a>
             </div>
-            
+
             {{-- Форма обратной связи (только на странице контактов) --}}
             @if (request()->routeIs('contacts'))
                 <div class="contact-form-section mt-4">
@@ -37,22 +37,23 @@
                     <form id="contactForm" class="contact-form">
                         @csrf
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="name" placeholder="Ваше имя" required 
-                                   minlength="2" maxlength="50" pattern="[а-яёА-ЯЁa-zA-Z\s\-]+">
+                            <input type="text" class="form-control" name="name" placeholder="Ваше имя" required
+                                minlength="2" maxlength="50" pattern="[а-яёА-ЯЁa-zA-Z\s\-]+">
                         </div>
                         <div class="mb-3">
-                            <input type="tel" class="form-control" name="phone" placeholder="Телефон" required 
-                                   pattern="[0-9\s\(\)\-\+]*" minlength="10">
+                            <input type="tel" class="form-control" name="phone" placeholder="Телефон" required
+                                pattern="[0-9\s\(\)\-\+]*" minlength="10">
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" name="email" placeholder="Email (необязательно)">
+                            <input type="email" class="form-control" name="email"
+                                placeholder="Email (необязательно)">
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" name="message" rows="4" placeholder="Ваше сообщение" 
-                                      maxlength="1000"></textarea>
+                            <textarea class="form-control" name="message" rows="4" placeholder="Ваше сообщение" maxlength="1000"></textarea>
                         </div>
                         <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="contactPrivacy" name="privacy_agreement" required>
+                            <input type="checkbox" class="form-check-input" id="contactPrivacy" name="privacy_agreement"
+                                required>
                             <label class="form-check-label" for="contactPrivacy">
                                 Я согласен(-на) с политикой конфиденциальности
                             </label>

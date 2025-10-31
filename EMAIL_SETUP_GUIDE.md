@@ -1,6 +1,7 @@
 # Настройка Email для сайта ПроЙога
 
 ## Проблема
+
 На локальном сервере (Laragon) письма не могут быть отправлены на реальные email адреса, потому что нет настроенного SMTP сервера.
 
 ## Решения для продакшена
@@ -9,12 +10,14 @@
 
 1. **Войдите в почту info@йога-истоки.рф**
 2. **Создайте пароль приложения:**
-   - Перейдите в настройки почты Yandex
-   - Раздел "Безопасность" 
-   - "Пароли приложений"
-   - Создайте новый пароль для "Почтовый клиент"
+
+    - Перейдите в настройки почты Yandex
+    - Раздел "Безопасность"
+    - "Пароли приложений"
+    - Создайте новый пароль для "Почтовый клиент"
 
 3. **Обновите .env файл:**
+
 ```env
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.yandex.ru
@@ -58,6 +61,7 @@ CONTACT_EMAIL="info@xn--h1aafpog8g.xn--p1ai"
 ## Тестирование
 
 После настройки запустите команду:
+
 ```bash
 php artisan test:email
 ```
@@ -67,22 +71,24 @@ php artisan test:email
 ## Текущий статус
 
 ✅ **Готово:**
-- Контроллер ContactController
-- Mailable класс ContactFormMail  
-- Email шаблон contact-form-final.blade.php
-- JavaScript форма с AJAX
-- Роуты и CSRF защита
-- Тестовая команда
+
+-   Контроллер ContactController
+-   Mailable класс ContactFormMail
+-   Email шаблон contact-form-final.blade.php
+-   JavaScript форма с AJAX
+-   Роуты и CSRF защита
+-   Тестовая команда
 
 ⚠️ **Требует настройки на продакшене:**
-- SMTP настройки в .env файле
-- Проверка email доставки
+
+-   SMTP настройки в .env файле
+-   Проверка email доставки
 
 ## Файлы системы
 
-- **Контроллер:** `app/Http/Controllers/ContactController.php`
-- **Email класс:** `app/Mail/ContactFormMail.php`
-- **Шаблон письма:** `resources/views/emails/contact-form-final.blade.php`
-- **JavaScript:** в файлах с формами
-- **Роуты:** `routes/web.php`
-- **Команда тестирования:** `app/Console/Commands/TestEmail.php`
+-   **Контроллер:** `app/Http/Controllers/ContactController.php`
+-   **Email класс:** `app/Mail/ContactFormMail.php`
+-   **Шаблон письма:** `resources/views/emails/contact-form-final.blade.php`
+-   **JavaScript:** в файлах с формами
+-   **Роуты:** `routes/web.php`
+-   **Команда тестирования:** `app/Console/Commands/TestEmail.php`
