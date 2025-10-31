@@ -68,8 +68,8 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#sidebar-content" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebar-content">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -85,44 +85,35 @@
                             Контент
                         </span>
                     </a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.activity.index') }}">
+                    <div class="collapse" id="sidebar-content">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.activity.index') }}">
                                     Занятия
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.personal.index') }}">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.personal.index') }}">
                                     Преподователи
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.gallery.index') }}">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.gallery.index') }}">
                                     Галерея
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.questions.index') }}">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.questions.index') }}">
                                     Вопросы
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.promotions.index') }}">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.promotions.index') }}">
                                     Акции
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.price-categories.index') }}">
-                                    Прайс-лист (Категории)
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.price-tables.index') }}">
-                                    Прайс-лист (Таблицы)
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.price-items.index') }}">
-                                    Прайс-лист (Элементы)
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.main-categories.index') }}">
-                                    Категории Направлений
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.sub-categories.index') }}">
-                                    ПодКатегории Направлений
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.sub-sub-categories.index') }}">
-                                    ПодПодКатегории Направлений
-                                </a>
-                            </div>
-                        </div>
+                            </li>
+
+                        </ul>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -144,8 +135,47 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-test" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#sidebar-directions" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebar-directions">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M9 12l2 2l4 -4" />
+                                <path d="M21 12c-1 0 -3 0 -3 3s2 3 3 3s3 0 3 -3s-2 -3 -3 -3" />
+                                <path d="M5 7h14a4 4 0 0 1 0 8h-1" />
+                                <path d="M6 19h4" />
+                                <path d="M5 7v12" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Направления
+                        </span>
+                    </a>
+                    <div class="collapse" id="sidebar-directions">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.main-categories.index') }}">
+                                    Категории Направлений
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.sub-categories.index') }}">
+                                    ПодКатегории Направлений
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.sub-sub-categories.index') }}">
+                                    ПодПодКатегории Направлений
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#sidebar-tests" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebar-tests">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -162,21 +192,60 @@
                             Тесты
                         </span>
                     </a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.test.submissions') }}">
+                    <div class="collapse" id="sidebar-tests">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.test.submissions') }}">
                                     Результаты тестов
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.test.questions') }}">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.test.questions') }}">
                                     Управление вопросами
                                 </a>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#sidebar-price" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebar-price">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
+                                <path d="M12 3v3m0 12v3" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Прайс-лист
+                        </span>
+                    </a>
+                    <div class="collapse" id="sidebar-price">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.price-categories.index') }}">
+                                    Прайс-лист (Категории)
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.price-tables.index') }}">
+                                    Прайс-лист (Таблицы)
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.price-items.index') }}">
+                                    Прайс-лист (Элементы)
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.pages.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -187,33 +256,11 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Расписание
+                            Страницы
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M3 21l18 0" />
-                                <path d="M3 10l18 0" />
-                                <path d="M5 6l7 -3l7 3" />
-                                <path d="M4 10l0 11" />
-                                <path d="M20 10l0 11" />
-                                <path d="M8 14l0 3" />
-                                <path d="M12 14l0 3" />
-                                <path d="M16 14l0 3" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Финансы
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -229,7 +276,7 @@
                             Настройки
                         </span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

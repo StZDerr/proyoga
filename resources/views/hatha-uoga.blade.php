@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $subSubCategory->title }} - ПроЙога</title>
+    @include('components.seo-meta')
     @include('partials.favicon')
 
     {{-- Общие стили и JS через Vite --}}
@@ -28,15 +28,26 @@
                 class="serviceIMG" />
         </div>
         <div class="container">
-            <h2 class="subTitle">О хатха йоге</h2>
+            <h2 class="subTitle">О {{ $subSubCategory->title }}</h2>
             <p class="text other">
                 {{ $subSubCategory->about ?? 'Данное направление включает в себя полный комплекс взаимодействия на физическом и ментальном уровне через выполнение асан, дыхательных упражнений (пранаям), мудр и концентрацию внимания посредством медитации. Это направление стало основоположником многих популярных современных направлений йоги.' }}
             </p>
 
             @if ($subSubCategory->benefits && count($subSubCategory->benefits) > 0)
                 <h2 class="subTitle">Польза {{ $subSubCategory->title }}</h2>
-                @foreach ($subSubCategory->benefits as $benefit)
-                    <div class="textTitle">{{ $benefit }}</div>
+                @foreach ($subSubCategory->benefits as $benefitGroup)
+                    @if (is_array($benefitGroup) && isset($benefitGroup['title']) && isset($benefitGroup['benefits']))
+                        {{-- Новая структура с группами --}}
+                        <div class="benefit-group mb-4">
+                            <h3 class="textTitle">{{ $benefitGroup['title'] }}</h3>
+                            @foreach ($benefitGroup['benefits'] as $benefit)
+                                <div class="text other">• {{ $benefit }}</div>
+                            @endforeach
+                        </div>
+                    @else
+                        {{-- Совместимость со старой структурой (простой массив строк) --}}
+                        <div class="textTitle">{{ is_string($benefitGroup) ? $benefitGroup : '' }}</div>
+                    @endif
                 @endforeach
             @endif
         </div>

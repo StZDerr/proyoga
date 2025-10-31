@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footerWrapper">
             <div class="menu" id="menu">
-                <a href="#" class="menuItem">Расписание</a>
+                <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
                 <a href="{{ route('direction') }}" class="menuItem">Направления</a>
                 <a href="{{ route('tea') }}" class="menuItem">Чайная зона</a>

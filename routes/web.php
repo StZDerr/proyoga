@@ -16,6 +16,7 @@ use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\TestAdminController;
+use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,10 @@ Route::get('/tea', function () {
     return view('tea');
 })->name('tea');
 
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
+
 Route::get('/test-modal', function () {
     return view('test-modal');
 })->name('test-modal');
@@ -51,19 +56,14 @@ Route::prefix('api/test')->group(function () {
 // API маршруты для отправки форм
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
 
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
-
-// Route::get('/direction', function () {
-//     return view('direction');
-// })->name('direction');
-
 Route::get('/admin', function () {
     return view('admin/index');
 })->middleware('auth')->name('admin');
 
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
+    // Управление страницами
+    Route::resource('pages', PageContentController::class);
+    
     Route::softDeletableResources([
         'news' => NewsController::class,
         'activity' => ActivityController::class,
@@ -99,5 +99,24 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
 // Только аутентификация, без регистрации
 Auth::routes(['register' => false]);
+
+// Тестовый роут для проверки мета-данных
+Route::get('/test-meta', function () {
+    return view('test-meta');
+})->name('test-meta');
+
+// Тестовый роут для обновления страницы home
+Route::get('/test-update-home', function () {
+    $page = App\Models\PageContent::find(1);
+    if ($page) {
+        $page->update([
+            'title' => '123',
+            'description' => 'Добро пожаловать в ProYoga - лучшую студию йоги в Москве. Профессиональные инструкторы, уютная атмосфера, разнообразные направления. Начните свой путь к здоровью уже сегодня!',
+            'keywords' => 'йога, студия йоги, йога москва, хатха йога, виньяса йога, медитация, пранаяма'
+        ]);
+        return 'Страница обновлена! Title изменен на "123"';
+    }
+    return 'Страница не найдена';
+});
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

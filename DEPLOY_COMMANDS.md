@@ -22,7 +22,7 @@ php artisan migrate --force
 
 # 4. Оптимизация для продакшена
 php artisan config:cache
-php artisan route:cache  
+php artisan route:cache
 php artisan view:cache
 
 # 5. Проверка email системы
@@ -33,33 +33,37 @@ php artisan check:email-system
 
 1. **Получите пароль приложения Yandex**: https://passport.yandex.ru/ → Безопасность → Пароли приложений
 2. **Обновите .env файл**:
-   ```env
-   MAIL_MAILER=smtp
-   MAIL_HOST=smtp.yandex.ru
-   MAIL_PORT=587
-   MAIL_USERNAME="info@xn--h1aafpog8g.xn--p1ai"
-   MAIL_PASSWORD="пароль_приложения_yandex"
-   MAIL_ENCRYPTION=tls
-   ```
+    ```env
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.yandex.ru
+    MAIL_PORT=587
+    MAIL_USERNAME="info@xn--h1aafpog8g.xn--p1ai"
+    MAIL_PASSWORD="пароль_приложения_yandex"
+    MAIL_ENCRYPTION=tls
+    ```
 
 ## Файлы НЕ загружать на сервер:
-- `node_modules/`
-- `.env` (переименуйте `.env.production` в `.env`)
-- `storage/logs/*`
-- `.git/` (опционально)
+
+-   `node_modules/`
+-   `.env` (переименуйте `.env.production` в `.env`)
+-   `storage/logs/*`
+-   `.git/` (опционально)
 
 ## Права доступа на сервере:
+
 ```bash
 chmod -R 755 storage bootstrap/cache
 ```
 
 ## Проверка работы:
+
 1. Откройте сайт в браузере
-2. Заполните форму обратной связи  
+2. Заполните форму обратной связи
 3. Проверьте почту info@йога-истоки.рф
 
 ## Полные инструкции:
-- `DEPLOYMENT_GUIDE.md` - подробное руководство
-- `EMAIL_QUICK_SETUP.md` - быстрая настройка email
+
+-   `DEPLOYMENT_GUIDE.md` - подробное руководство
+-   `EMAIL_QUICK_SETUP.md` - быстрая настройка email
 
 ✅ **Проект готов к деплою!**

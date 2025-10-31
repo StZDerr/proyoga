@@ -13,7 +13,7 @@
                 <div class="adress">село Супсех, ул. Советская, 1Б</div>
             </div>
             <div class="menu">
-                <a href="#" class="menuItem">Расписание</a>
+                <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
                 <a href="{{ route('direction') }}" class="menuItem">Направления</a>
             </div>

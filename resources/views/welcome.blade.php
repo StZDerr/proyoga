@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>ПроЙога</title>
+    @include('components.seo-meta')
     @include('partials.favicon')
 
     {{-- Google Fonts --}}
@@ -324,6 +324,9 @@
                     Смотреть полностью
                 </a>
             </div>
+            <iframe class="aeCustomWidget"
+                src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709"
+                width="100%" height="1120px" style="background: #ffffff;border: none;"></iframe>
         </div>
     </div>
     <div class="retreats mt-4">
@@ -518,9 +521,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
 
     @include('partials.recording-block')
     <div class="questions mt-5">
@@ -554,9 +557,7 @@
         </div>
     </div>
     {{-- Блок контактов --}}
-    <div class="container mt-5">
-        @include('partials.contacts-block')
-    </div>
+    @include('partials.contacts-block')
     @include('partials.footer')
 
     {{-- Модальное окно теста --}}

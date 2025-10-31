@@ -28,11 +28,20 @@
                         <td>{{ $subSub->description }}</td>
                         <td>{{ $subSub->about }}</td>
                         <td>
-                            <ul>
-                                @foreach ($subSub->benefits ?? [] as $benefit)
-                                    <li>{{ $benefit }}</li>
+                            @if ($subSub->benefits && count($subSub->benefits) > 0)
+                                @foreach ($subSub->benefits as $group)
+                                    <div class="mb-2">
+                                        <strong>{{ $group['title'] ?? 'Без названия' }}:</strong>
+                                        <ul class="mb-0">
+                                            @foreach ($group['benefits'] ?? [] as $benefit)
+                                                <li>{{ $benefit }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 @endforeach
-                            </ul>
+                            @else
+                                <span class="text-muted">Нет преимуществ</span>
+                            @endif
                         </td>
                         <td>
                             @if ($subSub->image)

@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Админ панель') - ПроЙога</title>
     @include('partials.favicon')
+
+    {{-- Tabler CSS --}}
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css" rel="stylesheet">
+
+    {{-- Font Awesome icons --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     @vite('resources/css/admin/app.css')
-    @vite('resources/js/admin/app.js')
     @stack('styles')
 </head>
 
@@ -52,6 +58,10 @@
         </div>
     </div>
 
+    {{-- Tabler JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
+
+    @vite('resources/js/admin/app.js')
     @stack('scripts')
 </body>
 

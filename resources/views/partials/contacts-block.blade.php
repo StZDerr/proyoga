@@ -1,5 +1,5 @@
 {{-- Блок контактов для переиспользования --}}
-<div class="containerMain">
+<div class="containerMain mb-5 mt-5">
     <div class="container">
         <iframe
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A47c3bf84e9a9b8456b4350ca9f770e0521ba2e58f2e848432f3f9d4aaa4281e6&amp;source=constructor"
@@ -30,7 +30,7 @@
                 </a>
             </div>
 
-            {{-- Форма обратной связи (только на странице контактов) --}}
+            {{-- Форма обратной связи (только на странице контактов)
             @if (request()->routeIs('contacts'))
                 <div class="contact-form-section mt-4">
                     <h4 class="mb-3">Напишите нам</h4>
@@ -62,6 +62,7 @@
                     </form>
                 </div>
             @endif
+        </div> --}}
         </div>
     </div>
 </div>

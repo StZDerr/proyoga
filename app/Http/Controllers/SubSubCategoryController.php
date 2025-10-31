@@ -43,21 +43,38 @@ class SubSubCategoryController extends Controller
             'about' => 'nullable|string',
             'image' => 'nullable|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|exists:sub_categories,id',
-            'benefits' => 'nullable|array',
-            'benefits.*' => 'nullable|string|max:255',
+            'benefit_groups' => 'nullable|array',
+            'benefit_groups.*.title' => 'nullable|string|max:255',
+            'benefit_groups.*.benefits' => 'nullable|array',
+            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
         ], [
             'image.mimes' => 'Фотография должна быть в формате .webp',
             'image.max' => 'Размер фотографии не должен превышать 2 МБ',
-            'benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
-
+            'benefit_groups.*.title.max' => 'Название группы не должно превышать 255 символов',
+            'benefit_groups.*.benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
         ]);
 
-        $data = $request->only('title', 'description', 'sub_category_id');
-        // Фильтруем пустые значения из benefits
-        $benefits = array_filter($request->input('benefits', []), function ($benefit) {
-            return ! empty(trim($benefit));
-        });
-        $data['benefits'] = array_values($benefits); // Переиндексируем массив
+        $data = $request->only('title', 'description', 'about','sub_category_id');
+        
+        // Обрабатываем группы преимуществ
+        $benefitGroups = [];
+        if ($request->has('benefit_groups')) {
+            foreach ($request->input('benefit_groups', []) as $group) {
+                if (!empty(trim($group['title'] ?? ''))) {
+                    $benefits = array_filter($group['benefits'] ?? [], function ($benefit) {
+                        return !empty(trim($benefit));
+                    });
+                    
+                    if (!empty($benefits)) {
+                        $benefitGroups[] = [
+                            'title' => trim($group['title']),
+                            'benefits' => array_values($benefits)
+                        ];
+                    }
+                }
+            }
+        }
+        $data['benefits'] = $benefitGroups;
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('sub_sub_categories', 'public');
@@ -99,16 +116,33 @@ class SubSubCategoryController extends Controller
             'about' => 'nullable|string',
             'image' => 'nullable|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|exists:sub_categories,id',
-            'benefits' => 'nullable|array',
-            'benefits.*' => 'nullable|string|max:255',
+            'benefit_groups' => 'nullable|array',
+            'benefit_groups.*.title' => 'nullable|string|max:255',
+            'benefit_groups.*.benefits' => 'nullable|array',
+            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
         ]);
 
         $data = $request->only('title', 'description', 'about', 'sub_category_id');
-        // Фильтруем пустые значения из benefits
-        $benefits = array_filter($request->input('benefits', []), function ($benefit) {
-            return ! empty(trim($benefit));
-        });
-        $data['benefits'] = array_values($benefits); // Переиндексируем массив
+        
+        // Обрабатываем группы преимуществ
+        $benefitGroups = [];
+        if ($request->has('benefit_groups')) {
+            foreach ($request->input('benefit_groups', []) as $group) {
+                if (!empty(trim($group['title'] ?? ''))) {
+                    $benefits = array_filter($group['benefits'] ?? [], function ($benefit) {
+                        return !empty(trim($benefit));
+                    });
+                    
+                    if (!empty($benefits)) {
+                        $benefitGroups[] = [
+                            'title' => trim($group['title']),
+                            'benefits' => array_values($benefits)
+                        ];
+                    }
+                }
+            }
+        }
+        $data['benefits'] = $benefitGroups;
 
         if ($request->hasFile('image')) {
             if ($subSubCategory->image) {
