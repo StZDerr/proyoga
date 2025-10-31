@@ -38,6 +38,7 @@ class PageContentController extends Controller
             'description' => 'nullable|string|max:500',
             'keywords' => 'nullable|string|max:500',
             'content' => 'nullable|string',
+            'og_image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         // Обработка SEO данных
@@ -48,12 +49,17 @@ class PageContentController extends Controller
         if ($request->filled('og_description')) {
             $seoData['og_description'] = $request->og_description;
         }
-        if ($request->filled('og_image')) {
-            $seoData['og_image'] = $request->og_image;
+
+        // Обработка загрузки изображения
+        if ($request->hasFile('og_image_file')) {
+            $file = $request->file('og_image_file');
+            $fileName = 'og-'.$request->slug.'-'.time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileName);
+            $seoData['og_image'] = '/images/'.$fileName;
         }
 
         $validated['seo_data'] = $seoData;
-        $validated['is_active'] = $request->has('is_active'); // checkbox правильно обрабатывается
+        $validated['is_active'] = $request->has('is_active');
 
         PageContent::create($validated);
 
@@ -88,22 +94,41 @@ class PageContentController extends Controller
             'description' => 'nullable|string|max:500',
             'keywords' => 'nullable|string|max:500',
             'content' => 'nullable|string',
+            'og_image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         // Обработка SEO данных
-        $seoData = [];
+        $seoData = $page->seo_data ?? [];
+
         if ($request->filled('og_title')) {
             $seoData['og_title'] = $request->og_title;
         }
         if ($request->filled('og_description')) {
             $seoData['og_description'] = $request->og_description;
         }
-        if ($request->filled('og_image')) {
-            $seoData['og_image'] = $request->og_image;
+
+        // Обработка загрузки изображения
+        if ($request->hasFile('og_image_file')) {
+            // Удаляем старое изображение, если оно есть
+            if (! empty($seoData['og_image'])) {
+                $oldImagePath = public_path($seoData['og_image']);
+                if (file_exists($oldImagePath) && is_file($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            // Загружаем новое изображение
+            $file = $request->file('og_image_file');
+            $fileName = 'og-'.$page->slug.'-'.time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileName);
+            $seoData['og_image'] = '/images/'.$fileName;
+        } elseif ($request->filled('og_image_current')) {
+            // Если файл не загружен, сохраняем текущее изображение
+            $seoData['og_image'] = $request->og_image_current;
         }
 
         $validated['seo_data'] = $seoData;
-        $validated['is_active'] = $request->has('is_active'); // checkbox правильно обрабатывается
+        $validated['is_active'] = $request->has('is_active');
 
         $page->update($validated);
 
@@ -116,6 +141,14 @@ class PageContentController extends Controller
      */
     public function destroy(PageContent $page)
     {
+        // Удаляем изображение, если оно есть
+        if (! empty($page->seo_data['og_image'])) {
+            $imagePath = public_path($page->seo_data['og_image']);
+            if (file_exists($imagePath) && is_file($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $page->delete();
 
         return redirect()->route('admin.pages.index')

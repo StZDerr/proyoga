@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('admin.pages.store') }}" method="POST">
+            <form action="{{ route('admin.pages.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card mb-4">
@@ -103,10 +103,16 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="og_image" class="form-label">Open Graph изображение</label>
-                            <input type="text" class="form-control" id="og_image" name="og_image"
-                                value="{{ old('og_image') }}" placeholder="/images/og-image.jpg">
-                            <div class="form-text">Путь к изображению для социальных сетей</div>
+                            <label for="og_image_file" class="form-label">Open Graph изображение</label>
+                            <input type="file" class="form-control @error('og_image_file') is-invalid @enderror"
+                                id="og_image_file" name="og_image_file" accept="image/*">
+                            <div class="form-text">
+                                Загрузите изображение для социальных сетей (JPG, PNG, WEBP).
+                                Рекомендуемый размер: 1200x630px
+                            </div>
+                            @error('og_image_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

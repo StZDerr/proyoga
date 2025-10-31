@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('admin.pages.update', $page) }}" method="POST">
+            <form action="{{ route('admin.pages.update', $page) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -107,10 +107,30 @@
 
                         <div class="mb-3">
                             <label for="og_image" class="form-label">Open Graph изображение</label>
-                            <input type="text" class="form-control" id="og_image" name="og_image"
-                                value="{{ old('og_image', $page->seo_data['og_image'] ?? '') }}"
-                                placeholder="/images/og-image.jpg">
-                            <div class="form-text">Путь к изображению для социальных сетей</div>
+
+                            @if (!empty($page->seo_data['og_image']))
+                                <div class="mb-2">
+                                    <div class="border rounded p-2" style="max-width: 200px;">
+                                        <img src="{{ asset($page->seo_data['og_image']) }}" alt="Текущее изображение"
+                                            class="img-fluid rounded" style="max-height: 100px;">
+                                        <div class="text-muted small mt-1">Текущее изображение</div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <input type="file" class="form-control @error('og_image_file') is-invalid @enderror"
+                                id="og_image_file" name="og_image_file" accept="image/*">
+                            <div class="form-text">
+                                Загрузите новое изображение для социальных сетей (JPG, PNG, WEBP).
+                                Рекомендуемый размер: 1200x630px
+                            </div>
+                            @error('og_image_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
+                            <!-- Скрытое поле для сохранения текущего пути -->
+                            <input type="hidden" name="og_image_current"
+                                value="{{ $page->seo_data['og_image'] ?? '' }}">
                         </div>
                     </div>
                 </div>
