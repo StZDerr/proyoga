@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Jobs\SendContactEmail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
@@ -29,7 +29,7 @@ class ContactController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -52,15 +52,15 @@ class ContactController extends Controller
             // Сразу возвращаем успешный ответ пользователю
             return response()->json([
                 'success' => true,
-                'message' => 'Ваша заявка успешно принята! Мы свяжемся с вами в ближайшее время.'
+                'message' => 'Ваша заявка успешно принята! Мы свяжемся с вами в ближайшее время.',
             ]);
 
         } catch (\Exception $e) {
-            \Log::error('Failed to queue email job: ' . $e->getMessage());
-            
+            \Log::error('Failed to queue email job: '.$e->getMessage());
+
             return response()->json([
                 'success' => false,
-                'message' => 'Произошла ошибка при отправке заявки. Попробуйте позже или свяжитесь с нами по телефону.'
+                'message' => 'Произошла ошибка при отправке заявки. Попробуйте позже или свяжитесь с нами по телефону.',
             ], 500);
         }
     }

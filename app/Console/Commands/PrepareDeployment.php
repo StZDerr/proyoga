@@ -3,12 +3,13 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 
 class PrepareDeployment extends Command
 {
     protected $signature = 'deploy:prepare';
+
     protected $description = 'Подготавливает проект к деплою на сервер';
 
     public function handle()
@@ -18,33 +19,33 @@ class PrepareDeployment extends Command
 
         // Проверка системы
         $this->checkSystem();
-        
+
         // Сборка assets
         $this->buildAssets();
-        
+
         // Очистка кешей
         $this->clearCaches();
-        
+
         // Проверка email системы
         $this->checkEmailSystem();
-        
+
         // Создание .env.production
         $this->createProductionEnv();
-        
+
         // Инструкции
         $this->showInstructions();
-        
+
         return 0;
     }
 
     private function checkSystem()
     {
         $this->line('🔍 Проверка системы:');
-        
+
         // Проверка PHP версии
         $phpVersion = PHP_VERSION;
         $this->line("   PHP версия: {$phpVersion}");
-        
+
         // Проверка необходимых расширений
         $extensions = ['openssl', 'pdo', 'mbstring', 'tokenizer', 'xml', 'ctype', 'json'];
         foreach ($extensions as $ext) {
@@ -54,18 +55,18 @@ class PrepareDeployment extends Command
                 $this->error("   ❌ {$ext} не установлен");
             }
         }
-        
+
         $this->newLine();
     }
 
     private function buildAssets()
     {
         $this->line('🎨 Сборка frontend assets:');
-        
+
         if (File::exists(base_path('package.json'))) {
             $this->line('   Запуск npm run build...');
             exec('npm run build 2>&1', $output, $returnCode);
-            
+
             if ($returnCode === 0) {
                 $this->line('   ✅ Assets собраны успешно');
             } else {
@@ -77,61 +78,61 @@ class PrepareDeployment extends Command
         } else {
             $this->line('   ⚠️ package.json не найден');
         }
-        
+
         $this->newLine();
     }
 
     private function clearCaches()
     {
         $this->line('🧹 Очистка кешей:');
-        
+
         try {
             Artisan::call('config:clear');
             $this->line('   ✅ Config кеш очищен');
-            
+
             Artisan::call('route:clear');
             $this->line('   ✅ Route кеш очищен');
-            
+
             Artisan::call('view:clear');
             $this->line('   ✅ View кеш очищен');
-            
+
         } catch (\Exception $e) {
             $this->error("   ❌ Ошибка очистки кеша: {$e->getMessage()}");
         }
-        
+
         $this->newLine();
     }
 
     private function checkEmailSystem()
     {
         $this->line('📧 Проверка email системы:');
-        
+
         try {
             Artisan::call('check:email-system');
             $this->line('   ✅ Email система готова');
         } catch (\Exception $e) {
             $this->error("   ❌ Проблема с email системой: {$e->getMessage()}");
         }
-        
+
         $this->newLine();
     }
 
     private function createProductionEnv()
     {
         $this->line('⚙️ Создание .env.production:');
-        
+
         $envContent = $this->getProductionEnvTemplate();
-        
+
         File::put(base_path('.env.production'), $envContent);
         $this->line('   ✅ Файл .env.production создан');
         $this->line('   📝 Отредактируйте его перед загрузкой на сервер');
-        
+
         $this->newLine();
     }
 
     private function getProductionEnvTemplate()
     {
-        return <<<ENV
+        return <<<'ENV'
 APP_NAME="ПроЙога"
 APP_ENV=production
 APP_KEY=base64:СГЕНЕРИРУЙТЕ_НОВЫЙ_КЛЮЧ
@@ -186,7 +187,7 @@ AWS_DEFAULT_REGION=us-east-1
 AWS_BUCKET=
 AWS_USE_PATH_STYLE_ENDPOINT=false
 
-VITE_APP_NAME="\${APP_NAME}"
+VITE_APP_NAME="${APP_NAME}"
 ENV;
     }
 
@@ -194,7 +195,7 @@ ENV;
     {
         $this->info('✅ Подготовка завершена!');
         $this->newLine();
-        
+
         $this->line('📋 Следующие шаги:');
         $this->line('');
         $this->line('1. 📁 Создайте архив проекта, исключив:');

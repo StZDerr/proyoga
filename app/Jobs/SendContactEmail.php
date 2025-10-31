@@ -2,16 +2,17 @@
 
 namespace App\Jobs;
 
+use App\Mail\ContactFormMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
 
 class SendContactEmail implements ShouldQueue
 {
     use Queueable;
 
     protected $data;
+
     protected $adminEmail;
 
     /**

@@ -18,40 +18,40 @@ class LoadPageContent
         // Получаем текущий маршрут
         $routeName = $request->route() ? $request->route()->getName() : null;
         $path = $request->path();
-        
+
         // Определяем slug страницы на основе маршрута или пути
         $slug = $this->getSlugFromRoute($routeName, $path);
-        
+
         // Отладочная информация (удалить в продакшене)
         if (config('app.debug')) {
-            \Log::info("LoadPageContent middleware:", [
+            \Log::info('LoadPageContent middleware:', [
                 'route' => $routeName,
                 'path' => $path,
-                'slug' => $slug
+                'slug' => $slug,
             ]);
         }
-        
+
         if ($slug) {
             try {
                 // Загружаем мета-данные и делимся ими с представлением ДО формирования response
                 $meta = \App\Helpers\PageContentHelper::getMeta($slug);
                 view()->share('pageMeta', $meta);
-                
+
                 // Загружаем контент страницы
                 $content = \App\Helpers\PageContentHelper::getContent($slug);
                 view()->share('pageContent', $content);
-                
+
                 // Отладочная информация
                 if (config('app.debug')) {
                     \Log::info("Meta data loaded for slug: {$slug}", $meta);
                 }
             } catch (\Exception $e) {
-                \Log::error("Error loading page content: " . $e->getMessage());
+                \Log::error('Error loading page content: '.$e->getMessage());
             }
         }
-        
+
         $response = $next($request);
-        
+
         return $response;
     }
 
@@ -64,7 +64,7 @@ class LoadPageContent
         if ($path === '/' || $routeName === 'welcome') {
             return 'home';
         }
-        
+
         $routeToSlugMap = [
             'welcome' => 'home',
             'about' => 'about',

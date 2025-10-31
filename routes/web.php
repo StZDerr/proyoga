@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Admin\PageContentController;
+use App\Http\Controllers\Admin\TestAdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\IstokiController;
 use App\Http\Controllers\MainCategoryController;
@@ -13,11 +16,8 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\Admin\TestAdminController;
-use App\Http\Controllers\Admin\PageContentController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IstokiController::class, 'index'])->name('welcome');
@@ -63,7 +63,7 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
-    
+
     Route::softDeletableResources([
         'news' => NewsController::class,
         'activity' => ActivityController::class,
@@ -86,7 +86,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/submissions', [TestAdminController::class, 'submissions'])->name('submissions');
         Route::get('/submission/{id}', [TestAdminController::class, 'showSubmission'])->name('submission.show');
         Route::post('/submission/{id}/mark-visited', [TestAdminController::class, 'markVisited'])->name('submission.mark-visited');
-        
+
         // Управление вопросами
         Route::get('/questions', [TestAdminController::class, 'questions'])->name('questions');
         Route::get('/question/create', [TestAdminController::class, 'createQuestion'])->name('question.create');
@@ -112,10 +112,12 @@ Route::get('/test-update-home', function () {
         $page->update([
             'title' => '123',
             'description' => 'Добро пожаловать в ProYoga - лучшую студию йоги в Москве. Профессиональные инструкторы, уютная атмосфера, разнообразные направления. Начните свой путь к здоровью уже сегодня!',
-            'keywords' => 'йога, студия йоги, йога москва, хатха йога, виньяса йога, медитация, пранаяма'
+            'keywords' => 'йога, студия йоги, йога москва, хатха йога, виньяса йога, медитация, пранаяма',
         ]);
+
         return 'Страница обновлена! Title изменен на "123"';
     }
+
     return 'Страница не найдена';
 });
 

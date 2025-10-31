@@ -15,6 +15,7 @@ class PageContentController extends Controller
     public function index()
     {
         $pages = PageContent::orderBy('slug')->get();
+
         return view('admin.pages.index', compact('pages'));
     }
 

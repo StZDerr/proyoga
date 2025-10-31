@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\PageContentHelper;
 use Closure;
 use Illuminate\Http\Request;
-use App\Helpers\PageContentHelper;
 
 class PageMetaMiddleware
 {
@@ -13,15 +13,15 @@ class PageMetaMiddleware
         // Получаем имя маршрута и путь
         $routeName = $request->route()?->getName();
         $path = $request->path();
-        
+
         // Определяем slug на основе маршрута
         $slug = $this->getSlugFromRoute($routeName, $path);
-        
+
         if ($slug) {
             // Загружаем мета-данные и контент для страницы
             $pageMeta = PageContentHelper::getMeta($slug);
             $pageContent = PageContentHelper::getContent($slug);
-            
+
             // Делимся данными со всеми представлениями
             view()->share('pageMeta', $pageMeta);
             view()->share('pageContent', $pageContent);
@@ -29,7 +29,7 @@ class PageMetaMiddleware
 
         return $next($request);
     }
-    
+
     /**
      * Определяет slug страницы на основе имени маршрута или пути
      */
@@ -39,7 +39,7 @@ class PageMetaMiddleware
         if ($path === '/' || $routeName === 'welcome') {
             return 'home';
         }
-        
+
         // Маппинг маршрутов на slug'и
         $routeToSlugMap = [
             'welcome' => 'home',

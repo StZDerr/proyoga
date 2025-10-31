@@ -11,10 +11,15 @@ class ContactFormMail extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
+
     public $phone;
+
     public $userEmail;
+
     public $userMessage;
+
     public $formType;
+
     public $timestamp;
 
     /**
@@ -36,6 +41,6 @@ class ContactFormMail extends Mailable
     public function build()
     {
         return $this->subject('Новая заявка с сайта йоги')
-                    ->view('emails.contact-form-final');
+            ->view('emails.contact-form-final');
     }
 }

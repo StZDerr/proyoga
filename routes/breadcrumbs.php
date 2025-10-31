@@ -1,10 +1,10 @@
 <?php
 
+use App\Models\MainCategory;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
-use App\Models\SubCategory;
-use App\Models\MainCategory;
-use App\Models\SubSubCategory;
 
 // Главная
 Breadcrumbs::for('welcome', function (BreadcrumbTrail $trail) {

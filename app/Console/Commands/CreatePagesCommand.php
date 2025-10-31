@@ -35,8 +35,8 @@ class CreatePagesCommand extends Command
                 'seo_data' => [
                     'og_title' => 'Направления йоги в ProYoga',
                     'og_description' => 'Все стили и направления йоги в одной студии',
-                    'og_image' => '/images/og-direction.jpg'
-                ]
+                    'og_image' => '/images/og-direction.jpg',
+                ],
             ],
             [
                 'slug' => 'price-list',
@@ -47,8 +47,8 @@ class CreatePagesCommand extends Command
                 'seo_data' => [
                     'og_title' => 'Цены на йогу в ProYoga',
                     'og_description' => 'Доступные тарифы и абонементы',
-                    'og_image' => '/images/og-price.jpg'
-                ]
+                    'og_image' => '/images/og-price.jpg',
+                ],
             ],
             [
                 'slug' => 'contacts',
@@ -59,8 +59,8 @@ class CreatePagesCommand extends Command
                 'seo_data' => [
                     'og_title' => 'Контакты ProYoga',
                     'og_description' => 'Найдите нас и запишитесь на занятия',
-                    'og_image' => '/images/og-contacts.jpg'
-                ]
+                    'og_image' => '/images/og-contacts.jpg',
+                ],
             ],
             [
                 'slug' => 'tea',
@@ -71,21 +71,22 @@ class CreatePagesCommand extends Command
                 'seo_data' => [
                     'og_title' => 'Чайная церемония ProYoga',
                     'og_description' => 'Медитативное чаепитие в уютной атмосфере',
-                    'og_image' => '/images/og-tea.jpg'
-                ]
-            ]
+                    'og_image' => '/images/og-tea.jpg',
+                ],
+            ],
         ];
 
         foreach ($pages as $pageData) {
             $pageData['is_active'] = true;
-            
+
             $existing = \App\Models\PageContent::where('slug', $pageData['slug'])->first();
-            
+
             if ($existing) {
                 $this->info("Страница '{$pageData['slug']}' уже существует - пропускаем");
+
                 continue;
             }
-            
+
             \App\Models\PageContent::create($pageData);
             $this->info("✓ Создана страница: {$pageData['slug']} - {$pageData['title']}");
         }

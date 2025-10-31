@@ -13,12 +13,12 @@ class PageContent extends Model
         'keywords',
         'content',
         'seo_data',
-        'is_active'
+        'is_active',
     ];
 
     protected $casts = [
         'seo_data' => 'array',
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
     ];
 
     /**

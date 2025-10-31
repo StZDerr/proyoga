@@ -44,9 +44,9 @@ class SubSubCategoryController extends Controller
             'image' => 'nullable|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
-            'benefit_groups.*.title' => 'nullable|string|max:255',
+            'benefit_groups.*.title' => 'nullable|string',
             'benefit_groups.*.benefits' => 'nullable|array',
-            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
+            'benefit_groups.*.benefits.*' => 'nullable|string',
         ], [
             'image.mimes' => 'Фотография должна быть в формате .webp',
             'image.max' => 'Размер фотографии не должен превышать 2 МБ',
@@ -54,21 +54,21 @@ class SubSubCategoryController extends Controller
             'benefit_groups.*.benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
         ]);
 
-        $data = $request->only('title', 'description', 'about','sub_category_id');
-        
+        $data = $request->only('title', 'description', 'about', 'sub_category_id');
+
         // Обрабатываем группы преимуществ
         $benefitGroups = [];
         if ($request->has('benefit_groups')) {
             foreach ($request->input('benefit_groups', []) as $group) {
-                if (!empty(trim($group['title'] ?? ''))) {
+                if (! empty(trim($group['title'] ?? ''))) {
                     $benefits = array_filter($group['benefits'] ?? [], function ($benefit) {
-                        return !empty(trim($benefit));
+                        return ! empty(trim($benefit));
                     });
-                    
-                    if (!empty($benefits)) {
+
+                    if (! empty($benefits)) {
                         $benefitGroups[] = [
                             'title' => trim($group['title']),
-                            'benefits' => array_values($benefits)
+                            'benefits' => array_values($benefits),
                         ];
                     }
                 }
@@ -117,26 +117,26 @@ class SubSubCategoryController extends Controller
             'image' => 'nullable|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
-            'benefit_groups.*.title' => 'nullable|string|max:255',
+            'benefit_groups.*.title' => 'nullable|string',
             'benefit_groups.*.benefits' => 'nullable|array',
-            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
+            'benefit_groups.*.benefits.*' => 'nullable|string',
         ]);
 
         $data = $request->only('title', 'description', 'about', 'sub_category_id');
-        
+
         // Обрабатываем группы преимуществ
         $benefitGroups = [];
         if ($request->has('benefit_groups')) {
             foreach ($request->input('benefit_groups', []) as $group) {
-                if (!empty(trim($group['title'] ?? ''))) {
+                if (! empty(trim($group['title'] ?? ''))) {
                     $benefits = array_filter($group['benefits'] ?? [], function ($benefit) {
-                        return !empty(trim($benefit));
+                        return ! empty(trim($benefit));
                     });
-                    
-                    if (!empty($benefits)) {
+
+                    if (! empty($benefits)) {
                         $benefitGroups[] = [
                             'title' => trim($group['title']),
-                            'benefits' => array_values($benefits)
+                            'benefits' => array_values($benefits),
                         ];
                     }
                 }

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\MainCategory;
 use App\Models\SubCategory;
+use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class CategorySeeder extends Seeder
     {
         // Создаем главную категорию "Выездные сессии "Путешествия к себе""
         $mainCategory = MainCategory::create([
-            'title' => 'Выездные сессии "Путешествия к себе"'
+            'title' => 'Выездные сессии "Путешествия к себе"',
         ]);
 
         // Создаем подкатегорию для этой главной категории
@@ -26,7 +25,7 @@ class CategorySeeder extends Seeder
             'description' => 'В "Исток и я" проходят занятия по йоге, пилатесу, дыхательным и телесным практикам, арт-терапии и медитациям, а также регулярные ретриты, женские и мужские круги, трансформационные программы и выездные сессии на природе.
 Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли возвращаться к своему Истоку.
 Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли возвращаться к своему Истоку.',
-            'image' => null // Можете указать путь к изображению, если есть
+            'image' => null, // Можете указать путь к изображению, если есть
         ]);
 
         $this->command->info('Категории "Выездные сессии" успешно созданы!');

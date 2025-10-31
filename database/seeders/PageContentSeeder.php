@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PageContentSeeder extends Seeder
@@ -22,8 +21,8 @@ class PageContentSeeder extends Seeder
                 'seo_data' => [
                     'og_title' => 'ProYoga - Студия йоги в Москве',
                     'og_description' => 'Профессиональные занятия йогой для начинающих и продвинутых',
-                    'og_image' => '/images/og-home.jpg'
-                ]
+                    'og_image' => '/images/og-home.jpg',
+                ],
             ],
             [
                 'slug' => 'about',
@@ -34,8 +33,8 @@ class PageContentSeeder extends Seeder
                 'seo_data' => [
                     'og_title' => 'О студии ProYoga',
                     'og_description' => 'Наша история, инструкторы и подход к йоге',
-                    'og_image' => '/images/og-about.jpg'
-                ]
+                    'og_image' => '/images/og-about.jpg',
+                ],
             ],
             [
                 'slug' => 'services',
@@ -46,8 +45,8 @@ class PageContentSeeder extends Seeder
                 'seo_data' => [
                     'og_title' => 'Услуги студии ProYoga',
                     'og_description' => 'Групповые занятия, индивидуальные уроки, семинары',
-                    'og_image' => '/images/og-services.jpg'
-                ]
+                    'og_image' => '/images/og-services.jpg',
+                ],
             ],
             [
                 'slug' => 'contact',
@@ -58,9 +57,9 @@ class PageContentSeeder extends Seeder
                 'seo_data' => [
                     'og_title' => 'Контакты ProYoga',
                     'og_description' => 'Найдите нас и запишитесь на занятия йогой',
-                    'og_image' => '/images/og-contact.jpg'
-                ]
-            ]
+                    'og_image' => '/images/og-contact.jpg',
+                ],
+            ],
         ];
 
         foreach ($pages as $page) {

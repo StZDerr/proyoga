@@ -24,19 +24,19 @@ class PageContentServiceProvider extends ServiceProvider
             $request = request();
             $routeName = $request->route() ? $request->route()->getName() : null;
             $path = $request->path();
-            
+
             // Определяем slug страницы
             $slug = $this->getSlugFromRoute($routeName, $path);
-            
-            if ($slug && !$view->offsetExists('pageMeta')) {
+
+            if ($slug && ! $view->offsetExists('pageMeta')) {
                 try {
                     $meta = \App\Helpers\PageContentHelper::getMeta($slug);
                     $content = \App\Helpers\PageContentHelper::getContent($slug);
-                    
+
                     $view->with('pageMeta', $meta);
                     $view->with('pageContent', $content);
                 } catch (\Exception $e) {
-                    \Log::error("Error loading page content in composer: " . $e->getMessage());
+                    \Log::error('Error loading page content in composer: '.$e->getMessage());
                 }
             }
         });
@@ -51,7 +51,7 @@ class PageContentServiceProvider extends ServiceProvider
         if ($path === '/' || $routeName === 'welcome') {
             return 'home';
         }
-        
+
         $routeToSlugMap = [
             'welcome' => 'home',
             'about' => 'about',

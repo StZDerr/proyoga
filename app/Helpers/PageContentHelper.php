@@ -12,7 +12,7 @@ class PageContentHelper
     public static function getMeta($slug, $defaultTitle = null, $defaultDescription = null)
     {
         $page = PageContent::getBySlug($slug);
-        
+
         if ($page) {
             return [
                 'title' => $page->title,
@@ -23,7 +23,7 @@ class PageContentHelper
                 'og_image' => $page->seo_data['og_image'] ?? null,
             ];
         }
-        
+
         return [
             'title' => $defaultTitle ?? 'ProYoga',
             'description' => $defaultDescription ?? 'Студия йоги ProYoga',
@@ -40,6 +40,7 @@ class PageContentHelper
     public static function getContent($slug)
     {
         $page = PageContent::getBySlug($slug);
+
         return $page ? $page->content : null;
     }
 

@@ -46,6 +46,7 @@ class IstokiController extends Controller
         // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
+
         return view('direction', compact('mainCategories', 'pageMeta', 'pageContent'));
     }
 
@@ -57,6 +58,7 @@ class IstokiController extends Controller
         // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
+
         return view('PodDirection', compact('subCategory', 'pageMeta', 'pageContent'));
     }
 
@@ -70,18 +72,20 @@ class IstokiController extends Controller
         if ($subSubCategory->subCategory->id != $subCategoryId) {
             abort(404);
         }
-// Загружаем мета-данные для страницы direction
+        // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
+
         return view('hatha-uoga', compact('subSubCategory', 'pageMeta', 'pageContent'));
     }
 
     public function about()
     {
         $personals = Personal::all();
-    // Загружаем мета-данные для страницы direction
+        // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
+
         return view('about', compact('personals', 'pageMeta', 'pageContent'));
     }
 }

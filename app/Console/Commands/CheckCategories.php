@@ -37,8 +37,8 @@ class CheckCategories extends Command
         foreach ($subCategories as $sub) {
             $this->line("ID: {$sub->id} | Название: {$sub->title}");
             $this->line("Главная категория: {$sub->mainCategory->title}");
-            $this->line("Описание: " . substr($sub->description, 0, 100) . "...");
-            $this->line("---");
+            $this->line('Описание: '.substr($sub->description, 0, 100).'...');
+            $this->line('---');
         }
 
         return 0;
