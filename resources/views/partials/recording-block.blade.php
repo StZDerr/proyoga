@@ -15,6 +15,7 @@
 
                 {{-- Форма записи --}}
                 <form class="recording-form mt-4" id="recordingForm">
+                    @csrf
                     <div class="form-group mb-3">
                         <input type="text" class="form-control recording-input" id="userName" name="name"
                             placeholder="Ваше имя" required autocomplete="name" minlength="2" maxlength="50"

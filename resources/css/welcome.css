@@ -165,6 +165,12 @@
     color: var(--primary-color-button-123d4d);
 }
 .main .container-button .button-bid {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 24px;
+    text-align: center;
+    vertical-align: middle;
     background-color: var(--primary-color-button-123d4d);
     color: #fff;
     border-radius: 1.8rem;
@@ -181,6 +187,12 @@
 }
 
 .main .container-button .button-calendar {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 24px;
+    text-align: center;
+    vertical-align: middle;
     border: 2px solid var(--primary-color-button-123d4d);
     border-radius: 1.8rem;
     padding: 1rem;
@@ -302,6 +314,7 @@
 .directions .main-directions .card-directions {
     background-color: #ebf2ee;
     border-radius: 1rem;
+    padding-bottom: 2rem; /* добавляем отступ снизу к самой карточке */
 }
 
 .directions .main-directions .card-directions .title {
@@ -319,12 +332,12 @@
     line-height: 24px;
     color: #007677;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* ограничиваем 2 строками */
+    -webkit-line-clamp: 4; /* ограничиваем 4 строками */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: calc(24px * 4); /* фиксируем высоту на 2 строки */
-    padding: 0 1rem;
+    height: calc(24px * 4); /* возвращаем фиксированную высоту */
+    padding: 0 1rem; /* убираем margin-bottom, оставляем только боковые отступы */
 }
 
 .price-list .text .section-title {

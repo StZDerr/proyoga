@@ -14,7 +14,7 @@
 .about .about-text .desc {
     font-family: Montserrat;
     font-weight: 500;
-    font-size: var(--font-size-text-desc-28px);
+    font-size: var(--font-size-text-desc-20px);
     line-height: 32px;
     color: var(--secondary-color-1d7d6f);
 }

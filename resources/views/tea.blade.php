@@ -99,7 +99,9 @@
             </div>
         </div>
     </div>
-    @include('partials.recording-block')
+    <div class="mb-5">
+        @include('partials.recording-block')
+    </div>
     @include('partials.footer')
 
 </body>

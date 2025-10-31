@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ПроЙога</title>
     @include('partials.favicon')
 
@@ -191,7 +192,7 @@
             <div class="row g-4 main-directions mt-2">
                 @foreach ($mainCategories as $mainCategory)
                     @foreach ($mainCategory->subCategories as $subCategory)
-                        <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <div class="col-lg-4 col-md-6 col-12 mb-5">
                             <a href="{{ route('PodDirection', $subCategory->id) }}"
                                 class="text-decoration-none text-dark">
                                 <div class="card-directions">
@@ -553,12 +554,14 @@
         </div>
     </div>
     {{-- Блок контактов --}}
-    @include('partials.contacts-block')
+    <div class="container mt-5">
+        @include('partials.contacts-block')
+    </div>
+    @include('partials.footer')
 
     {{-- Модальное окно теста --}}
     @include('partials.modal-test')
 
-    @include('partials.footer')
 
     {{-- Скрипт теста загружается после Bootstrap --}}
     @vite(['resources/js/yoga-test.js'])

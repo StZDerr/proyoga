@@ -16,6 +16,7 @@ use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\TestAdminController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IstokiController::class, 'index'])->name('welcome');
@@ -46,6 +47,9 @@ Route::prefix('api/test')->group(function () {
     Route::get('/questions', [TestController::class, 'getQuestions']);
     Route::post('/submit', [TestController::class, 'submitTest']);
 });
+
+// API маршруты для отправки форм
+Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
 
 // Route::get('/about', function () {
 //     return view('about');
