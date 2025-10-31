@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('components.seo-meta')
     @include('partials.favicon')
 
@@ -44,9 +45,13 @@
                                 <div class="text other">• {{ $benefit }}</div>
                             @endforeach
                         </div>
-                    @else
+                    @elseif (is_string($benefitGroup))
                         {{-- Совместимость со старой структурой (простой массив строк) --}}
-                        <div class="textTitle">{{ is_string($benefitGroup) ? $benefitGroup : '' }}</div>
+                        <div class="textTitle">{{ $benefitGroup }}</div>
+                    @else
+                        {{-- Обработка некорректных данных --}}
+                        <div class="textTitle">
+                            {{ is_string($benefitGroup) ? $benefitGroup : json_encode($benefitGroup) }}</div>
                     @endif
                 @endforeach
             @endif

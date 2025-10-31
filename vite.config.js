@@ -6,6 +6,12 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/sass/app.scss",
+                "resources/css/app.css",
+                "resources/css/tea.css",
+                "resources/css/about.css",
+                "resources/css/contacts.css",
+                "resources/css/price-list.css",
+                "resources/css/direction.css",
                 "resources/js/app.js",
                 "resources/css/welcome.css",
                 "resources/css/navbar.css",
@@ -15,8 +21,10 @@ export default defineConfig({
                 "resources/css/modal-test.css",
                 "resources/js/welcome_new.js",
                 "resources/js/navbar.js",
+                "resources/js/about.js",
                 "resources/js/recording-form.js",
                 "resources/js/yoga-test.js",
+                "resources/js/price-list.js",
                 "resources/css/admin/app.css",
                 "resources/js/admin/app.js",
             ],

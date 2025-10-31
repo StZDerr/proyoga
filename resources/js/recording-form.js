@@ -49,22 +49,75 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // Здесь в будущем будет отправка на сервер
-            console.log("Данные формы:", {
-                name: name,
-                phone: phone,
-                privacy_agreement: privacyAgreement,
-            });
+            // Отправка данных на сервер
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
 
-            // Сообщение об успехе
-            Swal.fire({
-                icon: "success",
-                title: "Спасибо!",
-                text: `Ваша заявка принята. Мы свяжемся с вами по номеру ${phone}`,
-                confirmButtonColor: "#1D7D6F",
-            });
+            // Показываем процесс отправки
+            submitButton.disabled = true;
+            submitButton.textContent = "Отправка...";
 
-            this.reset();
+            fetch("/contact/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    email: "",
+                    message: `Заявка на запись на занятие от ${name}. Телефон: ${phone}`,
+                    privacy_agreement: "on",
+                }),
+            })
+                .then((response) => {
+                    // Быстро возвращаем кнопку в исходное состояние
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                    }
+
+                    console.log("Response status:", response.status);
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP error! status: ${response.status}`
+                        );
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("Response data:", data);
+                    if (data.success) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Спасибо!",
+                            text: `Ваша заявка принята. Мы свяжемся с вами по номеру ${phone}`,
+                            confirmButtonColor: "#1D7D6F",
+                        });
+                        this.reset();
+                    } else {
+                        throw new Error(data.message || "Ошибка отправки");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Ошибка:", error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Ошибка!",
+                        text: "Произошла ошибка при отправке заявки. Попробуйте еще раз.",
+                        confirmButtonColor: "#1D7D6F",
+                    });
+
+                    // Возвращаем кнопку в исходное состояние при ошибке
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                    }
+                });
         });
 
         // Маска телефона (оставляем без изменений)

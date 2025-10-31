@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
+use App\Jobs\SendContactEmail;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
@@ -44,17 +43,20 @@ class ContactController extends Controller
                 'service' => $request->service ?: 'Запись на занятие',
             ];
 
-            // Отправка письма администратору
-            $adminEmail = env('ADMIN_EMAIL', 'admin@proyoga.ru');
-            Mail::to($adminEmail)->send(new ContactFormMail($data));
+            // Получаем email администратора
+            $adminEmail = env('CONTACT_EMAIL', env('ADMIN_EMAIL', 'admin@proyoga.ru'));
 
+            // Ставим отправку письма в очередь
+            SendContactEmail::dispatch($data, $adminEmail);
+
+            // Сразу возвращаем успешный ответ пользователю
             return response()->json([
                 'success' => true,
-                'message' => 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
+                'message' => 'Ваша заявка успешно принята! Мы свяжемся с вами в ближайшее время.'
             ]);
 
         } catch (\Exception $e) {
-            \Log::error('Email sending failed: ' . $e->getMessage());
+            \Log::error('Failed to queue email job: ' . $e->getMessage());
             
             return response()->json([
                 'success' => false,

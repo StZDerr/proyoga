@@ -85,15 +85,6 @@ window.submitForm = submitForm;
 
 // Обработчики для форм
 document.addEventListener("DOMContentLoaded", function () {
-    // Форма записи на занятие
-    const recordingForm = document.getElementById("recordingForm");
-    if (recordingForm) {
-        recordingForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            submitForm("recordingForm", "recording");
-        });
-    }
-
     // Форма обратной связи
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
