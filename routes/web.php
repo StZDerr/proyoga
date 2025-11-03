@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\TestAdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\IndexingController;
 use App\Http\Controllers\IstokiController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\NewsController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PriceItemController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\TestController;
@@ -24,6 +26,9 @@ Route::get('/', [IstokiController::class, 'index'])->name('welcome');
 Route::get('/price-list', [IstokiController::class, 'priceList'])->name('price-list');
 Route::get('/direction', [IstokiController::class, 'direction'])->name('direction');
 Route::get('/about', [IstokiController::class, 'about'])->name('about');
+Route::get('/recording', [IstokiController::class, 'recording'])->name('recording');
+Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
+Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
 
 Route::get('/direction/{subCategory}', [IstokiController::class, 'PodDirection'])
     ->name('PodDirection');
@@ -56,6 +61,9 @@ Route::prefix('api/test')->group(function () {
 // API маршруты для отправки форм
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
 
+// Sitemap.xml
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
 Route::get('/admin', function () {
     return view('admin/index');
 })->middleware('auth')->name('admin');
@@ -63,6 +71,18 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
+
+    // Дополнительные маршруты для управления индексацией (ПЕРЕД resource!)
+    Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
+        Route::post('/settings', [IndexingController::class, 'updateSettings'])->name('update-settings');
+        Route::get('/toggle', [IndexingController::class, 'toggleIndexing'])->name('toggle');
+        Route::get('/generate-sitemap', [IndexingController::class, 'generateSitemap'])->name('generate-sitemap');
+        Route::get('/initialize', [IndexingController::class, 'initializeDefaults'])->name('initialize');
+        Route::get('/{indexing}/toggle-page', [IndexingController::class, 'togglePageIndexing'])->name('toggle-page');
+    });
+
+    // Управление индексацией (ПОСЛЕ дополнительных маршрутов!)
+    Route::resource('indexing', IndexingController::class);
 
     Route::softDeletableResources([
         'news' => NewsController::class,
@@ -99,26 +119,3 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
 // Только аутентификация, без регистрации
 Auth::routes(['register' => false]);
-
-// Тестовый роут для проверки мета-данных
-Route::get('/test-meta', function () {
-    return view('test-meta');
-})->name('test-meta');
-
-// Тестовый роут для обновления страницы home
-Route::get('/test-update-home', function () {
-    $page = App\Models\PageContent::find(1);
-    if ($page) {
-        $page->update([
-            'title' => '123',
-            'description' => 'Добро пожаловать в ProYoga - лучшую студию йоги в Москве. Профессиональные инструкторы, уютная атмосфера, разнообразные направления. Начните свой путь к здоровью уже сегодня!',
-            'keywords' => 'йога, студия йоги, йога москва, хатха йога, виньяса йога, медитация, пранаяма',
-        ]);
-
-        return 'Страница обновлена! Title изменен на "123"';
-    }
-
-    return 'Страница не найдена';
-});
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

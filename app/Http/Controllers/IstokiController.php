@@ -50,11 +50,11 @@ class IstokiController extends Controller
         return view('direction', compact('mainCategories', 'pageMeta', 'pageContent'));
     }
 
-    public function PodDirection($subCategoryId)
+    public function PodDirection(SubCategory $subCategory)
     {
-        $subCategory = SubCategory::with(['subSubCategories', 'mainCategory'])
-            ->where('id', $subCategoryId)
-            ->firstOrFail();
+        // Laravel автоматически найдет SubCategory по slug благодаря getRouteKeyName()
+        $subCategory->load(['subSubCategories', 'mainCategory']);
+        
         // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
@@ -62,16 +62,15 @@ class IstokiController extends Controller
         return view('PodDirection', compact('subCategory', 'pageMeta', 'pageContent'));
     }
 
-    public function subSubCategoryDetail($subCategoryId, $subSubCategoryId)
+    public function subSubCategoryDetail(SubCategory $subCategory, SubSubCategory $subSubCategory)
     {
-        $subSubCategory = SubSubCategory::with(['subCategory.mainCategory'])
-            ->where('id', $subSubCategoryId)
-            ->firstOrFail();
-
         // Проверяем, что подподкатегория принадлежит правильной подкатегории
-        if ($subSubCategory->subCategory->id != $subCategoryId) {
+        if ($subSubCategory->sub_category_id !== $subCategory->id) {
             abort(404);
         }
+        
+        $subSubCategory->load(['subCategory.mainCategory']);
+        
         // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
@@ -87,5 +86,20 @@ class IstokiController extends Controller
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
 
         return view('about', compact('personals', 'pageMeta', 'pageContent'));
+    }
+
+    public function recording()
+    {
+        return view('recording');
+    }
+
+    public function personalData()
+    {
+        return view('personal-data');
+    }
+
+    public function privacyPolicy()
+    {
+        return view('privacy-policy');
     }
 }

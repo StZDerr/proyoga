@@ -26,12 +26,12 @@
             <div class="footerContent">
                 <div class="adress">село Супсех, ул. Советская, 1Б</div>
                 <a href="tel:+78005553535" class="phone">+7 (800) 555-35-35</a>
-                <a href="#" class="button" id="bid">Записаться на занятие</a>
+                <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
                 <div class="rating">
-                    <a href="#" rel="nofollow" target="_blank">
+                    <a href="https://yandex.ru/maps/-/CLfTYTjy">
                         <img src="{{ asset('images/svg/yandex_maps.svg') }}" alt="Яндекс" />
                     </a>
-                    <a href="#" rel="nofollow" target="_blank">
+                    <a href="https://go.2gis.com/SBzhO" rel="nofollow" target="_blank">
                         <img src="{{ asset('images/svg/reiting2gis_white.svg') }}" alt="2ГИС" />
                     </a>
                 </div>
@@ -39,10 +39,10 @@
         </div>
         <hr />
         <div class="legalInfo">
-            <a href="/privacy-policy/" class="info">
+            <a href="/privacy-policy" class="info">
                 Политика конфиденциальности
             </a>
-            <a href="/personal-data/" class="info">
+            <a href="/personal-data" class="info">
                 Согласие на обработку персональных данных
             </a>
             <a href="https://sumnikoff.ru/" class="info" target="_blank">

@@ -88,11 +88,6 @@
                     <div class="collapse" id="sidebar-content">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item">
-                                <a class="nav-link ms-3" href="{{ route('admin.activity.index') }}">
-                                    Занятия
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link ms-3" href="{{ route('admin.personal.index') }}">
                                     Преподователи
                                 </a>
@@ -260,6 +255,37 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#sidebar-indexing" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebar-indexing">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- 🧠 Иконка SEO / индексации -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-seo"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 19h18" />
+                                <path d="M4 9h4v7h-4z" />
+                                <path d="M12 9a3 3 0 1 1 0 6a3 3 0 0 1 0 -6z" />
+                                <path d="M20 9h-3a1 1 0 0 0 -1 1v5a1 1 0 0 0 1 1h3" />
+                                <path d="M17 12h2" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Индексация
+                        </span>
+                    </a>
+                    <div class="collapse" id="sidebar-indexing">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.indexing.index') }}">
+                                    Индексация сайта
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">

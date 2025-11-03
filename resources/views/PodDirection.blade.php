@@ -31,7 +31,7 @@
                             <div class="row g-4 main-directions mt-2">
                                 @foreach ($subCategory->subSubCategories as $subSubCategory)
                                     <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                        <a href="{{ route('subSubCategoryDetail', [$subCategory->id, $subSubCategory->id]) }}"
+                                        <a href="{{ route('subSubCategoryDetail', [$subCategory->slug, $subSubCategory->slug]) }}"
                                             class="text-decoration-none text-dark">
                                             <div class="card-directions">
                                                 @if ($subSubCategory->image)

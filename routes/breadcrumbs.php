@@ -48,14 +48,14 @@ Breadcrumbs::for('PodDirection', function (BreadcrumbTrail $trail, SubCategory $
     if ($subCategory->mainCategory) {
         $trail->push($subCategory->mainCategory->title);
     }
-    $trail->push($subCategory->title, route('PodDirection', $subCategory->id));
+    $trail->push($subCategory->title, route('PodDirection', $subCategory->slug));
 });
 
 // Детальная страница подподкатегории
 Breadcrumbs::for('subSubCategoryDetail', function (BreadcrumbTrail $trail, SubSubCategory $subSubCategory) {
     // Показываем путь: Главная → Направления → Основная категория → Подкатегория → Подподкатегория
     $trail->parent('PodDirection', $subSubCategory->subCategory);
-    $trail->push($subSubCategory->title, route('subSubCategoryDetail', [$subSubCategory->subCategory->id, $subSubCategory->id]));
+    $trail->push($subSubCategory->title, route('subSubCategoryDetail', [$subSubCategory->subCategory->slug, $subSubCategory->slug]));
 });
 
 // Хатха йога

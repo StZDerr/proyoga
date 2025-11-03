@@ -51,7 +51,7 @@
                                     <tr class="table-item-row">
                                         <td class="table-item-name">{{ $item->name }}</td>
                                         <td class="table-item-info">
-                                            <div class="table-item-duration">{{ $item->duration }}</div>
+                                            <div class="table-item-duration">{{ $item->duration }} мин</div>
                                             <div class="table-item-price">{{ $item->price }} ₽</div>
                                         </td>
                                     </tr>

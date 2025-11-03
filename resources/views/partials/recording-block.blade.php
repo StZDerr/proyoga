@@ -1,10 +1,10 @@
 <div class="recording mt-5">
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-xl-6 col-12">
                 <img src="{{ asset('images/recording-img.webp') }}" alt="">
             </div>
-            <div class="col-6">
+            <div class="col-xl-6 col-12">
                 <div class="title">
                     Запишитесь на занятие
                 </div>
@@ -33,7 +33,7 @@
                         <input type="checkbox" class="form-check-input recording-checkbox" id="privacyPolicy"
                             name="privacy_agreement" required>
                         <label class="form-check-label recording-checkbox-label" for="privacyPolicy">
-                            Я согласен(-на) с политикой конфиденциальности
+                            Я согласен(-на) с <a href="{{ route('privacy-policy') }}"> политикой конфиденциальности</a>
                         </label>
                     </div>
 

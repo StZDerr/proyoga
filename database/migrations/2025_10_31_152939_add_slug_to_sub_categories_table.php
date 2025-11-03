@@ -9,17 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-    {
-        Schema::table('sub_categories', function (Blueprint $table) {
-            $table->string('slug')->nullable()->after('title'); // nullable, без unique
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::table('sub_categories', function (Blueprint $table) {
+    //         $table->string('slug')->nullable()->after('title'); // nullable, без unique
+    //     });
+    // }
 
-    public function down()
-    {
-        Schema::table('sub_categories', function (Blueprint $table) {
-            $table->dropColumn('slug');
-        });
-    }
+    // public function down()
+    // {
+    //     Schema::table('sub_categories', function (Blueprint $table) {
+    //         $table->dropColumn('slug');
+    //     });
+    // }
 };

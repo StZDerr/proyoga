@@ -1,3 +1,19 @@
+@php
+    // Проверяем настройки индексации
+    $indexingSettings = \App\Models\IndexingSettings::current();
+    $noIndex = !$indexingSettings->global_indexing_enabled;
+@endphp
+
+{{-- Отключение индексации --}}
+@if ($noIndex)
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="yandex" content="noindex, nofollow, noarchive, nosnippet">
+@else
+    <meta name="robots" content="index, follow">
+@endif
+
 {{-- Мета-теги для SEO --}}
 @if (isset($pageMeta))
     <title>{{ $pageMeta['title'] }}</title>
@@ -29,7 +45,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request()->url() }}">
-    <meta property="og:site_name" content="ИстокиЯ - Студия йоги"">
+    <meta property="og:site_name" content="ИстокиЯ - Студия йоги">
 
     {{-- Twitter Card теги --}}
     <meta name="twitter:card" content="summary_large_image">
@@ -41,10 +57,11 @@
     <meta name="twitter:site" content="@istokiya_yoga">
 @else
     <title>ИстокиЯ - Студия йоги</title>
-    <meta name="description" content="Профессиональная студия йоги ProYoga">
+    <meta name="description" content="Профессиональная студия йоги ИстокиЯ в Москве">
     <meta property="og:title" content="ИстокиЯ - Студия йоги">
-    <meta property="og:description" content="Профессиональная студия йоги ProYoga">
+    <meta property="og:description" content="Профессиональная студия йоги ИстокиЯ в Москве">
     <meta property="og:image" content="{{ asset('/images/og-default.jpg') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:site_name" content="ИстокиЯ - Студия йоги">
 @endif
