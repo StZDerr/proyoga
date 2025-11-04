@@ -19,11 +19,25 @@ class ContactController extends Controller
             'service' => 'nullable|string|max:255',
             'privacy_agreement' => 'required|accepted',
         ], [
-            'name.required' => 'Поле "Имя" обязательно для заполнения',
-            'phone.required' => 'Поле "Телефон" обязательно для заполнения',
-            'email.email' => 'Некорректный формат email',
+            'name.required' => 'Имя обязательно',
+            'name.string' => 'Имя должно быть строкой',
+            'name.max' => 'Имя не должно превышать 255 символов',
+
+            'phone.required' => 'Телефон обязателен',
+            'phone.string' => 'Телефон должен быть строкой',
+            'phone.max' => 'Телефон не должен превышать 20 символов',
+
+            'email.email' => 'Неверный формат e‑mail',
+            'email.max' => 'E‑mail не должен превышать 255 символов',
+
+            'message.string' => 'Сообщение должно быть строкой',
+            'message.max' => 'Сообщение не должно превышать 1000 символов',
+
+            'service.string' => 'Услуга должна быть строкой',
+            'service.max' => 'Название услуги не должно превышать 255 символов',
+
             'privacy_agreement.required' => 'Необходимо согласие с политикой конфиденциальности',
-            'privacy_agreement.accepted' => 'Необходимо согласие с политикой конфиденциальности',
+            'privacy_agreement.accepted' => 'Вы должны принять политику конфиденциальности',
         ]);
 
         if ($validator->fails()) {

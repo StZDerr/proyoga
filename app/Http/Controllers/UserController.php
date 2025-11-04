@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -12,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('login', '!=', 'StZD')
+            ->orderBy('id', 'desc')
+            ->get();
 
         return view('admin.user.index', compact('users'));
     }
@@ -34,10 +37,23 @@ class UserController extends Controller
             'login' => 'required|string|max:255|unique:users,login',
             'name' => 'nullable|string|max:255',
             'password' => 'required|string|min:6|confirmed',
+        ], [
+            'login.required' => 'Логин обязателен',
+            'login.string' => 'Логин должен быть строкой',
+            'login.max' => 'Логин не должен превышать 255 символов',
+            'login.unique' => 'Пользователь с таким логином уже существует',
+
+            'name.string' => 'Имя должно быть строкой',
+            'name.max' => 'Имя не должно превышать 255 символов',
+
+            'password.required' => 'Пароль обязателен',
+            'password.string' => 'Пароль должен быть строкой',
+            'password.min' => 'Пароль должен содержать минимум :min символов',
+            'password.confirmed' => 'Подтверждение пароля не совпадает',
         ]);
 
         // Хэшируем пароль
-        $validated['password'] = bcrypt($validated['password']);
+        $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
 
@@ -65,17 +81,30 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'login' => 'required|string|unique:users,login,'.$user->id,
+        $validated = $request->validate([
+            'login' => 'required|string|max:255|unique:users,login,'.$user->id,
             'name' => 'nullable|string|max:255',
             'password' => 'nullable|string|confirmed|min:6',
+        ], [
+            'login.required' => 'Логин обязателен',
+            'login.string' => 'Логин должен быть строкой',
+            'login.max' => 'Логин не должен превышать 255 символов',
+            'login.unique' => 'Пользователь с таким логином уже существует',
+
+            'name.string' => 'Имя должно быть строкой',
+            'name.max' => 'Имя не должно превышать 255 символов',
+
+            'password.string' => 'Пароль должен быть строкой',
+            'password.min' => 'Пароль должен содержать минимум :min символов',
+            'password.confirmed' => 'Подтверждение пароля не совпадает',
         ]);
 
-        $user->login = $request->login;
-        $user->name = $request->name;
+        // Применяем изменения безопасно
+        $user->login = $validated['login'];
+        $user->name = $validated['name'] ?? null;
 
-        if ($request->password) {
-            $user->password = bcrypt($request->password);
+        if (! empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
         }
 
         $user->save();

@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 "resources/sass/app.scss",
                 "resources/css/app.css",
+                "resources/css/hatha-uoga.css",
                 "resources/css/tea.css",
                 "resources/css/about.css",
                 "resources/css/contacts.css",

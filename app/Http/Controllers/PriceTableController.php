@@ -33,12 +33,20 @@ class PriceTableController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'category_id' => 'required|exists:price_categories,id',
+            'category_id' => 'required|integer|exists:price_categories,id',
+        ], [
+            'title.required' => 'Название обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+
+            'category_id.required' => 'Категория обязательна',
+            'category_id.integer' => 'Неверный идентификатор категории',
+            'category_id.exists' => 'Выбранная категория не найдена',
         ]);
 
-        PriceTable::create($request->all());
+        PriceTable::create($validated);
 
         return redirect()->route('admin.price-tables.index')
             ->with('success', 'Таблица добавлена!');
@@ -67,12 +75,20 @@ class PriceTableController extends Controller
      */
     public function update(Request $request, PriceTable $priceTable)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'category_id' => 'required|exists:price_categories,id',
+            'category_id' => 'required|integer|exists:price_categories,id',
+        ], [
+            'title.required' => 'Название обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+
+            'category_id.required' => 'Категория обязательна',
+            'category_id.integer' => 'Неверный идентификатор категории',
+            'category_id.exists' => 'Выбранная категория не найдена',
         ]);
 
-        $priceTable->update($request->all());
+        $priceTable->update($validated);
 
         return redirect()->route('admin.price-tables.index')
             ->with('success', 'Таблица обновлена!');

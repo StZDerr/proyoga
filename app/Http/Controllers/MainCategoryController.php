@@ -30,12 +30,17 @@ class MainCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255|unique:main_categories,title',
+        ], [
+            'title.required' => 'Название категории обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+            'title.unique' => 'Категория с таким названием уже существует',
         ]);
 
         MainCategory::create([
-            'title' => $request->title,
+            'title' => $validated['title'],
         ]);
 
         return redirect()->route('admin.main-categories.index')
@@ -63,12 +68,17 @@ class MainCategoryController extends Controller
      */
     public function update(Request $request, MainCategory $mainCategory)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255|unique:main_categories,title,'.$mainCategory->id,
+        ], [
+            'title.required' => 'Название категории обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+            'title.unique' => 'Категория с таким названием уже существует',
         ]);
 
         $mainCategory->update([
-            'title' => $request->title,
+            'title' => $validated['title'],
         ]);
 
         return redirect()->route('admin.main-categories.index')

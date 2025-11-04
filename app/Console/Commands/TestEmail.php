@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Mail\ContactFormMail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class TestEmail extends Command
 {
@@ -59,9 +60,9 @@ class TestEmail extends Command
         } catch (\Exception $e) {
             $this->error('❌ Ошибка отправки email: '.$e->getMessage());
 
-            return Command::FAILURE;
+            return SymfonyCommand::FAILURE;
         }
 
-        return Command::SUCCESS;
+        return SymfonyCommand::SUCCESS;
     }
 }

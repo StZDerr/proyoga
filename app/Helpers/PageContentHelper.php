@@ -25,11 +25,11 @@ class PageContentHelper
         }
 
         return [
-            'title' => $defaultTitle ?? 'ProYoga',
-            'description' => $defaultDescription ?? 'Студия йоги ProYoga',
+            'title' => $defaultTitle ?? 'ИстокиЯ',
+            'description' => $defaultDescription ?? 'Студия йоги ИстокиЯ',
             'keywords' => null,
-            'og_title' => $defaultTitle ?? 'ProYoga',
-            'og_description' => $defaultDescription ?? 'Студия йоги ProYoga',
+            'og_title' => $defaultTitle ?? 'ИстокиЯ',
+            'og_description' => $defaultDescription ?? 'Студия йоги ИстокиЯ',
             'og_image' => null,
         ];
     }

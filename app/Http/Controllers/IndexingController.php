@@ -39,8 +39,28 @@ class IndexingController extends Controller
             'description' => 'nullable|string',
             'priority' => 'required|numeric|between:0,1',
             'changefreq' => 'required|in:always,hourly,daily,weekly,monthly,yearly,never',
-            'is_indexed' => 'boolean',
+            'is_indexed' => 'sometimes|boolean',
             'notes' => 'nullable|string',
+        ], [
+            'url.required' => 'URL обязателен',
+            'url.string' => 'URL должен быть строкой',
+            'url.unique' => 'Этот URL уже используется',
+
+            'title.required' => 'Заголовок обязателен',
+            'title.string' => 'Заголовок должен быть строкой',
+
+            'description.string' => 'Описание должно быть строкой',
+
+            'priority.required' => 'Приоритет обязателен',
+            'priority.numeric' => 'Приоритет должен быть числом',
+            'priority.between' => 'Приоритет должен быть между 0 и 1',
+
+            'changefreq.required' => 'Частота изменения обязателена',
+            'changefreq.in' => 'Недопустимое значение для частоты изменения',
+
+            'is_indexed.boolean' => 'Поле "индексировать" должно быть логическим (true/false)',
+
+            'notes.string' => 'Примечания должны быть строкой',
         ]);
 
         $data = $request->all();
@@ -81,6 +101,26 @@ class IndexingController extends Controller
             'changefreq' => 'required|in:always,hourly,daily,weekly,monthly,yearly,never',
             'is_indexed' => 'boolean',
             'notes' => 'nullable|string',
+        ], [
+            'url.required' => 'URL обязателен',
+            'url.string' => 'URL должен быть строкой',
+            'url.unique' => 'Этот URL уже используется',
+
+            'title.required' => 'Заголовок обязателен',
+            'title.string' => 'Заголовок должен быть строкой',
+
+            'description.string' => 'Описание должно быть строкой',
+
+            'priority.required' => 'Приоритет обязателен',
+            'priority.numeric' => 'Приоритет должен быть числом',
+            'priority.between' => 'Приоритет должен быть между 0 и 1',
+
+            'changefreq.required' => 'Частота изменения обязателена',
+            'changefreq.in' => 'Недопустимое значение для частоты изменения',
+
+            'is_indexed.boolean' => 'Поле "индексировать" должно быть логическим (true/false)',
+
+            'notes.string' => 'Примечания должны быть строкой',
         ]);
 
         $data = $request->all();
@@ -112,6 +152,12 @@ class IndexingController extends Controller
             'sitemap_enabled' => 'nullable|boolean',
             'robots_txt_content' => 'required|string',
             'notes' => 'nullable|string',
+        ], [
+            'global_indexing_enabled.boolean' => 'Значение поля "Глобальная индексация" должно быть true или false',
+            'sitemap_enabled.boolean' => 'Значение поля "Генерация sitemap" должно быть true или false',
+            'robots_txt_content.required' => 'Содержимое robots.txt обязательно',
+            'robots_txt_content.string' => 'Содержимое robots.txt должно быть строкой',
+            'notes.string' => 'Примечания должны быть строкой',
         ]);
 
         $settings = IndexingSettings::current();
@@ -163,7 +209,7 @@ class IndexingController extends Controller
     {
         $settings = IndexingSettings::current();
 
-        if (!$settings->sitemap_enabled) {
+        if (! $settings->sitemap_enabled) {
             return redirect()->back()->with('error', 'Генерация sitemap отключена в настройках!');
         }
 
@@ -173,11 +219,11 @@ class IndexingController extends Controller
             if ($response) {
                 // Дополнительно создаем статический файл для резервного копирования
                 File::put(public_path('sitemap-backup.xml'), $response);
-                
-                return redirect()->back()->with('success', 'Динамический sitemap работает! Доступен по адресу: ' . route('sitemap'));
+
+                return redirect()->back()->with('success', 'Динамический sitemap работает! Доступен по адресу: '.route('sitemap'));
             }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ошибка при проверке sitemap: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Ошибка при проверке sitemap: '.$e->getMessage());
         }
 
         return redirect()->back()->with('error', 'Не удалось сгенерировать sitemap');
@@ -190,7 +236,7 @@ class IndexingController extends Controller
             'global_indexing_enabled' => true,
             'robots_txt_content' => IndexingSettings::defaultRobotsTxt(),
             'sitemap_enabled' => true,
-            'notes' => 'Настройки индексации по умолчанию'
+            'notes' => 'Настройки индексации по умолчанию',
         ]);
 
         // Создаем дефолтные страницы

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-4">
         <h2>{{ isset($promotion) ? 'Редактировать акцию' : 'Добавить акцию' }}</h2>
-
+        @include('admin.partials.success')
         <form
             action="{{ isset($promotion) ? route('admin.promotions.update', $promotion->id) : route('admin.promotions.store') }}"
             method="POST" enctype="multipart/form-data">
@@ -13,7 +13,7 @@
             @endif
 
             <div class="mb-3">
-                <label for="photo" class="form-label">Фото (WEBP, max 2МБ)</label>
+                <label for="photo" class="form-label">Фото (WEBP, max 1МБ)</label>
                 <input type="file" name="photo" id="photo" class="form-control"
                     {{ isset($promotion) ? '' : 'required' }}>
             </div>

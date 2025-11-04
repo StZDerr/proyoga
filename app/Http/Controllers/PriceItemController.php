@@ -33,14 +33,30 @@ class PriceItemController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'duration' => 'required|string|max:50',
             'price' => 'required|string|max:50',
-            'table_id' => 'required|exists:price_tables,id',
+            'table_id' => 'required|integer|exists:price_tables,id',
+        ], [
+            'name.required' => 'Название обязательно',
+            'name.string' => 'Название должно быть строкой',
+            'name.max' => 'Название не должно превышать 255 символов',
+
+            'duration.required' => 'Длительность обязательна',
+            'duration.string' => 'Длительность должна быть строкой',
+            'duration.max' => 'Длительность не должна превышать 50 символов',
+
+            'price.required' => 'Цена обязательна',
+            'price.string' => 'Цена должна быть строкой',
+            'price.max' => 'Цена не должна превышать 50 символов',
+
+            'table_id.required' => 'Таблица цены обязательна',
+            'table_id.integer' => 'Неверный идентификатор таблицы',
+            'table_id.exists' => 'Выбранная таблица не найдена',
         ]);
 
-        PriceItem::create($request->all());
+        PriceItem::create($validated);
 
         return redirect()->route('admin.price-items.index')
             ->with('success', 'Элемент добавлен!');
@@ -69,14 +85,30 @@ class PriceItemController extends Controller
      */
     public function update(Request $request, PriceItem $priceItem)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'duration' => 'required|string|max:50',
             'price' => 'required|string|max:50',
-            'table_id' => 'required|exists:price_tables,id',
+            'table_id' => 'required|integer|exists:price_tables,id',
+        ], [
+            'name.required' => 'Название обязательно',
+            'name.string' => 'Название должно быть строкой',
+            'name.max' => 'Название не должно превышать 255 символов',
+
+            'duration.required' => 'Длительность обязательна',
+            'duration.string' => 'Длительность должна быть строкой',
+            'duration.max' => 'Длительность не должна превышать 50 символов',
+
+            'price.required' => 'Цена обязательна',
+            'price.string' => 'Цена должна быть строкой',
+            'price.max' => 'Цена не должна превышать 50 символов',
+
+            'table_id.required' => 'Таблица цены обязательна',
+            'table_id.integer' => 'Неверный идентификатор таблицы',
+            'table_id.exists' => 'Выбранная таблица не найдена',
         ]);
 
-        $priceItem->update($request->all());
+        $priceItem->update($validated);
 
         return redirect()->route('admin.price-items.index')
             ->with('success', 'Элемент обновлен!');

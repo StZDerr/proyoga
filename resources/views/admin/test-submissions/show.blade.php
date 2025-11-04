@@ -4,18 +4,13 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('admin.partials.success')
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Результат теста #{{ $submission->id }}</h1>
             <a href="{{ route('admin.test.submissions') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Назад к списку
             </a>
         </div>
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
 
         <div class="row">
             <div class="col-md-6">

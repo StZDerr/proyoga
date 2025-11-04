@@ -4,6 +4,7 @@
 @section('header', 'Редактирование страницы: ' . $page->title)
 
 @section('content')
+    @include('admin.partials.success')
     <div class="row">
         <div class="col-md-8">
             <form action="{{ route('admin.pages.update', $page) }}" method="POST" enctype="multipart/form-data">

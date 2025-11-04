@@ -1,6 +1,18 @@
 @extends('admin.layouts.app')
 
 @section('content')
+    @php
+        $formatSize = fn($bytes, $decimals = 2) => $bytes === null
+            ? '—'
+            : ($bytes === 0
+                ? '0 B'
+                : (function ($b, $d) {
+                    $k = 1024;
+                    $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+                    $i = floor(log($b, $k));
+                    return round($b / pow($k, $i), $d) . ' ' . $sizes[$i];
+                })($bytes, $decimals));
+    @endphp
     <div class="container mt-4">
         <div class="d-flex justify-content-between mb-3">
             <h2>Акции</h2>
@@ -14,6 +26,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Фото</th>
+                    <th>Размер</th>
                     <th>Действия</th>
                 </tr>
             </thead>
@@ -22,6 +35,8 @@
                     <tr>
                         <td>{{ $promotion->id }}</td>
                         <td><img src="{{ asset('storage/' . $promotion->photo) }}" width="150" alt="Фото акции"></td>
+
+                        <td>{{ $formatSize($promotion->photo_size) }}</td>
                         <td>
                             <a href="{{ route('admin.promotions.edit', $promotion->id) }}"
                                 class="btn btn-sm btn-warning">Редактировать</a>

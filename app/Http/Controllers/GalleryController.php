@@ -33,10 +33,19 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'required|file|mimes:webp|max:2048',
+            'image' => 'required|file|mimes:webp|max:1024',
         ], [
+            'title.required' => 'Заголовок обязателен',
+            'title.string' => 'Заголовок должен быть строкой',
+            'title.max' => 'Заголовок не должен превышать 255 символов',
+
+            'description.string' => 'Описание должно быть строкой',
+
+            // Для метода store (image => required)
+            'image.required' => 'Фотография обязательна',
+            'image.file' => 'Фотография должна быть файлом',
             'image.mimes' => 'Фотография должна быть в формате .webp',
-            'image.max' => 'Размер фотографии не должен превышать 2 МБ',
+            'image.max' => 'Размер фотографии не должен превышать 1 МБ',
         ]);
 
         if ($request->hasFile('image')) {
@@ -72,10 +81,19 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|file|mimes:webp|max:2048',
+            'image' => 'nullable|file|mimes:webp|max:1024',
         ], [
+            'title.required' => 'Заголовок обязателен',
+            'title.string' => 'Заголовок должен быть строкой',
+            'title.max' => 'Заголовок не должен превышать 255 символов',
+
+            'description.string' => 'Описание должно быть строкой',
+
+            // Для метода store (image => required)
+            'image.required' => 'Фотография обязательна',
+            'image.file' => 'Фотография должна быть файлом',
             'image.mimes' => 'Фотография должна быть в формате .webp',
-            'image.max' => 'Размер фотографии не должен превышать 2 МБ',
+            'image.max' => 'Размер фотографии не должен превышать 1 МБ',
         ]);
 
         if ($request->hasFile('image')) {

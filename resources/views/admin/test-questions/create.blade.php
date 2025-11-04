@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('admin.partials.success')
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Создать новый вопрос</h1>
             <a href="{{ route('admin.test.questions') }}" class="btn btn-secondary">

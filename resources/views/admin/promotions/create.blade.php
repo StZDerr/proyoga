@@ -2,15 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('admin.partials.success')
         <h2>{{ isset($promotion) ? 'Редактировать акцию' : 'Добавить акцию' }}</h2>
 
         <form
@@ -22,7 +14,7 @@
             @endif
 
             <div class="mb-3">
-                <label for="photo" class="form-label">Фото (WEBP, max 2МБ)</label>
+                <label for="photo" class="form-label">Фото (WEBP, max 1МБ)</label>
                 <input type="file" name="photo" id="photo" class="form-control"
                     {{ isset($promotion) ? '' : 'required' }}>
             </div>

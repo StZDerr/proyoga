@@ -193,7 +193,7 @@
                 @foreach ($mainCategories as $mainCategory)
                     @foreach ($mainCategory->subCategories as $subCategory)
                         <div class="col-lg-4 col-md-6 col-12 mb-5">
-                            <a href="{{ route('PodDirection', $subCategory->id) }}"
+                            <a href="{{ route('PodDirection', $subCategory->slug) }}"
                                 class="text-decoration-none text-dark">
                                 <div class="card-directions">
                                     @if ($subCategory->image)
@@ -255,7 +255,7 @@
                                 <tr class="table-item-row">
                                     <td class="table-item-name">{{ $item->name }}</td>
                                     <td class="table-item-info">
-                                        <div class="table-item-duration">{{ $item->duration }}</div>
+                                        <div class="table-item-duration">{{ $item->duration }} мин</div>
                                         <div class="table-item-price">{{ $item->price }} ₽</div>
                                     </td>
                                 </tr>
@@ -345,7 +345,7 @@
                         Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли
                         возвращаться к своему Истоку.
                     </div>
-                    <a href="" class="btn btn-more mt-4">
+                    <a href="/direction/vyezdnye-sessii-putesestviia-k-sebe" class="btn btn-more mt-4">
                         Подробнее <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>

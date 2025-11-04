@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
+        @include('admin.partials.success')
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Сотрудники</h2>
             <a href="{{ route('admin.personal.create') }}" class="btn btn-primary">Добавить сотрудника</a>

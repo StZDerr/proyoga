@@ -4,6 +4,7 @@
 @section('header', 'Создание новой страницы')
 
 @section('content')
+    @include('admin.partials.success')
     <div class="row">
         <div class="col-md-8">
             <form action="{{ route('admin.pages.store') }}" method="POST" enctype="multipart/form-data">

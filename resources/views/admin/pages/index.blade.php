@@ -4,6 +4,7 @@
 @section('header', 'Управление страницами')
 
 @section('content')
+    @include('admin.partials.success')
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">

@@ -34,6 +34,15 @@ class QuestionController extends Controller
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
             'order' => 'nullable|integer',
+        ], [
+            'question.required' => 'Вопрос обязателен',
+            'question.string' => 'Вопрос должен быть строкой',
+            'question.max' => 'Вопрос не должен превышать 255 символов',
+
+            'answer.required' => 'Ответ обязателен',
+            'answer.string' => 'Ответ должен быть строкой',
+
+            'order.integer' => 'Порядок должен быть целым числом',
         ]);
 
         Question::create($validated);
@@ -66,6 +75,15 @@ class QuestionController extends Controller
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
             'order' => 'nullable|integer',
+        ], [
+            'question.required' => 'Вопрос обязателен',
+            'question.string' => 'Вопрос должен быть строкой',
+            'question.max' => 'Вопрос не должен превышать 255 символов',
+
+            'answer.required' => 'Ответ обязателен',
+            'answer.string' => 'Ответ должен быть строкой',
+
+            'order.integer' => 'Порядок должен быть целым числом',
         ]);
 
         $question->update($validated);

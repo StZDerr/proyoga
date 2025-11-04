@@ -15,10 +15,10 @@
                     <p class="mt-3">Загружаем вопросы теста...</p>
                 </div>
                 <div class="row test-mobile-layout">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-12">
                         <img src="{{ asset('images/directions-background.webp') }}" alt="">
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-12">
                         <div id="test-container" class="d-none">
                             <div class="test-content-wrapper">
                                 <!-- Прогресс бар -->

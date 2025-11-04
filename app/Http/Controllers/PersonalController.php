@@ -35,8 +35,23 @@ class PersonalController extends Controller
             'last_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'position' => 'required|string|max:255',
-            'photo' => 'nullable|file|mimes:webp|max:2048', // проверка на webp и размер до 2МБ
+            'photo' => 'sometimes|file|mimes:webp|max:2048', // webp, до 2 МБ
         ], [
+            'first_name.required' => 'Имя обязательно',
+            'first_name.string' => 'Имя должно быть строкой',
+            'first_name.max' => 'Имя не должно превышать 255 символов',
+
+            'last_name.required' => 'Фамилия обязательна',
+            'last_name.string' => 'Фамилия должна быть строкой',
+            'last_name.max' => 'Фамилия не должна превышать 255 символов',
+
+            'middle_name.string' => 'Отчество должно быть строкой',
+            'middle_name.max' => 'Отчество не должно превышать 255 символов',
+
+            'position.required' => 'Должность обязательна',
+            'position.string' => 'Должность должна быть строкой',
+            'position.max' => 'Должность не должна превышать 255 символов',
+
             'photo.mimes' => 'Фотография должна быть в формате .webp',
             'photo.max' => 'Размер фотографии не должен превышать 2 МБ',
         ]);
@@ -76,10 +91,25 @@ class PersonalController extends Controller
             'last_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'position' => 'required|string|max:255',
-            'photo' => 'nullable|file|mimes:webp|max:1024',
+            'photo' => 'sometimes|file|mimes:webp|max:2048', // сделал тот же лимит (2 МБ)
         ], [
+            'first_name.required' => 'Имя обязательно',
+            'first_name.string' => 'Имя должно быть строкой',
+            'first_name.max' => 'Имя не должно превышать 255 символов',
+
+            'last_name.required' => 'Фамилия обязательна',
+            'last_name.string' => 'Фамилия должна быть строкой',
+            'last_name.max' => 'Фамилия не должна превышать 255 символов',
+
+            'middle_name.string' => 'Отчество должно быть строкой',
+            'middle_name.max' => 'Отчество не должно превышать 255 символов',
+
+            'position.required' => 'Должность обязательна',
+            'position.string' => 'Должность должна быть строкой',
+            'position.max' => 'Должность не должна превышать 255 символов',
+
             'photo.mimes' => 'Фотография должна быть в формате .webp',
-            'photo.max' => 'Размер фотографии не должен превышать 1 МБ',
+            'photo.max' => 'Размер фотографии не должен превышать 2 МБ',
         ]);
 
         if ($request->hasFile('photo')) {

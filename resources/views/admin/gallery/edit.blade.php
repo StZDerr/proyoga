@@ -11,16 +11,6 @@
             <a href="{{ route('admin.gallery.index') }}" class="btn btn-secondary">Назад к списку</a>
         </div>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <form action="{{ route('admin.gallery.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')

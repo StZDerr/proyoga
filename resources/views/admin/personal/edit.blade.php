@@ -4,15 +4,7 @@
     <div class="container mt-5">
         <h2>Редактировать персонал</h2>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('admin.partials.success')
         @include('admin.partials.success')
 
         <form action="{{ route('admin.personal.update', $personal->id) }}" method="POST" enctype="multipart/form-data">

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
+        @include('admin.partials.success')
         <h2>{{ isset($question) ? 'Редактировать вопрос' : 'Добавить вопрос' }}</h2>
 
         <form

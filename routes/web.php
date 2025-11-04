@@ -48,9 +48,9 @@ Route::get('/calendar', function () {
     return view('calendar');
 })->name('calendar');
 
-Route::get('/test-modal', function () {
-    return view('test-modal');
-})->name('test-modal');
+// Route::get('/test-modal', function () {
+//     return view('test-modal');
+// })->name('test-modal');
 
 // API маршруты для теста
 Route::prefix('api/test')->group(function () {

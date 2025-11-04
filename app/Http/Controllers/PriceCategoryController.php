@@ -30,11 +30,16 @@ class PriceCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:price_categories,name',
+        ], [
+            'name.required' => 'Название обязательно',
+            'name.string' => 'Название должно быть строкой',
+            'name.max' => 'Название не должно превышать 255 символов',
+            'name.unique' => 'Категория с таким названием уже существует',
         ]);
 
-        PriceCategory::create($request->all());
+        PriceCategory::create($validated);
 
         return redirect()->route('admin.price-categories.index')
             ->with('success', 'Категория добавлена!');
@@ -61,11 +66,16 @@ class PriceCategoryController extends Controller
      */
     public function update(Request $request, PriceCategory $priceCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:price_categories,name,'.$priceCategory->id,
+        ], [
+            'name.required' => 'Название обязательно',
+            'name.string' => 'Название должно быть строкой',
+            'name.max' => 'Название не должно превышать 255 символов',
+            'name.unique' => 'Категория с таким названием уже существует',
         ]);
 
-        $priceCategory->update($request->all());
+        $priceCategory->update($validated);
 
         return redirect()->route('admin.price-categories.index')
             ->with('success', 'Категория обновлена!');

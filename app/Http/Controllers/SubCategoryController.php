@@ -34,20 +34,34 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:webp|max:2048',
-            'main_category_id' => 'required|exists:main_categories,id',
+            'image' => 'sometimes|image|mimes:webp|max:2048',
+            'main_category_id' => 'required|integer|exists:main_categories,id',
+        ], [
+            'title.required' => 'Название обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+
+            'description.string' => 'Описание должно быть строкой',
+
+            'image.image' => 'Файл должен быть изображением',
+            'image.mimes' => 'Изображение должно быть в формате .webp',
+            'image.max' => 'Размер изображения не должен превышать 2 МБ',
+
+            'main_category_id.required' => 'Нужно указать главную категорию',
+            'main_category_id.integer' => 'Неверный идентификатор главной категории',
+            'main_category_id.exists' => 'Выбранная главная категория не найдена',
         ]);
 
-        $data = $request->only('title', 'description', 'main_category_id');
+        $validated = $request->only('title', 'description', 'main_category_id');
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('sub_categories', 'public');
+            $validated['image'] = $request->file('image')->store('sub_categories', 'public');
         }
 
-        SubCategory::create($data);
+        SubCategory::create($validated);
 
         return redirect()->route('admin.sub-categories.index')
             ->with('success', 'Подкатегория успешно добавлена');
@@ -76,23 +90,37 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, SubCategory $subCategory)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:webp|max:2048',
-            'main_category_id' => 'required|exists:main_categories,id',
+            'image' => 'sometimes|image|mimes:webp|max:2048',
+            'main_category_id' => 'required|integer|exists:main_categories,id',
+        ], [
+            'title.required' => 'Название обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+
+            'description.string' => 'Описание должно быть строкой',
+
+            'image.image' => 'Файл должен быть изображением',
+            'image.mimes' => 'Изображение должно быть в формате .webp',
+            'image.max' => 'Размер изображения не должен превышать 2 МБ',
+
+            'main_category_id.required' => 'Нужно указать главную категорию',
+            'main_category_id.integer' => 'Неверный идентификатор главной категории',
+            'main_category_id.exists' => 'Выбранная главная категория не найдена',
         ]);
 
-        $data = $request->only('title', 'description', 'main_category_id');
+        $validated = $request->only('title', 'description', 'main_category_id');
 
         if ($request->hasFile('image')) {
             if ($subCategory->image) {
                 Storage::disk('public')->delete($subCategory->image);
             }
-            $data['image'] = $request->file('image')->store('sub_categories', 'public');
+            $validated['image'] = $request->file('image')->store('sub_categories', 'public');
         }
 
-        $subCategory->update($data);
+        $subCategory->update($validated);
 
         return redirect()->route('admin.sub-categories.index')
             ->with('success', 'Подкатегория успешно обновлена');

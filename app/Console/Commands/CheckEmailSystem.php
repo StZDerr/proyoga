@@ -67,7 +67,7 @@ class CheckEmailSystem extends Command
         $this->line('🔧 Проверка классов:');
 
         // Проверка Mailable
-        if (class_exists(\App\Mail\ContactFormMail::class)) {
+        if (class_exists(ContactFormMail::class)) {
             $this->line('   ✅ ContactFormMail класс существует');
         } else {
             $this->error('   ❌ ContactFormMail класс не найден');

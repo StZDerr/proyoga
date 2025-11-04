@@ -2,20 +2,11 @@
 
 @section('content')
     <div class="container">
-
+        @include('admin.partials.success')
         <div class="mb-4">
             <h2>Добавить сотрудника</h2>
             <a href="{{ route('admin.personal.index') }}" class="btn btn-secondary">Назад к списку</a>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         @include('admin.partials.success')
 
         <div class="card p-4">

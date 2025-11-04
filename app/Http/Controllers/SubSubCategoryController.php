@@ -37,45 +37,64 @@ class SubSubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'about' => 'nullable|string',
-            'image' => 'nullable|image|mimes:webp|max:2048',
-            'sub_category_id' => 'required|exists:sub_categories,id',
+            'image' => 'sometimes|image|mimes:webp|max:2048',
+            'sub_category_id' => 'required|integer|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
-            'benefit_groups.*.title' => 'nullable|string',
+            'benefit_groups.*.title' => 'nullable|string|max:255',
             'benefit_groups.*.benefits' => 'nullable|array',
-            'benefit_groups.*.benefits.*' => 'nullable|string',
+            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
         ], [
+            'title.required' => 'Название обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+
+            'description.string' => 'Описание должно быть строкой',
+            'about.string' => 'Поле "о товаре" должно быть строкой',
+
+            'image.image' => 'Файл должен быть изображением',
             'image.mimes' => 'Фотография должна быть в формате .webp',
-            'image.max' => 'Размер фотографии не должен превышать 2 МБ',
+            'image.max' => 'Размер изображения не должен превышать 2 МБ',
+
+            'sub_category_id.required' => 'Необходимо указать подкатегорию',
+            'sub_category_id.integer' => 'Неверный идентификатор подкатегории',
+            'sub_category_id.exists' => 'Выбранная подкатегория не найдена',
+
+            'benefit_groups.array' => 'Неверный формат групп преимуществ',
             'benefit_groups.*.title.max' => 'Название группы не должно превышать 255 символов',
             'benefit_groups.*.benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
         ]);
 
-        $data = $request->only('title', 'description', 'about', 'sub_category_id');
+        // Берём основные поля из валидированных данных
+        $data = [
+            'title' => trim($validated['title']),
+            'description' => isset($validated['description']) ? trim($validated['description']) : null,
+            'about' => isset($validated['about']) ? trim($validated['about']) : null,
+            'sub_category_id' => $validated['sub_category_id'],
+        ];
 
-        // Обрабатываем группы преимуществ
+        // Обрабатываем группы преимуществ безопасно из $validated
         $benefitGroups = [];
-        if ($request->has('benefit_groups')) {
-            foreach ($request->input('benefit_groups', []) as $group) {
-                if (! empty(trim($group['title'] ?? ''))) {
-                    $benefits = array_filter($group['benefits'] ?? [], function ($benefit) {
-                        return ! empty(trim($benefit));
-                    });
-
-                    if (! empty($benefits)) {
-                        $benefitGroups[] = [
-                            'title' => trim($group['title']),
-                            'benefits' => array_values($benefits),
-                        ];
-                    }
-                }
+        foreach ($validated['benefit_groups'] ?? [] as $group) {
+            $groupTitle = trim($group['title'] ?? '');
+            $rawBenefits = $group['benefits'] ?? [];
+            // Очищаем и тримим преимущества
+            $benefits = array_values(array_filter(array_map(function ($b) {
+                return is_string($b) ? trim($b) : null;
+            }, $rawBenefits)));
+            if ($groupTitle !== '' && ! empty($benefits)) {
+                $benefitGroups[] = [
+                    'title' => $groupTitle,
+                    'benefits' => $benefits,
+                ];
             }
         }
         $data['benefits'] = $benefitGroups;
 
+        // Файл изображения
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('sub_sub_categories', 'public');
         }
@@ -110,42 +129,64 @@ class SubSubCategoryController extends Controller
      */
     public function update(Request $request, SubSubCategory $subSubCategory)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'about' => 'nullable|string',
-            'image' => 'nullable|image|mimes:webp|max:2048',
-            'sub_category_id' => 'required|exists:sub_categories,id',
+            'image' => 'sometimes|image|mimes:webp|max:2048',
+            'sub_category_id' => 'required|integer|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
-            'benefit_groups.*.title' => 'nullable|string',
+            'benefit_groups.*.title' => 'nullable|string|max:255',
             'benefit_groups.*.benefits' => 'nullable|array',
-            'benefit_groups.*.benefits.*' => 'nullable|string',
+            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
+        ], [
+            'title.required' => 'Название обязательно',
+            'title.string' => 'Название должно быть строкой',
+            'title.max' => 'Название не должно превышать 255 символов',
+
+            'description.string' => 'Описание должно быть строкой',
+            'about.string' => 'Поле "о товаре" должно быть строкой',
+
+            'image.image' => 'Файл должен быть изображением',
+            'image.mimes' => 'Фотография должна быть в формате .webp',
+            'image.max' => 'Размер изображения не должен превышать 2 МБ',
+
+            'sub_category_id.required' => 'Необходимо указать подкатегорию',
+            'sub_category_id.integer' => 'Неверный идентификатор подкатегории',
+            'sub_category_id.exists' => 'Выбранная подкатегория не найдена',
+
+            'benefit_groups.array' => 'Неверный формат групп преимуществ',
+            'benefit_groups.*.title.max' => 'Название группы не должно превышать 255 символов',
+            'benefit_groups.*.benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
         ]);
 
-        $data = $request->only('title', 'description', 'about', 'sub_category_id');
+        $data = [
+            'title' => trim($validated['title']),
+            'description' => isset($validated['description']) ? trim($validated['description']) : null,
+            'about' => isset($validated['about']) ? trim($validated['about']) : null,
+            'sub_category_id' => $validated['sub_category_id'],
+        ];
 
-        // Обрабатываем группы преимуществ
+        // Обрабатываем benefit_groups из $validated
         $benefitGroups = [];
-        if ($request->has('benefit_groups')) {
-            foreach ($request->input('benefit_groups', []) as $group) {
-                if (! empty(trim($group['title'] ?? ''))) {
-                    $benefits = array_filter($group['benefits'] ?? [], function ($benefit) {
-                        return ! empty(trim($benefit));
-                    });
-
-                    if (! empty($benefits)) {
-                        $benefitGroups[] = [
-                            'title' => trim($group['title']),
-                            'benefits' => array_values($benefits),
-                        ];
-                    }
-                }
+        foreach ($validated['benefit_groups'] ?? [] as $group) {
+            $groupTitle = trim($group['title'] ?? '');
+            $rawBenefits = $group['benefits'] ?? [];
+            $benefits = array_values(array_filter(array_map(function ($b) {
+                return is_string($b) ? trim($b) : null;
+            }, $rawBenefits)));
+            if ($groupTitle !== '' && ! empty($benefits)) {
+                $benefitGroups[] = [
+                    'title' => $groupTitle,
+                    'benefits' => $benefits,
+                ];
             }
         }
         $data['benefits'] = $benefitGroups;
 
+        // Обработка изображения: если загружено — удаляем старое и сохраняем новое
         if ($request->hasFile('image')) {
-            if ($subSubCategory->image) {
+            if ($subSubCategory->image && Storage::disk('public')->exists($subSubCategory->image)) {
                 Storage::disk('public')->delete($subSubCategory->image);
             }
             $data['image'] = $request->file('image')->store('sub_sub_categories', 'public');

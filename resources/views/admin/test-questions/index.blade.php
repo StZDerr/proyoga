@@ -4,18 +4,13 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('admin.partials.success')
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Вопросы теста</h1>
             <a href="{{ route('admin.test.question.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить вопрос
             </a>
         </div>
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
 
         <div class="card">
             <div class="card-body">

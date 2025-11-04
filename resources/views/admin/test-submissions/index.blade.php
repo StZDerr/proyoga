@@ -4,15 +4,10 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('admin.partials.success')
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Результаты тестов</h1>
         </div>
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
 
         <div class="card">
             <div class="card-body">

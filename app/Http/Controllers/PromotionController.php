@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Promotion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PromotionController extends Controller
 {
@@ -12,7 +13,18 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        $promotions = Promotion::all();
+        $promotions = Promotion::orderBy('id', 'desc')->paginate(20);
+
+        $promotions->getCollection()->transform(function ($promotion) {
+            $path = $promotion->photo; // предполагается, что это относительный путь, например 'promotions/1.jpg'
+            if ($path && Storage::disk('public')->exists($path)) {
+                $promotion->photo_size = Storage::disk('public')->size($path); // размер в байтах
+            } else {
+                $promotion->photo_size = null;
+            }
+
+            return $promotion;
+        });
 
         return view('admin.promotions.index', compact('promotions'));
     }
@@ -33,6 +45,8 @@ class PromotionController extends Controller
         $validated = $request->validate([
             'photo' => 'required|image|mimes:webp|max:2048',
         ], [
+            'photo.required' => 'Фотография обязательна',
+            'photo.image' => 'Файл должен быть изображением',
             'photo.mimes' => 'Фотография должна быть в формате .webp',
             'photo.max' => 'Размер фотографии не должен превышать 2 МБ',
         ]);
@@ -68,8 +82,10 @@ class PromotionController extends Controller
     public function update(Request $request, Promotion $promotion)
     {
         $validated = $request->validate([
-            'photo' => 'required|image|mimes:webp|max:2048',
+            // фото не обязателен при обновлении
+            'photo' => 'sometimes|image|mimes:webp|max:2048',
         ], [
+            'photo.image' => 'Файл должен быть изображением',
             'photo.mimes' => 'Фотография должна быть в формате .webp',
             'photo.max' => 'Размер фотографии не должен превышать 2 МБ',
         ]);

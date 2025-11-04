@@ -10,10 +10,7 @@
         </div>
 
         <div class="card p-4">
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
+            @include('admin.partials.success')
             <form method="POST" action="{{ route('admin.users.store') }}">
                 @csrf
 
