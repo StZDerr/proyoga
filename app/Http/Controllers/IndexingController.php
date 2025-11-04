@@ -213,20 +213,38 @@ class IndexingController extends Controller
             return redirect()->back()->with('error', 'Генерация sitemap отключена в настройках!');
         }
 
-        // Проверяем, что динамический sitemap работает
         try {
-            $response = file_get_contents(route('sitemap'));
-            if ($response) {
-                // Дополнительно создаем статический файл для резервного копирования
-                File::put(public_path('sitemap-backup.xml'), $response);
+            // Вызываем SitemapController напрямую (без HTTP-запроса)
+            $sitemapController = new \App\Http\Controllers\SitemapController();
+            $response = $sitemapController->index();
+            $content = $response->getContent();
 
-                return redirect()->back()->with('success', 'Динамический sitemap работает! Доступен по адресу: '.route('sitemap'));
+            if ($content && strlen($content) > 100) {
+                // Создаем backup
+                $backupPath = public_path('sitemap-backup.xml');
+                $mainPath = public_path('sitemap.xml');
+
+                // Если основной файл существует, делаем его бэкап
+                if (File::exists($mainPath)) {
+                    File::copy($mainPath, $backupPath);
+                }
+
+                // Записываем новый sitemap
+                File::put($mainPath, $content);
+
+                return redirect()->back()->with('success', 'Sitemap успешно обновлен! Файл: public/sitemap.xml');
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ошибка при проверке sitemap: '.$e->getMessage());
-        }
 
-        return redirect()->back()->with('error', 'Не удалось сгенерировать sitemap');
+            return redirect()->back()->with('error', 'Sitemap содержит недостаточно данных');
+
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Ошибка генерации sitemap: '.$e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return redirect()->back()->with('error', 'Ошибка при генерации sitemap: '.$e->getMessage());
+        }
     }
 
     public function initializeDefaults()
