@@ -47,7 +47,7 @@
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
                                     Авторские права © {{ date('Y') }}
-                                    <a href="#" class="link-secondary">ПроЙога</a>.
+                                    <a href="#" class="link-secondary">ИстокиЯ</a>.
                                     Все права защищены.
                                 </li>
                             </ul>
