@@ -13,7 +13,7 @@
     {{-- Font Awesome icons --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    @vite('resources/css/admin/app.css')
+    @vite('resources/css/admin/app.css', 'resources/js/admin/app.js')
     @stack('styles')
 </head>
 

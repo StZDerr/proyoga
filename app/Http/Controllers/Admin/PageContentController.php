@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\IndexablePage;
 use App\Models\PageContent;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -24,7 +26,29 @@ class PageContentController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create');
+        // Подсказки из уже существующих PageContent->slug
+        $pageSlugs = PageContent::orderBy('slug')->pluck('slug')->toArray();
+
+        // Подсказки из IndexablePage (убираем ведущий '/')
+        $indexableUrls = IndexablePage::orderBy('url')->pluck('url')->map(function ($u) {
+            return ltrim($u, '/');
+        })->toArray();
+
+        $suggested = collect($pageSlugs)->merge($indexableUrls)->unique()->values()->toArray();
+
+        // Добавляем динамические варианты для направлений: direction/{slug} и direction/{slug}/{subslug}
+        $subCategories = SubCategory::with('subSubCategories')->get();
+        foreach ($subCategories as $sub) {
+            $suggested[] = "direction/{$sub->slug}";
+            foreach ($sub->subSubCategories as $subSub) {
+                $suggested[] = "direction/{$sub->slug}/{$subSub->slug}";
+            }
+        }
+
+        // Нормализуем и убираем дубликаты, пустые значения
+        $suggested = array_values(array_filter(array_unique(array_map('trim', $suggested))));
+
+        return view('admin.pages.create', compact('suggested'));
     }
 
     /**

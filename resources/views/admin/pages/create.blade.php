@@ -17,12 +17,20 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="slug" class="form-label">Slug страницы *</label>
+
                             <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                                name="slug" value="{{ old('slug') }}" required placeholder="home, about, services...">
-                            <div class="form-text">URL адрес страницы (только латинские буквы, цифры, дефисы)</div>
+                                name="slug" value="{{ old('slug') }}" autocomplete="off" required
+                                placeholder="home, about, direction/ioga-i-smeznye-praktiki">
+
+                            <div class="form-text">URL адрес страницы (без начального слеша; латинские буквы, цифры,
+                                дефисы). Подсказки ниже фильтруются по вводу.</div>
                             @error('slug')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+
+                            <!-- Контейнер подсказок -->
+                            <div id="slug-suggestions" class="list-group mt-2"
+                                style="max-height:240px; overflow:auto; display:none;"></div>
                         </div>
 
                         <div class="mb-3">
@@ -127,4 +135,93 @@
             </form>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Список подсказок из сервера (передайте $suggested в контроллере)
+            const suggested = @json($suggested ?? []);
+            const input = document.getElementById('slug');
+            const box = document.getElementById('slug-suggestions');
+
+            // Нормализующая функция (удаляет ведущие слэши и лишние пробелы)
+            function normalize(val) {
+                return val ? String(val).trim().replace(/^\/+/, '') : '';
+            }
+
+            // Рендер одного варианта в list-group
+            function renderOption(value) {
+                const a = document.createElement('button');
+                a.type = 'button';
+                a.className = 'list-group-item list-group-item-action';
+                a.textContent = value;
+                a.addEventListener('click', function() {
+                    input.value = value;
+                    hideBox();
+                    input.focus();
+                });
+                return a;
+            }
+
+            // Показать подсказки (filtered array)
+            function showSuggestions(list) {
+                box.innerHTML = '';
+                if (!list || list.length === 0) {
+                    hideBox();
+                    return;
+                }
+                list.forEach(v => box.appendChild(renderOption(v)));
+                box.style.display = 'block';
+            }
+
+            function hideBox() {
+                box.style.display = 'none';
+            }
+
+            // Фильтрация: по подстроке, нечувствительно к регистру
+            function filterSuggestions(term) {
+                if (!term) return suggested.slice(0, 40); // топ N
+                const q = term.toLowerCase();
+                return suggested.filter(s => s && s.toLowerCase().includes(q)).slice(0, 40);
+            }
+
+            // События
+            input.addEventListener('input', function() {
+                const val = normalize(this.value);
+                if (!val) {
+                    // при пустом поле всё ещё показываем топ-10
+                    showSuggestions(filterSuggestions(''));
+                    return;
+                }
+                showSuggestions(filterSuggestions(val));
+            });
+
+            input.addEventListener('focus', function() {
+                // показать подсказки при фокусе
+                const val = normalize(this.value);
+                showSuggestions(filterSuggestions(val));
+            });
+
+            // Скрыть по клику вне поля
+            document.addEventListener('click', function(e) {
+                if (!box.contains(e.target) && e.target !== input) {
+                    hideBox();
+                }
+            });
+
+            // Нормализация перед submit: удаляем ведущие слэши и пробелы
+            const form = input && input.closest('form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    input.value = normalize(input.value);
+                });
+            }
+
+            // Инициализация: если список подсказок не пуст, подготовим скрытый список
+            if (Array.isArray(suggested) && suggested.length > 0) {
+                // опционально: отсортируем и уберём дубликаты
+                const uniq = Array.from(new Set(suggested.map(s => normalize(s)).filter(Boolean)));
+                // перезаписать переменную suggested (локально)
+                // (не мутируем глобально, но можно)
+            }
+        });
+    </script>
 @endsection
