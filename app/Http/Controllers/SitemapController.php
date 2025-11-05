@@ -43,12 +43,12 @@ class SitemapController extends Controller
     {
         $pages = collect();
 
-        // Добавляем страницы подкатегорий
-        $subCategories = SubCategory::with('mainCategory')->get();
+        // Добавляем страницы подкатегорий: /direction/{subCategory}
+        $subCategories = SubCategory::all();
         foreach ($subCategories as $subCategory) {
-            if ($subCategory->mainCategory && $subCategory->mainCategory->slug) {
+            if ($subCategory->slug) {
                 $pages->push((object)[
-                    'url' => '/direction/' . $subCategory->mainCategory->slug . '/' . $subCategory->slug,
+                    'url' => '/direction/' . $subCategory->slug,
                     'priority' => 0.8,
                     'changefreq' => 'weekly',
                     'last_modified' => $subCategory->updated_at,
@@ -56,16 +56,12 @@ class SitemapController extends Controller
             }
         }
 
-        // Добавляем страницы под-подкатегорий
-        $subSubCategories = SubSubCategory::with('subCategory.mainCategory')->get();
+        // Добавляем страницы под-подкатегорий: /direction/{subCategory}/{subSubCategory}
+        $subSubCategories = SubSubCategory::with('subCategory')->get();
         foreach ($subSubCategories as $subSubCategory) {
-            if ($subSubCategory->subCategory && 
-                $subSubCategory->subCategory->mainCategory && 
-                $subSubCategory->subCategory->mainCategory->slug) {
-                
+            if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
                 $pages->push((object)[
                     'url' => '/direction/' . 
-                            $subSubCategory->subCategory->mainCategory->slug . '/' . 
                             $subSubCategory->subCategory->slug . '/' . 
                             $subSubCategory->slug,
                     'priority' => 0.7,
