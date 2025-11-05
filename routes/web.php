@@ -22,48 +22,12 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [IstokiController::class, 'index'])->name('welcome');
-Route::get('/price-list', [IstokiController::class, 'priceList'])->name('price-list');
-Route::get('/direction', [IstokiController::class, 'direction'])->name('direction');
-Route::get('/about', [IstokiController::class, 'about'])->name('about');
-Route::get('/recording', [IstokiController::class, 'recording'])->name('recording');
-Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
-Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
+// === СИСТЕМНЫЕ МАРШРУТЫ (должны быть ДО catch-all) ===
 
-Route::get('/{subCategory}', [IstokiController::class, 'PodDirection'])
-    ->name('PodDirection');
+// Только аутентификация, без регистрации
+Auth::routes(['register' => false]);
 
-Route::get('/{subCategory}/{subSubCategory}', [IstokiController::class, 'subSubCategoryDetail'])
-    ->name('subSubCategoryDetail');
-
-Route::get('/contacts', function () {
-    return view('contacts');
-})->name('contacts');
-
-Route::get('/tea', function () {
-    return view('tea');
-})->name('tea');
-
-Route::get('/calendar', function () {
-    return view('calendar');
-})->name('calendar');
-
-// Route::get('/test-modal', function () {
-//     return view('test-modal');
-// })->name('test-modal');
-
-// API маршруты для теста
-Route::prefix('api/test')->group(function () {
-    Route::get('/questions', [TestController::class, 'getQuestions']);
-    Route::post('/submit', [TestController::class, 'submitTest']);
-});
-
-// API маршруты для отправки форм
-Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
-
-// Sitemap.xml
-Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
-
+// Админ-панель
 Route::get('/admin', function () {
     return view('admin/index');
 })->middleware('auth')->name('admin');
@@ -117,5 +81,49 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     });
 });
 
-// Только аутентификация, без регистрации
-Auth::routes(['register' => false]);
+// === ПУБЛИЧНЫЕ СТРАНИЦЫ (явные маршруты) ===
+
+Route::get('/', [IstokiController::class, 'index'])->name('welcome');
+Route::get('/price-list', [IstokiController::class, 'priceList'])->name('price-list');
+Route::get('/direction', [IstokiController::class, 'direction'])->name('direction');
+Route::get('/about', [IstokiController::class, 'about'])->name('about');
+Route::get('/recording', [IstokiController::class, 'recording'])->name('recording');
+Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
+Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
+
+Route::get('/contacts', function () {
+    return view('contacts');
+})->name('contacts');
+
+Route::get('/tea', function () {
+    return view('tea');
+})->name('tea');
+
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
+
+// API маршруты для теста
+Route::prefix('api/test')->group(function () {
+    Route::get('/questions', [TestController::class, 'getQuestions']);
+    Route::post('/submit', [TestController::class, 'submitTest']);
+});
+
+// API маршруты для отправки форм
+Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
+
+// Sitemap.xml
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// === ДИНАМИЧЕСКИЕ МАРШРУТЫ (catch-all, должны быть В САМОМ КОНЦЕ!) ===
+
+// Подкатегория (одноуровневый slug)
+Route::get('/{subCategory}', [IstokiController::class, 'PodDirection'])
+    ->where('subCategory', '^(?!admin|login|register|password|api|sitemap\.xml|storage|css|js|images|favicon|build|contacts|tea|calendar|about|recording|personal-data|privacy-policy|price-list|direction).*$')
+    ->name('PodDirection');
+
+// Подподкатегория (двухуровневый slug)
+Route::get('/{subCategory}/{subSubCategory}', [IstokiController::class, 'subSubCategoryDetail'])
+    ->where('subCategory', '^(?!admin|login|register|password|api|sitemap\.xml|storage|css|js|images|favicon|build|contacts|tea|calendar|about|recording|personal-data|privacy-policy|price-list|direction).*$')
+    ->where('subSubCategory', '.+')
+    ->name('subSubCategoryDetail');
