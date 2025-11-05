@@ -39,6 +39,26 @@ class LoginController extends Controller
     }
 
     /**
+     * Redirect authenticated users to admin panel.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        return '/admin';
+    }
+
+    /**
+     * Handle redirect for already authenticated users.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function authenticated($request, $user)
+    {
+        return redirect()->intended('/admin');
+    }
+
+    /**
      * Get the login username to be used by the controller.
      *
      * @return string
