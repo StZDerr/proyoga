@@ -260,7 +260,7 @@
     <div class="price-list mt-3">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-9">
+                <div class="col-12 col-lg-9">
                     <div class="text">
                         <h2 class="section-title">Прайс-лист</h2>
                         <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem qui sed recusandae
@@ -268,10 +268,12 @@
                             natus expedita quo facilis, officia dolor distinctio.</span>
                     </div>
                 </div>
-                <div class="col-3">
-                    <a href="{{ route('recording') }}" class="btn button text-center">
-                        Записаться на занятия
-                    </a>
+                <div class="col-12 col-lg-3">
+                    <div class="d-flex justify-content-center"> <!-- ← ВОЛШЕБНАЯ СТРОКА -->
+                        <a href="{{ route('recording') }}" class="btn button px-5 py-3">
+                            Записаться на занятия
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
@@ -309,24 +311,34 @@
     <div class="directions">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-9">
+                <div class="col-12 col-lg-9">
                     <div class="text">
                         <h2 class="section-title">Направления занятий</h2>
                         <span>Мы поможем подобрать направление йоги, которое подходит именно Вам</span>
                     </div>
                 </div>
-                <div class="col-3 ">
+                {{-- <div class="col-12 col-lg-3 ">
+
                     <div class="button text-center">
+                        <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
+                            Все направления
+                        </a>
+                    </div>
+                </div> --}}
+                <div class="col-12 col-lg-3">
+                    <!-- ВОЛШЕБНАЯ ОБЁРТКА -->
+                    <div
+                        class="button d-flex justify-content-center justify-content-lg-end h-100 align-items-center mt-3">
                         <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
                             Все направления
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="row g-4 main-directions mt-2">
+            <div class="row g-4 main-directions mt-2 mb-3">
                 @foreach ($mainCategories as $mainCategory)
                     @foreach ($mainCategory->subCategories as $subCategory)
-                        <div class="col-lg-4 col-md-6 col-12 mb-5">
+                        <div class="col-lg-4 col-md-6 col-12 mb-1">
                             <a href="{{ route('PodDirection', $subCategory->slug) }}"
                                 class="text-decoration-none text-dark">
                                 <div class="card-directions">
@@ -429,20 +441,15 @@
             </div>
         </div>
     </div>
-    <div class="teachers mt-5">
+    {{-- <div class="teachers mt-5">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="text">
                     <h2 class="section-title">Наши преподаватели</h2>
                     <span>Доверьтесь команде профессионалов</span>
                 </div>
-                {{-- <a href="" class="btn button">
-                    Смотреть полностью
-                </a> --}}
             </div>
-            {{-- Свайпер для преподавателей --}}
             <div class="teachers-swiper-container mt-4 position-relative">
-                <!-- Стрелки навигации -->
                 <div class="swiper-button-prev teachers-prev">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -473,8 +480,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="main-test mt-5">
+    </div> --}}
+    {{-- <div class="main-test mt-5">
         <div class="container">
             <div class="background-color-EBF1EE p-4 rounded">
                 <div class="row">
@@ -501,8 +508,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="otziv mt-5">
+    </div> --}}
+    {{-- <div class="otziv mt-5">
         <div class="container d-flex justify-content-center">
             <div class="otziv-wrapper" style="width:560px; height:800px; position:relative;">
                 <iframe
@@ -517,8 +524,8 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="photo-gallery">
+    </div> --}}
+    {{-- <div class="photo-gallery">
         <div class="container">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="text text-center">
@@ -527,9 +534,7 @@
                 </div>
             </div>
             <div class="container mt-5">
-                <!-- Обертка для свайпера и стрелок -->
                 <div class="gallery3-wrapper position-relative">
-                    <!-- Стрелки теперь СНАРУЖИ свайпера -->
                     <div class="swiper-button-prev gallery3-prev">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -543,7 +548,6 @@
                         </svg>
                     </div>
 
-                    <!-- Сам свайпер БЕЗ стрелок внутри -->
                     <div class="swiper gallery3-swiper">
                         <div class="swiper-wrapper">
                             @foreach ($galleries as $photo)
@@ -555,52 +559,16 @@
                                     </a>
                                 </div>
                             @endforeach
-                            {{-- 
-                            <div class="swiper-slide">
-                                <a href="{{ asset('images/swiper-img.webp') }}" class="gallery3-item"
-                                    data-lg-size="1600-900">
-                                    <img src="{{ asset('images/swiper-img.webp') }}" alt="Фото"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="{{ asset('images/swiper-img.webp') }}" class="gallery3-item"
-                                    data-lg-size="1600-900">
-                                    <img src="{{ asset('images/swiper-img.webp') }}" alt="Фото"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="{{ asset('images/swiper-img.webp') }}" class="gallery3-item"
-                                    data-lg-size="1600-900">
-                                    <img src="{{ asset('images/swiper-img.webp') }}" alt="Фото"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="{{ asset('images/swiper-img.webp') }}" class="gallery3-item"
-                                    data-lg-size="1600-900">
-                                    <img src="{{ asset('images/swiper-img.webp') }}" alt="Фото"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="{{ asset('images/swiper-img.webp') }}" class="gallery3-item"
-                                    data-lg-size="1600-900">
-                                    <img src="{{ asset('images/swiper-img.webp') }}" alt="Фото"
-                                        class="img-fluid">
-                                </a>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     @include('partials.recording-block')
-    <div class="questions mt-5">
+    {{-- <div class="questions mt-5">
         <div class="container">
             <div class="d-flex flex-column">
                 <div class="title mb-5">
@@ -629,7 +597,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- Блок контактов --}}
     @include('partials.contacts-block')
     @include('partials.footer')
