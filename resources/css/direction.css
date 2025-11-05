@@ -36,6 +36,7 @@
 .directions .main-directions .card-directions {
     background-color: #ebf2ee;
     border-radius: 1rem;
+    height: 100%;
 }
 
 .directions .main-directions .card-directions .title {

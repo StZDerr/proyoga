@@ -89,7 +89,7 @@
             <priority>0.3</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/vyezdnye-sessii-putesestviia-k-sebe/vyezdnye-sessii-putesestviia-k-sebe</loc>
+            <loc>http://127.0.0.1:8000/direction/vyezdnye-sessii-putesestviia-k-sebe</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -97,7 +97,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -105,7 +105,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/funkcionalnye-trenirovki</loc>
+            <loc>http://127.0.0.1:8000/direction/funkcionalnye-trenirovki</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -113,7 +113,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/silovye-programmy</loc>
+            <loc>http://127.0.0.1:8000/direction/silovye-programmy</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -121,7 +121,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/rastiazka-i-plastika</loc>
+            <loc>http://127.0.0.1:8000/direction/rastiazka-i-plastika</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -129,7 +129,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/massaz-i-telesnye-praktiki</loc>
+            <loc>http://127.0.0.1:8000/direction/massaz-i-telesnye-praktiki</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -137,7 +137,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/gvozdestoianie-i-energeticeskie-praktiki</loc>
+            <loc>http://127.0.0.1:8000/direction/gvozdestoianie-i-energeticeskie-praktiki</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -145,7 +145,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/meditaciia-i-rabota-s-soznaniem</loc>
+            <loc>http://127.0.0.1:8000/direction/meditaciia-i-rabota-s-soznaniem</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -153,7 +153,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/dyxatelnye-praktiki</loc>
+            <loc>http://127.0.0.1:8000/direction/dyxatelnye-praktiki</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -161,7 +161,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/art-terapevticeskie-napravleniia</loc>
+            <loc>http://127.0.0.1:8000/direction/art-terapevticeskie-napravleniia</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -169,7 +169,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/kundalini-ioga</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/kundalini-ioga</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -177,7 +177,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/funkcionalnye-trenirovki/pilates</loc>
+            <loc>http://127.0.0.1:8000/direction/funkcionalnye-trenirovki/pilates</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -185,7 +185,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/funkcionalnye-trenirovki/zdorovaia-spina</loc>
+            <loc>http://127.0.0.1:8000/direction/funkcionalnye-trenirovki/zdorovaia-spina</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -193,7 +193,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/funkcionalnye-trenirovki/mfr</loc>
+            <loc>http://127.0.0.1:8000/direction/funkcionalnye-trenirovki/mfr</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -201,7 +201,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/funkcionalnye-trenirovki/trx</loc>
+            <loc>http://127.0.0.1:8000/direction/funkcionalnye-trenirovki/trx</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -209,7 +209,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/telo-i-zdorove/funkcionalnye-trenirovki/balans-trening</loc>
+            <loc>http://127.0.0.1:8000/direction/funkcionalnye-trenirovki/balans-trening</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -217,7 +217,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/xatxa-ioga</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/xatxa-ioga</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -225,7 +225,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/ioga-nidra</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/ioga-nidra</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -233,7 +233,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/in-ioga</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/in-ioga</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -241,7 +241,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/ioga-v-gamakax-aero-ioga</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/ioga-v-gamakax-aero-ioga</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -249,7 +249,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/detskaia-ioga-v-gamakax</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/detskaia-ioga-v-gamakax</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -257,7 +257,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/meditaciia-s-poiushhimi-casami</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/meditaciia-s-poiushhimi-casami</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -265,7 +265,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/ioga-dlia-beremennyx</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/ioga-dlia-beremennyx</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -273,7 +273,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/gvozdestoianie-i-energeticeskie-praktiki/gvozdestoianie</loc>
+            <loc>http://127.0.0.1:8000/direction/gvozdestoianie-i-energeticeskie-praktiki/gvozdestoianie</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -281,7 +281,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/ioga-terapiia-zenskogo-zdorovia</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/ioga-terapiia-zenskogo-zdorovia</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -289,7 +289,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/direction/osnovnye-napravleniia/ioga-i-smeznye-praktiki/parnaia-ioga</loc>
+            <loc>http://127.0.0.1:8000/direction/ioga-i-smeznye-praktiki/parnaia-ioga</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>

@@ -264,86 +264,47 @@
 }
 
 .istoria {
-    position: relative;
-    margin: 50px 0;
-    padding: 0 20px;
-}
-
-.istoria__list {
     display: flex;
-    gap: 18px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
+    justify-content: center;
     align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.istoria__list::-webkit-scrollbar { height: 8px; }
-.istoria__list::-webkit-scrollbar-track { background: transparent; }
-.istoria__list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 999px; }
-
-.istoria__item {
-    flex: 0 0 auto;
+.istoria .circle {
+    position: relative;
     width: 100px;
     height: 100px;
-    scroll-snap-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-    position: relative;
+    svg {
+        fill: none;
+        stroke: #8a3ab9;
+        stroke-linecap: round;
+        stroke-width: 3;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 0;
+        animation: stroke-draw 6s ease-out infinite alternate;
+        /* animation: stroke-draw 6s cubic-bezier(0.77, 0, 0.175, 1) infinite
+            alternate; */
+    }
+    img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        border-radius: 50%;
+    }
 }
-
-.istoria__ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: conic-gradient(#8a3ab9, #cd486b, #f58529);
-    transition: transform 0.12s ease, opacity 0.2s ease, filter 0.2s ease;
-}
-
-.istoria__item.seen .istoria__ring {
-    background: #e6e6e6;
-    filter: grayscale(0.4);
-    opacity: 0.9;
-}
-
-.istoria__img {
-    width: 82px;
-    height: 82px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: block;
-    position: relative;
-    background: #fff;
-}
-
-.istoria__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.istoria__item:active .istoria__ring, .istoria__item:focus .istoria__ring { transform: scale(0.96); }
-
-.istoria__arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: white; box-shadow: 0 6px 18px rgba(0,0,0,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20; border: none; }
-.istoria__arrow--left { left: 6px; }
-.istoria__arrow--right { right: 6px; }
-.istoria__arrow.hidden { display: none; }
-
-.istoria-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.65); z-index: 9999; padding: 20px; }
-.istoria-modal.active { display: flex; }
-.istoria-modal__content { max-width: 960px; width: 100%; max-height: 90vh; background: #111; border-radius: 12px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
-.istoria-modal__close { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.08); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; border: none; }
-.istoria-modal img, .istoria-modal video { max-width: 100%; max-height: 90vh; display: block; }
-
-@media (max-width: 480px) {
-    .istoria__item { width: 84px; height: 84px; }
-    .istoria__img { width: 70px; height: 70px; }
-    .istoria__ring { padding: 5px; }
-    .istoria__arrow { width: 34px; height: 34px; }
+@keyframes stroke-draw {
+    from {
+        stroke: #8a3ab9;
+        stroke-dasharray: 1;
+    }
+    to {
+        stroke: #cd486b;
+        transform: rotate(180deg);
+        stroke-dasharray: 8;
+    }
 }
 
 .about .d-flex {

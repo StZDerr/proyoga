@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/welcome_stories.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js'])
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -153,28 +153,70 @@
             </div>
         </div>
         <div class="istoria">
-            <button class="istoria__arrow istoria__arrow--left hidden" aria-label="Prev">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000"><path d="M15 18l-6-6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-
-            <div class="istoria__list">
-                @foreach($galleries as $item)
-                    <div class="istoria__item" data-story-id="{{ $item->id }}" data-type="{{ $item->video ? 'video' : 'image' }}" data-src="{{ $item->video ? asset('storage/'.$item->video) : asset('storage/'.$item->image) }}">
-                        <div class="istoria__ring" aria-hidden="true"></div>
-                        <div class="istoria__img"><img src="{{ $item->image ? asset('storage/' . $item->image) : asset('images/default-story.jpg') }}" alt="{{ $item->title ?? '' }}"></div>
-                    </div>
-                @endforeach
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
             </div>
-
-            <button class="istoria__arrow istoria__arrow--right hidden" aria-label="Next">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000"><path d="M9 6l6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-        </div>
-
-        <!-- Modal for story preview (image or video) -->
-        <div class="istoria-modal" role="dialog" aria-hidden="true">
-            <div class="istoria-modal__content"></div>
-            <button class="istoria-modal__close" aria-label="Close">&times;</button>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div class="circle">
+                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                    alt="" />
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
         </div>
     </div>
     <div class="about py-5">
