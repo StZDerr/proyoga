@@ -12,6 +12,15 @@
     border-radius: 12px;
 }
 
+#testModal .test-mobile-layout img {
+    display: none;
+}
+
+/* Показываем картинку только когда тест-контейнер активен */
+#testModal .test-mobile-layout.show-image img {
+    display: block;
+}
+
 /* Стили для заголовка вопроса */
 .test-question h6 {
     font-family: "Tenor Sans", serif;

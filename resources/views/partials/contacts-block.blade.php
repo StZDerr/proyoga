@@ -15,7 +15,7 @@
                 тело, дыхание, звук, осознанность и общение.
             </p>
             <div class="adress">село Супсех, ул. Советская, 1Б</div>
-            <a href="tel:+78005553535" class="phone">+7 800 555-35-35</a>
+            <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
             <div class="social">
                 <a href="#" class="socialItem" rel="nofollow" target="_blank">
                     <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" />

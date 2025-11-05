@@ -44,9 +44,9 @@ class SubSubCategoryController extends Controller
             'image' => 'sometimes|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|integer|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
-            'benefit_groups.*.title' => 'nullable|string|max:255',
+            'benefit_groups.*.title' => 'nullable|string',
             'benefit_groups.*.benefits' => 'nullable|array',
-            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
+            'benefit_groups.*.benefits.*' => 'nullable|string',
         ], [
             'title.required' => 'Название обязательно',
             'title.string' => 'Название должно быть строкой',
@@ -136,9 +136,9 @@ class SubSubCategoryController extends Controller
             'image' => 'sometimes|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|integer|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
-            'benefit_groups.*.title' => 'nullable|string|max:255',
+            'benefit_groups.*.title' => 'nullable|string',
             'benefit_groups.*.benefits' => 'nullable|array',
-            'benefit_groups.*.benefits.*' => 'nullable|string|max:255',
+            'benefit_groups.*.benefits.*' => 'nullable|string',
         ], [
             'title.required' => 'Название обязательно',
             'title.string' => 'Название должно быть строкой',

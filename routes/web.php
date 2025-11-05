@@ -30,10 +30,10 @@ Route::get('/recording', [IstokiController::class, 'recording'])->name('recordin
 Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
 Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
 
-Route::get('/direction/{subCategory}', [IstokiController::class, 'PodDirection'])
+Route::get('/{subCategory}', [IstokiController::class, 'PodDirection'])
     ->name('PodDirection');
 
-Route::get('/direction/{subCategory}/{subSubCategory}', [IstokiController::class, 'subSubCategoryDetail'])
+Route::get('/{subCategory}/{subSubCategory}', [IstokiController::class, 'subSubCategoryDetail'])
     ->name('subSubCategoryDetail');
 
 Route::get('/contacts', function () {

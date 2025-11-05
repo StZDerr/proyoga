@@ -42,7 +42,7 @@
                         <div class="benefit-group mb-4">
                             <h3 class="textTitle">{{ $benefitGroup['title'] }}</h3>
                             @foreach ($benefitGroup['benefits'] as $benefit)
-                                <div class="text other">• {{ $benefit }}</div>
+                                <div class="text other"> {{ $benefit }}</div>
                             @endforeach
                         </div>
                     @elseif (is_string($benefitGroup))
@@ -55,6 +55,22 @@
                     @endif
                 @endforeach
             @endif
+        </div>
+    </div>
+    <div class="calendar mt-4">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="text">
+                    <h2 class="section-title">Расписание занятий</h2>
+                    <span>Выберите удобное для вас время занятий</span>
+                </div>
+                <a href="{{ route('calendar') }}" class="btn button">
+                    Смотреть полностью
+                </a>
+            </div>
+            <iframe class="aeCustomWidget"
+                src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709"
+                width="100%" height="1120px" style="background: #ffffff;border: none;"></iframe>
         </div>
     </div>
     <div class="mb-5">

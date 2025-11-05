@@ -30,12 +30,15 @@
 
 .directions .main-directions img {
     width: 100%;
+    object-fit: cover;
+    height: 300px;
     border-radius: 1rem;
 }
 
 .directions .main-directions .card-directions {
     background-color: #ebf2ee;
     border-radius: 1rem;
+    padding-bottom: 2rem; /* добавляем отступ снизу к самой карточке */
     height: 100%;
 }
 

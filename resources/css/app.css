@@ -16,6 +16,10 @@
     --font-standart-Montserrat: "Montserrat", sans-serif;
 }
 
+.button {
+    font-family: var(--font-standart-Montserrat);
+}
+
 .background-gor {
     background: url("/public/images/svg/gory.svg") no-repeat center bottom;
     background-size: cover;

@@ -40,7 +40,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination mt-4"></div>
                 </div>
                 <div class="swiper-info-text">
                     Твой путь к себе начинается с Истока
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <div class="istoria">
+        {{-- <div class="istoria">
             <div class="circle">
                 <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
                     alt="" />
@@ -217,7 +217,7 @@
                     <circle cx="50" cy="50" r="40" />
                 </svg>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="about py-5">
         <div class="container">
@@ -241,63 +241,38 @@
             </div>
         </div>
     </div>
-    <div class="directions">
+    <div class="calendar mt-4">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="text">
-                    <h2 class="section-title">Направления занятий</h2>
-                    <span>Мы поможем подобрать направление йоги, которое подходит именно Вам</span>
+                    <h2 class="section-title">Расписание занятий</h2>
+                    <span>Выберите удобное для вас время занятий</span>
                 </div>
-                <div class="button">
-                    <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
-                        Все направления
-                    </a>
-                </div>
+                <a href="{{ route('calendar') }}" class="btn button">
+                    Смотреть полностью
+                </a>
             </div>
-            <div class="row g-4 main-directions mt-2">
-                @foreach ($mainCategories as $mainCategory)
-                    @foreach ($mainCategory->subCategories as $subCategory)
-                        <div class="col-lg-4 col-md-6 col-12 mb-5">
-                            <a href="{{ route('PodDirection', $subCategory->slug) }}"
-                                class="text-decoration-none text-dark">
-                                <div class="card-directions">
-                                    @if ($subCategory->image)
-                                        <img src="{{ asset('storage/' . $subCategory->image) }}"
-                                            alt="{{ $subCategory->title }}" />
-                                    @else
-                                        <img src="{{ asset('images/directions-background.webp') }}"
-                                            alt="directions-background" />
-                                    @endif
-                                    <div class="d-flex justify-content-between p-3">
-                                        <div class="title">
-                                            {{ $subCategory->title }}
-                                        </div>
-                                        <div class="arrow">
-                                            <i class="bi bi-arrow-right fs-4"></i>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        {{ $subCategory->description ?? 'Описание направления' }}
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                @endforeach
-            </div>
+            <iframe class="aeCustomWidget"
+                src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709"
+                width="100%" height="1120px" style="background: #ffffff;border: none;"></iframe>
         </div>
     </div>
-    <div class="price-list">
+    <div class="price-list mt-3">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="text">
-                    <h2 class="section-title">Прайс-лист</h2>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem qui sed recusandae quod
-                        natus expedita quo facilis, officia dolor distinctio.</span>
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <div class="text">
+                        <h2 class="section-title">Прайс-лист</h2>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem qui sed recusandae
+                            quod
+                            natus expedita quo facilis, officia dolor distinctio.</span>
+                    </div>
                 </div>
-                <a href="" class="btn button">
-                    Записаться на занятия
-                </a>
+                <div class="col-3">
+                    <a href="{{ route('recording') }}" class="btn button text-center">
+                        Записаться на занятия
+                    </a>
+                </div>
             </div>
             <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
                 @foreach ($categories as $index => $category)
@@ -329,6 +304,56 @@
                     @endforeach
                 </div>
             @endforeach
+        </div>
+    </div>
+    <div class="directions">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <div class="text">
+                        <h2 class="section-title">Направления занятий</h2>
+                        <span>Мы поможем подобрать направление йоги, которое подходит именно Вам</span>
+                    </div>
+                </div>
+                <div class="col-3 ">
+                    <div class="button text-center">
+                        <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
+                            Все направления
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 main-directions mt-2">
+                @foreach ($mainCategories as $mainCategory)
+                    @foreach ($mainCategory->subCategories as $subCategory)
+                        <div class="col-lg-4 col-md-6 col-12 mb-5">
+                            <a href="{{ route('PodDirection', $subCategory->slug) }}"
+                                class="text-decoration-none text-dark">
+                                <div class="card-directions">
+                                    @if ($subCategory->image)
+                                        <img src="{{ asset('storage/' . $subCategory->image) }}"
+                                            alt="{{ $subCategory->title }}" />
+                                    @else
+                                        <img src="{{ asset('images/directions-background.webp') }}"
+                                            alt="directions-background" />
+                                    @endif
+                                    <div class="d-flex justify-content-between p-3">
+                                        <div class="title">
+                                            {{ $subCategory->title }}
+                                        </div>
+                                        <div class="arrow">
+                                            <i class="bi bi-arrow-right fs-4"></i>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="text">
+                                        {{ $subCategory->description ?? 'Описание направления' }}
+                                    </div> --}}
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
     <div class="about-space">
@@ -376,22 +401,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="calendar mt-4">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="text">
-                    <h2 class="section-title">Расписание занятий</h2>
-                    <span>Выберите удобное для вас время занятий</span>
-                </div>
-                <a href="" class="btn button">
-                    Смотреть полностью
-                </a>
-            </div>
-            <iframe class="aeCustomWidget"
-                src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709"
-                width="100%" height="1120px" style="background: #ffffff;border: none;"></iframe>
         </div>
     </div>
     <div class="retreats mt-4">

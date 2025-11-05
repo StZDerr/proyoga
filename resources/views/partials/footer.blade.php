@@ -15,7 +15,7 @@
                     <img src="{{ asset('images/logo/logoYOGAwhite.svg') }}" alt="Site Logo" />
                 </a>
                 <div class="copyright">
-                    © Copyright domain.ru - {{ date('Y') }} год
+                    © Copyright ИстокиЯ.рф - {{ date('Y') }} год
                 </div>
                 <p class="text">
                     "Исток и Я" - Твой путь к себе начинается с Истока. Здесь
@@ -24,8 +24,13 @@
             </div>
 
             <div class="footerContent">
-                <div class="adress">село Супсех, ул. Советская, 1Б</div>
-                <a href="tel:+78005553535" class="phone">+7 (800) 555-35-35</a>
+                <a href="https://yandex.ru/maps/-/CLfTYTjy">
+                    <div class="adress">село Супсех, ул. Советская, 1Б</div>
+                </a>
+                <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-2">
+                    <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б</div>
+                </a>
+                <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
                 <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
                 <div class="rating">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy">

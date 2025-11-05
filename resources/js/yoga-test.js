@@ -300,11 +300,23 @@ class YogaTest {
     showLoader() {
         document.getElementById("test-loader")?.classList.remove("d-none");
         document.getElementById("test-container")?.classList.add("d-none");
+
+        // Убираем класс, чтобы картинка была скрыта
+        const imageContainer = this.modal?.querySelector(".test-mobile-layout");
+        if (imageContainer) {
+            imageContainer.classList.remove("show-image");
+        }
     }
 
     showTest() {
         document.getElementById("test-loader")?.classList.add("d-none");
         document.getElementById("test-container")?.classList.remove("d-none");
+
+        // Добавляем класс, чтобы показать картинку
+        const imageContainer = this.modal?.querySelector(".test-mobile-layout");
+        if (imageContainer) {
+            imageContainer.classList.add("show-image");
+        }
     }
 
     showResult(message) {
@@ -349,7 +361,8 @@ class YogaTest {
         document.getElementById("test-error")?.classList.add("d-none");
 
         // Очищаем контейнеры
-        document.getElementById("questions-container").innerHTML = "";
+        const qc = document.getElementById("questions-container");
+        if (qc) qc.innerHTML = "";
         document.getElementById("test-contact-form")?.reset();
 
         // Сбрасываем прогресс
@@ -357,6 +370,12 @@ class YogaTest {
         if (progressBar) {
             progressBar.style.width = "0%";
             progressBar.setAttribute("aria-valuenow", "0");
+        }
+
+        // Скрываем картинку при закрытии модалки
+        const imageContainer = this.modal?.querySelector(".test-mobile-layout");
+        if (imageContainer) {
+            imageContainer.classList.remove("show-image");
         }
     }
 }

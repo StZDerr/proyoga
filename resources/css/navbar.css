@@ -70,6 +70,7 @@ a {
 }
 
 .container .logo {
+    display: flex;
     width: auto;
     height: 150px !important;
 }

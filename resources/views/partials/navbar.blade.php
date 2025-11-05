@@ -10,9 +10,14 @@
                         <img src="{{ asset('images/svg/reiting2gis.svg') }}" alt="2ГИС" />
                     </a>
                 </div>
-                <a href="https://yandex.ru/maps/-/CLfTYTjy">
-                    <div class="adress">село Супсех, ул. Советская, 1Б</div>
-                </a>
+                <div class="adres ">
+                    <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
+                        <div class="adress">село Супсех, ул. Советская, 1Б</div>
+                    </a>
+                    <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-4">
+                        <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б</div>
+                    </a>
+                </div>
             </div>
             <div class="menu">
                 <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
@@ -26,11 +31,11 @@
         <div class="containerWrapper">
             <div class="clear"></div>
             <div class="wrapper">
-                <a href="tel:+78005553535" class="phone">+7 (800) 555-35-35</a>
-                @auth
+                <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
+                {{-- @auth
                     <a href="{{ route('admin') }}" class="button"
                         style="background-color: #6c757d; margin-right: 10px;">Админка</a>
-                @endauth
+                @endauth --}}
                 <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
             </div>
             <div class="menu">
@@ -44,7 +49,7 @@
         <a href="/" class="logo">
             <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Site Logo" />
         </a>
-        <a href="tel:+78005553535" class="phone">+7 (800) 555-35-35</a>
+        <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
         <div class="menuMobile">
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
@@ -59,11 +64,14 @@
                 <a href="{{ route('tea') }}" class="menuItem">Чайная зона</a>
                 <a href="{{ route('about') }}" class="menuItem">О студии</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
-                <a href="tel:+78005553535" class="menuItem phone">
-                    +7 800 555-35-35
+                <a href="tel:+79649264147" class="menuItem phone">
+                    +7 (964) 926-41-47
                 </a>
                 <a href="https://yandex.ru/maps/-/CLfTYTjy">
                     <div class="adress">село Супсех, ул. Советская, 1Б</div>
+                </a>
+                <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-2">
+                    <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б</div>
                 </a>
                 <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
                 <div class="rating">
