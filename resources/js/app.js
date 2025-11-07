@@ -15,6 +15,8 @@ function submitForm(formId, formType) {
 
     const formData = new FormData(form);
     formData.append("form_type", formType);
+    formData.append("page_url", window.location.href);
+    formData.append("page_title", document.title);
 
     // Показываем загрузку
     Swal.fire({

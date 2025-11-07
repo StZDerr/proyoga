@@ -153,7 +153,21 @@
             @endif
 
             <div class="field">
-                <div class="field-label">🕐 Время отправки</div>
+                <div class="field-label">� Страница отправки</div>
+                <div class="field-value">
+                    @if ($pageTitle && $pageTitle !== 'Не указан')
+                        <strong>{{ $pageTitle }}</strong><br>
+                    @endif
+                    @if ($pageUrl && $pageUrl !== 'Не указана')
+                        <a href="{{ $pageUrl }}" style="color: #1D7D6F; text-decoration: none;">{{ $pageUrl }}</a>
+                    @else
+                        Не указана
+                    @endif
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="field-label">�🕐 Время отправки</div>
                 <div class="field-value timestamp">{{ $timestamp }}</div>
             </div>
         </div>

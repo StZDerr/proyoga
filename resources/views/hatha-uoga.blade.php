@@ -23,7 +23,7 @@
                 <p class="text">
                     {{ $subSubCategory->description ?? '"Исток и Я" - Твой путь к себе начинается с Истока. Здесь соединяются тело, дыхание, звук, осознанность и общение.' }}
                 </p>
-                <a href="#" class="button bdi">Получить пробный урок</a>
+                <a href="#recording" class="button bdi">Получить пробный урок</a>
             </div>
             <img src="{{ asset('storage/' . $subSubCategory->image) }}" alt="{{ $subSubCategory->title }}"
                 class="serviceIMG" />

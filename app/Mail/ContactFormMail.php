@@ -22,6 +22,10 @@ class ContactFormMail extends Mailable
 
     public $timestamp;
 
+    public $pageUrl;
+
+    public $pageTitle;
+
     /**
      * Create a new message instance.
      */
@@ -33,6 +37,8 @@ class ContactFormMail extends Mailable
         $this->userMessage = $formData['message'] ?? 'Без сообщения';
         $this->formType = $formData['form_type'] ?? 'contact';
         $this->timestamp = now()->format('d.m.Y H:i');
+        $this->pageUrl = $formData['page_url'] ?? 'Не указана';
+        $this->pageTitle = $formData['page_title'] ?? 'Не указан';
     }
 
     /**

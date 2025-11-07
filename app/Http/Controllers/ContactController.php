@@ -55,6 +55,8 @@ class ContactController extends Controller
                 'email' => $request->email,
                 'message' => $request->message,
                 'service' => $request->service ?: 'Запись на занятие',
+                'page_url' => $request->input('page_url', $request->headers->get('referer', 'Не указана')),
+                'page_title' => $request->input('page_title', 'Не указан'),
             ];
 
             // Получаем email администратора (поддерживает несколько адресов через запятую)

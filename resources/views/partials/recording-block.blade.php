@@ -1,4 +1,4 @@
-<div class="recording mt-5">
+<div id="recording" class="recording mt-5">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-12">

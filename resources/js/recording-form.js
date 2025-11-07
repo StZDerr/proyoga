@@ -72,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     email: "",
                     message: `Заявка на запись на занятие от ${name}. Телефон: ${phone}`,
                     privacy_agreement: "on",
+                    page_url: window.location.href,
+                    page_title: document.title,
                 }),
             })
                 .then((response) => {
