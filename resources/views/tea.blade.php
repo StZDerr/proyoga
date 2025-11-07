@@ -20,15 +20,17 @@
             <div class="container">
                 {{ Breadcrumbs::render('tea') }}
                 <div class="title">
-                    Чайная зона “Исток и Я”
-                </div>
-                <div class="desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa voluptatum, facilis
-                    accusamus explicabo nihil deserunt minus odit molestiae dolore quis.
+                    Чайная зона “ИстокиЯ”
                 </div>
             </div>
         </div>
-        <div class="containerMain">
+        <div class="zaglyshka mt-5">
+            <div class="container">
+                <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Icon" class="img-fluid" />
+                <div class="title">Данный раздел находится в разработке</div>
+            </div>
+        </div>
+        <!-- <div class="containerMain">
             <div class="container">
                 <div class="parent">
                     <div class="text-block div1">
@@ -99,11 +101,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="mb-5">
-        @include('partials.recording-block')
-    </div>
-    @include('partials.footer')
+    </div> -->
+        <div class="mb-5">
+            @include('partials.recording-block')
+        </div>
+        @include('partials.footer')
 
 </body>
 

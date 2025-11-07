@@ -1,3 +1,23 @@
+.zaglyshka .container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.zaglyshka .container .img-fluid {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.zaglyshka .container .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    color: #103e4e;
+    text-align: center;
+}
+
 .containerMain {
     display: flex;
     flex-direction: column;
@@ -212,6 +232,7 @@
     color: inherit;
     box-shadow: none;
 }
+
 .containerMainContacts {
     display: flex;
     flex-direction: column;
@@ -322,6 +343,7 @@
     .containerMainContacts .container .rating {
         justify-content: center;
     }
+
     .phone {
         text-align: center;
     }

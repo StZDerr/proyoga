@@ -4,16 +4,21 @@
 @import "@fontsource/montserrat/500.css";
 @import "@fontsource/montserrat/700.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
 :root {
     --primary-color-title-text: #a0ce83;
     --primary-color-button-123d4d: #123d4d;
     --secondary-color-1d7d6f: #1d7d6f;
     --font-size-text-desc-40px: clamp(1.25rem, 1.0455rem + 0.9091vw, 2.5rem);
     --font-size-text-desc-28px: clamp(0.875rem, 0.7318rem + 0.6364vw, 1.75rem);
-    --font-size-text-desc-20px: clamp(0.625rem, 0.5227rem + 0.4545vw, 1.25rem);
-    --font-size-text-desc-16px: clamp(0.5rem, 0.4182rem + 0.3636vw, 1rem);
+    --font-size-text-desc-20px: clamp(0.875rem, 0.8354rem + 0.181vw, 1.125rem);
+    --font-size-text-desc-16px: clamp(0.75rem, 0.7104rem + 0.181vw, 1rem);
     --font-standart-TenorSans: "Tenor Sans", sans-serif;
     --font-standart-Montserrat: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #ebefef;
 }
 
 .button {
@@ -29,15 +34,16 @@
     font-family: Tenor Sans;
     font-weight: 400;
     font-size: clamp(1.875rem, 1.5682rem + 1.3636vw, 3.75rem);
-    line-height: 72px;
+    line-height: 1.5em;
     text-transform: uppercase;
     color: var(--primary-color-button-123d4d);
 }
+
 .background-gor .headerTeaZone .desc {
     font-family: Montserrat;
     font-weight: 500;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 32px;
+    line-height: 1.75em;
     color: var(--secondary-color-1d7d6f);
 }
 
@@ -59,7 +65,7 @@
     font-weight: 600;
     font-style: normal;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.25em;
     letter-spacing: 0%;
 }
 
@@ -80,7 +86,7 @@
 }
 
 /* Разделитель */
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
     content: ">";
     color: #888888;
     margin: 0 8px;

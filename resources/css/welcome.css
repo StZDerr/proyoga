@@ -17,14 +17,15 @@
     font-family: var(--font-standart-TenorSans);
     font-weight: 600;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 56px;
+    line-height: 1.5em;
     color: var(--secondary-color-1d7d6f);
 }
+
 .main .lead {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: clamp(3.125rem, 2.6136rem + 2.2727vw, 6.25rem);
-    line-height: 100px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
 
@@ -33,7 +34,8 @@
     width: 100%;
     margin: 0 auto;
     padding: 20px 0;
-    overflow: visible; /* Позволяет увеличенному слайду выходить за границы */
+    overflow: visible;
+    /* Позволяет увеличенному слайду выходить за границы */
 }
 
 .main .my-custom-swiper-container img {
@@ -45,20 +47,21 @@
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0.5;
     height: auto;
-    transform: scale(0.67); /* Базовый размер для неактивных слайдов */
+    transform: scale(0.67);
+    /* Базовый размер для неактивных слайдов */
 }
 
 .my-custom-swiper-container .swiper-slide-active {
-    transform: scale(
-        1
-    ) !important; /* Центральный слайд - полный размер (на 50% больше чем 0.67) */
+    transform: scale(1) !important;
+    /* Центральный слайд - полный размер (на 50% больше чем 0.67) */
     opacity: 1 !important;
     z-index: 2;
 }
 
 .my-custom-swiper-container .swiper-slide-next,
 .my-custom-swiper-container .swiper-slide-prev {
-    transform: scale(0.67) !important; /* Соседние слайды - меньший размер */
+    transform: scale(0.67) !important;
+    /* Соседние слайды - меньший размер */
     opacity: 0.7 !important;
     z-index: 1;
 }
@@ -152,23 +155,26 @@
 }
 
 .my-custom-swiper-container .swiper-pagination {
-    position: relative; /* по умолчанию absolute */
-    bottom: 20px; /* сдвигаем ниже */
+    position: relative;
+    /* по умолчанию absolute */
+    bottom: 20px;
+    /* сдвигаем ниже */
 }
 
 .main .swiper-info-text {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 32px;
+    line-height: 1.5em;
     text-align: center;
     color: var(--primary-color-button-123d4d);
 }
+
 .main .container-button .button-bid {
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
     font-size: var(--font-size-text-desc-16px);
-    line-height: 24px;
+    line-height: 1.5em;
     text-align: center;
     vertical-align: middle;
     background-color: var(--primary-color-button-123d4d);
@@ -177,30 +183,27 @@
     padding: 1rem;
 }
 
-.main .container-button .button-bid a {
-    font-family: var(--font-standart-Montserrat);
-    font-weight: 600;
+.main>.btn {
+    flex-grow: 1;
+    padding: 15px 75px;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    color: var(--primary-color-button-123d4d);
     font-size: var(--font-size-text-desc-28px);
-    line-height: 24px;
-    text-align: center;
-    vertical-align: middle;
+    color: white;
+    background-color: var(--primary-color-button-123d4d) !important;
 }
 
-.main .container-button .button-calendar {
-    font-family: var(--font-standart-Montserrat);
-    font-weight: 600;
-    font-size: var(--font-size-text-desc-16px);
-    line-height: 24px;
-    text-align: center;
-    vertical-align: middle;
-    border: 2px solid var(--primary-color-button-123d4d);
-    border-radius: 1.8rem;
-    padding: 1rem;
-}
 .marquee-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* расстояние между лентами */
+    gap: 15px;
+    /* расстояние между лентами */
+}
+
+.main .btn {
+    font-size: 20px;
+    background-color: #000000;
 }
 
 /* Общие стили ленты */
@@ -253,6 +256,7 @@
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -275,31 +279,33 @@
     position: relative;
     width: 100px;
     height: 100px;
-    svg {
-        fill: none;
-        stroke: #8a3ab9;
-        stroke-linecap: round;
-        stroke-width: 3;
-        stroke-dasharray: 1;
-        stroke-dashoffset: 0;
-        animation: stroke-draw 6s ease-out infinite alternate;
-        /* animation: stroke-draw 6s cubic-bezier(0.77, 0, 0.175, 1) infinite
-            alternate; */
-    }
-    img {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 70px;
-        border-radius: 50%;
-    }
 }
+
+.istoria .circle svg {
+    fill: none;
+    stroke: #8a3ab9;
+    stroke-linecap: round;
+    stroke-width: 3;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    animation: stroke-draw 6s ease-out infinite alternate;
+}
+
+.istoria .circle img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    border-radius: 50%;
+}
+
 @keyframes stroke-draw {
     from {
         stroke: #8a3ab9;
         stroke-dasharray: 1;
     }
+
     to {
         stroke: #cd486b;
         transform: rotate(180deg);
@@ -310,9 +316,17 @@
 .about .d-flex {
     gap: 40px;
 }
+
 .about .about-img img {
     width: 90%;
 }
+
+@media(max-width: 700px) {
+    .about .about-img img {
+        width: 250px;
+    }
+}
+
 .about .about-text .title {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
@@ -320,6 +334,7 @@
     line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
+
 .about .about-text .desc {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
@@ -332,7 +347,7 @@
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
 
@@ -342,6 +357,7 @@
     font-size: var(--font-size-text-desc-28px);
     color: var(--secondary-color-1d7d6f);
 }
+
 .directions .button {
     padding: 1rem;
     border: 0.1rem solid var(--primary-color-button-123d4d);
@@ -369,38 +385,71 @@
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-28px);
-    line-height: 32px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
+}
+
+@media(max-width: 700px) {
+    font-size: 18px;
 }
 
 .directions .main-directions .card-directions .text {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
     font-size: var(--font-size-text-desc-16px);
-    line-height: 24px;
+    line-height: 1.5em;
     color: #007677;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* ограничиваем 4 строками */
+    -webkit-line-clamp: 4;
+    /* ограничиваем 4 строками */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: calc(24px * 4); /* возвращаем фиксированную высоту */
-    padding: 0 1rem; /* убираем margin-bottom, оставляем только боковые отступы */
+    height: calc(24px * 4);
+    /* возвращаем фиксированную высоту */
+    padding: 0 1rem;
+    /* убираем margin-bottom, оставляем только боковые отступы */
+}
+
+
+@media(max-width: 700px) {
+    .directions>div>div.row.g-4.main-directions.mt-2.mb-3 {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .directions>div>div.row.g-4.main-directions.mt-2.mb-3>div>a>div>img {
+        height: 200px;
+    }
+}
+
+@media(max-width: 400px) {
+    .directions>div>div.row.g-4.main-directions.mt-2.mb-3 {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
 }
 
 .price-list .text .section-title {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
+
+@media(max-width: 700px) {
+    .price-list>div>div>div:last-child {
+        order: -1;
+    }
+}
+
 .price-list span {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
     font-size: var(--font-size-text-desc-28px);
     color: var(--secondary-color-1d7d6f);
 }
+
 .price-list .button {
     flex-grow: 1;
     padding: 1rem;
@@ -416,7 +465,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 24px;
+    line-height: 1.5em;
     text-align: center;
     padding: 14px 24px;
     border-radius: 10px !important;
@@ -461,6 +510,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -473,7 +523,8 @@
 
 .custom-table {
     width: 100%;
-    border-collapse: collapse; /* Изменили на collapse для правильного отображения границ */
+    border-collapse: collapse;
+    /* Изменили на collapse для правильного отображения границ */
     margin-top: 1rem;
 }
 
@@ -492,11 +543,11 @@
 }
 
 /* Убираем двойную границу между строками */
-.table-item-row + .table-item-row {
+.table-item-row+.table-item-row {
     border-top: none;
 }
 
-.table-item-row + .table-item-row td {
+.table-item-row+.table-item-row td {
     border-top: none;
 }
 
@@ -506,11 +557,12 @@
     font-weight: 400;
     font-style: normal;
     font-size: 24px;
-    line-height: 32px;
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #097173;
     padding: 12px 0;
-    background-color: #f8fffe; /* лёгкий фон */
+    background-color: #f8fffe;
+    /* лёгкий фон */
 }
 
 /* Название занятия */
@@ -518,7 +570,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 20px;
-    line-height: 28px;
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #103e4e;
     padding: 12px 0;
@@ -536,7 +588,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #888888;
 }
@@ -545,7 +597,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 20px;
-    line-height: 28px;
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #2d3134;
     margin-top: 4px;
@@ -553,12 +605,14 @@
 
 /* Адаптивность: на мобильных — вертикальное расположение */
 @media (max-width: 768px) {
+
     .table-item-name,
     .table-item-info {
         display: block;
         width: 100%;
         text-align: left;
     }
+
     .table-item-info {
         text-align: right;
         margin-top: 4px;
@@ -567,12 +621,14 @@
 
 /* Стили для свайпера преподавателей */
 .teachers-swiper-container {
-    padding: 0 60px; /* Отступы для стрелок */
+    padding: 0 60px;
+    /* Отступы для стрелок */
 }
 
 /* Все слайды растягиваются по высоте */
 .teachers-swiper .swiper-slide {
-    height: auto !important; /* Swiper может задавать height */
+    height: auto !important;
+    /* Swiper может задавать height */
     display: flex;
 }
 
@@ -580,8 +636,10 @@
 .teachers-swiper .swiper-slide .teacher-card {
     display: flex;
     flex-direction: column;
-    align-items: center; /* ✅ Центрируем содержимое по горизонтали */
-    justify-content: flex-start; /* Содержимое сверху вниз */
+    align-items: center;
+    /* ✅ Центрируем содержимое по горизонтали */
+    justify-content: flex-start;
+    /* Содержимое сверху вниз */
     width: 100%;
     height: 100%;
     text-align: center;
@@ -604,9 +662,12 @@
     object-fit: cover;
     margin-bottom: 15px;
     border: 3px solid #f0f0f0;
-    display: block; /* ✅ Убираем влияние line-height */
-    margin-left: auto; /* ✅ */
-    margin-right: auto; /* ✅ */
+    display: block;
+    /* ✅ Убираем влияние line-height */
+    margin-left: auto;
+    /* ✅ */
+    margin-right: auto;
+    /* ✅ */
 }
 
 .teacher-name {
@@ -650,6 +711,7 @@
 .teachers-prev {
     left: -25px;
 }
+
 .teachers-next {
     right: -25px;
 }
@@ -681,6 +743,7 @@
     /* line-height: 32px; */
     color: var(--secondary-color-1d7d6f);
 }
+
 .teachers .button {
     padding: 1rem;
     border: 0.1rem solid var(--primary-color-button-123d4d);
@@ -738,13 +801,22 @@
     padding: 2rem;
     border-radius: 1rem;
 }
+
 .about-space .title {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.5em;
     color: white;
+    text-wrap: balance;
 }
+
+@media(max-width: 700px) {
+    .about-space .title br {
+        display: none;
+    }
+}
+
 .about-space .title span {
     color: var(--primary-color-title-text);
 }
@@ -754,7 +826,7 @@
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 32px;
+    line-height: 1.75em;
     color: #fefefc;
 }
 
@@ -762,8 +834,23 @@
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 28px;
+    line-height: 1.75em;
     color: #fefefc;
+}
+
+
+@media(max-width: 700px) {
+    .calendar>div>div {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .calendar>div {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
 }
 
 .calendar .section-title {
@@ -773,12 +860,14 @@
     line-height: 50px;
     color: var(--primary-color-button-123d4d);
 }
+
 .calendar span {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
     font-size: var(--font-size-text-desc-28px);
     color: var(--secondary-color-1d7d6f);
 }
+
 .calendar .button {
     padding: 1rem;
     border: 0.1rem solid var(--primary-color-button-123d4d);
@@ -787,6 +876,7 @@
     color: var(--primary-color-button-123d4d);
     background-color: white;
 }
+
 .calendar .button:hover {
     border: 0.1rem solid var(--primary-color-button-123d4d);
 }
@@ -798,18 +888,21 @@
     line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
+
 .retreats .desc {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 32px;
+    line-height: 1.5em;
     color: var(--secondary-color-1d7d6f);
 }
+
 .retreats img {
     object-fit: cover;
     width: 100%;
     border-radius: 1rem;
 }
+
 .retreats .btn-more {
     padding: 1rem 2rem;
     width: 100%;
@@ -822,24 +915,28 @@
     background-color: #ebf1ee;
     border-radius: 1rem;
 }
+
 .main-test .background-color-EBF1EE img {
     width: 100%;
     border-radius: 1rem;
 }
+
 .main-test .background-color-EBF1EE .title {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 32px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
+
 .main-test .background-color-EBF1EE .desc {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 28px;
+    line-height: 1.5em;
     color: var(--secondary-color-1d7d6f);
 }
+
 .main-test .background-color-EBF1EE .button {
     padding: 1rem 2rem;
     background-color: var(--primary-color-button-123d4d);
@@ -847,13 +944,15 @@
     border-radius: 1.8rem;
     font-size: var(--font-size-text-desc-20px);
 }
+
 .photo-gallery .section-title {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
+
 .photo-gallery span {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
@@ -864,25 +963,32 @@
 /* Обертка для галереи с отступами для стрелок */
 .photo-gallery .gallery3-wrapper {
     position: relative;
-    padding: 0 80px; /* Отступы для стрелок */
+    padding: 0 80px;
+    /* Отступы для стрелок */
 }
 
 .photo-gallery .gallery3-swiper {
     position: relative;
-    overflow: hidden; /* Скрываем лишние слайды */
+    overflow: hidden;
+    /* Скрываем лишние слайды */
     width: 100%;
 }
 
 .photo-gallery .gallery3-swiper .swiper-slide {
     transition: all 0.4s ease;
-    transform: scale(0.8); /* Уменьшаем неактивные слайды */
-    opacity: 0.7; /* Делаем их полупрозрачными */
+    transform: scale(0.8);
+    /* Уменьшаем неактивные слайды */
+    opacity: 0.7;
+    /* Делаем их полупрозрачными */
 }
 
 .photo-gallery .gallery3-swiper .swiper-slide-active {
-    transform: scale(1); /* Активный слайд в полном размере */
-    opacity: 1; /* Полная непрозрачность */
-    z-index: 2; /* Поднимаем активный слайд выше */
+    transform: scale(1);
+    /* Активный слайд в полном размере */
+    opacity: 1;
+    /* Полная непрозрачность */
+    z-index: 2;
+    /* Поднимаем активный слайд выше */
 }
 
 .photo-gallery .gallery3-swiper .swiper-slide img {
@@ -907,6 +1013,7 @@
 .photo-gallery .gallery3-swiper .swiper-button-next {
     color: white !important;
 }
+
 /* Общий стиль кастомных стрелок */
 .photo-gallery .gallery3-prev,
 .photo-gallery .gallery3-next {
@@ -924,15 +1031,19 @@
     cursor: pointer;
     border: none;
     outline: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для лучшей видимости */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Тень для лучшей видимости */
 }
 
 /* Позиционирование стрелок снаружи слайдов */
 .photo-gallery .gallery3-prev {
-    left: 0; /* Слева от обертки */
+    left: 0;
+    /* Слева от обертки */
 }
+
 .photo-gallery .gallery3-next {
-    right: 0; /* Справа от обертки */
+    right: 0;
+    /* Справа от обертки */
 }
 
 /* Чёрные SVG-стрелки */
@@ -957,7 +1068,8 @@
 /* Адаптивность для галереи */
 @media (max-width: 768px) {
     .photo-gallery .gallery3-wrapper {
-        padding: 0 60px; /* Меньше отступы на мобильных */
+        padding: 0 60px;
+        /* Меньше отступы на мобильных */
     }
 
     .photo-gallery .gallery3-prev,
@@ -982,7 +1094,7 @@
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 56px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
 
@@ -990,7 +1102,7 @@
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
     font-size: var(--font-size-text-desc-28px);
-    line-height: 32px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d) !important;
 }
 
@@ -998,7 +1110,7 @@
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
     font-size: var(--font-size-text-desc-16px);
-    line-height: 32px;
+    line-height: 1.5em;
     color: var(--secondary-color-1d7d6f);
 }
 

@@ -22,6 +22,16 @@ class SubCategory extends Model
     }
 
     /**
+     * Retrieve the child model for a bound value (for scoped route binding)
+     */
+    public function resolveChildRouteBinding($childType, $value, $field)
+    {
+        return $this->subSubCategories()
+            ->where($field ?? (new SubSubCategory())->getRouteKeyName(), $value)
+            ->firstOrFail();
+    }
+
+    /**
      * Автоматическая генерация slug при сохранении
      */
     protected static function boot()

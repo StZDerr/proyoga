@@ -22,8 +22,7 @@
                     Направления занятий
                 </div>
                 <div class="desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa voluptatum, facilis
-                    accusamus explicabo nihil deserunt minus odit molestiae dolore quis.
+                    Мы поможем подобрать направление, которое подходит именно Вам
                 </div>
                 @foreach ($mainCategories as $mainCategory)
                     <div class="title-direction mt-5">
@@ -54,9 +53,9 @@
                                                             <i class="bi bi-arrow-right fs-4"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="text">
+                                                    <!-- <div class="text">
                                                         {{ $subCategory->description ?? 'Описание направления' }}
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </a>
                                         </div>

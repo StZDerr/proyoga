@@ -1,7 +1,12 @@
+/* .recording>div>div {
+    gap: 25px;
+} */
+
 .recording img {
     width: 100%;
     border-radius: 1rem;
 }
+
 .recording .title {
     font-family: Tenor Sans;
     font-weight: 400;
@@ -9,6 +14,7 @@
     line-height: 32px;
     color: var(--primary-color-button-123d4d);
 }
+
 .recording .desc {
     font-family: Montserrat;
     font-weight: 500;

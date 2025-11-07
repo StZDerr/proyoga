@@ -1,21 +1,24 @@
 .about .d-flex {
     gap: 40px;
 }
+
 .about .about-img img {
     width: 500px;
 }
+
 .about .about-text .title {
     font-family: Tenor Sans;
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.25em;
     color: var(--primary-color-button-123d4d);
 }
+
 .about .about-text .desc {
     font-family: Montserrat;
     font-weight: 500;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 32px;
+    line-height: 1.7em;
     color: var(--secondary-color-1d7d6f);
 }
 
@@ -24,13 +27,15 @@
     padding: 2rem;
     border-radius: 1rem;
 }
+
 .about-space .title {
     font-family: Tenor Sans;
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.25em;
     color: white;
 }
+
 .about-space .title span {
     color: var(--primary-color-title-text);
 }
@@ -40,7 +45,7 @@
     font-family: Montserrat;
     font-weight: 600;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 32px;
+    line-height: 1.25em;
     color: #fefefc;
 }
 
@@ -48,18 +53,20 @@
     font-family: Montserrat;
     font-weight: 600;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 28px;
+    line-height: 1.25em;
     color: #fefefc;
 }
 
 /* Стили для свайпера преподавателей */
 .teachers-swiper-container {
-    padding: 0 60px; /* Отступы для стрелок */
+    padding: 0 60px;
+    /* Отступы для стрелок */
 }
 
 /* Все слайды растягиваются по высоте */
 .teachers-swiper .swiper-slide {
-    height: auto !important; /* Swiper может задавать height */
+    height: auto !important;
+    /* Swiper может задавать height */
     display: flex;
 }
 
@@ -67,8 +74,10 @@
 .teachers-swiper .swiper-slide .teacher-card {
     display: flex;
     flex-direction: column;
-    align-items: center; /* ✅ Центрируем содержимое по горизонтали */
-    justify-content: flex-start; /* Содержимое сверху вниз */
+    align-items: center;
+    /* ✅ Центрируем содержимое по горизонтали */
+    justify-content: flex-start;
+    /* Содержимое сверху вниз */
     width: 100%;
     height: 100%;
     text-align: center;
@@ -91,9 +100,12 @@
     object-fit: cover;
     margin-bottom: 15px;
     border: 3px solid #f0f0f0;
-    display: block; /* ✅ Убираем влияние line-height */
-    margin-left: auto; /* ✅ */
-    margin-right: auto; /* ✅ */
+    display: block;
+    /* ✅ Убираем влияние line-height */
+    margin-left: auto;
+    /* ✅ */
+    margin-right: auto;
+    /* ✅ */
 }
 
 .teacher-name {
@@ -137,6 +149,7 @@
 .teachers-prev {
     left: -25px;
 }
+
 .teachers-next {
     right: -25px;
 }
@@ -200,6 +213,7 @@
     /* line-height: 32px; */
     color: var(--secondary-color-1d7d6f);
 }
+
 .teachers .button {
     padding: 1rem;
     border: 0.1rem solid var(--primary-color-button-123d4d);

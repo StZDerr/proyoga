@@ -45,14 +45,9 @@
                 <div class="swiper-info-text">
                     Твой путь к себе начинается с Истока
                 </div>
-                <div class="container-button d-flex justify-content-center gap-4 mt-4">
-                    {{-- <a href="{{ route('calendar') }}">
-                        <button type="button" class="btn btn-primary button-bid">Записаться на занятие</button>
-                    </a> --}}
-                    <a href="{{ route('calendar') }}">
-                        <button type="button" class="btn btn-light button-calendar">Расписание занятий</button>
-                    </a>
-                </div>
+                <a href="{{ route('recording') }}" class="btn button mt-4">
+                    Записаться
+                </a>
             </div>
         </div>
         <div class="marquee-wrapper">
@@ -126,6 +121,18 @@
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Растяжка</span>
+                    </div>                    
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Аэройога</span>
+                    </div>                    
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Пилатес</span>
+                    </div>                    
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Танцы</span>
                     </div>
 
                     <!-- Повторяем элементы для бесконечного эффекта -->
@@ -148,6 +155,18 @@
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Растяжка</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Аэройога</span>
+                    </div>                    
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Пилатес</span>
+                    </div>                    
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Танцы</span>
                     </div>
                 </div>
             </div>
@@ -227,11 +246,11 @@
                 </div>
                 <div class="col-lg-6 col-12 about-text">
                     <div class="title">
-                        "Исток и Я" — Твой путь к себе начинается с Истока.
+                        "ИстокиЯ" — Твой путь к себе начинается с Истока.
                         Здесь соединяются тело, дыхание, звук, осознанность и общение.
                     </div>
                     <div class="desc mt-3">
-                        В “Исток и Я” проходят занятия по йоге, пилатесу, дыхательным и телесным практикам,
+                        В “ИстокиЯ” проходят занятия по йоге, пилатесу, дыхательным и телесным практикам,
                         арт-терапии и медитациям, а также регулярные ретриты, женские и мужские круги,
                         трансформационные программы и выездные сессии на природе.
                         Два зала, чайная зона и собственный автобус для путешествий — всё продумано,
@@ -263,15 +282,13 @@
                 <div class="col-12 col-lg-9">
                     <div class="text">
                         <h2 class="section-title">Прайс-лист</h2>
-                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem qui sed recusandae
-                            quod
-                            natus expedita quo facilis, officia dolor distinctio.</span>
+                        <span>Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на занятия.</span>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-3 mb-3">
                     <div class="d-flex justify-content-center"> <!-- ← ВОЛШЕБНАЯ СТРОКА -->
                         <a href="{{ route('recording') }}" class="btn button px-5 py-3">
-                            Записаться на занятия
+                            Записаться
                         </a>
                     </div>
                 </div>
@@ -314,7 +331,7 @@
                 <div class="col-12 col-lg-9">
                     <div class="text">
                         <h2 class="section-title">Направления занятий</h2>
-                        <span>Мы поможем подобрать направление йоги, которое подходит именно Вам</span>
+                        <span>Мы поможем подобрать направление, которое подходит именно Вам</span>
                     </div>
                 </div>
                 {{-- <div class="col-12 col-lg-3 ">
@@ -328,7 +345,7 @@
                 <div class="col-12 col-lg-3">
                     <!-- ВОЛШЕБНАЯ ОБЁРТКА -->
                     <div
-                        class="button d-flex justify-content-center justify-content-lg-end h-100 align-items-center mt-3">
+                        class="button d-flex justify-content-center h-100 align-items-center mt-3">
                         <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
                             Все направления
                         </a>
@@ -371,8 +388,8 @@
     <div class="about-space">
         <div class="container">
             <div class="title">
-                Наше пространство создано для всех, кто ценит комфорт, уют и заботу <span> не только о своём
-                    теле, но и душе.</span>
+                Наше пространство создано для всех, кто ценит комфорт, уют и заботу <br>
+                <span> не только о своём теле, но и душе.</span>
             </div>
             <div class="text">
                 Внутри студии создана атмосфера уюта и спокойствия, что помогает сосредоточиться на занятиях. Светлые
@@ -397,7 +414,7 @@
                             <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="people" />
                         </div>
                         <div class="about-space-features-text">
-                            Разные направления физического и духовного развития
+                            Два зала, чайная зона и собственный автобус для путешествий
                         </div>
                     </div>
                 </div>
@@ -420,10 +437,10 @@
             <div class="row">
                 <div class="col-12 col-xl-7">
                     <div class="title">
-                        Выездные сессии “Исток и Я - путешествия к себе”
+                        Выездные сессии “ИстокиЯ - путешествия к себе”
                     </div>
-                    <div class="desc">
-                        В “Исток и я” проходят занятия по йоге, пилатесу, дыхательным и телесным практикам, арт-терапии
+                    <div class="desc mt-3">
+                        В “Истокия” проходят занятия по йоге, пилатесу, дыхательным и телесным практикам, арт-терапии
                         и медитациям, а также регулярные ретриты, женские и мужские круги, трансформационные программы и
                         выездные сессии на природе.
                         Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли

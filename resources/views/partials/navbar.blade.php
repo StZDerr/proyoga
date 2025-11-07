@@ -3,16 +3,16 @@
         <div class="containerWrapper">
             <div class="wrapper">
                 <div class="rating">
-                    <a href="https://yandex.ru/maps/-/CLfTYTjy">
-                        <img src="{{ asset('images/svg/yandex_maps_5_1.svg') }}" alt="Яндекс" />
+                    <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
+                        <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" />
                     </a>
-                    <a href="https://go.2gis.com/SBzhO" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/reiting2gis.svg') }}" alt="2ГИС" />
+                    <a href="https://go.2gis.com/SBzhO" rel="nofollow" rel="nofollow" target="_blank">
+                        <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" />
                     </a>
                 </div>
                 <div class="adres ">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
-                        <div class="adress">село Супсех, ул. Советская, 1Б</div>
+                        <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                     </a>
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-4">
                         <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б</div>
@@ -68,18 +68,18 @@
                     +7 (964) 926-41-47
                 </a>
                 <a href="https://yandex.ru/maps/-/CLfTYTjy">
-                    <div class="adress">село Супсех, ул. Советская, 1Б</div>
+                    <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                 </a>
                 <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-2">
                     <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б</div>
                 </a>
                 <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
                 <div class="rating">
-                    <a href="https://yandex.ru/maps/-/CLfTYTjy">
-                        <img src="{{ asset('images/svg/yandex_maps_5_1.svg') }}" alt="Яндекс" />
+                    <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
+                        <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" />
                     </a>
                     <a href="https://go.2gis.com/SBzhO" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/reiting2gis.svg') }}" alt="2ГИС" />
+                        <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" />
                     </a>
                 </div>
             </div>

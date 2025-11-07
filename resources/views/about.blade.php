@@ -23,7 +23,7 @@
                     О студии
                 </div>
                 <div class="desc">
-                    "Исток и Я" - Твой путь к себе начинается с Истока.
+                    "ИстокиЯ" - Твой путь к себе начинается с Истока.
                     Здесь соединяются тело, дыхание, звук, осознанность и общение.
                 </div>
             </div>
@@ -36,11 +36,11 @@
                     </div>
                     <div class="col-lg-6 col-12 about-text">
                         <div class="title">
-                            "Исток и Я" — Твой путь к себе начинается с Истока.
+                            "ИстокиЯ" — Твой путь к себе начинается с Истока.
                             Здесь соединяются тело, дыхание, звук, осознанность и общение.
                         </div>
                         <div class="desc mt-3">
-                            В “Исток и Я” проходят занятия по йоге, пилатесу, дыхательным и телесным практикам,
+                            В “ИстокиЯ” проходят занятия по йоге, пилатесу, дыхательным и телесным практикам,
                             арт-терапии и медитациям, а также регулярные ретриты, женские и мужские круги,
                             трансформационные программы и выездные сессии на природе.
                             Два зала, чайная зона и собственный автобус для путешествий — всё продумано,
@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-    <div class="teachers mt-5">
+    <!-- <div class="teachers mt-5">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="text">
@@ -111,7 +111,6 @@
             </div>
             {{-- Свайпер для преподавателей --}}
             <div class="teachers-swiper-container mt-4 position-relative">
-                <!-- Стрелки навигации -->
                 <div class="swiper-button-prev teachers-prev">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -142,7 +141,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     @include('partials.recording-block')
     @include('partials.contacts-block')
     @include('partials.footer')

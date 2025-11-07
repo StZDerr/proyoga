@@ -62,12 +62,15 @@ class IstokiController extends Controller
         return view('PodDirection', compact('subCategory', 'pageMeta', 'pageContent'));
     }
 
-    public function subSubCategoryDetail(SubCategory $subCategory, SubSubCategory $subSubCategory)
+    public function subSubCategoryDetail($subCategorySlug, $subSubCategorySlug)
     {
-        // Проверяем, что подподкатегория принадлежит правильной подкатегории
-        if ($subSubCategory->sub_category_id !== $subCategory->id) {
-            abort(404);
-        }
+        // Находим подкатегорию по slug
+        $subCategory = SubCategory::where('slug', $subCategorySlug)->firstOrFail();
+        
+        // Находим подподкатегорию по slug и проверяем принадлежность к подкатегории
+        $subSubCategory = SubSubCategory::where('slug', $subSubCategorySlug)
+            ->where('sub_category_id', $subCategory->id)
+            ->firstOrFail();
         
         $subSubCategory->load(['subCategory.mainCategory']);
         

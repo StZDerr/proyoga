@@ -23,8 +23,7 @@
                     Прайс-лист
                 </div>
                 <div class="desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa voluptatum, facilis
-                    accusamus explicabo nihil deserunt minus odit molestiae dolore quis.
+                    Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на занятия.
                 </div>
             </div>
         </div>

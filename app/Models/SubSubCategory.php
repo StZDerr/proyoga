@@ -28,6 +28,22 @@ class SubSubCategory extends Model
     }
 
     /**
+     * Resolve route binding within a scoped parent
+     */
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? $this->getRouteKeyName(), $value)->firstOrFail();
+    }
+
+    /**
+     * Retrieve the child model for a bound value
+     */
+    public function resolveChildRouteBinding($childType, $value, $field)
+    {
+        return parent::resolveChildRouteBinding($childType, $value, $field);
+    }
+
+    /**
      * Автоматическая генерация slug при сохранении
      */
     protected static function boot()

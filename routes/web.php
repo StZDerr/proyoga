@@ -117,13 +117,13 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 
 // === ДИНАМИЧЕСКИЕ МАРШРУТЫ (catch-all, должны быть В САМОМ КОНЦЕ!) ===
 
+// Подподкатегория (двухуровневый slug) - ДОЛЖНА БЫТЬ ПЕРЕД одноуровневой!
+Route::get('/{subCategorySlug}/{subSubCategorySlug}', [IstokiController::class, 'subSubCategoryDetail'])
+    ->where('subCategorySlug', '^(?!admin|login|register|password|api|sitemap\.xml|storage|css|js|images|favicon|build|contacts|tea|calendar|about|recording|personal-data|privacy-policy|price-list|direction).*$')
+    ->where('subSubCategorySlug', '.+')
+    ->name('subSubCategoryDetail');
+
 // Подкатегория (одноуровневый slug)
 Route::get('/{subCategory}', [IstokiController::class, 'PodDirection'])
     ->where('subCategory', '^(?!admin|login|register|password|api|sitemap\.xml|storage|css|js|images|favicon|build|contacts|tea|calendar|about|recording|personal-data|privacy-policy|price-list|direction).*$')
     ->name('PodDirection');
-
-// Подподкатегория (двухуровневый slug)
-Route::get('/{subCategory}/{subSubCategory}', [IstokiController::class, 'subSubCategoryDetail'])
-    ->where('subCategory', '^(?!admin|login|register|password|api|sitemap\.xml|storage|css|js|images|favicon|build|contacts|tea|calendar|about|recording|personal-data|privacy-policy|price-list|direction).*$')
-    ->where('subSubCategory', '.+')
-    ->name('subSubCategoryDetail');

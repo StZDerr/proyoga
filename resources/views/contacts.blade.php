@@ -9,7 +9,7 @@
     @include('partials.favicon')
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts.css', 'resources/css/contacts-block.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts.css', 'resources/css/contacts-block.css'])
 </head>
 
 <body>

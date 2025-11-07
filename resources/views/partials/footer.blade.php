@@ -15,17 +15,17 @@
                     <img src="{{ asset('images/logo/logoYOGAwhite.svg') }}" alt="Site Logo" />
                 </a>
                 <div class="copyright">
-                    © Copyright ИстокиЯ.рф - {{ date('Y') }} год
+                    © Copyright истокия.рф - {{ date('Y') }} год
                 </div>
                 <p class="text">
-                    "Исток и Я" - Твой путь к себе начинается с Истока. Здесь
+                    "ИстокиЯ" - Твой путь к себе начинается с Истока. Здесь
                     соединяются тело, дыхание, звук, осознанность и общение.
                 </p>
             </div>
 
             <div class="footerContent">
                 <a href="https://yandex.ru/maps/-/CLfTYTjy">
-                    <div class="adress">село Супсех, ул. Советская, 1Б</div>
+                    <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                 </a>
                 <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-2">
                     <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б</div>
@@ -33,11 +33,11 @@
                 <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
                 <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
                 <div class="rating">
-                    <a href="https://yandex.ru/maps/-/CLfTYTjy">
-                        <img src="{{ asset('images/svg/yandex_maps.svg') }}" alt="Яндекс" />
+                    <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
+                        <img src="{{ asset('images/svg/yandexNewWhite.svg') }}" alt="Яндекс" />
                     </a>
                     <a href="https://go.2gis.com/SBzhO" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/reiting2gis_white.svg') }}" alt="2ГИС" />
+                        <img src="{{ asset('images/svg/2gisNewWhite.svg') }}" alt="2ГИС" />
                     </a>
                 </div>
             </div>

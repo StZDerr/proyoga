@@ -2,15 +2,17 @@
     font-family: Tenor Sans;
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 50px;
+    line-height: 1.5em;
     color: var(--primary-color-button-123d4d);
 }
+
 .price-list span {
     font-family: Montserrat;
     font-weight: 500;
     font-size: var(--font-size-text-desc-28px);
     color: var(--secondary-color-1d7d6f);
 }
+
 .price-list .button {
     padding: 1rem;
     border: 0.1rem solid var(--primary-color-button-123d4d);
@@ -25,7 +27,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: var(--font-size-text-desc-20px);
-    line-height: 24px;
+    line-height: 1.5em;
     text-align: center;
     padding: 14px 24px;
     border-radius: 10px !important;
@@ -70,6 +72,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -82,7 +85,8 @@
 
 .custom-table {
     width: 100%;
-    border-collapse: collapse; /* Изменили на collapse для правильного отображения границ */
+    border-collapse: collapse;
+    /* Изменили на collapse для правильного отображения границ */
     margin-top: 1rem;
 }
 
@@ -101,11 +105,11 @@
 }
 
 /* Убираем двойную границу между строками */
-.table-item-row + .table-item-row {
+.table-item-row+.table-item-row {
     border-top: none;
 }
 
-.table-item-row + .table-item-row td {
+.table-item-row+.table-item-row td {
     border-top: none;
 }
 
@@ -114,8 +118,8 @@
     font-family: "Tenor Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #097173;
     padding: 12px 0;
@@ -125,8 +129,8 @@
 .table-item-name {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #103e4e;
     padding: 12px 0;
@@ -143,7 +147,7 @@
 .table-item-duration {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: var(--font-size-text-desc-16px);
     line-height: 24px;
     letter-spacing: 0.02em;
     color: #888888;
@@ -152,8 +156,8 @@
 .table-item-price {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 1.5em;
     letter-spacing: 0.02em;
     color: #2d3134;
     margin-top: 4px;
@@ -161,12 +165,14 @@
 
 /* Адаптивность: на мобильных — вертикальное расположение */
 @media (max-width: 768px) {
+
     .table-item-name,
     .table-item-info {
         display: block;
         width: 100%;
         text-align: left;
     }
+
     .table-item-info {
         text-align: right;
         margin-top: 4px;
