@@ -54,7 +54,7 @@ class IstokiController extends Controller
     {
         // Laravel автоматически найдет SubCategory по slug благодаря getRouteKeyName()
         $subCategory->load(['subSubCategories', 'mainCategory']);
-        
+
         // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
@@ -66,14 +66,14 @@ class IstokiController extends Controller
     {
         // Находим подкатегорию по slug
         $subCategory = SubCategory::where('slug', $subCategorySlug)->firstOrFail();
-        
+
         // Находим подподкатегорию по slug и проверяем принадлежность к подкатегории
         $subSubCategory = SubSubCategory::where('slug', $subSubCategorySlug)
             ->where('sub_category_id', $subCategory->id)
             ->firstOrFail();
-        
+
         $subSubCategory->load(['subCategory.mainCategory']);
-        
+
         // Загружаем мета-данные для страницы direction
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
         $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
@@ -104,5 +104,10 @@ class IstokiController extends Controller
     public function privacyPolicy()
     {
         return view('privacy-policy');
+    }
+
+    public function thanks()
+    {
+        return view('thanks');
     }
 }

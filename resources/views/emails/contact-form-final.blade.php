@@ -159,7 +159,8 @@
                         <strong>{{ $pageTitle }}</strong><br>
                     @endif
                     @if ($pageUrl && $pageUrl !== 'Не указана')
-                        <a href="{{ $pageUrl }}" style="color: #1D7D6F; text-decoration: none;">{{ $pageUrl }}</a>
+                        <a href="{{ $pageUrl }}"
+                            style="color: #1D7D6F; text-decoration: none;">{{ $pageUrl }}</a>
                     @else
                         Не указана
                     @endif

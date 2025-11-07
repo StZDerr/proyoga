@@ -90,6 +90,7 @@ Route::get('/about', [IstokiController::class, 'about'])->name('about');
 Route::get('/recording', [IstokiController::class, 'recording'])->name('recording');
 Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
 Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 
 Route::get('/contacts', function () {
     return view('contacts');

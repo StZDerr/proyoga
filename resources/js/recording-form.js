@@ -94,13 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then((data) => {
                     console.log("Response data:", data);
                     if (data.success) {
-                        Swal.fire({
-                            icon: "success",
-                            title: "Спасибо!",
-                            text: `Ваша заявка принята. Мы свяжемся с вами по номеру ${phone}`,
-                            confirmButtonColor: "#1D7D6F",
-                        });
-                        this.reset();
+                        // Редирект на страницу благодарности для отслеживания конверсий
+                        window.location.href = "/thanks";
                     } else {
                         throw new Error(data.message || "Ошибка отправки");
                     }

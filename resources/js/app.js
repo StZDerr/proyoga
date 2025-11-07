@@ -42,19 +42,8 @@ function submitForm(formId, formType) {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Успешно!",
-                    text: data.message || "Ваше сообщение отправлено",
-                    confirmButtonColor: "#1D7D6F",
-                });
-                form.reset();
-                // Закрываем модальное окно если оно есть
-                const modal = form.closest(".modal");
-                if (modal) {
-                    const modalInstance = bootstrap.Modal.getInstance(modal);
-                    if (modalInstance) modalInstance.hide();
-                }
+                // Редирект на страницу благодарности для отслеживания конверсий
+                window.location.href = "/thanks";
             } else {
                 let errorText = "Произошла ошибка при отправке";
                 if (data.errors) {
