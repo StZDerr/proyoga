@@ -15,6 +15,7 @@
                 тело, дыхание, звук, осознанность и общение.
             </p>
             <div class="adress">с. Супсех, ул. Советская, 1Б</div>
+            <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
             <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
             <div class="social">
                 <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">

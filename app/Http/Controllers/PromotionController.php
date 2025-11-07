@@ -43,12 +43,18 @@ class PromotionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
             'photo' => 'required|image|mimes:webp|max:2048',
         ], [
+            'title.required' => 'Введите название акции',
             'photo.required' => 'Фотография обязательна',
             'photo.image' => 'Файл должен быть изображением',
             'photo.mimes' => 'Фотография должна быть в формате .webp',
             'photo.max' => 'Размер фотографии не должен превышать 2 МБ',
+            'end_date.after_or_equal' => 'Дата окончания не может быть раньше даты начала',
         ]);
 
         if ($request->hasFile('photo')) {
@@ -57,7 +63,9 @@ class PromotionController extends Controller
 
         Promotion::create($validated);
 
-        return redirect()->route('admin.promotions.index')->with('success', 'Акция успешно добавлена!');
+        return redirect()
+            ->route('admin.promotions.index')
+            ->with('success', 'Акция успешно добавлена!');
     }
 
     /**
@@ -82,21 +90,34 @@ class PromotionController extends Controller
     public function update(Request $request, Promotion $promotion)
     {
         $validated = $request->validate([
-            // фото не обязателен при обновлении
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
             'photo' => 'sometimes|image|mimes:webp|max:2048',
         ], [
+            'title.required' => 'Введите название акции',
             'photo.image' => 'Файл должен быть изображением',
             'photo.mimes' => 'Фотография должна быть в формате .webp',
             'photo.max' => 'Размер фотографии не должен превышать 2 МБ',
+            'end_date.after_or_equal' => 'Дата окончания не может быть раньше даты начала',
         ]);
 
+        // Если загружено новое фото
         if ($request->hasFile('photo')) {
+            // Можно удалить старое фото, если нужно
+            if ($promotion->photo && \Storage::disk('public')->exists($promotion->photo)) {
+                \Storage::disk('public')->delete($promotion->photo);
+            }
+
             $validated['photo'] = $request->file('photo')->store('promotions', 'public');
         }
 
         $promotion->update($validated);
 
-        return redirect()->route('admin.promotions.index')->with('success', 'Акция успешно обновлена!');
+        return redirect()
+            ->route('admin.promotions.index')
+            ->with('success', 'Акция успешно обновлена!');
     }
 
     /**

@@ -28,13 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 const myCustomSwiper = new Swiper(
                     ".my-custom-swiper-container",
                     {
-                        modules: [Pagination],
+                        modules: [Pagination, Navigation],
                         loop: true,
                         loopedSlides: 6, // количество слайдов для создания дубликатов
                         slidesPerView: 1,
                         spaceBetween: 5,
                         centeredSlides: true,
+                        // slideToClickedSlide: true,
                         initialSlide: 1, // начинаем со второго слайда для корректного отображения
+                        navigation: {
+                            nextEl: ".stock-next",
+                            prevEl: ".stock-prev",
+                        },
                         pagination: {
                             el: ".swiper-pagination",
                             clickable: true,

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js'])
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -30,10 +30,25 @@
 
                 {{-- Swiper слайдер --}}
                 <div class="swiper my-custom-swiper-container mt-5">
+                    <div class="swiper-button-prev stock-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </div>
+                    <div class="swiper-button-next stock-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
                     <div class="swiper-wrapper">
                         @foreach ($promotions as $promotion)
                             <div class="swiper-slide">
-                                <div class="card shadow-sm">
+                                <div class="card shadow-sm promotion-card" data-title="{{ $promotion->title }}"
+                                    data-description="{{ $promotion->description }}"
+                                    data-photo="{{ asset('storage/' . $promotion->photo) }}"
+                                    data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
                                     <img src="{{ asset('storage/' . $promotion->photo) }}"
                                         alt="{{ $promotion->title }}">
                                 </div>
@@ -121,15 +136,15 @@
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Растяжка</span>
-                    </div>                    
+                    </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Аэройога</span>
-                    </div>                    
+                    </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Пилатес</span>
-                    </div>                    
+                    </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Танцы</span>
@@ -159,11 +174,11 @@
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Аэройога</span>
-                    </div>                    
+                    </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Пилатес</span>
-                    </div>                    
+                    </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Танцы</span>
@@ -282,7 +297,8 @@
                 <div class="col-12 col-lg-9">
                     <div class="text">
                         <h2 class="section-title">Прайс-лист</h2>
-                        <span>Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на занятия.</span>
+                        <span>Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и
+                            записывайтесь на занятия.</span>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 mb-3">
@@ -344,8 +360,7 @@
                 </div> --}}
                 <div class="col-12 col-lg-3">
                     <!-- ВОЛШЕБНАЯ ОБЁРТКА -->
-                    <div
-                        class="button d-flex justify-content-center h-100 align-items-center mt-3">
+                    <div class="button d-flex justify-content-center h-100 align-items-center mt-3">
                         <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
                             Все направления
                         </a>
@@ -620,6 +635,7 @@
     @include('partials.footer')
 
     {{-- Модальное окно теста --}}
+    @include('partials.promotion-modal')
     @include('partials.modal-test')
 
 

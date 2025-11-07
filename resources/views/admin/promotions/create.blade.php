@@ -14,6 +14,26 @@
             @endif
 
             <div class="mb-3">
+                <label class="form-label">Название</label>
+                <input type="text" name="title" value="Название акции" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Описание</label>
+                <textarea name="description" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Дата начала</label>
+                <input type="date" name="start_date" value="2023-01-01" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Дата окончания</label>
+                <input type="date" name="end_date" value="2023-12-31" class="form-control">
+            </div>
+
+            <div class="mb-3">
                 <label for="photo" class="form-label">Фото (WEBP, max 1МБ)</label>
                 <input type="file" name="photo" id="photo" class="form-control"
                     {{ isset($promotion) ? '' : 'required' }}>

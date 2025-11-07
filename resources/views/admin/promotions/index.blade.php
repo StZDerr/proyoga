@@ -25,6 +25,10 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Название</th>
+                    <th>Условие</th>
+                    <th>Дата начала</th>
+                    <th>Дата окончания</th>
                     <th>Фото</th>
                     <th>Размер</th>
                     <th>Действия</th>
@@ -34,8 +38,10 @@
                 @forelse($promotions as $promotion)
                     <tr>
                         <td>{{ $promotion->id }}</td>
-                        <td><img src="{{ asset('storage/' . $promotion->photo) }}" width="150" alt="Фото акции"></td>
-
+                        <td>{{ $promotion->title }}</td>
+                        <td>{{ $promotion->description }}</td>
+                        <td>{{ $promotion->start_date }}</td>
+                        <td>{{ $promotion->end_date }}</td>
                         <td>{{ $formatSize($promotion->photo_size) }}</td>
                         <td>
                             <a href="{{ route('admin.promotions.edit', $promotion->id) }}"

@@ -13,6 +13,28 @@
             @endif
 
             <div class="mb-3">
+                <label class="form-label">Название</label>
+                <input type="text" name="title" value="{{ old('title', $promotion->title) }}" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Описание</label>
+                <textarea name="description" class="form-control">{{ old('description', $promotion->description) }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Дата начала</label>
+                <input type="date" name="start_date" value="{{ old('start_date', $promotion->start_date) }}"
+                    class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Дата окончания</label>
+                <input type="date" name="end_date" value="{{ old('end_date', $promotion->end_date) }}"
+                    class="form-control">
+            </div>
+
+            <div class="mb-3">
                 <label for="photo" class="form-label">Фото (WEBP, max 1МБ)</label>
                 <input type="file" name="photo" id="photo" class="form-control"
                     {{ isset($promotion) ? '' : 'required' }}>

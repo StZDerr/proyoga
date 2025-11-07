@@ -183,7 +183,7 @@
     padding: 1rem;
 }
 
-.main>.btn {
+.main > .btn {
     flex-grow: 1;
     padding: 15px 75px;
     border: 0.1rem solid var(--primary-color-button-123d4d);
@@ -321,7 +321,7 @@
     width: 90%;
 }
 
-@media(max-width: 700px) {
+@media (max-width: 700px) {
     .about .about-img img {
         width: 250px;
     }
@@ -389,10 +389,6 @@
     color: var(--primary-color-button-123d4d);
 }
 
-@media(max-width: 700px) {
-    font-size: 18px;
-}
-
 .directions .main-directions .card-directions .text {
     font-family: var(--font-standart-Montserrat);
     font-weight: 500;
@@ -411,20 +407,25 @@
     /* убираем margin-bottom, оставляем только боковые отступы */
 }
 
-
-@media(max-width: 700px) {
-    .directions>div>div.row.g-4.main-directions.mt-2.mb-3 {
+@media (max-width: 700px) {
+    .directions > div > div.row.g-4.main-directions.mt-2.mb-3 {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    .directions>div>div.row.g-4.main-directions.mt-2.mb-3>div>a>div>img {
+    .directions
+        > div
+        > div.row.g-4.main-directions.mt-2.mb-3
+        > div
+        > a
+        > div
+        > img {
         height: 200px;
     }
 }
 
-@media(max-width: 400px) {
-    .directions>div>div.row.g-4.main-directions.mt-2.mb-3 {
+@media (max-width: 400px) {
+    .directions > div > div.row.g-4.main-directions.mt-2.mb-3 {
         grid-template-columns: repeat(1, 1fr) !important;
     }
 }
@@ -437,8 +438,8 @@
     color: var(--primary-color-button-123d4d);
 }
 
-@media(max-width: 700px) {
-    .price-list>div>div>div:last-child {
+@media (max-width: 700px) {
+    .price-list > div > div > div:last-child {
         order: -1;
     }
 }
@@ -543,11 +544,11 @@
 }
 
 /* Убираем двойную границу между строками */
-.table-item-row+.table-item-row {
+.table-item-row + .table-item-row {
     border-top: none;
 }
 
-.table-item-row+.table-item-row td {
+.table-item-row + .table-item-row td {
     border-top: none;
 }
 
@@ -605,7 +606,6 @@
 
 /* Адаптивность: на мобильных — вертикальное расположение */
 @media (max-width: 768px) {
-
     .table-item-name,
     .table-item-info {
         display: block;
@@ -690,13 +690,14 @@
 
 /* Общий стиль кастомных стрелок */
 .teachers-prev,
-.teachers-next {
+.stock-prev,
+.teachers-next,
+.stock-next {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     width: 50px !important;
     height: 50px !important;
-    background: white !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
@@ -707,18 +708,32 @@
     outline: none;
 }
 
-/* Позиционирование стрелок снаружи */
+.stock-next svg,
+.stock-prev svg {
+    fill: none !important;
+}
+
+.teachers-next,
 .teachers-prev {
+    background: white !important;
+}
+
+/* Позиционирование стрелок снаружи */
+.teachers-prev,
+.stock-prev {
     left: -25px;
 }
 
-.teachers-next {
+.teachers-next,
+.stock-next {
     right: -25px;
 }
 
 /* Чёрные SVG-стрелки */
-.teachers-prev svg,
-.teachers-next svg {
+.teachers-prev,
+.stock-prev svg,
+.teachers-next,
+.stock-next svg {
     width: 24px;
     height: 24px;
     fill: none;
@@ -782,16 +797,20 @@
     }
 
     .teachers-prev,
-    .teachers-next {
+    .stock-prev,
+    .teachers-next,
+    .stock-next {
         width: 36px;
         height: 36px;
     }
 
-    .teachers-prev {
+    .teachers-prev,
+    .stock-prev {
         left: 5px;
     }
 
-    .teachers-next {
+    .teachers-next,
+    .stock-next {
         right: 5px;
     }
 }
@@ -811,7 +830,7 @@
     text-wrap: balance;
 }
 
-@media(max-width: 700px) {
+@media (max-width: 700px) {
     .about-space .title br {
         display: none;
     }
@@ -838,15 +857,14 @@
     color: #fefefc;
 }
 
-
-@media(max-width: 700px) {
-    .calendar>div>div {
+@media (max-width: 700px) {
+    .calendar > div > div {
         flex-direction: column;
         text-align: center;
         gap: 25px;
     }
 
-    .calendar>div {
+    .calendar > div {
         display: flex;
         flex-direction: column;
         gap: 25px;

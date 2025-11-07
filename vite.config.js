@@ -28,6 +28,7 @@ export default defineConfig({
                 "resources/js/price-list.js",
                 "resources/css/admin/app.css",
                 "resources/js/admin/app.js",
+                "resources/js/promotion-modal.js",
             ],
             refresh: true,
         }),
