@@ -14,7 +14,7 @@
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
                         <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                     </a>
-                    <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-4">
+                    <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-4">
                         <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
                     </a>
                 </div>
@@ -70,7 +70,7 @@
                 <a href="https://yandex.ru/maps/-/CLfTYTjy">
                     <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                 </a>
-                <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank" class="d-block mt-2">
+                <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-2">
                     <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
                 </a>
                 <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
