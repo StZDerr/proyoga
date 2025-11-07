@@ -17,7 +17,7 @@
             <div class="adress">с. Супсех, ул. Советская, 1Б</div>
             <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
             <div class="social">
-                <a href="#" class="socialItem" rel="nofollow" target="_blank">
+                <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">
                     <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" />
                 </a>
             </div>
