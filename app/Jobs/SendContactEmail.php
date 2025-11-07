@@ -29,7 +29,8 @@ class SendContactEmail implements ShouldQueue
      */
     public function handle(): void
     {
-        // Отправка письма администратору
+        // Отправка письма администратору(ам)
+        // Mail::to() поддерживает как строку, так и массив адресов
         Mail::to($this->adminEmail)->send(new ContactFormMail($this->data));
     }
 }

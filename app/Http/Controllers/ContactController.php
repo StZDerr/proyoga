@@ -57,11 +57,12 @@ class ContactController extends Controller
                 'service' => $request->service ?: 'Запись на занятие',
             ];
 
-            // Получаем email администратора
-            $adminEmail = env('CONTACT_EMAIL', env('ADMIN_EMAIL', 'admin@proyoga.ru'));
+            // Получаем email администратора (поддерживает несколько адресов через запятую)
+            $emailsString = env('CONTACT_EMAIL', env('ADMIN_EMAIL', 'it@sumnikoff.ru'));
+            $adminEmails = array_filter(array_map('trim', explode(',', $emailsString)));
 
             // Ставим отправку письма в очередь
-            SendContactEmail::dispatch($data, $adminEmail);
+            SendContactEmail::dispatch($data, $adminEmails);
 
             // Сразу возвращаем успешный ответ пользователю
             return response()->json([
