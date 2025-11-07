@@ -539,6 +539,7 @@
 /* Границы для ячеек */
 .table-title-row td,
 .table-item-row td {
+    padding: 0 2rem;
     border-top: 1px solid #acd6d2;
     border-bottom: 1px solid #acd6d2;
 }
