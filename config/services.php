@@ -13,7 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-
+    'vk' => [
+        'token' => env('VK_TOKEN'),
+        'api_version' => env('VK_API_VERSION', '5.131'),
+        'user_id' => env('VK_USER_ID', '135353409'), // Ваш ID для получения уведомлений
+    ],
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

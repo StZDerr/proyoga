@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendContactEmail;
+use App\Jobs\SendVKMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -65,6 +66,23 @@ class ContactController extends Controller
 
             // Ставим отправку письма в очередь
             SendContactEmail::dispatch($data, $adminEmails);
+
+            // Формируем сообщение для ВК
+            $vkMessage = "📝 Новая заявка с сайта ProYoga!\n\n";
+            $vkMessage .= "👤 Имя: {$data['name']}\n";
+            $vkMessage .= "📱 Телефон: {$data['phone']}\n";
+            if (! empty($data['email'])) {
+                $vkMessage .= "📧 Email: {$data['email']}\n";
+            }
+            $vkMessage .= "🧘 Услуга: {$data['service']}\n";
+            if (! empty($data['message'])) {
+                $vkMessage .= "💬 Сообщение: {$data['message']}\n";
+            }
+            $vkMessage .= "\n📄 Страница: {$data['page_title']}\n";
+            $vkMessage .= "🔗 {$data['page_url']}";
+
+            // Ставим отправку в ВК в очередь
+            SendVKMessage::dispatch($vkMessage);
 
             // Сразу возвращаем успешный ответ пользователю
             return response()->json([
