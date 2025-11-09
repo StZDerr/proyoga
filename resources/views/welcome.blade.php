@@ -78,19 +78,35 @@
                     </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Динамические медитации</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Эксклюзивные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Мастер-классы</span>
                     </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Растяжка</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Аэройога</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Пилатес</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Танцы</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Джампинг</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Массаж</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Услуги психолога</span>
                     </div>
 
                     <!-- Повторяем элементы для бесконечного эффекта -->
@@ -100,19 +116,35 @@
                     </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Динамические медитации</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Эксклюзивные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Мастер-классы</span>
                     </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Растяжка</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Аэройога</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Пилатес</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Танцы</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Джампинг</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Массаж</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Услуги психолога</span>
                     </div>
                 </div>
             </div>
@@ -126,14 +158,6 @@
                     </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Динамические медитации</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Эксклюзивные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Мастер-классы</span>
                     </div>
                     <div class="marquee-item">
@@ -151,6 +175,18 @@
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Танцы</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Джампинг</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Массаж</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Услуги психолога</span>
                     </div>
 
                     <!-- Повторяем элементы для бесконечного эффекта -->
@@ -160,14 +196,6 @@
                     </div>
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Динамические медитации</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
-                        <span>Эксклюзивные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Мастер-классы</span>
                     </div>
                     <div class="marquee-item">
@@ -185,6 +213,18 @@
                     <div class="marquee-item">
                         <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
                         <span>Танцы</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Джампинг</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Массаж</span>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" />
+                        <span>Услуги психолога</span>
                     </div>
                 </div>
             </div>
