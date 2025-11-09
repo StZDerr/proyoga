@@ -169,6 +169,7 @@
     text-align: center;
     color: var(--primary-color-button-123d4d);
 }
+
 .main .button-text {
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
@@ -178,6 +179,7 @@
 /* 🔹 Общие стили для всех кнопок */
 .main .btn,
 .main .button-bid {
+    position: relative;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -187,30 +189,59 @@
     font-size: var(--font-size-text-desc-28px);
     line-height: 1.5em;
     cursor: pointer;
-    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-/* 🔹 Основная (тёмная) кнопка */
+/* 🔹 Тёмная кнопка */
 .main .btn {
+    background-color: #fefefc !important;
+    color: var(--primary-color-button-123d4d);
+}
+
+/* 🔹 Светлая кнопка */
+.main .button-bid {
+    background-color: var(--primary-color-button-123d4d);
+    color: #fefefc;
+}
+
+/* 🔹 Белая линия, движущаяся слева направо */
+.main .button-bid::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 100%
+    );
+    animation: shine 2.5s infinite linear;
+    z-index: 1;
+}
+
+/* 🔹 Текст поверх линии */
+.main .button-bid span {
+    position: relative;
+    z-index: 2;
+}
+
+/* 🔹 Ховеры — фон и текст меняются местами */
+.main .btn:hover {
     background-color: var(--primary-color-button-123d4d) !important;
     color: white;
 }
 
-/* 🔹 Обратная (светлая) кнопка */
-.main .button-bid {
-    background-color: #fefefc;
-    color: var(--primary-color-button-123d4d);
-}
-
-/* 🔹 Ховеры */
-.main .btn:hover {
-    background-color: #fefefc !important;
-    border: 0.1rem solid var(--primary-color-button-123d4d);
-}
-
-.main .button-bid:hover {
-    background-color: var(--primary-color-button-123d4d);
-    color: white;
+/* ✨ Ключевые кадры для движения линии */
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 /* 📱 Адаптив */
