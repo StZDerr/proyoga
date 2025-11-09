@@ -68,7 +68,7 @@ class ContactController extends Controller
             SendContactEmail::dispatch($data, $adminEmails);
 
             // Формируем сообщение для ВК
-            $vkMessage = "📝 Новая заявка с сайта ProYoga!\n\n";
+            $vkMessage = "📝 Новая заявка с сайта ИстокиЯ!\n\n";
             $vkMessage .= "👤 Имя: {$data['name']}\n";
             $vkMessage .= "📱 Телефон: {$data['phone']}\n";
             if (! empty($data['email'])) {
