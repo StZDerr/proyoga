@@ -60,8 +60,14 @@
                 <div class="swiper-info-text">
                     Твой путь к себе начинается с Истока
                 </div>
-                <a href="{{ route('recording') }}" class="btn button mt-4">
+                <a href="{{ route('recording') }}" class="btn button-text button mt-4">
                     Записаться
+                </a>
+                <a href="{{ route('recording') }}" class="button-bid button-text button mt-4">
+                    Расписание занятий
+                </a>
+                <a href="{{ route('recording') }}" class="btn button-text button mt-4">
+                    Наши цены
                 </a>
             </div>
         </div>
@@ -186,72 +192,6 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="istoria">
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-            <div class="circle">
-                <img src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
-                    alt="" />
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    style="enable-background:new -580 439 577.9 194;" xml:space="preserve">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-        </div> --}}
     </div>
     <div class="about py-5">
         <div class="container">
@@ -275,7 +215,7 @@
             </div>
         </div>
     </div>
-    <div class="calendar mt-4">
+    {{-- <div class="calendar mt-4">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="text">
@@ -340,7 +280,7 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
     <div class="directions">
         <div class="container">
             <div class="row align-items-center">

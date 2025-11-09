@@ -169,29 +169,61 @@
     text-align: center;
     color: var(--primary-color-button-123d4d);
 }
-
-.main .container-button .button-bid {
+.main .button-text {
     font-family: var(--font-standart-Montserrat);
     font-weight: 600;
     font-size: var(--font-size-text-desc-16px);
-    line-height: 1.5em;
-    text-align: center;
-    vertical-align: middle;
-    background-color: var(--primary-color-button-123d4d);
-    color: #fff;
-    border-radius: 1.8rem;
-    padding: 1rem;
 }
 
-.main > .btn {
-    flex-grow: 1;
-    padding: 15px 75px;
+/* 🔹 Общие стили для всех кнопок */
+.main .btn,
+.main .button-bid {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
     border: 0.1rem solid var(--primary-color-button-123d4d);
     border-radius: 1.8rem;
-    color: var(--primary-color-button-123d4d);
+    padding: 15px 75px;
     font-size: var(--font-size-text-desc-28px);
-    color: white;
+    line-height: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 🔹 Основная (тёмная) кнопка */
+.main .btn {
     background-color: var(--primary-color-button-123d4d) !important;
+    color: white;
+}
+
+/* 🔹 Обратная (светлая) кнопка */
+.main .button-bid {
+    background-color: #fefefc;
+    color: var(--primary-color-button-123d4d);
+}
+
+/* 🔹 Ховеры */
+.main .btn:hover {
+    background-color: #1b2e3a;
+}
+
+.main .button-bid:hover {
+    background-color: var(--primary-color-button-123d4d);
+    color: white;
+}
+
+/* 📱 Адаптив */
+@media (max-width: 768px) {
+    .main a.button,
+    .main a.btn,
+    .main a.button-bid {
+        display: block;
+        width: 100%;
+        padding: 15px 0;
+        font-size: var(--font-size-text-desc-16px);
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }
 
 .marquee-wrapper {
