@@ -440,7 +440,7 @@
                         Два зала, чайная зона и собственный автобус для путешествий - всё продумано, чтобы вы могли
                         возвращаться к своему Истоку.
                     </div>
-                    <a href="/direction/vyezdnye-sessii-putesestviia-k-sebe" class="btn btn-more mt-4">
+                    <a href="/vyezdnye-sessii-putesestviia-k-sebe" class="btn btn-more mt-4">
                         Подробнее <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
