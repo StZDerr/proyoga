@@ -377,7 +377,7 @@
                             <img src="{{ asset('images/svg/comp.svg') }}" alt="people" />
                         </div>
                         <div class="about-space-features-text">
-                            Разные направления физического и духовного развития
+                            Здесь соединяются тело, дыхание, звук, осознанность и общение.
                         </div>
                     </div>
                 </div>

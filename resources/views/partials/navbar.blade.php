@@ -36,7 +36,7 @@
                     <a href="{{ route('admin') }}" class="button"
                         style="background-color: #6c757d; margin-right: 10px;">Админка</a>
                 @endauth --}}
-                <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
+                <a href="{{ route('recording') }}" class="button">Получить констультацию</a>
             </div>
             <div class="menu">
                 <a href="{{ route('tea') }}" class="menuItem">Чайная зона</a>
@@ -73,7 +73,7 @@
                 <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-2">
                     <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
                 </a>
-                <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
+                <a href="{{ route('recording') }}" class="button">Получить консультацию</a>
                 <div class="rating">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
                         <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" />

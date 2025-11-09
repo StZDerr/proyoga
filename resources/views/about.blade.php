@@ -80,7 +80,7 @@
                             <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="people" />
                         </div>
                         <div class="about-space-features-text">
-                            Разные направления физического и духовного развития
+                            Два зала, чайная зона и собственный автобус для путешествий
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                             <img src="{{ asset('images/svg/comp.svg') }}" alt="people" />
                         </div>
                         <div class="about-space-features-text">
-                            Разные направления физического и духовного развития
+                            Здесь соединяются тело, дыхание, звук, осознанность и общение.
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                 <div class="swiper teachers-swiper">
                     <div class="swiper-wrapper">
                         @foreach ($personals as $personal)
-                            <div class="swiper-slide">
+<div class="swiper-slide">
                                 <div class="teacher-card">
                                     <img src="{{ asset('storage/' . $personal->photo) }}"
                                         alt="{{ $personal->first_name }}" width="50" class="rounded-circle">
@@ -136,7 +136,7 @@
                                     <p class="teacher-position">{{ $personal->position }}</p>
                                 </div>
                             </div>
-                        @endforeach
+@endforeach
                     </div>
                 </div>
             </div>

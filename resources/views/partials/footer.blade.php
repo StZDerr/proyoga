@@ -31,7 +31,7 @@
                     <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
                 </a>
                 <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
-                <a href="{{ route('recording') }}" class="button">Записаться на занятие</a>
+                <a href="{{ route('recording') }}" class="button">Получить констультацию</a>
                 <div class="rating">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
                         <img src="{{ asset('images/svg/yandexNewWhite.svg') }}" alt="Яндекс" />
