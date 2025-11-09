@@ -92,6 +92,10 @@ Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('p
 Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 
+Route::get('/dev', function () {
+    return view('dev');
+})->name('dev');
+
 Route::get('/contacts', function () {
     return view('contacts');
 })->name('contacts');

@@ -987,11 +987,21 @@
 }
 
 .retreats .btn-more {
+    font-family: var(--font-standart-Montserrat);
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 1.5em;
     padding: 1rem 2rem;
     width: 100%;
     background-color: var(--primary-color-button-123d4d);
     color: white;
     border-radius: 1.8rem;
+}
+
+.retreats .btn-more:hover {
+    background-color: white;
+    color: var(--primary-color-button-123d4d);
+    border: 0.1rem solid var(--primary-color-button-123d4d);
 }
 
 .main-test .background-color-EBF1EE {
