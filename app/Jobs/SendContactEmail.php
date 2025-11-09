@@ -3,13 +3,17 @@
 namespace App\Jobs;
 
 use App\Mail\ContactFormMail;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class SendContactEmail implements ShouldQueue
 {
-    use Queueable;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $data;
 
@@ -17,11 +21,14 @@ class SendContactEmail implements ShouldQueue
 
     /**
      * Create a new job instance.
+     *
+     * @param  mixed  $data
+     * @param  string|array|null  $adminEmail
      */
-    public function __construct($data, $adminEmail)
+    public function __construct($data, $adminEmail = null)
     {
         $this->data = $data;
-        $this->adminEmail = $adminEmail;
+        $this->adminEmail = $adminEmail ?? env('CONTACT_EMAIL');
     }
 
     /**
@@ -29,8 +36,29 @@ class SendContactEmail implements ShouldQueue
      */
     public function handle(): void
     {
-        // Отправка письма администратору(ам)
-        // Mail::to() поддерживает как строку, так и массив адресов
-        Mail::to($this->adminEmail)->send(new ContactFormMail($this->data));
+        $raw = $this->adminEmail;
+        $recipients = is_array($raw)
+            ? $raw
+            : array_filter(array_map('trim', explode(',', (string) $raw)));
+
+        Log::info('SendContactEmail: start', [
+            'recipients' => $recipients,
+            'payload' => $this->data,
+        ]);
+
+        try {
+            Mail::to($recipients)->send(new ContactFormMail($this->data));
+
+            Log::info('SendContactEmail: sent', [
+                'recipients' => $recipients,
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('SendContactEmail: error', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'recipients' => $recipients,
+            ]);
+            throw $e;
+        }
     }
 }
