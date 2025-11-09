@@ -86,8 +86,77 @@ body {
 }
 
 /* Разделитель */
-.breadcrumb-item+.breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
     content: ">";
     color: #888888;
     margin: 0 8px;
+}
+
+/* Кнопка "На Главную" */
+.btn-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-family: var(--font-standart-Montserrat);
+    font-size: var(--font-size-text-desc-28px);
+    font-weight: 600;
+    color: white;
+    background-color: var(--primary-color-button-123d4d);
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+/* Эффект “движущейся линии” при наведении */
+.btn-home::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 100%
+    );
+    animation: shine 2.5s infinite linear;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Текст над линией */
+.btn-home span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover — инверсия цвета */
+.btn-home:hover {
+    background-color: white;
+    color: var(--primary-color-button-123d4d);
+    border-color: var(--primary-color-button-123d4d);
+}
+
+/* Анимация линии */
+@keyframes shine {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .btn-home {
+        width: 100%;
+        padding: 12px 0;
+        font-size: var(--font-size-text-desc-20px);
+    }
 }
