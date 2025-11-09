@@ -38,7 +38,7 @@
                     </div>
 
                     <button type="submit" class="btn recording-submit-btn w-100">
-                        Записаться на занятие
+                        Получить констультацию
                     </button>
                 </form>
             </div>

@@ -204,7 +204,8 @@
 
 /* 🔹 Ховеры */
 .main .btn:hover {
-    background-color: #1b2e3a;
+    background-color: #fefefc !important;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
 }
 
 .main .button-bid:hover {
