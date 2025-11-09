@@ -60,9 +60,6 @@
                 <div class="swiper-info-text">
                     Твой путь к себе начинается с Истока
                 </div>
-                <a href="{{ route('recording') }}" class="btn button-text button mt-4">
-                    Записаться
-                </a>
                 <a href="{{ route('recording') }}" class="button-bid button-text button mt-4">
                     Расписание занятий
                 </a>
