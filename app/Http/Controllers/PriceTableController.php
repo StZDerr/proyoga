@@ -11,11 +11,45 @@ class PriceTableController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tables = PriceTable::with('category')->get();
+        // Список категорий для выпадающего фильтра
+        $categoriesList = PriceCategory::orderBy('name')->get();
 
-        return view('admin.price_tables.index', compact('tables'));
+        // Базовый запрос
+        $query = PriceTable::query();
+
+        // Фильтр по категории (GET ?category_id=)
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Защищаем сортировку — разрешённые поля
+        $allowedSorts = ['sort_order', 'id', 'title', 'category'];
+        $sort = in_array($request->get('sort'), $allowedSorts) ? $request->get('sort') : 'sort_order';
+        $dir = $request->get('dir') === 'desc' ? 'desc' : 'asc';
+
+        // Если сортируем по имени категории — делаем join
+        if ($sort === 'category') {
+            $query = $query
+                ->leftJoin('price_categories', 'price_tables.category_id', '=', 'price_categories.id')
+                ->orderBy('price_categories.name', $dir)
+                ->select('price_tables.*'); // чтобы получить модели PriceTable
+        } else {
+            $query = $query->orderBy($sort, $dir);
+        }
+
+        // Получаем записи и подгружаем связь category, чтобы избежать N+1
+        $tables = $query->get()->load('category');
+
+        // Передаём текущие параметры в view (чтобы сохранять их в ссылках/формах)
+        return view('admin.price_tables.index', [
+            'tables' => $tables,
+            'categoriesList' => $categoriesList,
+            'currentSort' => $sort,
+            'currentDir' => $dir,
+            'currentCategory' => $request->get('category_id'),
+        ]);
     }
 
     /**
@@ -45,6 +79,10 @@ class PriceTableController extends Controller
             'category_id.integer' => 'Неверный идентификатор категории',
             'category_id.exists' => 'Выбранная категория не найдена',
         ]);
+
+        // Устанавливаем порядок в конец списка
+        $max = PriceTable::max('sort_order') ?? 0;
+        $validated['sort_order'] = $max + 1;
 
         PriceTable::create($validated);
 
@@ -103,5 +141,29 @@ class PriceTableController extends Controller
 
         return redirect()->route('admin.price-tables.index')
             ->with('success', 'Таблица удалена!');
+    }
+
+    /**
+     * Move the price table up (swap with previous).
+     */
+    public function moveUp(PriceTable $priceTable)
+    {
+        if ($priceTable->moveUp()) {
+            return back()->with('success', 'Прайс поднят выше.');
+        }
+
+        return back()->with('info', 'Прайс уже вверху.');
+    }
+
+    /**
+     * Move the price table down (swap with next).
+     */
+    public function moveDown(PriceTable $priceTable)
+    {
+        if ($priceTable->moveDown()) {
+            return back()->with('success', 'Прайс опущен ниже.');
+        }
+
+        return back()->with('info', 'Прайс уже внизу.');
     }
 }

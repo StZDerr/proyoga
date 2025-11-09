@@ -63,6 +63,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'sub-categories' => SubCategoryController::class,
         'sub-sub-categories' => SubSubCategoryController::class,
     ]);
+    Route::post('price-tables/{priceTable}/move-up', [PriceTableController::class, 'moveUp'])->name('price-tables.move-up');
+    Route::post('price-tables/{priceTable}/move-down', [PriceTableController::class, 'moveDown'])->name('price-tables.move-down');
 
     // Маршруты для управления тестами
     Route::prefix('test')->as('test.')->group(function () {

@@ -31,7 +31,9 @@ class IstokiController extends Controller
 
     public function priceList()
     {
-        $categories = PriceCategory::with(['tables.items'])->get();
+        $categories = PriceCategory::with(['tables' => function ($q) {
+            $q->ordered()->with('items'); // использует scopeOrdered() в модели PriceTable
+        }])->get();
 
         // Загружаем мета-данные для страницы price-list
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('price-list');
