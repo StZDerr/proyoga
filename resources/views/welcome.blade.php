@@ -585,7 +585,7 @@
                         </div>
 
                         <div class="swiper gallery3-swiper">
-                            <div class="swiper-wrapper">
+                            <div class="swiper-wrapper align-items-center">
                                 @foreach ($galleries as $photo)
                                     <div class="swiper-slide">
                                         <a href="{{ asset('storage/' . $photo->image) }}" class="gallery3-item"
