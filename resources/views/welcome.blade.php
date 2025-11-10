@@ -588,8 +588,7 @@
                             <div class="swiper-wrapper align-items-center">
                                 @foreach ($galleries as $photo)
                                     <div class="swiper-slide">
-                                        <a href="{{ asset('storage/' . $photo->image) }}" class="gallery3-item"
-                                            data-lg-size="1600-900">
+                                        <a href="{{ asset('storage/' . $photo->image) }}" class="gallery3-item">
                                             <img src="{{ asset('storage/' . $photo->image) }}" class="card-img-top"
                                                 alt="{{ $photo->title }}">
                                         </a>
