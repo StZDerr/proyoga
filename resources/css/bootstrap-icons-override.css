@@ -1,0 +1,23 @@
+/* Переопределение @font-face для Bootstrap Icons с font-display: swap */
+@font-face {
+    font-display: swap;
+    font-family: "bootstrap-icons";
+    src: url("/fonts/bootstrap-icons.woff2?e348531d46865c0e1f135ab0f81471efc8fd613a")
+            format("woff2"),
+        url("/fonts/bootstrap-icons.woff?e348531d46865c0e1f135ab0f81471efc8fd613a")
+            format("woff");
+}
+
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+    display: inline-block;
+    font-family: "bootstrap-icons" !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: -0.125em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

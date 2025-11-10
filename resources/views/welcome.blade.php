@@ -11,16 +11,21 @@
     {{-- Preconnect для Google Fonts (оптимизация загрузки) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     {{-- Preload критичных шрифтов --}}
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap">
-    
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap">
+
     {{-- Асинхронная загрузка шрифтов --}}
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+
     {{-- Fallback для браузеров без JS --}}
     <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap"
+            rel="stylesheet">
     </noscript>
 
     {{-- Общие стили и JS через Vite --}}
