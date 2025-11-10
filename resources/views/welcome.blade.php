@@ -566,7 +566,8 @@
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="text text-center">
                         <h2 class="section-title">Фотогалерея</h2>
-                        {{-- <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span> --}}
+                        <span>Каждый кадр — вдох, наполненный светом, движением и гармонией. Прикоснитесь к миру
+                            йоги.</span>
                     </div>
                 </div>
                 <div class="container mt-5">
