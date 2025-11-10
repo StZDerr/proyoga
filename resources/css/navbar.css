@@ -6,8 +6,49 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: sticky;
+    top: 0;
+    background: #ffffff;
     padding: 25px 100px;
+    transition: padding 0.3s ease;
+    will-change: padding;
+}
+
+/* Стили для скрытия элементов при скролле */
+.site-header .hideable-content {
+    opacity: 1;
+    max-height: 200px;
+    overflow: hidden;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+    will-change: opacity, max-height;
+}
+
+.site-header.scrolled .hideable-content {
+    opacity: 0;
+    max-height: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none;
+    display: none;
+}
+
+.site-header.scrolled {
+    padding: 10px 100px;
+}
+
+.site-header.scrolled .container {
+    gap: 20px;
+    transition: gap 0.3s ease;
+}
+
+.site-header.scrolled .containerWrapper {
+    gap: 0;
+    transition: gap 0.3s ease;
+}
+
+.site-header.scrolled .logo {
+    height: 80px !important;
+    transition: height 0.3s ease;
 }
 
 .site-header .container {
@@ -30,6 +71,11 @@ a {
     height: 1px;
     background-color: #acd6d2;
     transform: translateX(50%);
+    transition: opacity 0.3s ease;
+}
+
+.site-header.scrolled .container:before {
+    opacity: 0;
 }
 
 .site-header .container .containerWrapper {
@@ -113,6 +159,10 @@ a {
 @media (max-width: 1440px) {
     .site-header {
         padding: 25px 50px;
+    }
+
+    .site-header.scrolled {
+        padding: 15px 50px;
     }
 
     .site-header .container {
