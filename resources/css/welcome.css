@@ -40,6 +40,9 @@
 
 .main .my-custom-swiper-container img {
     width: 100%;
+    height: auto;
+    /* aspect-ratio: 16 / 9; */
+    object-fit: cover;
     border-radius: 1rem;
 }
 
@@ -443,6 +446,14 @@
     border-radius: 1rem;
     /* padding-bottom: 2rem; добавляем отступ снизу к самой карточке */
     height: 100%;
+}
+
+.directions .main-directions .card-directions img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .directions .main-directions .card-directions .title {
@@ -1087,6 +1098,8 @@
 .photo-gallery .gallery3-swiper .swiper-slide img {
     width: 100%;
     height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
