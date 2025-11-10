@@ -66,8 +66,8 @@
                                     data-description="{{ $promotion->description }}"
                                     data-photo="{{ asset('storage/' . $promotion->photo) }}"
                                     data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
-                                    <img src="{{ asset('storage/' . $promotion->photo) }}"
-                                        alt="{{ $promotion->title }}">
+                                    <img src="{{ asset('storage/' . $promotion->photo) }}" alt="{{ $promotion->title }}"
+                                        loading="lazy">
                                 </div>
                             </div>
                         @endforeach
@@ -260,7 +260,7 @@
                             <div class="story-media" data-src="{{ asset('storage/' . $media->path) }}"></div>
                         @endforeach
                         <img src="{{ asset('storage/' . $story->preview) }}" alt="{{ $story->title }}"
-                            class="avatar" />
+                            class="avatar" loading="lazy" />
                         <p>{{ $story->title }}</p>
                     </div>
                 @endforeach
@@ -391,10 +391,10 @@
                                 <div class="card-directions">
                                     @if ($subCategory->image)
                                         <img src="{{ asset('storage/' . $subCategory->image) }}"
-                                            alt="{{ $subCategory->title }}" />
+                                            alt="{{ $subCategory->title }}" loading="lazy" />
                                     @else
                                         <img src="{{ asset('images/directions-background.webp') }}"
-                                            alt="directions-background" />
+                                            alt="directions-background" loading="lazy" />
                                     @endif
                                     <div class="d-flex justify-content-between p-3">
                                         <div class="title">
@@ -517,7 +517,8 @@
                                 <div class="swiper-slide">
                                     <div class="teacher-card">
                                         <img src="{{ asset('storage/' . $personal->photo) }}"
-                                            alt="{{ $personal->first_name }}" width="50" class="rounded-circle">
+                                            alt="{{ $personal->first_name }}" width="50" class="rounded-circle"
+                                            loading="lazy">
                                         <h5 class="teacher-name">{{ $personal->first_name }}
                                             {{ $personal->last_name }}
                                         </h5>
