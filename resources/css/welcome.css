@@ -1470,3 +1470,17 @@
         right: 10px;
     }
 }
+.lightbox,
+.lightbox.active,
+.lg-backdrop,        /* lightgallery фон */
+.lg-outer,           /* контейнер lightgallery */
+.lg-outer .lg-inner  /* внутренние контейнеры */ {
+    z-index: 11000 !important;
+}
+
+/* Когда галерея/лайтбокс открыты — прячем header (предотвратить "липание" видимого navbar) */
+.lg-open .site-header,
+.lightbox-open .site-header {
+    visibility: hidden;
+    pointer-events: none;
+}
