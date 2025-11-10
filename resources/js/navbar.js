@@ -33,40 +33,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Функция для скрытия элементов при скролле
     let isScrolled = false;
-    const scrollThreshold = 200;
+    const scrollThreshold = 100; // Порог для сворачивания
     let ticking = false;
     let lastScrollTop = 0;
-    let isTransitioning = false;
 
     const updateHeader = (currentScroll) => {
-        if (isTransitioning) {
-            ticking = false;
-            return;
-        }
-
+        // Определяем направление скролла
         const scrollingDown = currentScroll > lastScrollTop;
-        const shouldBeScrolled = currentScroll > scrollThreshold;
 
-        // Применяем изменения только если состояние действительно должно измениться
-        // и пользователь скроллит в соответствующем направлении
-        if (shouldBeScrolled && !isScrolled && scrollingDown) {
-            // Скроллим вниз и прошли порог - сворачиваем
+        // Сворачиваем только при скролле вниз и превышении порога
+        if (scrollingDown && currentScroll > scrollThreshold && !isScrolled) {
             isScrolled = true;
-            isTransitioning = true;
             header.classList.add("scrolled");
-
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 500);
-        } else if (!shouldBeScrolled && isScrolled && !scrollingDown) {
-            // Скроллим вверх и вернулись выше порога - разворачиваем
+        }
+        // Разворачиваем только когда вернулись в самый верх (0-10px)
+        else if (currentScroll < 10 && isScrolled) {
             isScrolled = false;
-            isTransitioning = true;
             header.classList.remove("scrolled");
-
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 500);
         }
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;

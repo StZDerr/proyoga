@@ -10,7 +10,7 @@ a {
     top: 0;
     background: #ffffff;
     padding: 25px 100px;
-    transition: padding 0.3s ease;
+    transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
     will-change: padding;
 }
 
@@ -19,7 +19,8 @@ a {
     opacity: 1;
     max-height: 200px;
     overflow: hidden;
-    transition: opacity 0.2s ease, max-height 0.2s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity, max-height;
 }
 
@@ -34,21 +35,31 @@ a {
 
 .site-header.scrolled {
     padding: 10px 100px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.site-header .container {
+    transition: gap 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-header.scrolled .container {
     gap: 20px;
-    transition: gap 0.3s ease;
+}
+
+.site-header .container .containerWrapper {
+    transition: gap 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-header.scrolled .containerWrapper {
     gap: 0;
-    transition: gap 0.3s ease;
+}
+
+.container .logo {
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-header.scrolled .logo {
     height: 80px !important;
-    transition: height 0.3s ease;
 }
 
 .site-header .container {
@@ -159,10 +170,11 @@ a {
 @media (max-width: 1440px) {
     .site-header {
         padding: 25px 50px;
+        transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .site-header.scrolled {
-        padding: 15px 50px;
+        padding: 10px 50px;
     }
 
     .site-header .container {
