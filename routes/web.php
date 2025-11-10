@@ -16,6 +16,7 @@ use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\TestController;
@@ -50,6 +51,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
     Route::softDeletableResources([
         'news' => NewsController::class,
+        'stories' => StoryController::class,
         'activity' => ActivityController::class,
         'users' => UserController::class,
         'personal' => PersonalController::class,
@@ -63,6 +65,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'sub-categories' => SubCategoryController::class,
         'sub-sub-categories' => SubSubCategoryController::class,
     ]);
+    Route::delete('stories/{story}/media/{media}', [StoryController::class, 'destroyMedia'])->name('stories.media.destroy');
     Route::post('price-tables/{priceTable}/move-up', [PriceTableController::class, 'moveUp'])->name('price-tables.move-up');
     Route::post('price-tables/{priceTable}/move-down', [PriceTableController::class, 'moveDown'])->name('price-tables.move-down');
 

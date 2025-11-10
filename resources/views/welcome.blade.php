@@ -230,6 +230,35 @@
             </div>
         </div>
     </div>
+    @if ($stories->isNotEmpty())
+        <div class="stories-container">
+            <button class="nav-btn nav-prev" id="navPrev">&lt;</button>
+            <button class="nav-btn nav-next" id="navNext">&gt;</button>
+
+            <div class="stories-wrapper" id="storiesWrapper">
+                <!-- ТВОИ ИСТОРИИ -->
+                @foreach ($stories as $story)
+                    <div class="story">
+                        @foreach ($story->media as $media)
+                            <div class="story-media" data-src="{{ asset('storage/' . $media->path) }}"></div>
+                        @endforeach
+                        <img src="{{ asset('storage/' . $story->preview) }}" alt="{{ $story->title }}"
+                            class="avatar" />
+                        <p>{{ $story->title }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
+    <!-- ЛАЙТБОКС -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <div class="progress-container"></div>
+            <div class="lightbox-media-container"></div>
+            <button class="lightbox-close">×</button>
+        </div>
+    </div>
     <div class="about py-5">
         <div class="container">
             <div class="row align-items-center">
@@ -327,14 +356,6 @@
                         <span>Мы поможем подобрать направление, которое подходит именно Вам</span>
                     </div>
                 </div>
-                {{-- <div class="col-12 col-lg-3 ">
-
-                    <div class="button text-center">
-                        <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
-                            Все направления
-                        </a>
-                    </div>
-                </div> --}}
                 <div class="col-12 col-lg-3">
                     <!-- ВОЛШЕБНАЯ ОБЁРТКА -->
                     <div class="button d-flex justify-content-center h-100 align-items-center mt-3">
@@ -450,46 +471,49 @@
             </div>
         </div>
     </div>
-    {{-- <div class="teachers mt-5">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="text">
-                    <h2 class="section-title">Наши преподаватели</h2>
-                    <span>Доверьтесь команде профессионалов</span>
+    @if ($personals->isNotEmpty())
+        <div class="teachers mt-5">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="text">
+                        <h2 class="section-title">Наши преподаватели</h2>
+                        <span>Доверьтесь команде профессионалов</span>
+                    </div>
                 </div>
-            </div>
-            <div class="teachers-swiper-container mt-4 position-relative">
-                <div class="swiper-button-prev teachers-prev">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <line x1="19" y1="12" x2="5" y2="12"></line>
-                        <polyline points="12 19 5 12 12 5"></polyline>
-                    </svg>
-                </div>
-                <div class="swiper-button-next teachers-next">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </div>
+                <div class="teachers-swiper-container mt-4 position-relative">
+                    <div class="swiper-button-prev teachers-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </div>
+                    <div class="swiper-button-next teachers-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
 
-                <div class="swiper teachers-swiper">
-                    <div class="swiper-wrapper">
-                        @foreach ($personals as $personal)
-                            <div class="swiper-slide">
-                                <div class="teacher-card">
-                                    <img src="{{ asset('storage/' . $personal->photo) }}"
-                                        alt="{{ $personal->first_name }}" width="50" class="rounded-circle">
-                                    <h5 class="teacher-name">{{ $personal->first_name }} {{ $personal->last_name }}
-                                    </h5>
-                                    <p class="teacher-position">{{ $personal->position }}</p>
+                    <div class="swiper teachers-swiper">
+                        <div class="swiper-wrapper">
+                            @foreach ($personals as $personal)
+                                <div class="swiper-slide">
+                                    <div class="teacher-card">
+                                        <img src="{{ asset('storage/' . $personal->photo) }}"
+                                            alt="{{ $personal->first_name }}" width="50" class="rounded-circle">
+                                        <h5 class="teacher-name">{{ $personal->first_name }}
+                                            {{ $personal->last_name }}
+                                        </h5>
+                                        <p class="teacher-position">{{ $personal->position }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    @endif
     {{-- <div class="main-test mt-5">
         <div class="container">
             <div class="background-color-EBF1EE p-4 rounded">
@@ -534,46 +558,48 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div class="photo-gallery">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-center">
-                <div class="text text-center">
-                    <h2 class="section-title">Фотогалерея</h2>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+    @if ($galleries->isNotEmpty())
+        <div class="photo-gallery">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="text text-center">
+                        <h2 class="section-title">Фотогалерея</h2>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+                    </div>
                 </div>
-            </div>
-            <div class="container mt-5">
-                <div class="gallery3-wrapper position-relative">
-                    <div class="swiper-button-prev gallery3-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg>
-                    </div>
-                    <div class="swiper-button-next gallery3-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
+                <div class="container mt-5">
+                    <div class="gallery3-wrapper position-relative">
+                        <div class="swiper-button-prev gallery3-prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </div>
+                        <div class="swiper-button-next gallery3-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
 
-                    <div class="swiper gallery3-swiper">
-                        <div class="swiper-wrapper">
-                            @foreach ($galleries as $photo)
-                                <div class="swiper-slide">
-                                    <a href="{{ asset('storage/' . $photo->image) }}" class="gallery3-item"
-                                        data-lg-size="1600-900">
-                                        <img src="{{ asset('storage/' . $photo->image) }}" class="card-img-top"
-                                            alt="{{ $photo->title }}">
-                                    </a>
-                                </div>
-                            @endforeach
+                        <div class="swiper gallery3-swiper">
+                            <div class="swiper-wrapper">
+                                @foreach ($galleries as $photo)
+                                    <div class="swiper-slide">
+                                        <a href="{{ asset('storage/' . $photo->image) }}" class="gallery3-item"
+                                            data-lg-size="1600-900">
+                                            <img src="{{ asset('storage/' . $photo->image) }}" class="card-img-top"
+                                                alt="{{ $photo->title }}">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    @endif
 
 
     @include('partials.recording-block')

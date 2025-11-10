@@ -107,6 +107,11 @@
                                     Акции
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.stories.index') }}">
+                                    Сторис
+                                </a>
+                            </li>
 
                         </ul>
                     </div>

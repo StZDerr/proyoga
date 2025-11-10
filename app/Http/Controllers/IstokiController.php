@@ -8,6 +8,7 @@ use App\Models\Personal;
 use App\Models\PriceCategory;
 use App\Models\Promotion;
 use App\Models\Question;
+use App\Models\Story;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 
@@ -19,6 +20,7 @@ class IstokiController extends Controller
         $categories = PriceCategory::with(['tables.items'])->get();
         $personals = Personal::all();
         $galleries = Gallery::all();
+        $stories = Story::all();
         $questions = Question::orderBy('order')->get();
         $mainCategories = MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
 
@@ -26,7 +28,7 @@ class IstokiController extends Controller
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('home');
         $pageContent = \App\Helpers\PageContentHelper::getContent('home');
 
-        return view('welcome', compact('promotions', 'categories', 'personals', 'galleries', 'questions', 'mainCategories', 'pageMeta', 'pageContent'));
+        return view('welcome', compact('promotions', 'categories', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'pageMeta', 'pageContent'));
     }
 
     public function priceList()
