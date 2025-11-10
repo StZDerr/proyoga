@@ -14,6 +14,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
     <div class="background-gor">
         <div class="headerTeaZone mt-5">
             <div class="container ">

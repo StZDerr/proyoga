@@ -15,6 +15,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
     <div class="container">
         <iframe class="aeCustomWidget"
             src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709" width="100%"

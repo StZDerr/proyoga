@@ -15,6 +15,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
 
     <div class="dev-page">
         <div class="dev-container">

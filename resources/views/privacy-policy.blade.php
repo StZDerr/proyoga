@@ -15,6 +15,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
 
     <div class="background-gor">
         <section class="py-5">

@@ -15,6 +15,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
     <div class="background-gor">
         <div class="headerTeaZone mt-5">
             <div class="container ">
@@ -23,7 +24,8 @@
                     Прайс-лист
                 </div>
                 <div class="desc">
-                    Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на занятия.
+                    Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на
+                    занятия.
                 </div>
             </div>
         </div>

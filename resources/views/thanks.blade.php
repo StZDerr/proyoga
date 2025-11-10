@@ -15,7 +15,7 @@
 <body>
 
     @include('partials.navbar')
-
+    @include('partials.arrow')
     <div class="background-gor mb-5">
         {{-- Основной блок контактов --}}
         <div class="headerTeaZone mt-5">

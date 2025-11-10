@@ -15,6 +15,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
     <div class="containerMain">
         <div class="container serviceBanner">
             <div class="serviceContent">
