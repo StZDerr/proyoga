@@ -9,13 +9,14 @@
     @include('partials.favicon')
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js'])
 </head>
 
 <body>
 
     @include('partials.navbar')
     @include('partials.arrow')
+    @include('partials.cookies')
 
     <div class="dev-page">
         <div class="dev-container">

@@ -1,0 +1,192 @@
+/* Подключаем шрифт Montserrat (можно оставить или убрать, если уже есть общий импорт) */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+.cookie-icon-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9998;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.25s ease;
+    background: transparent;
+}
+.cookie-icon-container:hover {
+    transform: scale(1.06);
+}
+.cookie-icon-container svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Попап */
+.cookie-popup-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    padding: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s;
+    opacity: 1;
+}
+.cookie-popup-container[aria-hidden="true"] {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+}
+
+/* Заголовок */
+.cookie-settings .title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Категории */
+.cookie-category {
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.cookie-header {
+    background: #f9f9f9;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.cookie-header div {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    text-align: left;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 18px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+    transition: 0.25s;
+    border-radius: 24px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background: #fff;
+    transition: 0.25s;
+    border-radius: 50%;
+}
+.toggle-switch input:checked + .slider {
+    background: var(--primary-color-button-123d4d);
+}
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+/* Скрываемый контент */
+.cookie-content {
+    padding: 12px 15px;
+    display: none;
+    color: #666;
+    line-height: 1.5;
+    font-size: 13px;
+    background: #fafafa;
+    border-top: 1px solid #eaeaea;
+}
+.cookie-content.active {
+    display: block;
+}
+
+/* Действия */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+.allow-selected {
+    background: var(--primary-color-button-123d4d);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.allow-selected:hover {
+    filter: brightness(0.98);
+}
+.privacy-checkbox a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+}
+.privacy-checkbox a:hover {
+    color: #2d814a;
+    text-decoration: underline;
+}
+
+/* Responsive — уменьшение размеров */
+@media (max-width: 1200px) {
+    .cookie-popup-container {
+        max-width: 350px;
+        bottom: 15px;
+        left: 15px;
+        padding: 12px;
+    }
+    .cookie-icon-container {
+        bottom: 15px;
+        left: 15px;
+    }
+}
+@media (max-width: 700px) {
+    .cookie-popup-container {
+        max-width: 300px;
+        bottom: 10px;
+        left: 10px;
+        padding: 10px;
+    }
+    .cookie-icon-container {
+        bottom: 10px;
+        left: 10px;
+    }
+}
+@media (max-width: 480px) {
+    .cookie-popup-container {
+        max-width: 280px;
+        bottom: 8px;
+        left: 8px;
+        padding: 8px;
+    }
+    .cookie-icon-container {
+        bottom: 8px;
+        left: 8px;
+    }
+}

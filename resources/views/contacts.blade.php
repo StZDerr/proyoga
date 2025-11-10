@@ -9,13 +9,14 @@
     @include('partials.favicon')
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts.css', 'resources/css/contacts-block.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts.css', 'resources/css/contacts-block.css', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js'])
 </head>
 
 <body>
 
     @include('partials.navbar')
     @include('partials.arrow')
+    @include('partials.cookies')
 
     <div class="background-gor">
         <div class="container text-center py-5">

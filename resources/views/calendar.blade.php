@@ -9,13 +9,14 @@
     @include('partials.favicon')
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/js/navbar.js', 'resources/css/about.css', 'resources/js/about.js', 'resources/js/recording-form.js', 'resources/css/contacts-block.css', 'resources/css/recording.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/js/navbar.js', 'resources/css/about.css', 'resources/js/about.js', 'resources/js/recording-form.js', 'resources/css/contacts-block.css', 'resources/css/recording.css', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js'])
 </head>
 
 <body>
 
     @include('partials.navbar')
     @include('partials.arrow')
+    @include('partials.cookies')
     <div class="container">
         <iframe class="aeCustomWidget"
             src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709" width="100%"
