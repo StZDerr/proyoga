@@ -1,5 +1,4 @@
-/* Подключаем шрифт Montserrat (можно оставить или убрать, если уже есть общий импорт) */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+/* Шрифт Montserrat уже подключен глобально в welcome.blade.php */
 
 .cookie-icon-container {
     position: fixed;

@@ -8,10 +8,20 @@
     @include('components.seo-meta')
     @include('partials.favicon')
 
-    {{-- Google Fonts --}}
+    {{-- Preconnect для Google Fonts (оптимизация загрузки) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
+    
+    {{-- Preload критичных шрифтов --}}
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap">
+    
+    {{-- Асинхронная загрузка шрифтов --}}
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    {{-- Fallback для браузеров без JS --}}
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
+    </noscript>
 
     {{-- Общие стили и JS через Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js'])
@@ -591,7 +601,7 @@
                                     <div class="swiper-slide">
                                         <a href="{{ asset('storage/' . $photo->image) }}" class="gallery3-item">
                                             <img src="{{ asset('storage/' . $photo->image) }}" class="card-img-top"
-                                                alt="{{ $photo->title }}">
+                                                alt="{{ $photo->title }}" loading="lazy">
                                         </a>
                                     </div>
                                 @endforeach
