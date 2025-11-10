@@ -454,7 +454,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="about-space-features text-center">
                         <div class="svg mb-3">
-                            <img src="{{ asset('images/svg/comp.svg') }}" alt="people" />
+                            <img src="{{ asset('images/svg/comp.svg') }}" alt="people" loading="lazy"
+                                width="80" height="80" />
                         </div>
                         <div class="about-space-features-text">
                             Здесь соединяются тело, дыхание, звук, осознанность и общение.
@@ -485,7 +486,8 @@
                     </a>
                 </div>
                 <div class="col-12 col-xl-5 text-end mt-5">
-                    <img src="{{ asset('images/Off-siteSessions.webp') }}" alt="Off-siteSessions">
+                    <img src="{{ asset('images/Off-siteSessions.webp') }}" alt="Off-siteSessions" loading="lazy"
+                        width="500" height="400">
                 </div>
             </div>
         </div>

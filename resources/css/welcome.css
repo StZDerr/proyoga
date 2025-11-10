@@ -171,6 +171,8 @@
     line-height: 1.5em;
     text-align: center;
     color: var(--primary-color-button-123d4d);
+    min-height: 60px;
+    /* Резервируем место для текста, чтобы избежать CLS */
 }
 
 .main .button-text {

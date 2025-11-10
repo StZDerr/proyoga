@@ -12,7 +12,8 @@
 
             <div class="footerContent">
                 <a href="/" class="logo">
-                    <img src="{{ asset('images/logo/logoYOGAwhite.svg') }}" alt="Site Logo" />
+                    <img src="{{ asset('images/logo/logoYOGAwhite.svg') }}" alt="Site Logo" loading="lazy"
+                        width="200" height="60" />
                 </a>
                 <div class="copyright">
                     © Copyright истокия.рф - {{ date('Y') }} год
