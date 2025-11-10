@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js', 'resources/css/arrow.css', 'resources/js/arrow.js'])
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -22,6 +22,7 @@
 <body>
 
     @include('partials.navbar')
+    @include('partials.arrow')
     <div class="background-gor">
         <div class="container text-center py-5">
             <div class="main">

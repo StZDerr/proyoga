@@ -1269,7 +1269,7 @@
 }
 
 .story:not(.viewed) .avatar {
-    border: 3px solid #2ecc71 !important;
+    border: 3px solid var(--primary-color-button-123d4d) !important;
     padding: 4px !important;
 }
 
