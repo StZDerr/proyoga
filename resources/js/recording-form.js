@@ -174,17 +174,17 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             phoneInput.addEventListener("paste", function (e) {
-                e.preventDefault();
-                const paste = (e.clipboardData || window.clipboardData).getData(
-                    "text"
-                );
-                const digitsOnly = paste.replace(/\D/g, "");
+                // Не блокируем вставку полностью, а обрабатываем после
+                setTimeout(() => {
+                    const paste = phoneInput.value;
+                    const digitsOnly = paste.replace(/\D/g, "");
 
-                if (digitsOnly) {
-                    const event = new Event("input", { bubbles: true });
-                    e.target.value = digitsOnly;
-                    e.target.dispatchEvent(event);
-                }
+                    if (digitsOnly) {
+                        const event = new Event("input", { bubbles: true });
+                        phoneInput.value = digitsOnly;
+                        phoneInput.dispatchEvent(event);
+                    }
+                }, 0);
             });
         }
     }

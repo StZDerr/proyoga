@@ -3,7 +3,13 @@
     <div class="container">
         <iframe
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A47c3bf84e9a9b8456b4350ca9f770e0521ba2e58f2e848432f3f9d4aaa4281e6&amp;source=constructor"
-            width="500" height="400" frameborder="0"></iframe>
+            width="500" 
+            height="400" 
+            frameborder="0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+            title="Карта местоположения студии йоги ИстокиЯ"></iframe>
         <div class="content">
             @if (request()->routeIs('contacts'))
                 <h1 class="pageTitle">Контакты</h1>

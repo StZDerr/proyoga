@@ -70,6 +70,20 @@
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
+    // Подавляем ошибки WebSocket для Яндекс.Метрики
+    (function() {
+        const originalError = console.error;
+        console.error = function() {
+            const args = Array.from(arguments);
+            const message = args.join(' ');
+            // Игнорируем ошибки WebSocket от Яндекс.Метрики
+            if (message.includes('solid.ws') || message.includes('mc.yandex')) {
+                return;
+            }
+            originalError.apply(console, arguments);
+        };
+    })();
+
     (function(m, e, t, r, i, k, a) {
         m[i] = m[i] || function() {
             (m[i].a = m[i].a || []).push(arguments)
