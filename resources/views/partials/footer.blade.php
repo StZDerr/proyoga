@@ -28,8 +28,11 @@
                 <a href="https://yandex.ru/maps/-/CLfTYTjy">
                     <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                 </a>
-                <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-2">
-                    <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
+                <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-4">
+                    <span class="adress-tooltip">
+                        г. Анапа, ул. 40 лет Победы, 1Б, оф.115
+                        <span class="tooltip-text">Индивидуальные тренировки</span>
+                    </span>
                 </a>
                 <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
                 <a href="{{ route('recording') }}" class="button">Получить констультацию</a>

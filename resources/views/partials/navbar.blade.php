@@ -16,7 +16,10 @@
                         <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                     </a>
                     <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-4">
-                        <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
+                        <span class="adress-tooltip">
+                            г. Анапа, ул. 40 лет Победы, 1Б, оф.115
+                            <span class="tooltip-text">Индивидуальные тренировки</span>
+                        </span>
                     </a>
                 </div>
             </div>

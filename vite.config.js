@@ -16,6 +16,7 @@ export default defineConfig({
                 "resources/css/direction.css",
                 "resources/css/arrow.css",
                 "resources/css/cookies.css",
+                "resources/css/404.css",
                 "resources/js/app.js",
                 "resources/js/arrow.js",
                 "resources/js/cookies.js",
