@@ -7,7 +7,7 @@
                         <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" width="141"
                             height="34" />
                     </a>
-                    <a href="https://go.2gis.com/SBzhO" rel="nofollow" rel="nofollow" target="_blank">
+                    <a href="https://go.2gis.com/Bn289" rel="nofollow" rel="nofollow" target="_blank">
                         <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" width="141" height="34" />
                     </a>
                 </div>
