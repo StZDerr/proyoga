@@ -20,7 +20,8 @@
 
     <div class="dev-page">
         <div class="dev-container">
-            <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Logo" class="dev-logo" />
+            <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Logo" class="dev-logo" width="144"
+                height="120" />
 
             <h1 class="dev-title">Данный раздел находится в разработке</h1>
             <p class="dev-subtitle">Скоро здесь появятся новые возможности!</p>

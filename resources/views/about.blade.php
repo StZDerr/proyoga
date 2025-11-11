@@ -34,7 +34,8 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-12 about-img mb-4 mb-lg-0 text-center text-lg-start">
-                        <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Icon" class="img-fluid" />
+                        <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Icon" class="img-fluid"
+                            width="144" height="120" />
                     </div>
                     <div class="col-lg-6 col-12 about-text">
                         <div class="title">
@@ -79,7 +80,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="about-space-features text-center">
                         <div class="svg mb-3">
-                            <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="people" />
+                            <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="people" width="39"
+                                height="43" />
                         </div>
                         <div class="about-space-features-text">
                             Два зала, чайная зона и собственный автобус для путешествий

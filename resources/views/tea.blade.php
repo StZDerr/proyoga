@@ -28,7 +28,8 @@
         </div>
         <div class="zaglyshka mt-5">
             <div class="container">
-                <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Icon" class="img-fluid" />
+                <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Icon" class="img-fluid" width="144"
+                    height="120" />
                 <div class="title">Данный раздел находится в разработке</div>
             </div>
         </div>

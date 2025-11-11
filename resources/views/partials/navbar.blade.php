@@ -4,10 +4,11 @@
             <div class="wrapper hideable-content">
                 <div class="rating">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" />
+                        <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" width="141"
+                            height="34" />
                     </a>
                     <a href="https://go.2gis.com/SBzhO" rel="nofollow" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" />
+                        <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" width="141" height="34" />
                     </a>
                 </div>
                 <div class="adres">
@@ -47,7 +48,7 @@
     </div>
     <div class="containerMobile">
         <a href="/" class="logo">
-            <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Site Logo" />
+            <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Site Logo" width="144" height="120" />
         </a>
         <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
         <div class="menuMobile">
@@ -76,10 +77,12 @@
                 <a href="{{ route('recording') }}" class="button">Получить консультацию</a>
                 <div class="rating">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" />
+                        <img src="{{ asset('images/svg/yandexNew.svg') }}" alt="Яндекс" width="141"
+                            height="34" />
                     </a>
                     <a href="https://go.2gis.com/SBzhO" rel="nofollow" target="_blank">
-                        <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" />
+                        <img src="{{ asset('images/svg/2gisNew.svg') }}" alt="2ГИС" width="141"
+                            height="34" />
                     </a>
                 </div>
             </div>
