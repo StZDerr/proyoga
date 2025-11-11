@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 "resources/sass/app.scss",
                 "resources/css/app.css",
+                "resources/css/performance.css",
                 "resources/css/hatha-uoga.css",
                 "resources/css/tea.css",
                 "resources/css/about.css",
@@ -18,6 +19,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/arrow.js",
                 "resources/js/cookies.js",
+                "resources/js/lazy-iframe.js",
                 "resources/css/welcome.css",
                 "resources/css/navbar.css",
                 "resources/css/footer.css",

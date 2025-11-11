@@ -1,0 +1,46 @@
+/* Оптимизация производительности и устранение микрофризов */
+
+/* Включаем аппаратное ускорение для плавного скролла */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Оптимизация рендеринга */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Оптимизация для элементов с анимацией */
+.swiper,
+.swiper-slide,
+.site-header,
+.navbar {
+    /* Включаем GPU ускорение */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Оптимизация для изображений */
+img {
+    /* Предотвращаем reflow при загрузке */
+    content-visibility: auto;
+}
+
+/* Оптимизация для iframe (карта Яндекс) */
+iframe.lazy-iframe {
+    /* Снижаем нагрузку на рендеринг */
+    contain: layout style paint;
+}
+
+/* Оптимизация для элементов вне видимой области */
+.hideable-content,
+.footer,
+.recording {
+    /* Браузер может отложить рендеринг */
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+}

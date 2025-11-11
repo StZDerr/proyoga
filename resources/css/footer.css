@@ -48,6 +48,11 @@
     gap: 25px;
 }
 
+.site-footer .container .footerWrapper .footerContent .logo img {
+    width: 100% !important;
+    height: auto;
+}
+
 .site-footer .container .footerWrapper .footerContent .copyright {
     font-size: 16px;
     font-weight: 600;

@@ -286,16 +286,22 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         if (swiperContainer) {
             try {
+                const slideCount =
+                    swiperContainer.querySelectorAll(".swiper-slide").length;
+                // Loop требует минимум slidesPerView * 2 слайдов
+                // При 3 slidesPerView нужно минимум 6 слайдов
+                const enableLoop = slideCount >= 6;
+
                 const myCustomSwiper = new Swiper(
                     ".my-custom-swiper-container",
                     {
                         modules: [Pagination, Navigation],
-                        loop: true,
-                        loopedSlides: 6,
+                        loop: enableLoop,
+                        loopedSlides: enableLoop ? 6 : undefined,
                         slidesPerView: 1,
                         spaceBetween: 5,
                         centeredSlides: true,
-                        initialSlide: 1,
+                        initialSlide: enableLoop ? 1 : 0,
                         navigation: {
                             nextEl: ".stock-next",
                             prevEl: ".stock-prev",
@@ -355,31 +361,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 200);
 
     // === ИНИЦИАЛИЗАЦИЯ SWIPER (галерея 3) ===
-    const gallery3Swiper = new Swiper(".gallery3-swiper", {
-        modules: [Navigation, Pagination],
-        slidesPerView: 1.5,
-        spaceBetween: 30,
-        loop: true,
-        centeredSlides: true,
-        navigation: {
-            nextEl: ".gallery3-next",
-            prevEl: ".gallery3-prev",
-        },
-        pagination: {
-            el: ".gallery3-pagination",
-            clickable: true,
-        },
-        breakpoints: {
-            0: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides: true },
-            576: { slidesPerView: 1.5, spaceBetween: 20, centeredSlides: true },
-            768: { slidesPerView: 2.2, spaceBetween: 30, centeredSlides: true },
-            1024: {
-                slidesPerView: 2.5,
-                spaceBetween: 30,
-                centeredSlides: true,
+    const gallery3Container = document.querySelector(".gallery3-swiper");
+    if (gallery3Container) {
+        const slideCount =
+            gallery3Container.querySelectorAll(".swiper-slide").length;
+        // Loop включается только если слайдов достаточно (минимум 3 для безопасности)
+        const enableLoop = slideCount >= 3;
+
+        const gallery3Swiper = new Swiper(".gallery3-swiper", {
+            modules: [Navigation, Pagination],
+            slidesPerView: 1.5,
+            spaceBetween: 30,
+            loop: enableLoop,
+            centeredSlides: true,
+            navigation: {
+                nextEl: ".gallery3-next",
+                prevEl: ".gallery3-prev",
             },
-        },
-    });
+            pagination: {
+                el: ".gallery3-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 15,
+                    centeredSlides: true,
+                },
+                576: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 20,
+                    centeredSlides: true,
+                },
+                768: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 30,
+                    centeredSlides: true,
+                },
+                1024: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 30,
+                    centeredSlides: true,
+                },
+            },
+        });
+    }
 
     // === ИНИЦИАЛИЗАЦИЯ lightGallery ===
     const galleryWrapper = document.querySelector(
