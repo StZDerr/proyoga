@@ -34,7 +34,20 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
                                     </form>
+                                    @if ($photo->is_active)
+                                        <span class="badge bg-success text-white">
+                                            Активна
+                                        </span>
+                                    @else
+                                        <span class="badge bg-secondary text-white">
+                                            Неактивна
+                                        </span>
+                                    @endif
                                 </div>
+                                {{-- Порядок --}}
+                                <span class="badge bg-primary text-white d-flex align-items-center mt-2">
+                                    {{ $photo->sort_order }}
+                                </span>
                             </div>
                         </div>
                     </div>

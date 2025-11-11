@@ -34,6 +34,8 @@ class GalleryController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'required|file|mimes:webp|max:1024',
+            'is_active' => 'nullable|boolean',
+            'sort_order' => 'nullable|integer|min:0',
         ], [
             'title.required' => 'Заголовок обязателен',
             'title.string' => 'Заголовок должен быть строкой',
@@ -41,17 +43,25 @@ class GalleryController extends Controller
 
             'description.string' => 'Описание должно быть строкой',
 
-            // Для метода store (image => required)
             'image.required' => 'Фотография обязательна',
             'image.file' => 'Фотография должна быть файлом',
             'image.mimes' => 'Фотография должна быть в формате .webp',
             'image.max' => 'Размер фотографии не должен превышать 1 МБ',
+
+            'is_active.boolean' => 'Неверное значение для поля "Активна"',
+            'sort_order.integer' => 'Порядок должен быть числом',
+            'sort_order.min' => 'Порядок не может быть меньше 0',
         ]);
 
+        // Обработка чекбокса (если не отмечен, ставим 0)
+        $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        // Если загружена картинка — сохраняем и меняем путь
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('gallery', 'public');
         }
 
+        // Создаем запись
         Gallery::create($validated);
 
         return redirect()->route('admin.gallery.index')->with('success', 'Фото успешно добавлено!');
@@ -82,6 +92,8 @@ class GalleryController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|file|mimes:webp|max:1024',
+            'is_active' => 'nullable|boolean',
+            'sort_order' => 'nullable|integer|min:0',
         ], [
             'title.required' => 'Заголовок обязателен',
             'title.string' => 'Заголовок должен быть строкой',
@@ -89,13 +101,19 @@ class GalleryController extends Controller
 
             'description.string' => 'Описание должно быть строкой',
 
-            // Для метода store (image => required)
-            'image.required' => 'Фотография обязательна',
             'image.file' => 'Фотография должна быть файлом',
             'image.mimes' => 'Фотография должна быть в формате .webp',
             'image.max' => 'Размер фотографии не должен превышать 1 МБ',
+
+            'is_active.boolean' => 'Неверное значение для поля "Активна"',
+            'sort_order.integer' => 'Порядок должен быть числом',
+            'sort_order.min' => 'Порядок не может быть меньше 0',
         ]);
 
+        // Обработка чекбокса is_active (если не отмечен, ставим 0)
+        $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        // Обработка загруженного изображения
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('gallery', 'public');
         }

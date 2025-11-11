@@ -19,7 +19,8 @@ class IstokiController extends Controller
         $promotions = Promotion::all();
         $categories = PriceCategory::with(['tables.items'])->get();
         $personals = Personal::all();
-        $galleries = Gallery::all();
+        $galleries = Gallery::where('is_active', 1)
+            ->orderBy('sort_order', 'desc')->get();
         $stories = Story::all();
         $questions = Question::orderBy('order')->get();
         $mainCategories = MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
@@ -113,5 +114,12 @@ class IstokiController extends Controller
     public function thanks()
     {
         return view('thanks');
+    }
+
+    public function photoGalleries()
+    {
+        $photos = Gallery::orderBy('sort_order', 'desc')->get();
+
+        return view('photo-galleries', compact('photos'));
     }
 }

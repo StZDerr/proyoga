@@ -96,6 +96,7 @@ Route::get('/recording', [IstokiController::class, 'recording'])->name('recordin
 Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
 Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
+Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
 
 Route::get('/dev', function () {
     return view('dev');

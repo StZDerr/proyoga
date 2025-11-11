@@ -1182,6 +1182,30 @@
     background: #f8f9fa;
 }
 
+.photo-gallery .btn-more {
+    display: block; /* превращаем в блочный элемент для центрирования */
+    margin: 2rem auto 0 auto; /* авто-слева и справа → по центру, сверху отступ */
+    font-family: var(--font-standart-Montserrat);
+    font-weight: 500;
+    font-size: var(
+        --font-size-text-desc-16px
+    ); /* чуть меньше для компактности */
+    line-height: 1.5em;
+    padding: 0.8rem 1.5rem; /* уменьшаем паддинг для компактности */
+    background-color: var(--primary-color-button-123d4d);
+    color: white;
+    border-radius: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    width: 20%;
+}
+
+.photo-gallery .btn-more:hover {
+    background-color: white;
+    color: var(--primary-color-button-123d4d);
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+}
+
 /* Адаптивность для галереи */
 @media (max-width: 768px) {
     .photo-gallery .gallery3-wrapper {
@@ -1199,6 +1223,10 @@
     .photo-gallery .gallery3-next svg {
         width: 20px;
         height: 20px;
+    }
+    .photo-gallery .btn-more {
+        width: 100%; /* кнопка во всю ширину */
+        padding: 1rem 0; /* немного больше вертикальный padding */
     }
 }
 

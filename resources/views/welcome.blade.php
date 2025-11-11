@@ -659,6 +659,9 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('photo-galleries') }}" class="btn btn-more mt-4">
+                Смотреть все <i class="bi bi-arrow-right"></i>
+            </a>
         </div>
     @endif
 

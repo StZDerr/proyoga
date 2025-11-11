@@ -1,0 +1,64 @@
+.lightbox,
+.lightbox.active,
+.lg-backdrop,        /* lightgallery фон */
+.lg-outer,           /* контейнер lightgallery */
+.lg-outer .lg-inner  /* внутренние контейнеры */ {
+    z-index: 11000 !important;
+}
+
+/* Когда галерея/лайтбокс открыты — прячем header (предотвратить "липание" видимого navbar) */
+.lg-open .site-header,
+.lightbox-open .site-header {
+    visibility: hidden;
+    pointer-events: none;
+}
+.photo-galleries {
+    padding: 40px 0; /* Отступ сверху и снизу */
+    background-color: #f7f7f7; /* светлый фон для выделения галереи */
+}
+
+.photo-galleries .container {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(200px, 1fr)
+    ); /* адаптивная сетка */
+    gap: 20px; /* расстояние между фото */
+}
+
+.photo-galleries .container img {
+    width: 100%;
+    height: 200px; /* фиксированная высота, можно изменить */
+    object-fit: cover; /* кадрирование по размеру блока */
+    border-radius: 10px; /* скругление углов */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.photo-galleries .container img:hover {
+    transform: scale(1.05); /* лёгкое увеличение при наведении */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* тень */
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .photo-galleries .container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .photo-galleries .container img {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-galleries .container {
+        grid-template-columns: 1fr; /* одна колонка на узких экранах */
+        gap: 10px;
+    }
+
+    .photo-galleries .container img {
+        height: auto; /* сохраняем пропорции */
+    }
+}
