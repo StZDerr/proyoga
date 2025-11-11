@@ -118,7 +118,7 @@ class IstokiController extends Controller
 
     public function photoGalleries()
     {
-        $photos = Gallery::orderBy('sort_order', 'desc')->get();
+        $photos = Gallery::orderBy('sort_order', 'asc')->get();
 
         return view('photo-galleries', compact('photos'));
     }
