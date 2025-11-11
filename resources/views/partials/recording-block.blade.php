@@ -34,7 +34,7 @@
                         <input type="checkbox" class="form-check-input recording-checkbox" id="privacyPolicy"
                             name="privacy_agreement" required>
                         <label class="form-check-label recording-checkbox-label" for="privacyPolicy">
-                            Я согласен(-на) с <a href="{{ route('privacy-policy') }}"> политикой конфиденциальности</a>
+                            Я согласен(-на) на <a href="{{ route('personal-data') }}"> обработку персональных данных</a>
                         </label>
                     </div>
 
