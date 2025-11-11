@@ -19,7 +19,7 @@
     @include('partials.cookies')
 
     <div class="background-gor">
-        <div class="container text-center py-5">
+        <div class="container text-center pt-5">
             <div class="contacts-header">
                 <h1 class="display-4 mb-3 title-text">Контакты</h1>
                 <p class="lead mb-4">Свяжитесь с нами удобным для вас способом</p>
