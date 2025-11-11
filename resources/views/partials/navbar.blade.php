@@ -15,11 +15,9 @@
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
                         <div class="adress">с. Супсех, ул. Советская, 1Б</div>
                     </a>
-                    <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-4">
-                        <span class="adress-tooltip">
-                            г. Анапа, ул. 40 лет Победы, 1Б, оф.115
-                            <span class="tooltip-text">Индивидуальные тренировки</span>
-                        </span>
+                    <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block">
+                        <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
+                        <span class="adress-desc">Индивидуальные тренировки, массаж, психолог</span>
                     </a>
                 </div>
             </div>

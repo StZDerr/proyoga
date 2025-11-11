@@ -94,7 +94,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    /* gap: 25px; */
 }
 
 .site-header .container .containerWrapper:first-child {
@@ -113,6 +113,14 @@ a {
     gap: 15px;
 }
 
+.containerWrapper .wrapper a {
+    display: flex;
+    flex-direction: column; /* ставим адрес и описание вертикально */
+    align-items: center; /* выравнивание по центру */
+    text-align: center; /* чтобы текст внутри span тоже был по центру */
+    gap: 5px; /* отступ между адресом и описанием */
+}
+
 .containerWrapper .wrapper .rating {
     display: flex;
     flex-direction: column;
@@ -126,51 +134,10 @@ a {
     color: #123d4d;
 }
 
-.site-header .containerWrapper .adress-tooltip {
-    position: relative;
+.containerWrapper .wrapper .adress-desc {
     font-weight: 700;
-    font-size: var(--font-size-text-desc-20px);
+    font-size: 12px;
     color: #123d4d;
-    cursor: pointer;
-    display: inline-block;
-}
-
-/* Стили подсказки */
-.site-header .containerWrapper .adress-tooltip .tooltip-text {
-    visibility: hidden;
-    width: max-content;
-    max-width: 250px;
-    background-color: #123d4d;
-    color: #fff;
-    text-align: center;
-    padding: 6px 10px;
-    border-radius: 6px;
-    position: absolute;
-    bottom: 125%; /* выше текста */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 14px;
-    z-index: 10;
-}
-
-/* Стрелка подсказки */
-.site-header .containerWrapper .adress-tooltip .tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #123d4d transparent transparent transparent;
-}
-
-/* Показ подсказки при наведении */
-.site-header .containerWrapper .adress-tooltip:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
 }
 
 .container .logo {
