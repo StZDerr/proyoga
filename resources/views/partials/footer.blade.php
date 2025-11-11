@@ -38,7 +38,7 @@
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">
                         <img src="{{ asset('images/svg/yandexNewWhite.svg') }}" alt="Яндекс" />
                     </a>
-                    <a href="https://go.2gis.com/SBzhO" rel="nofollow" target="_blank">
+                    <a href="https://go.2gis.com/Bn289" rel="nofollow" target="_blank">
                         <img src="{{ asset('images/svg/2gisNewWhite.svg') }}" alt="2ГИС" />
                     </a>
                 </div>
