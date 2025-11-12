@@ -85,3 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Импорт скрипта для перетаскивания в админке (использует sortablejs)
+import "./admin/gallery-order";

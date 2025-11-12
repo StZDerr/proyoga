@@ -1,0 +1,140 @@
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+/* admin gallery — фиксированное число карточек в ряд на больших экранах */
+
+/* XS — по умолчанию остаётся Bootstrap (1 колонка на мобильных) */
+
+/* >= 768px (tablet) — 4 в ряд */
+@media (min-width: 768px) {
+    #gallery-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem; /* равносильно .g-3 */
+    }
+    #gallery-list .gallery-item {
+        width: 200px;
+    }
+}
+
+/* >= 992px (desktop small) — 6 в ряд */
+@media (min-width: 992px) {
+    #gallery-list {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* >= 1200px (desktop) — 6 в ряд */
+@media (min-width: 1200px) {
+    #gallery-list {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* >= 1400px (large desktop) — 6 в ряд (фиксируем 6 карточек на широких экранах) */
+@media (min-width: 1400px) {
+    #gallery-list {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* Доп. стили: карточки подгоняем по ширине/высоте */
+#gallery-list .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#gallery-list .card .img-wrapper {
+    /* при желании можно уменьшить высоту для 10 колонок */
+    height: 140px; /* измените на нужное значение */
+    overflow: hidden;
+}
+
+#gallery-list .card .card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Если нужно уменьшить размер бейджа номера при очень маленьких колонках */
+@media (min-width: 1400px) {
+    #gallery-list .card-body .badge.bg-primary {
+        font-size: 0.95rem;
+        padding-top: 0.35rem;
+        padding-bottom: 0.35rem;
+    }
+}
+/* Иконковые кнопки в админ-карточках */
+/* Кнопки-строка: две колонки равной ширины */
+.btn-row {
+    display: grid;
+    /* две равные колонки по 50% каждая */
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+/* Полноширинные кнопки внутри btn-row: занимают всю колонку */
+.btn-full {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.35rem 0.4rem;
+    height: 36px;
+    white-space: nowrap;
+}
+
+/* svg внутри полноширинных кнопок — уменьшены для компактного вида */
+.btn-full svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+}
+
+/* Переопределяем старые фиксированные размеры .btn-icon для случаев, где нужно full-width */
+.btn-icon.btn-full,
+.btn-full.btn-icon {
+    width: 100%;
+    height: auto;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+}
+
+/* Статус иконка под заголовком */
+.status-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.status-svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* Небольшие адаптивные поправки для очень узких карточек */
+@media (max-width: 576px) {
+    .btn-row {
+        gap: 0.35rem;
+        grid-template-columns: 1fr 1fr;
+    }
+    .btn-full {
+        padding: 0.35rem 0.3rem;
+        height: 40px;
+    }
+    .btn-full svg {
+        width: 16px;
+        height: 16px;
+    }
+    .status-svg {
+        width: 16px;
+        height: 16px;
+    }
+}

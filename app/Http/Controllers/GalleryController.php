@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
@@ -12,7 +13,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::all();
+        $galleries = Gallery::orderBy('sort_order')->get();
 
         return view('admin.gallery.index', compact('galleries'));
     }
@@ -131,5 +132,42 @@ class GalleryController extends Controller
         $gallery->delete();
 
         return redirect()->route('admin.gallery.index')->with('success', 'Фото успешно удалено!');
+    }
+
+    public function reorder(Request $request)
+    {
+        $data = $request->validate([
+            'order' => 'required|array',
+            'order.*' => 'required|integer|exists:galleries,id',
+        ]);
+
+        $order = $data['order'];
+
+        DB::transaction(function () use ($order) {
+            foreach ($order as $index => $id) {
+                // Устанавливаем порядковый номер начиная с 1
+                DB::table('galleries')->where('id', $id)->update(['sort_order' => $index + 1]);
+            }
+        });
+
+        // Возвращаем map id => order для обновления UI (опционально)
+        $updated = [];
+        foreach ($order as $index => $id) {
+            $updated[$id] = $index + 1;
+        }
+
+        return response()->json(['status' => 'ok', 'updated' => $updated]);
+    }
+
+    public function toggleActive(Request $request, Gallery $gallery)
+    {
+        // Доп. авторизация, если нужно:
+        // $this->authorize('update', $gallery);
+
+        $gallery->is_active = $gallery->is_active ? 0 : 1;
+        $gallery->save();
+
+        // Сообщение можно не показывать — это опционально
+        return redirect()->back()->with('success', 'Статус фото обновлён.');
     }
 }

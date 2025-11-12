@@ -36,7 +36,10 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
-
+    Route::post('gallery/reorder', [GalleryController::class, 'reorder'])
+        ->name('gallery.reorder');
+    Route::post('gallery/{gallery}/toggle-active', [GalleryController::class, 'toggleActive'])
+        ->name('gallery.toggle-active');
     // Дополнительные маршруты для управления индексацией (ПЕРЕД resource!)
     Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
         Route::post('/settings', [IndexingController::class, 'updateSettings'])->name('update-settings');

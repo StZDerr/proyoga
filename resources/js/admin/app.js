@@ -97,5 +97,5 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.head.appendChild(style);
 
-    console.log("🧘‍♀️ Админ панель ПроЙога инициализирована");
+    console.log("🧘‍♀️ Админ панель ИстокиЯ инициализирована");
 });
