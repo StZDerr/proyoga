@@ -1,4 +1,45 @@
-.background-gor .title-direction {
+.background-gor-directions {
+    height: 500px; /* высота блока */
+    background: url("/public/images/svg/gory.svg") no-repeat center center;
+    background-size: cover;
+    display: flex; /* включаем flex */
+    align-items: center; /* вертикальное центрирование текста */
+    width: 100%; /* фон на всю ширину */
+}
+
+/* Контейнер с текстом */
+.background-gor-directions .container {
+    text-align: left; /* текст слева */
+}
+
+/* Заголовок */
+.background-gor-directions .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: clamp(1.875rem, 1.5682rem + 1.3636vw, 3.75rem);
+    line-height: 1.5em;
+    text-transform: uppercase;
+    color: var(--primary-color-button-123d4d);
+}
+
+/* Описание */
+.background-gor-directions .desc {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 1.75em;
+    color: var(--secondary-color-1d7d6f);
+    margin-top: 10px;
+}
+
+/* Адаптив */
+@media (max-width: 1200px) {
+    .background-gor-directions {
+        height: 400px;
+    }
+}
+
+.directions-block .title-direction {
     font-family: Tenor Sans;
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);

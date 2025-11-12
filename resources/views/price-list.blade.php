@@ -17,52 +17,51 @@
     @include('partials.navbar')
     @include('partials.arrow')
     @include('partials.cookies')
-    <div class="background-gor">
-        <div class="headerTeaZone mt-5">
-            <div class="container ">
-                {{ Breadcrumbs::render('price-list') }}
-                <div class="title mt-5">
-                    Прайс-лист
-                </div>
-                <div class="desc">
-                    Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на
-                    занятия.
-                </div>
+    <div class="background-gor-price-list">
+        <div class="container ">
+            {{ Breadcrumbs::render('price-list') }}
+            <div class="title mt-5">
+                Прайс-лист
+            </div>
+            <div class="desc">
+                Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на
+                занятия.
             </div>
         </div>
-        <div class="price-list">
-            <div class="container">
-                <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
-                    @foreach ($categories as $index => $category)
-                        <button class="category-btn {{ $index === 0 ? 'active' : 'inactive' }}"
-                            data-target="content-{{ $category->slug }}">
-                            {{ $category->name }}
-                        </button>
-                    @endforeach
-                </div>
+    </div>
 
-                <!-- ТЕКСТЫ — ВСЁ В HTML -->
+    <div class="price-list">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
                 @foreach ($categories as $index => $category)
-                    <div id="content-{{ $category->slug }}" class="content-text {{ $index === 0 ? 'active' : '' }}">
-                        @foreach ($category->tables as $table)
-                            <table class="custom-table">
-                                <tr class="table-title-row">
-                                    <td colspan="2" class="table-title">{{ $table->title }}</td>
-                                </tr>
-                                @foreach ($table->items as $item)
-                                    <tr class="table-item-row">
-                                        <td class="table-item-name">{{ $item->name }}</td>
-                                        <td class="table-item-info">
-                                            <div class="table-item-duration">{{ $item->duration }}</div>
-                                            <div class="table-item-price">{{ $item->price }} ₽</div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        @endforeach
-                    </div>
+                    <button class="category-btn {{ $index === 0 ? 'active' : 'inactive' }}"
+                        data-target="content-{{ $category->slug }}">
+                        {{ $category->name }}
+                    </button>
                 @endforeach
             </div>
+
+            <!-- ТЕКСТЫ — ВСЁ В HTML -->
+            @foreach ($categories as $index => $category)
+                <div id="content-{{ $category->slug }}" class="content-text {{ $index === 0 ? 'active' : '' }}">
+                    @foreach ($category->tables as $table)
+                        <table class="custom-table">
+                            <tr class="table-title-row">
+                                <td colspan="2" class="table-title">{{ $table->title }}</td>
+                            </tr>
+                            @foreach ($table->items as $item)
+                                <tr class="table-item-row">
+                                    <td class="table-item-name">{{ $item->name }}</td>
+                                    <td class="table-item-info">
+                                        <div class="table-item-duration">{{ $item->duration }}</div>
+                                        <div class="table-item-price">{{ $item->price }} ₽</div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @endforeach
+                </div>
+            @endforeach
         </div>
     </div>
     <div class="mb-5">

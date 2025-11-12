@@ -16,58 +16,60 @@
     @include('partials.navbar')
     @include('partials.arrow')
     @include('partials.cookies')
-    <div class="background-gor">
-        <div class="headerTeaZone mt-5">
-            <div class="container ">
-                {{ Breadcrumbs::render('direction') }}
-                <div class="title mt-5">
-                    Направления занятий
+    <div class="background-gor-directions">
+        <div class="container ">
+            {{ Breadcrumbs::render('direction') }}
+            <div class="title mt-5">
+                Направления занятий
+            </div>
+            <div class="desc">
+                Мы поможем подобрать направление, которое подходит именно Вам
+            </div>
+        </div>
+    </div>
+    <div class="directions-block mt-5">
+        <div class="container mb-5">
+            @foreach ($mainCategories as $mainCategory)
+                <div class="title-direction mt-5">
+                    {{ $mainCategory->title }}
                 </div>
-                <div class="desc">
-                    Мы поможем подобрать направление, которое подходит именно Вам
-                </div>
-                @foreach ($mainCategories as $mainCategory)
-                    <div class="title-direction mt-5">
-                        {{ $mainCategory->title }}
-                    </div>
 
-                    @if ($mainCategory->subCategories->count() > 0)
-                        <div class="directions">
-                            <div class="container">
-                                <div class="row g-4 main-directions mt-2">
-                                    @foreach ($mainCategory->subCategories as $subCategory)
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                            <a href="{{ route('PodDirection', $subCategory->slug) }}"
-                                                class="text-decoration-none text-dark">
-                                                <div class="card-directions">
-                                                    @if ($subCategory->image)
-                                                        <img src="{{ asset('storage/' . $subCategory->image) }}"
-                                                            alt="{{ $subCategory->title }}" />
-                                                    @else
-                                                        <img src="{{ asset('images/directions-background.webp') }}"
-                                                            alt="directions-background" />
-                                                    @endif
-                                                    <div class="d-flex justify-content-between p-3">
-                                                        <div class="title">
-                                                            {{ $subCategory->title }}
-                                                        </div>
-                                                        <div class="arrow">
-                                                            <i class="bi bi-arrow-right fs-4"></i>
-                                                        </div>
+                @if ($mainCategory->subCategories->count() > 0)
+                    <div class="directions">
+                        <div class="container">
+                            <div class="row g-4 main-directions mt-2">
+                                @foreach ($mainCategory->subCategories as $subCategory)
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                                        <a href="{{ route('PodDirection', $subCategory->slug) }}"
+                                            class="text-decoration-none text-dark">
+                                            <div class="card-directions">
+                                                @if ($subCategory->image)
+                                                    <img src="{{ asset('storage/' . $subCategory->image) }}"
+                                                        alt="{{ $subCategory->title }}" />
+                                                @else
+                                                    <img src="{{ asset('images/directions-background.webp') }}"
+                                                        alt="directions-background" />
+                                                @endif
+                                                <div class="d-flex justify-content-between p-3">
+                                                    <div class="title">
+                                                        {{ $subCategory->title }}
                                                     </div>
-                                                    <!-- <div class="text">
+                                                    <div class="arrow">
+                                                        <i class="bi bi-arrow-right fs-4"></i>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="text">
                                                         {{ $subCategory->description ?? 'Описание направления' }}
                                                     </div> -->
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    @endif
-                @endforeach
-            </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
     @include('partials.footer')

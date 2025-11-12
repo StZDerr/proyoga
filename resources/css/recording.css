@@ -5,6 +5,7 @@
 .recording img {
     width: 100%;
     border-radius: 1rem;
+    object-fit: cover;
 }
 
 .recording .title {
@@ -121,5 +122,8 @@
     .recording .recording-submit-btn {
         padding: 12px 20px;
         font-size: 14px;
+    }
+    .recording img {
+        height: auto;
     }
 }
