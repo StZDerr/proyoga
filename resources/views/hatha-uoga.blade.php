@@ -18,9 +18,12 @@
     @include('partials.arrow')
     @include('partials.cookies')
     <div class="containerMain">
+        <div class="container">
+            {{ Breadcrumbs::render('subSubCategoryDetail', $subSubCategory) }}
+        </div>
         <div class="container serviceBanner">
             <div class="serviceContent">
-                {{ Breadcrumbs::render('subSubCategoryDetail', $subSubCategory) }}
+
                 <h1 class="mainTitle">{{ $subSubCategory->title }}</h1>
                 <p class="text">
                     {{ $subSubCategory->description ?? '"Исток и Я" - Твой путь к себе начинается с Истока. Здесь соединяются тело, дыхание, звук, осознанность и общение.' }}
