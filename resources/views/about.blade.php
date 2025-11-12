@@ -22,7 +22,7 @@
             <div class="container">
                 {{ Breadcrumbs::render('about') }}
                 <div class="title">
-                    О студии
+                    О Центре
                 </div>
                 <div class="desc">
                     "ИстокиЯ" - Твой путь к себе начинается с Истока.

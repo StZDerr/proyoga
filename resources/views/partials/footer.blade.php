@@ -6,7 +6,7 @@
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
                 <a href="{{ route('direction') }}" class="menuItem">Направления</a>
                 <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a>
-                <a href="{{ route('about') }}" class="menuItem">О студии</a>
+                <a href="{{ route('about') }}" class="menuItem">О Центре</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
             </div>
 

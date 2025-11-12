@@ -42,7 +42,7 @@
             </div>
             <div class="menu">
                 <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a>
-                <a href="{{ route('about') }}" class="menuItem">О студии</a>
+                <a href="{{ route('about') }}" class="menuItem">О Центре</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
             </div>
         </div>
