@@ -48,7 +48,7 @@ class SitemapController extends Controller
         foreach ($subCategories as $subCategory) {
             if ($subCategory->slug) {
                 $pages->push((object) [
-                    'url' => '/direction/'.$subCategory->slug,
+                    'url' => $subCategory->slug,
                     'priority' => 0.8,
                     'changefreq' => 'weekly',
                     'last_modified' => $subCategory->updated_at,
@@ -61,8 +61,7 @@ class SitemapController extends Controller
         foreach ($subSubCategories as $subSubCategory) {
             if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
                 $pages->push((object) [
-                    'url' => '/direction/'.
-                            $subSubCategory->subCategory->slug.'/'.
+                    'url' => $subSubCategory->subCategory->slug.'/'.
                             $subSubCategory->slug,
                     'priority' => 0.7,
                     'changefreq' => 'weekly',
