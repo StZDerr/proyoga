@@ -34,7 +34,8 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'required|file|mimes:webp|max:1024',
+            // добавили rule image и dimensions: max 2000x2000
+            'image' => 'required|image|mimes:webp|dimensions:max_width=2000,max_height=2000|max:1024',
             'is_active' => 'nullable|boolean',
             'sort_order' => 'nullable|integer|min:0',
         ], [
@@ -45,8 +46,9 @@ class GalleryController extends Controller
             'description.string' => 'Описание должно быть строкой',
 
             'image.required' => 'Фотография обязательна',
-            'image.file' => 'Фотография должна быть файлом',
+            'image.image' => 'Файл должен быть изображением',
             'image.mimes' => 'Фотография должна быть в формате .webp',
+            'image.dimensions' => 'Изображение должно быть не больше 2000×2000 пикселей',
             'image.max' => 'Размер фотографии не должен превышать 1 МБ',
 
             'is_active.boolean' => 'Неверное значение для поля "Активна"',
@@ -92,7 +94,7 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|file|mimes:webp|max:1024',
+            'image' => 'nullable|image|mimes:webp|dimensions:max_width=2000,max_height=2000|max:1024',
             'is_active' => 'nullable|boolean',
             'sort_order' => 'nullable|integer|min:0',
         ], [
@@ -102,8 +104,10 @@ class GalleryController extends Controller
 
             'description.string' => 'Описание должно быть строкой',
 
-            'image.file' => 'Фотография должна быть файлом',
+            'image.required' => 'Фотография обязательна',
+            'image.image' => 'Файл должен быть изображением',
             'image.mimes' => 'Фотография должна быть в формате .webp',
+            'image.dimensions' => 'Изображение должно быть не больше 2000×2000 пикселей',
             'image.max' => 'Размер фотографии не должен превышать 1 МБ',
 
             'is_active.boolean' => 'Неверное значение для поля "Активна"',
