@@ -34,13 +34,13 @@
                 class="serviceIMG" />
         </div>
         <div class="container">
-            <h2 class="subTitle">О {{ $subSubCategory->title }}</h2>
+            <h2 class="subTitle">О {{ $subSubCategory->prepositional_title }}</h2>
             <p class="text other">
                 {{ $subSubCategory->about ?? 'Данное направление включает в себя полный комплекс взаимодействия на физическом и ментальном уровне через выполнение асан, дыхательных упражнений (пранаям), мудр и концентрацию внимания посредством медитации. Это направление стало основоположником многих популярных современных направлений йоги.' }}
             </p>
 
             @if ($subSubCategory->benefits && count($subSubCategory->benefits) > 0)
-                <h2 class="subTitle">Польза {{ $subSubCategory->title }}</h2>
+                <h2 class="subTitle">Польза {{ $subSubCategory->genitive_title }}</h2>
                 @foreach ($subSubCategory->benefits as $benefitGroup)
                     @if (is_array($benefitGroup) && isset($benefitGroup['title']) && isset($benefitGroup['benefits']))
                         {{-- Новая структура с группами --}}

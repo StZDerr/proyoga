@@ -73,7 +73,7 @@ class SubSubCategory extends Model
         $counter = 1;
 
         while (static::where('slug', $slug)->where('id', '!=', $this->id ?? 0)->exists()) {
-            $slug = $originalSlug . '-' . $counter;
+            $slug = $originalSlug.'-'.$counter;
             $counter++;
         }
 
@@ -86,5 +86,38 @@ class SubSubCategory extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Accessor: prepositional form of the title (for use after "О ...").
+     */
+    public function getPrepositionalTitleAttribute()
+    {
+        // Use a service if bound, otherwise fallback to helper
+        if (app()->bound('App\\Services\\Declension\\DeclensionInterface')) {
+            $service = app('App\\Services\\Declension\\DeclensionInterface');
+
+            return $service->toPrepositional($this->title ?? '');
+        }
+
+        return \App\Helpers\RussianDeclension::toPrepositional($this->title ?? '');
+    }
+
+    /**
+     * Optional genitive form accessor (for use after words like "Польза").
+     */
+    public function getGenitiveTitleAttribute()
+    {
+        if (app()->bound('App\\Services\\Declension\\DeclensionInterface')) {
+            $service = app('App\\Services\\Declension\\DeclensionInterface');
+            // assume service has toGenitive same as toPrepositional
+            if (method_exists($service, 'toGenitive')) {
+                return $service->toGenitive($this->title ?? '');
+            }
+
+            return $service->toPrepositional($this->title ?? '');
+        }
+
+        return \App\Helpers\RussianDeclension::toGenitive($this->title ?? '');
     }
 }
