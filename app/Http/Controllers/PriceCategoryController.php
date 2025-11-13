@@ -47,7 +47,7 @@ class PriceCategoryController extends Controller
             'file.file' => 'Файл должен быть корректным',
             'file.mimes' => 'Допустимые форматы: jpg, jpeg, png',
             'file.max' => 'Файл не должен превышать 5 МБ',
-            'file.dimensions' => 'Изображение должно быть минимум 1300x1900 и максимум 2000x2000 пикселей',
+            'file.dimensions' => 'Изображение должно быть минимум 1300x1000 и максимум 2000x2000 пикселей',
         ]);
 
         $category = new PriceCategory;
@@ -98,10 +98,11 @@ class PriceCategoryController extends Controller
             'name.required' => 'Название обязательно',
             'name.string' => 'Название должно быть строкой',
             'name.max' => 'Название не должно превышать 255 символов',
+            'name.unique' => 'Категория с таким названием уже существует',
             'file.file' => 'Файл должен быть корректным',
             'file.mimes' => 'Допустимые форматы: jpg, jpeg, png',
             'file.max' => 'Файл не должен превышать 5 МБ',
-            'file.dimensions' => 'Изображение должно быть минимум 1300x1900 и максимум 2000x2000 пикселей',
+            'file.dimensions' => 'Изображение должно быть минимум 1300x1000 и максимум 2000x2000 пикселей',
         ]);
 
         $priceCategory->name = $validated['name'];

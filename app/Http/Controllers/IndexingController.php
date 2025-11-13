@@ -259,8 +259,127 @@ class IndexingController extends Controller
 
         // Создаем дефолтные страницы
         IndexablePage::createDefaultPages();
+        
+        // Синхронизируем динамические страницы
+        $this->syncDynamicPages();
 
         return redirect()->back()->with('success', 'Настройки индексации и дефолтные страницы созданы!');
+    }
+    
+    /**
+     * Синхронизировать все динамические страницы с indexable_pages
+     */
+    public function syncDynamicPages()
+    {
+        $synced = 0;
+        
+        // Собираем все существующие URL
+        $validUrls = [];
+        
+        // Синхронизируем подкатегории
+        $subCategories = \App\Models\SubCategory::all();
+        foreach ($subCategories as $subCategory) {
+            if ($subCategory->slug) {
+                $validUrls[] = $subCategory->slug;
+                
+                IndexablePage::updateOrCreate(
+                    ['url' => $subCategory->slug],
+                    [
+                        'title' => $subCategory->title ?? 'Подкатегория',
+                        'description' => $subCategory->description ?? '',
+                        'priority' => 0.8,
+                        'changefreq' => 'weekly',
+                        'is_indexed' => true,
+                        'last_modified' => $subCategory->updated_at,
+                    ]
+                );
+                $synced++;
+            }
+        }
+        
+        // Синхронизируем под-подкатегории
+        $subSubCategories = \App\Models\SubSubCategory::with('subCategory')->get();
+        foreach ($subSubCategories as $subSubCategory) {
+            if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
+                $url = $subSubCategory->subCategory->slug . '/' . $subSubCategory->slug;
+                $validUrls[] = $url;
+                
+                IndexablePage::updateOrCreate(
+                    ['url' => $url],
+                    [
+                        'title' => $subSubCategory->title ?? 'Направление',
+                        'description' => $subSubCategory->description ?? '',
+                        'priority' => 0.7,
+                        'changefreq' => 'weekly',
+                        'is_indexed' => true,
+                        'last_modified' => $subSubCategory->updated_at,
+                    ]
+                );
+                $synced++;
+            }
+        }
+        
+        // Удаляем устаревшие динамические страницы (которых уже нет в БД)
+        $staticPages = ['/', '/about', '/direction', '/price-list', '/contacts', '/tea', '/calendar', '/recording', '/privacy-policy', '/personal-data'];
+        
+        $deleted = IndexablePage::whereNotIn('url', array_merge($validUrls, $staticPages))->delete();
+        
+        $message = "Синхронизировано страниц: {$synced}";
+        if ($deleted > 0) {
+            $message .= ". Удалено устаревших: {$deleted}";
+        }
+        
+        return redirect()->back()->with('success', $message);
+    }
+    
+    /**
+     * Очистить устаревшие записи страниц
+     */
+    public function cleanupOrphanedPages()
+    {
+        $deleted = 0;
+        
+        // Получаем все страницы из indexable_pages
+        $allPages = IndexablePage::all();
+        
+        foreach ($allPages as $page) {
+            $url = $page->url;
+            
+            // Пропускаем статические страницы
+            $staticPages = ['/', '/about', '/direction', '/price-list', '/contacts', '/tea', '/calendar', '/recording', '/privacy-policy', '/personal-data'];
+            if (in_array($url, $staticPages)) {
+                continue;
+            }
+            
+            // Проверяем, существует ли эта динамическая страница
+            $exists = false;
+            
+            // Проверяем подкатегории (одиночный slug)
+            if (!str_contains($url, '/')) {
+                $exists = \App\Models\SubCategory::where('slug', $url)->exists();
+            } else {
+                // Проверяем подподкатегории (slug/slug)
+                $parts = explode('/', $url);
+                if (count($parts) === 2) {
+                    $exists = \App\Models\SubSubCategory::whereHas('subCategory', function($q) use ($parts) {
+                        $q->where('slug', $parts[0]);
+                    })->where('slug', $parts[1])->exists();
+                }
+            }
+            
+            // Если страница не существует, удаляем запись
+            if (!$exists) {
+                $page->delete();
+                $deleted++;
+            }
+        }
+        
+        if ($deleted > 0) {
+            \Illuminate\Support\Facades\Log::info("Очищено устаревших страниц: {$deleted}");
+            return redirect()->back()->with('success', "Удалено устаревших страниц: {$deleted}");
+        }
+        
+        return redirect()->back()->with('info', 'Устаревших страниц не найдено');
     }
 
     private function updateRobotsTxt($settings)

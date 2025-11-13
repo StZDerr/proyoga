@@ -667,36 +667,39 @@
 
 
     @include('partials.recording-block')
-    {{-- <div class="questions mt-5">
-        <div class="container">
-            <div class="d-flex flex-column">
-                <div class="title mb-5">
-                    Часто задаваемые вопросы
-                </div>
-                <div class="accordion" id="accordionExample">
-                    @foreach ($questions as $index => $question)
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading{{ $index + 1 }}">
-                                <button class="accordion-button {{ $index === 0 ? '' : 'collapsed' }}" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapse{{ $index + 1 }}"
-                                    aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
-                                    aria-controls="collapse{{ $index + 1 }}">
-                                    {{ $question->question }}
-                                </button>
-                            </h2>
-                            <div id="collapse{{ $index + 1 }}"
-                                class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
-                                aria-labelledby="heading{{ $index + 1 }}" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    {!! nl2br(e($question->answer)) !!}
+    @if ($questions->isNotEmpty())
+        <div class="questions mt-5">
+            <div class="container">
+                <div class="d-flex flex-column">
+                    <div class="title mb-5">
+                        Часто задаваемые вопросы
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        @foreach ($questions as $index => $question)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $index + 1 }}">
+                                    <button class="accordion-button {{ $index === 0 ? '' : 'collapsed' }}"
+                                        type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ $index + 1 }}"
+                                        aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-controls="collapse{{ $index + 1 }}">
+                                        {{ $question->question }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $index + 1 }}"
+                                    class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                    aria-labelledby="heading{{ $index + 1 }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        {!! nl2br(e($question->answer)) !!}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    @endif
     {{-- Блок контактов --}}
     @include('partials.contacts-block')
     @include('partials.footer')

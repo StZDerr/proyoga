@@ -47,12 +47,35 @@ class SitemapController extends Controller
         $subCategories = SubCategory::all();
         foreach ($subCategories as $subCategory) {
             if ($subCategory->slug) {
-                $pages->push((object) [
-                    'url' => $subCategory->slug,
-                    'priority' => 0.8,
-                    'changefreq' => 'weekly',
-                    'last_modified' => $subCategory->updated_at,
-                ]);
+                $url = $subCategory->slug;
+                
+                // Синхронизируем с indexable_pages
+                $indexablePage = IndexablePage::firstOrCreate(
+                    ['url' => $url],
+                    [
+                        'title' => $subCategory->title ?? 'Подкатегория',
+                        'description' => $subCategory->description ?? '',
+                        'priority' => 0.8,
+                        'changefreq' => 'weekly',
+                        'is_indexed' => true,
+                        'last_modified' => $subCategory->updated_at,
+                    ]
+                );
+                
+                // Обновляем last_modified
+                if ($indexablePage->last_modified < $subCategory->updated_at) {
+                    $indexablePage->update(['last_modified' => $subCategory->updated_at]);
+                }
+                
+                // Добавляем только если индексируется
+                if ($indexablePage->is_indexed) {
+                    $pages->push((object) [
+                        'url' => $url,
+                        'priority' => $indexablePage->priority,
+                        'changefreq' => $indexablePage->changefreq,
+                        'last_modified' => $indexablePage->last_modified,
+                    ]);
+                }
             }
         }
 
@@ -60,13 +83,36 @@ class SitemapController extends Controller
         $subSubCategories = SubSubCategory::with('subCategory')->get();
         foreach ($subSubCategories as $subSubCategory) {
             if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
-                $pages->push((object) [
-                    'url' => $subSubCategory->subCategory->slug.'/'.
-                            $subSubCategory->slug,
-                    'priority' => 0.7,
-                    'changefreq' => 'weekly',
-                    'last_modified' => $subSubCategory->updated_at,
-                ]);
+                $url = $subSubCategory->subCategory->slug.'/'.
+                       $subSubCategory->slug;
+                
+                // Синхронизируем с indexable_pages
+                $indexablePage = IndexablePage::firstOrCreate(
+                    ['url' => $url],
+                    [
+                        'title' => $subSubCategory->title ?? 'Направление',
+                        'description' => $subSubCategory->description ?? '',
+                        'priority' => 0.7,
+                        'changefreq' => 'weekly',
+                        'is_indexed' => true,
+                        'last_modified' => $subSubCategory->updated_at,
+                    ]
+                );
+                
+                // Обновляем last_modified
+                if ($indexablePage->last_modified < $subSubCategory->updated_at) {
+                    $indexablePage->update(['last_modified' => $subSubCategory->updated_at]);
+                }
+                
+                // Добавляем только если индексируется
+                if ($indexablePage->is_indexed) {
+                    $pages->push((object) [
+                        'url' => $url,
+                        'priority' => $indexablePage->priority,
+                        'changefreq' => $indexablePage->changefreq,
+                        'last_modified' => $indexablePage->last_modified,
+                    ]);
+                }
             }
         }
 

@@ -30,6 +30,12 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Фотографии (webp, макс. 2 МБ каждая)</label>
+                <input type="file" name="photos[]" class="form-control" multiple accept=".webp">
+                <small class="text-muted">Можно выбрать несколько файлов сразу</small>
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Группы преимуществ</label>
                 <div id="benefit-groups-container">
                     <div class="benefit-group border p-3 mb-3" data-group-index="0">

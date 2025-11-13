@@ -25,32 +25,21 @@ class IstokiController extends Controller
         $questions = Question::orderBy('order')->get();
         $mainCategories = MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
 
-        // Загружаем мета-данные для главной страницы
-        $pageMeta = \App\Helpers\PageContentHelper::getMeta('home');
-        $pageContent = \App\Helpers\PageContentHelper::getContent('home');
-
-        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'pageMeta', 'pageContent'));
+        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories'));
     }
 
     public function priceList()
     {
         $categories = PriceCategory::select('id', 'name', 'file')->get();
 
-        // Загружаем мета-данные для страницы price-list
-        $pageMeta = \App\Helpers\PageContentHelper::getMeta('price-list');
-        $pageContent = \App\Helpers\PageContentHelper::getContent('price-list');
-
-        return view('price-list', compact('categories', 'pageMeta', 'pageContent'));
+        return view('price-list', compact('categories'));
     }
 
     public function direction()
     {
         $mainCategories = MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
-        // Загружаем мета-данные для страницы direction
-        $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
-        $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
 
-        return view('direction', compact('mainCategories', 'pageMeta', 'pageContent'));
+        return view('direction', compact('mainCategories'));
     }
 
     public function PodDirection(SubCategory $subCategory)
@@ -58,11 +47,7 @@ class IstokiController extends Controller
         // Laravel автоматически найдет SubCategory по slug благодаря getRouteKeyName()
         $subCategory->load(['subSubCategories', 'mainCategory']);
 
-        // Загружаем мета-данные для страницы direction
-        $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
-        $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
-
-        return view('PodDirection', compact('subCategory', 'pageMeta', 'pageContent'));
+        return view('PodDirection', compact('subCategory'));
     }
 
     public function subSubCategoryDetail($subCategorySlug, $subSubCategorySlug)
@@ -77,21 +62,23 @@ class IstokiController extends Controller
 
         $subSubCategory->load(['subCategory.mainCategory']);
 
-        // Загружаем мета-данные для страницы direction
-        $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
-        $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
+        // Загружаем все FAQ для подподкатегории, сортируем по sort_order
+        $questions = $subSubCategory->faqs()
+            ->orderBy('sort_order')
+            ->orderBy('created_at')
+            ->get();
 
-        return view('hatha-uoga', compact('subSubCategory', 'pageMeta', 'pageContent'));
+        return view('hatha-uoga', compact('subSubCategory', 'questions'));
     }
 
     public function about()
     {
         $personals = Personal::all();
-        // Загружаем мета-данные для страницы direction
-        $pageMeta = \App\Helpers\PageContentHelper::getMeta('direction');
-        $pageContent = \App\Helpers\PageContentHelper::getContent('direction');
+        // Загружаем мета-данные для страницы about
+        // $pageMeta = \App\Helpers\PageContentHelper::getMeta('about');
+        // $pageContent = \App\Helpers\PageContentHelper::getContent('about');
 
-        return view('about', compact('personals', 'pageMeta', 'pageContent'));
+        return view('about', compact('personals'));
     }
 
     public function recording()

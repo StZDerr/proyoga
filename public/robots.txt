@@ -1,2 +1,7 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /admin/
+Disallow: /storage/
+Disallow: /vendor/
+
+Sitemap: https://xn--h1aafpog8g.xn--p1ai/sitemap.xml

@@ -11,31 +11,55 @@
             @csrf
             @method('PUT')
 
+            {{-- Название --}}
             <div class="mb-3">
                 <label class="form-label">Название</label>
                 <input type="text" name="title" class="form-control" value="{{ old('title', $subSubCategory->title) }}"
                     required>
             </div>
 
+            {{-- Описание --}}
             <div class="mb-3">
                 <label class="form-label">Описание</label>
                 <textarea name="description" class="form-control">{{ old('description', $subSubCategory->description) }}</textarea>
             </div>
 
+            {{-- О программе --}}
             <div class="mb-3">
                 <label class="form-label">О программе</label>
                 <textarea name="about" class="form-control">{{ old('about', $subSubCategory->about) }}</textarea>
             </div>
 
+            {{-- Основное изображение --}}
             <div class="mb-3">
                 <label class="form-label">Изображение (webp, макс. 2МБ)</label>
-                <input type="file" name="image" class="form-control">
+                <input type="file" name="image" class="form-control" accept=".webp">
                 @if ($subSubCategory->image)
                     <img src="{{ asset('storage/' . $subSubCategory->image) }}" alt="{{ $subSubCategory->title }}"
                         width="100" class="mt-2">
                 @endif
             </div>
 
+            {{-- Множественные фотографии --}}
+            <div class="mb-3">
+                <label class="form-label">Фотографии (webp, макс. 2МБ каждая)</label>
+                <input type="file" name="photos[]" class="form-control mb-2" multiple accept=".webp">
+                @if ($subSubCategory->photos->count())
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                        @foreach ($subSubCategory->photos as $photo)
+                            <div class="position-relative photo-thumb">
+                                <img src="{{ asset('storage/' . $photo->image) }}" width="100" class="border">
+                                <button type="button"
+                                    class="btn btn-sm btn-danger delete-photo-btn position-absolute top-0 end-0 m-0 p-0"
+                                    style="font-size: 0.7rem; z-index: 10;"
+                                    data-action="{{ route('admin.sub-sub-categories.photos.destroy', $photo) }}">×</button>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+            {{-- Группы преимуществ --}}
             <div class="mb-3">
                 <label class="form-label">Группы преимуществ</label>
                 <div id="benefit-groups-container">
@@ -44,7 +68,7 @@
                         $benefitGroups = is_array($benefitGroups) ? $benefitGroups : [];
                     @endphp
 
-                    @if (count($benefitGroups) > 0)
+                    @if (count($benefitGroups))
                         @foreach ($benefitGroups as $groupIndex => $group)
                             <div class="benefit-group border p-3 mb-3" data-group-index="{{ $groupIndex }}">
                                 <div class="mb-2">
@@ -95,6 +119,7 @@
                     преимуществ</button>
             </div>
 
+            {{-- Подкатегория --}}
             <div class="mb-3">
                 <label class="form-label">Подкатегория</label>
                 <select name="sub_category_id" class="form-select" required>
@@ -120,17 +145,17 @@
             groupDiv.setAttribute('data-group-index', groupIndex);
 
             groupDiv.innerHTML = `
-                <div class="mb-2">
-                    <label class="form-label">Название группы</label>
-                    <input type="text" name="benefit_groups[${groupIndex}][title]" class="form-control" placeholder="Например: Для начинающих">
-                </div>
-                <div class="benefits-container">
-                    <label class="form-label">Преимущества</label>
-                    <input type="text" name="benefit_groups[${groupIndex}][benefits][]" class="form-control mb-2" placeholder="Преимущество">
-                </div>
-                <button type="button" class="btn btn-sm btn-outline-primary me-2" onclick="addBenefit(this)">+ Добавить преимущество</button>
-                <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeBenefitGroup(this)">Удалить группу</button>
-            `;
+            <div class="mb-2">
+                <label class="form-label">Название группы</label>
+                <input type="text" name="benefit_groups[${groupIndex}][title]" class="form-control" placeholder="Например: Для начинающих">
+            </div>
+            <div class="benefits-container">
+                <label class="form-label">Преимущества</label>
+                <input type="text" name="benefit_groups[${groupIndex}][benefits][]" class="form-control mb-2" placeholder="Преимущество">
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-primary me-2" onclick="addBenefit(this)">+ Добавить преимущество</button>
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeBenefitGroup(this)">Удалить группу</button>
+        `;
 
             container.appendChild(groupDiv);
             groupIndex++;
@@ -157,5 +182,43 @@
                 alert('Должна остаться хотя бы одна группа преимуществ');
             }
         }
+
+        // AJAX delete for photos to avoid nested forms inside the main form
+        document.addEventListener('click', function(e) {
+            if (!e.target.matches('.delete-photo-btn')) return;
+
+            if (!confirm('Удалить фотографию?')) {
+                return;
+            }
+
+            const btn = e.target;
+            const action = btn.dataset.action;
+            if (!action) return;
+
+            btn.disabled = true;
+            const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+            fetch(action, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': csrf,
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) return response.json().catch(() => ({}));
+                    throw new Error('Network error');
+                })
+                .then(() => {
+                    const photoWrapper = btn.closest('.photo-thumb');
+                    if (photoWrapper) photoWrapper.remove();
+                })
+                .catch((err) => {
+                    console.error(err);
+                    alert('Не удалось удалить фото. Обновите страницу и попробуйте снова.');
+                    btn.disabled = false;
+                });
+        });
     </script>
 @endsection

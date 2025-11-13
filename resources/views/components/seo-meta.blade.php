@@ -1,7 +1,13 @@
 @php
     // Проверяем настройки индексации
     $indexingSettings = \App\Models\IndexingSettings::current();
-    $noIndex = !$indexingSettings->global_indexing_enabled;
+    $globalIndexingDisabled = !$indexingSettings->global_indexing_enabled;
+
+    // Проверяем индексацию конкретной страницы
+    $pageIndexingDisabled = isset($isPageIndexed) && !$isPageIndexed;
+
+    // Если глобально отключено ИЛИ страница отключена - не индексируем
+    $noIndex = $globalIndexingDisabled || $pageIndexingDisabled;
 @endphp
 
 {{-- Отключение индексации --}}

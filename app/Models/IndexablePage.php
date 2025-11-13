@@ -32,6 +32,26 @@ class IndexablePage extends Model
     }
 
     /**
+     * Проверить, индексируется ли страница по URL
+     */
+    public static function isPageIndexed($url)
+    {
+        // Убираем ведущий слэш для сравнения
+        $url = ltrim($url, '/');
+        
+        $page = self::where('url', $url)
+            ->orWhere('url', '/' . $url)
+            ->first();
+        
+        if (!$page) {
+            // Если страница не найдена в БД, по умолчанию индексируется
+            return true;
+        }
+        
+        return $page->is_indexed;
+    }
+
+    /**
      * Создать дефолтные страницы если их нет
      */
     public static function createDefaultPages()

@@ -27,7 +27,7 @@
             <url>
             <loc>http://127.0.0.1:8000/about</loc>
             <lastmod>
-                                    2025-11-03
+                                    2025-11-13
                             </lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
@@ -41,6 +41,30 @@
             <priority>0.8</priority>
         </url>
             <url>
+            <loc>http://127.0.0.1:8000/gvozdestoianie-i-energeticeskie-praktiki</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/meditaciia-i-rabota-s-soznaniem</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/dyxatelnye-praktiki</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
             <loc>http://127.0.0.1:8000/recording</loc>
             <lastmod>
                                     2025-11-04
@@ -49,36 +73,12 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/tea</loc>
+            <loc>http://127.0.0.1:8000/art-terapevticeskie-napravleniia</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/contacts</loc>
-            <lastmod>
-                                    2025-11-04
-                            </lastmod>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/privacy-policy</loc>
-            <lastmod>
-                                    2025-11-04
-                            </lastmod>
-            <changefreq>yearly</changefreq>
-            <priority>0.3</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/personal-data</loc>
-            <lastmod>
-                                    2025-11-04
-                            </lastmod>
-            <changefreq>yearly</changefreq>
-            <priority>0.3</priority>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
         </url>
             <url>
             <loc>http://127.0.0.1:8000/vyezdnye-sessii-putesestviia-k-sebe</loc>
@@ -97,7 +97,7 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki</loc>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -129,71 +129,39 @@
             <priority>0.8</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/gvozdestoianie-i-energeticeskie-praktiki</loc>
+            <loc>http://127.0.0.1:8000/tea</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/meditaciia-i-rabota-s-soznaniem</loc>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/dzamping</loc>
             <lastmod>
-                                    2025-11-03
+                                    2025-11-06
                             </lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
+            <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/dyxatelnye-praktiki</loc>
+            <loc>http://127.0.0.1:8000/contacts</loc>
             <lastmod>
-                                    2025-11-03
+                                    2025-11-04
                             </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/art-terapevticeskie-napravleniia</loc>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/sovremennaia-xoreografiia</loc>
             <lastmod>
-                                    2025-11-03
+                                    2025-11-06
                             </lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
+            <priority>0.7</priority>
         </url>
             <url>
             <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/kundalini-ioga</loc>
-            <lastmod>
-                                    2025-11-03
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/pilates</loc>
-            <lastmod>
-                                    2025-11-03
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/zdorovaia-spina</loc>
-            <lastmod>
-                                    2025-11-03
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/mfr</loc>
-            <lastmod>
-                                    2025-11-03
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/trx</loc>
             <lastmod>
                                     2025-11-03
                             </lastmod>
@@ -337,38 +305,6 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/ploskii-zivot</loc>
-            <lastmod>
-                                    2025-11-05
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/tabata</loc>
-            <lastmod>
-                                    2025-11-05
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/sustavnaia-gimnastika</loc>
-            <lastmod>
-                                    2025-11-05
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/step-funkcional</loc>
-            <lastmod>
-                                    2025-11-07
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
             <loc>http://127.0.0.1:8000/silovye-programmy/tai-bo</loc>
             <lastmod>
                                     2025-11-05
@@ -377,31 +313,7 @@
             <priority>0.7</priority>
         </url>
             <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/breik-dans</loc>
-            <lastmod>
-                                    2025-11-06
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/dzamping</loc>
-            <lastmod>
-                                    2025-11-06
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
             <loc>http://127.0.0.1:8000/rastiazka-i-plastika/raiatiazka</loc>
-            <lastmod>
-                                    2025-11-06
-                            </lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.7</priority>
-        </url>
-            <url>
-            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki/sovremennaia-xoreografiia</loc>
             <lastmod>
                                     2025-11-06
                             </lastmod>
@@ -460,6 +372,494 @@
             <loc>http://127.0.0.1:8000/massaz-i-telesnye-praktiki/rucnoi-massaz</loc>
             <lastmod>
                                     2025-11-07
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/vyezdnye-sessii-putesestviia-k-sebe/test1</loc>
+            <lastmod>
+                                    2025-11-13
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/pilatessss</loc>
+            <lastmod>
+                                    2025-11-13
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/zdorovaia-spina</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/mfr</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/trx</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/ploskii-zivot</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/tabata</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/sustavnaia-gimnastika</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/step-funkcional</loc>
+            <lastmod>
+                                    2025-11-07
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/breik-dans</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/privacy-policy</loc>
+            <lastmod>
+                                    2025-11-04
+                            </lastmod>
+            <changefreq>yearly</changefreq>
+            <priority>0.3</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/personal-data</loc>
+            <lastmod>
+                                    2025-11-04
+                            </lastmod>
+            <changefreq>yearly</changefreq>
+            <priority>0.3</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/vyezdnye-sessii-putesestviia-k-sebe</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1</loc>
+            <lastmod>
+                                    2025-11-13
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/silovye-programmy</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/rastiazka-i-plastika</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/massaz-i-telesnye-praktiki</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/gvozdestoianie-i-energeticeskie-praktiki</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/meditaciia-i-rabota-s-soznaniem</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/dyxatelnye-praktiki</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/art-terapevticeskie-napravleniia</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/kundalini-ioga</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/pilatessss</loc>
+            <lastmod>
+                                    2025-11-13
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/zdorovaia-spina</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/mfr</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/trx</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/xatxa-ioga</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/ioga-nidra</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/in-ioga</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/ioga-v-gamakax-aero-ioga</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/detskaia-ioga-v-gamakax</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/meditaciia-s-poiushhimi-casami</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/ioga-dlia-beremennyx</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/gvozdestoianie-i-energeticeskie-praktiki/gvozdestoianie</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/ioga-terapiia-zenskogo-zdorovia</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/parnaia-ioga</loc>
+            <lastmod>
+                                    2025-11-03
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/muzskaia-ioga</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/ioga-dlia-pozilyx</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/pranayama-klass</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/ioga-i-smeznye-praktiki/ioga-dlia-nacinaiushhix</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/gvozdestoianie-i-energeticeskie-praktiki/gvozdestoianie-s-provodnikom</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/silovye-programmy/podkacka</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/rastiazka-i-plastika/fleks</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/ploskii-zivot</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/tabata</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/sustavnaia-gimnastika</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/step-funkcional</loc>
+            <lastmod>
+                                    2025-11-07
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/silovye-programmy/tai-bo</loc>
+            <lastmod>
+                                    2025-11-05
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/breik-dans</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/dzamping</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/rastiazka-i-plastika/raiatiazka</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/funkcionalnye-trenirovki1/sovremennaia-xoreografiia</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/silovye-programmy/silovaia-na-vse-telo</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/dyxatelnye-praktiki/osoznannoe-dyxanie-dlia-korrekcii-stressa-i-trevogi</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/dyxatelnye-praktiki/dyxatelnaia-gimnastika-dlia-detei-i-podrostkov</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/meditaciia-i-rabota-s-soznaniem/meditaciia-s-tibetskimi-casami</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/meditaciia-i-rabota-s-soznaniem/gong-meditaciia</loc>
+            <lastmod>
+                                    2025-11-06
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/massaz-i-telesnye-praktiki/taiskii-ioga-massaz-na-tatami</loc>
+            <lastmod>
+                                    2025-11-07
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/massaz-i-telesnye-praktiki/rucnoi-massaz</loc>
+            <lastmod>
+                                    2025-11-07
+                            </lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>
+            <url>
+            <loc>http://127.0.0.1:8000/vyezdnye-sessii-putesestviia-k-sebe/test1</loc>
+            <lastmod>
+                                    2025-11-13
                             </lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.7</priority>

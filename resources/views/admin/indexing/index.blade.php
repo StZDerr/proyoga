@@ -136,6 +136,37 @@
                                     </div>
                                 </a>
 
+                                <a href="{{ route('admin.indexing.sync-dynamic') }}"
+                                    class="list-group-item list-group-item-action">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="bg-warning text-white avatar">
+                                                <i class="fas fa-sync"></i>
+                                            </span>
+                                        </div>
+                                        <div class="col text-truncate">
+                                            <strong>Синхронизировать направления</strong>
+                                            <div class="text-muted">Добавить страницы направлений йоги</div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="{{ route('admin.indexing.cleanup') }}"
+                                    class="list-group-item list-group-item-action"
+                                    onclick="return confirm('Удалить все устаревшие страницы?')">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="bg-danger text-white avatar">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </div>
+                                        <div class="col text-truncate">
+                                            <strong>Очистить устаревшие</strong>
+                                            <div class="text-muted">Удалить несуществующие страницы</div>
+                                        </div>
+                                    </div>
+                                </a>
+
                                 <a href="{{ url('/robots.txt') }}" target="_blank"
                                     class="list-group-item list-group-item-action">
                                     <div class="row align-items-center">

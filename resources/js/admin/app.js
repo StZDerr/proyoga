@@ -2,9 +2,8 @@ import "@tabler/core/dist/js/tabler.min.js";
 import lightGallery from "lightgallery";
 import "lightgallery/css/lightgallery.css";
 
-// Инициализация админ панели
 document.addEventListener("DOMContentLoaded", function () {
-    // === Существующий код ===
+    // === Анимация чисел на карточках ===
     const statCards = document.querySelectorAll(".card-body .h1");
     statCards.forEach((card, index) => {
         setTimeout(() => {
@@ -18,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, index * 200);
     });
 
+    // === Анимация прогресс-баров ===
     const progressBars = document.querySelectorAll(".progress-bar");
     progressBars.forEach((bar) => {
         const width = bar.style.width;
@@ -28,12 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
     });
 
+    // === Автообновление времени ===
     function updateTime() {
         const timeElements = document.querySelectorAll("[data-time]");
         timeElements.forEach((element) => {
             const time = new Date(element.dataset.time);
             const now = new Date();
-            const diff = Math.floor((now - time) / 1000 / 60); // в минутах
+            const diff = Math.floor((now - time) / 1000 / 60); // минуты
+
             if (diff < 60) element.textContent = `${diff}м назад`;
             else if (diff < 1440)
                 element.textContent = `${Math.floor(diff / 60)}ч назад`;
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateTime();
     setInterval(updateTime, 60000);
 
+    // === Эффект "всплеска" при клике по карточке ===
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => {
         card.addEventListener("click", function (e) {
@@ -70,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // === Добавляем CSS-анимацию для ripple ===
     const style = document.createElement("style");
     style.textContent = `
         @keyframes ripple {
@@ -80,14 +84,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     `;
     document.head.appendChild(style);
+
     console.log("🧘‍♀️ Админ панель ИстокиЯ инициализирована");
 
     // === LightGallery для мини-превью изображений ===
     const lightboxElements = document.querySelectorAll(".lightbox");
+
     lightboxElements.forEach((el) => {
-        lightGallery(el, {
+        const gallery = lightGallery(el, {
             selector: "this",
             download: false, // отключаем кнопку скачивания
+        });
+
+        // Когда открывается — опускаем header под LightGallery
+        gallery.on("lgBeforeOpen", () => {
+            document
+                .querySelector(".site-header")
+                ?.classList.add("under-lightbox");
+        });
+
+        // Когда закрывается — возвращаем header наверх
+        gallery.on("lgAfterClose", () => {
+            document
+                .querySelector(".site-header")
+                ?.classList.remove("under-lightbox");
         });
     });
 });

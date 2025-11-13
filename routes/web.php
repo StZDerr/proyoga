@@ -11,7 +11,6 @@ use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PriceCategoryController;
-use App\Http\Controllers\PriceItemController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
@@ -19,6 +18,8 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
+use App\Http\Controllers\SubSubCategoryFaqController;
+use App\Http\Controllers\SubSubCategoryPhotoController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/toggle', [IndexingController::class, 'toggleIndexing'])->name('toggle');
         Route::get('/generate-sitemap', [IndexingController::class, 'generateSitemap'])->name('generate-sitemap');
         Route::get('/initialize', [IndexingController::class, 'initializeDefaults'])->name('initialize');
+        Route::get('/sync-dynamic', [IndexingController::class, 'syncDynamicPages'])->name('sync-dynamic');
+        Route::get('/cleanup', [IndexingController::class, 'cleanupOrphanedPages'])->name('cleanup');
         Route::get('/{indexing}/toggle-page', [IndexingController::class, 'togglePageIndexing'])->name('toggle-page');
     });
 
@@ -54,6 +57,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
     Route::softDeletableResources([
         'news' => NewsController::class,
+        'sub-sub-category-faqs' => SubSubCategoryFaqController::class,
         'stories' => StoryController::class,
         'activity' => ActivityController::class,
         'users' => UserController::class,
@@ -68,6 +72,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'sub-categories' => SubCategoryController::class,
         'sub-sub-categories' => SubSubCategoryController::class,
     ]);
+    Route::delete('sub-sub-categories/photos/{photo}', [SubSubCategoryPhotoController::class, 'destroy'])
+        ->name('sub-sub-categories.photos.destroy');
     Route::delete('stories/{story}/media/{media}', [StoryController::class, 'destroyMedia'])->name('stories.media.destroy');
     Route::post('price-tables/{priceTable}/move-up', [PriceTableController::class, 'moveUp'])->name('price-tables.move-up');
     Route::post('price-tables/{priceTable}/move-down', [PriceTableController::class, 'moveDown'])->name('price-tables.move-down');

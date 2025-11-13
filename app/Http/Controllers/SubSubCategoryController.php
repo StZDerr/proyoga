@@ -13,12 +13,27 @@ class SubSubCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subSubCategories = SubSubCategory::with('subCategory.mainCategory')->orderBy('id', 'desc')->get();
+        $query = SubSubCategory::with('subCategory.mainCategory');
+        
+        // Фильтр по подкатегории
+        if ($request->filled('sub_category_id')) {
+            $query->where('sub_category_id', $request->sub_category_id);
+        }
+        
+        // Фильтр по главной категории (через подкатегорию)
+        if ($request->filled('main_category_id')) {
+            $query->whereHas('subCategory', function($q) use ($request) {
+                $q->where('main_category_id', $request->main_category_id);
+            });
+        }
+        
+        $subSubCategories = $query->orderBy('id', 'desc')->get();
+        $mainCategories = MainCategory::orderBy('title')->get();
+        $subCategories = SubCategory::orderBy('title')->get();
 
-        return view('admin.sub_sub_categories.index', compact('subSubCategories'));
-
+        return view('admin.sub_sub_categories.index', compact('subSubCategories', 'mainCategories', 'subCategories'));
     }
 
     /**
@@ -37,11 +52,13 @@ class SubSubCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // Валидация
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'about' => 'nullable|string',
             'image' => 'sometimes|image|mimes:webp|max:2048',
+            'photos.*' => 'nullable|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|integer|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
             'benefit_groups.*.title' => 'nullable|string',
@@ -53,11 +70,15 @@ class SubSubCategoryController extends Controller
             'title.max' => 'Название не должно превышать 255 символов',
 
             'description.string' => 'Описание должно быть строкой',
-            'about.string' => 'Поле "о товаре" должно быть строкой',
+            'about.string' => 'Поле "о программе" должно быть строкой',
 
             'image.image' => 'Файл должен быть изображением',
             'image.mimes' => 'Фотография должна быть в формате .webp',
             'image.max' => 'Размер изображения не должен превышать 2 МБ',
+
+            'photos.*.image' => 'Файл должен быть изображением',
+            'photos.*.mimes' => 'Фотография должна быть в формате .webp',
+            'photos.*.max' => 'Размер фотографии не должен превышать 2 МБ',
 
             'sub_category_id.required' => 'Необходимо указать подкатегорию',
             'sub_category_id.integer' => 'Неверный идентификатор подкатегории',
@@ -68,23 +89,24 @@ class SubSubCategoryController extends Controller
             'benefit_groups.*.benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
         ]);
 
-        // Берём основные поля из валидированных данных
+        // Основные поля
         $data = [
             'title' => trim($validated['title']),
-            'description' => isset($validated['description']) ? trim($validated['description']) : null,
-            'about' => isset($validated['about']) ? trim($validated['about']) : null,
+            'description' => $validated['description'] ? trim($validated['description']) : null,
+            'about' => $validated['about'] ? trim($validated['about']) : null,
             'sub_category_id' => $validated['sub_category_id'],
         ];
 
-        // Обрабатываем группы преимуществ безопасно из $validated
+        // Обработка групп преимуществ
         $benefitGroups = [];
         foreach ($validated['benefit_groups'] ?? [] as $group) {
             $groupTitle = trim($group['title'] ?? '');
             $rawBenefits = $group['benefits'] ?? [];
-            // Очищаем и тримим преимущества
+
             $benefits = array_values(array_filter(array_map(function ($b) {
                 return is_string($b) ? trim($b) : null;
             }, $rawBenefits)));
+
             if ($groupTitle !== '' && ! empty($benefits)) {
                 $benefitGroups[] = [
                     'title' => $groupTitle,
@@ -94,12 +116,22 @@ class SubSubCategoryController extends Controller
         }
         $data['benefits'] = $benefitGroups;
 
-        // Файл изображения
+        // Основное изображение
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('sub_sub_categories', 'public');
         }
 
-        SubSubCategory::create($data);
+        // Создаём подподкатегорию
+        $subSub = SubSubCategory::create($data);
+
+        // Множественные фотографии
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $subSub->photos()->create([
+                    'image' => $photo->store('sub_sub_photos', 'public'),
+                ]);
+            }
+        }
 
         return redirect()->route('admin.sub-sub-categories.index')
             ->with('success', 'Подподкатегория успешно добавлена');
@@ -134,6 +166,7 @@ class SubSubCategoryController extends Controller
             'description' => 'nullable|string',
             'about' => 'nullable|string',
             'image' => 'sometimes|image|mimes:webp|max:2048',
+            'photos.*' => 'nullable|image|mimes:webp|max:2048',
             'sub_category_id' => 'required|integer|exists:sub_categories,id',
             'benefit_groups' => 'nullable|array',
             'benefit_groups.*.title' => 'nullable|string',
@@ -145,11 +178,15 @@ class SubSubCategoryController extends Controller
             'title.max' => 'Название не должно превышать 255 символов',
 
             'description.string' => 'Описание должно быть строкой',
-            'about.string' => 'Поле "о товаре" должно быть строкой',
+            'about.string' => 'Поле "о программе" должно быть строкой',
 
             'image.image' => 'Файл должен быть изображением',
             'image.mimes' => 'Фотография должна быть в формате .webp',
             'image.max' => 'Размер изображения не должен превышать 2 МБ',
+
+            'photos.*.image' => 'Файл должен быть изображением',
+            'photos.*.mimes' => 'Фотография должна быть в формате .webp',
+            'photos.*.max' => 'Размер фотографии не должен превышать 2 МБ',
 
             'sub_category_id.required' => 'Необходимо указать подкатегорию',
             'sub_category_id.integer' => 'Неверный идентификатор подкатегории',
@@ -160,14 +197,15 @@ class SubSubCategoryController extends Controller
             'benefit_groups.*.benefits.*.max' => 'Размер преимущества не должен превышать 255 символов',
         ]);
 
+        // Основные поля
         $data = [
             'title' => trim($validated['title']),
-            'description' => isset($validated['description']) ? trim($validated['description']) : null,
-            'about' => isset($validated['about']) ? trim($validated['about']) : null,
+            'description' => $validated['description'] ? trim($validated['description']) : null,
+            'about' => $validated['about'] ? trim($validated['about']) : null,
             'sub_category_id' => $validated['sub_category_id'],
         ];
 
-        // Обрабатываем benefit_groups из $validated
+        // Обработка групп преимуществ
         $benefitGroups = [];
         foreach ($validated['benefit_groups'] ?? [] as $group) {
             $groupTitle = trim($group['title'] ?? '');
@@ -184,7 +222,7 @@ class SubSubCategoryController extends Controller
         }
         $data['benefits'] = $benefitGroups;
 
-        // Обработка изображения: если загружено — удаляем старое и сохраняем новое
+        // Основное изображение: если загружено — удаляем старое и сохраняем новое
         if ($request->hasFile('image')) {
             if ($subSubCategory->image && Storage::disk('public')->exists($subSubCategory->image)) {
                 Storage::disk('public')->delete($subSubCategory->image);
@@ -192,7 +230,17 @@ class SubSubCategoryController extends Controller
             $data['image'] = $request->file('image')->store('sub_sub_categories', 'public');
         }
 
+        // Обновляем подподкатегорию
         $subSubCategory->update($data);
+
+        // Множественные фотографии: добавляем новые
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $subSubCategory->photos()->create([
+                    'image' => $photo->store('sub_sub_photos', 'public'),
+                ]);
+            }
+        }
 
         return redirect()->route('admin.sub-sub-categories.index')
             ->with('success', 'Подподкатегория успешно обновлена');

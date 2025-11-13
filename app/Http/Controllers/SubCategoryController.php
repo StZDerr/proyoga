@@ -12,11 +12,19 @@ class SubCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subCategories = SubCategory::with('mainCategory')->orderBy('id', 'desc')->get();
+        $query = SubCategory::with('mainCategory');
+        
+        // Фильтр по главной категории
+        if ($request->filled('main_category_id')) {
+            $query->where('main_category_id', $request->main_category_id);
+        }
+        
+        $subCategories = $query->orderBy('id', 'desc')->get();
+        $mainCategories = MainCategory::orderBy('title')->get();
 
-        return view('admin.sub_categories.index', compact('subCategories'));
+        return view('admin.sub_categories.index', compact('subCategories', 'mainCategories'));
     }
 
     /**

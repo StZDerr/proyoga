@@ -36,12 +36,12 @@ class PageContentController extends Controller
 
         $suggested = collect($pageSlugs)->merge($indexableUrls)->unique()->values()->toArray();
 
-        // Добавляем динамические варианты для направлений: direction/{slug} и direction/{slug}/{subslug}
+        // Добавляем динамические варианты для направлений: {slug} и {slug}/{subslug}
         $subCategories = SubCategory::with('subSubCategories')->get();
         foreach ($subCategories as $sub) {
-            $suggested[] = "direction/{$sub->slug}";
+            $suggested[] = "{$sub->slug}";
             foreach ($sub->subSubCategories as $subSub) {
-                $suggested[] = "direction/{$sub->slug}/{$subSub->slug}";
+                $suggested[] = "{$sub->slug}/{$subSub->slug}";
             }
         }
 

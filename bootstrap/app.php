@@ -11,7 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->web(\App\Http\Middleware\PageMetaMiddleware::class);
+        // Удалён PageMetaMiddleware - теперь используется View Composer
         $middleware->web(\App\Http\Middleware\CacheControl::class);
 
         // Redirect authenticated users to /admin instead of /home

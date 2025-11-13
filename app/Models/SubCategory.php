@@ -45,8 +45,27 @@ class SubCategory extends Model
         });
 
         static::updating(function ($model) {
-            if ($model->isDirty('title') && empty($model->slug)) {
+            // Если title изменился, автоматически обновляем slug
+            if ($model->isDirty('title')) {
+                $oldSlug = $model->getOriginal('slug');
                 $model->slug = $model->generateSlug($model->title);
+                
+                // Обновляем URL в indexable_pages, если slug изменился
+                if ($oldSlug && $oldSlug !== $model->slug) {
+                    // Обновляем запись подкатегории
+                    \App\Models\IndexablePage::where('url', $oldSlug)
+                        ->update(['url' => $model->slug]);
+                    
+                    // Обновляем все связанные подподкатегории
+                    $subSubCategories = $model->subSubCategories;
+                    foreach ($subSubCategories as $subSub) {
+                        $oldUrl = $oldSlug . '/' . $subSub->slug;
+                        $newUrl = $model->slug . '/' . $subSub->slug;
+                        
+                        \App\Models\IndexablePage::where('url', $oldUrl)
+                            ->update(['url' => $newUrl]);
+                    }
+                }
             }
         });
     }

@@ -32,6 +32,13 @@ class SubSubCategory extends Model
         return $this->hasMany(SubSubCategoryPhoto::class);
     }
 
+    public function faqs()
+    {
+        return $this->hasMany(\App\Models\SubSubCategoryFaq::class)
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'asc');
+    }
+
     /**
      * Resolve route binding within a scoped parent
      */
@@ -62,8 +69,19 @@ class SubSubCategory extends Model
         });
 
         static::updating(function ($model) {
-            if ($model->isDirty('title') && empty($model->slug)) {
+            // Если title изменился, автоматически обновляем slug
+            if ($model->isDirty('title')) {
+                $oldSlug = $model->getOriginal('slug');
                 $model->slug = $model->generateSlug($model->title);
+                
+                // Обновляем URL в indexable_pages, если slug изменился
+                if ($oldSlug && $oldSlug !== $model->slug && $model->subCategory) {
+                    $oldUrl = $model->subCategory->slug . '/' . $oldSlug;
+                    $newUrl = $model->subCategory->slug . '/' . $model->slug;
+                    
+                    \App\Models\IndexablePage::where('url', $oldUrl)
+                        ->update(['url' => $newUrl]);
+                }
             }
         });
     }

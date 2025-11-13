@@ -99,7 +99,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link ms-3" href="{{ route('admin.questions.index') }}">
-                                    Вопросы
+                                    Вопросы на странице welcome
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -168,6 +168,11 @@
                             <li class="nav-item">
                                 <a class="nav-link ms-3" href="{{ route('admin.sub-sub-categories.index') }}">
                                     ПодПодКатегории Направлений
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-3" href="{{ route('admin.sub-sub-category-faqs.index') }}">
+                                    Вопросы-ответы
                                 </a>
                             </li>
                         </ul>

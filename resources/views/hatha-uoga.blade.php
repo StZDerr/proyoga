@@ -85,13 +85,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <a href="{{ route('photo-galleries') }}" class="btn btn-more mt-4">
-                            Смотреть все <i class="bi bi-arrow-right"></i>
-                        </a>
                     </div>
                 @endif
-
             </div>
             @if ($subSubCategory->benefits && count($subSubCategory->benefits) > 0)
                 <h2 class="subTitle">Польза {{ $subSubCategory->genitive_title }}</h2>
@@ -135,6 +130,39 @@
     <div class="mb-5">
         @include('partials.recording-block')
     </div>
+    @if ($questions->isNotEmpty())
+        <div class="questions mt-5 mb-5">
+            <div class="container">
+                <div class="d-flex flex-column">
+                    <div class="title mb-5">
+                        Часто задаваемые вопросы
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        @foreach ($questions as $index => $question)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $index + 1 }}">
+                                    <button class="accordion-button {{ $index === 0 ? '' : 'collapsed' }}"
+                                        type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ $index + 1 }}"
+                                        aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-controls="collapse{{ $index + 1 }}">
+                                        {{ $question->question }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $index + 1 }}"
+                                    class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                    aria-labelledby="heading{{ $index + 1 }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        {!! nl2br(e($question->answer)) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     @include('partials.footer')
 
 </body>

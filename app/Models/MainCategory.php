@@ -29,7 +29,8 @@ class MainCategory extends Model
         });
 
         static::updating(function ($model) {
-            if ($model->isDirty('title') && empty($model->slug)) {
+            // Если title изменился, автоматически обновляем slug
+            if ($model->isDirty('title')) {
                 $model->slug = $model->generateSlug($model->title);
             }
         });
