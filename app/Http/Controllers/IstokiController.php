@@ -17,7 +17,7 @@ class IstokiController extends Controller
     public function index()
     {
         $promotions = Promotion::all();
-        $categories = PriceCategory::with(['tables.items'])->get();
+        // $categories = PriceCategory::with(['tables.items'])->get();
         $personals = Personal::all();
         $galleries = Gallery::where('is_active', 1)
             ->orderBy('sort_order', 'desc')->get();
@@ -29,14 +29,12 @@ class IstokiController extends Controller
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('home');
         $pageContent = \App\Helpers\PageContentHelper::getContent('home');
 
-        return view('welcome', compact('promotions', 'categories', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'pageMeta', 'pageContent'));
+        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'pageMeta', 'pageContent'));
     }
 
     public function priceList()
     {
-        $categories = PriceCategory::with(['tables' => function ($q) {
-            $q->ordered()->with('items'); // использует scopeOrdered() в модели PriceTable
-        }])->get();
+        $categories = PriceCategory::select('id', 'name', 'file')->get();
 
         // Загружаем мета-данные для страницы price-list
         $pageMeta = \App\Helpers\PageContentHelper::getMeta('price-list');

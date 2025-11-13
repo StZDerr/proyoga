@@ -13,6 +13,9 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'lightgallery' => [
+        'key' => env('LIGHTGALLERY_KEY'),
+    ],
     'vk' => [
         'token' => env('VK_TOKEN'),
         'api_version' => env('VK_API_VERSION', '5.131'),

@@ -12,6 +12,7 @@ a {
     padding: 25px 100px;
     transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
     will-change: padding;
+    z-index: 12000 !important; /* выше всех обычных блоков, включая картинку */
 }
 
 /* Стили для скрытия элементов при скролле */

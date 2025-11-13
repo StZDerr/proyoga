@@ -38,42 +38,12 @@
         height: 400px;
     }
 }
-.price-list .text .section-title {
-    font-family: var(--font-standart-TenorSans);
-    font-weight: 400;
-    font-size: var(--font-size-text-desc-40px);
-    line-height: 1.5em;
-    color: var(--primary-color-button-123d4d);
-}
 
-@media (max-width: 700px) {
-    .price-list > div > div > div:last-child {
-        order: -1;
-    }
-}
-
-.price-list span {
-    font-family: var(--font-standart-Montserrat);
-    font-weight: 500;
-    font-size: var(--font-size-text-desc-28px);
-    color: var(--secondary-color-1d7d6f);
-}
-
-.price-list .button {
-    flex-grow: 1;
-    padding: 1rem;
-    border: 0.1rem solid var(--primary-color-button-123d4d);
-    border-radius: 1.8rem;
-    color: var(--primary-color-button-123d4d);
-    font-size: var(--font-size-text-desc-28px);
-    color: white;
-    background-color: var(--primary-color-button-123d4d);
-}
-
+/* ======= Категории ======= */
 .price-list .category-btn {
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    font-size: var(--font-size-text-desc-20px);
+    font-size: 20px;
     line-height: 1.5em;
     text-align: center;
     padding: 14px 24px;
@@ -90,7 +60,7 @@
 }
 
 .price-list .category-btn.active {
-    background-color: #123d4d;
+    background-color: var(--primary-color-button-123d4d);
     color: #fefefc;
     box-shadow: 0 6px 12px rgba(18, 61, 77, 0.25);
     transform: translateY(-2px);
@@ -99,131 +69,53 @@
 .price-list .category-btn:hover:not(.active) {
     background-color: #dde8e4;
     color: #16665a;
-    transform: translateY(-1px);
 }
 
+/* ======= Контент категорий ======= */
 .price-list .content-text {
     display: none;
-    font-family: "Montserrat", sans-serif;
-    font-size: var(--font-size-text-desc-20px);
     margin-top: 2rem;
-    padding: 1.8rem;
 }
 
 .price-list .content-text.active {
     display: block;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ======= Картинки прайса ======= */
+.price-list .price-image {
+    position: relative; /* чтобы z-index работал */
+    z-index: 1; /* ниже navbar */
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.price-list .btn-container {
-    gap: 1.5rem;
+/* ======= LightGallery ======= */
+.lightbox,
+.lightbox.active,
+.lg-backdrop,
+.lg-outer,
+.lg-outer .lg-inner {
+    z-index: 11000 !important;
 }
 
-.custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    /* Изменили на collapse для правильного отображения границ */
-    margin-top: 1rem;
+.lg-backdrop,
+.lg-outer {
+    z-index: 15000 !important;
 }
 
-/* Границы для всех строк */
-.table-title-row,
-.table-item-row {
-    border-top: 1px solid #acd6d2;
-    border-bottom: 1px solid #acd6d2;
-}
-
-/* Границы для ячеек */
-.table-title-row td,
-.table-item-row td {
-    padding: 0 2rem;
-    border-top: 1px solid #acd6d2;
-    border-bottom: 1px solid #acd6d2;
-}
-
-/* Убираем двойную границу между строками */
-.table-item-row + .table-item-row {
-    border-top: none;
-}
-
-.table-item-row + .table-item-row td {
-    border-top: none;
-}
-
-/* Заголовок */
-.table-title {
-    font-family: var(--font-standart-TenorSans);
-    font-weight: 400;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1.5em;
-    letter-spacing: 0.02em;
-    color: #097173;
-    padding: 12px 0;
-    background-color: #f8fffe;
-    /* лёгкий фон */
-}
-
-/* Название занятия */
-.table-item-name {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.5em;
-    letter-spacing: 0.02em;
-    color: #103e4e;
-    padding: 12px 0;
-    width: 65%;
-}
-
-/* Правая колонка */
-.table-item-info {
-    text-align: right;
-    padding: 12px 0;
-    width: 35%;
-}
-
-.table-item-duration {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5em;
-    letter-spacing: 0.02em;
-    color: #888888;
-}
-
-.table-item-price {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1.5em;
-    letter-spacing: 0.02em;
-    color: #2d3134;
-    margin-top: 4px;
-}
-
-/* Адаптивность: на мобильных — вертикальное расположение */
+/* ======= Адаптивность ======= */
 @media (max-width: 768px) {
-    .table-item-name,
-    .table-item-info {
-        display: block;
-        width: 100%;
-        text-align: left;
+    .price-list .price-image {
+        max-width: 95%;
     }
 
-    .table-item-info {
-        text-align: right;
-        margin-top: 4px;
+    .price-list .category-btn {
+        min-width: auto;
+        flex: 1 1 100%;
+        margin-bottom: 10px;
     }
 }

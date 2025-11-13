@@ -9,6 +9,7 @@ class PriceCategory extends Model
 {
     protected $fillable = [
         'name',
+        'file',
     ];
 
     public function tables()

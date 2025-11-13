@@ -32,14 +32,33 @@ class PriceCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:price_categories,name',
+            'file' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,png',
+                'max:5120', // размер файла до 5 МБ
+                'dimensions:min_width=1300,min_height=1900,max_width=2000,max_height=2000',
+            ],
         ], [
             'name.required' => 'Название обязательно',
             'name.string' => 'Название должно быть строкой',
             'name.max' => 'Название не должно превышать 255 символов',
             'name.unique' => 'Категория с таким названием уже существует',
+            'file.file' => 'Файл должен быть корректным',
+            'file.mimes' => 'Допустимые форматы: jpg, jpeg, png',
+            'file.max' => 'Файл не должен превышать 5 МБ',
+            'file.dimensions' => 'Изображение должно быть минимум 1300x1900 и максимум 2000x2000 пикселей',
         ]);
 
-        PriceCategory::create($validated);
+        $category = new PriceCategory;
+        $category->name = $validated['name'];
+
+        // обработка файла
+        if ($request->hasFile('file')) {
+            $category->file = $request->file('file')->store('prices', 'public');
+        }
+
+        $category->save();
 
         return redirect()->route('admin.price-categories.index')
             ->with('success', 'Категория добавлена!');
@@ -67,15 +86,37 @@ class PriceCategoryController extends Controller
     public function update(Request $request, PriceCategory $priceCategory)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:price_categories,name,'.$priceCategory->id,
+            'name' => 'required|string|max:255|unique:price_categories,name',
+            'file' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,png',
+                'max:5120', // размер файла до 5 МБ
+                'dimensions:min_width=1300,min_height=1900,max_width=2000,max_height=2000',
+            ],
         ], [
             'name.required' => 'Название обязательно',
             'name.string' => 'Название должно быть строкой',
             'name.max' => 'Название не должно превышать 255 символов',
             'name.unique' => 'Категория с таким названием уже существует',
+            'file.file' => 'Файл должен быть корректным',
+            'file.mimes' => 'Допустимые форматы: jpg, jpeg, png',
+            'file.max' => 'Файл не должен превышать 5 МБ',
+            'file.dimensions' => 'Изображение должно быть минимум 1300x1900 и максимум 2000x2000 пикселей',
         ]);
 
-        $priceCategory->update($validated);
+        $priceCategory->name = $validated['name'];
+
+        if ($request->hasFile('file')) {
+            // удаляем старый файл, если он существует
+            if ($priceCategory->file && \Storage::disk('public')->exists($priceCategory->file)) {
+                \Storage::disk('public')->delete($priceCategory->file);
+            }
+
+            $priceCategory->file = $request->file('file')->store('prices', 'public');
+        }
+
+        $priceCategory->save();
 
         return redirect()->route('admin.price-categories.index')
             ->with('success', 'Категория обновлена!');
