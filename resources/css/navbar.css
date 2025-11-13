@@ -291,7 +291,7 @@ a {
         position: fixed;
         top: 0;
         right: 0;
-        width: 80%;
+        width: 85%;
         max-width: 400px;
         height: 100vh;
         background: #fff;
@@ -333,8 +333,14 @@ a {
     .menuMobile .menu .adress {
         font-family: Montserrat;
         font-weight: 700;
-        font-size: 14px;
-        color: #123d4d;
+        font-size: var(--font-size-text-desc-20px);
+        color: var(--primary-color-button-123d4d);
+    }
+
+    .menuMobile .menu .adress-desc {
+        font-weight: 700;
+        font-size: var(--font-size-text-desc-16px);
+        color: var(--primary-color-button-123d4d);
     }
 
     .menuMobile .button {

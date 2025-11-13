@@ -38,7 +38,9 @@
             <p class="text other">
                 {{ $subSubCategory->about ?? 'Данное направление включает в себя полный комплекс взаимодействия на физическом и ментальном уровне через выполнение асан, дыхательных упражнений (пранаям), мудр и концентрацию внимания посредством медитации. Это направление стало основоположником многих популярных современных направлений йоги.' }}
             </p>
+            <div class="gallery">
 
+            </div>
             @if ($subSubCategory->benefits && count($subSubCategory->benefits) > 0)
                 <h2 class="subTitle">Польза {{ $subSubCategory->genitive_title }}</h2>
                 @foreach ($subSubCategory->benefits as $benefitGroup)

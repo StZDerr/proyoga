@@ -14,6 +14,7 @@
                 <div class="adres">
                     <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
                         <div class="adress">с. Супсех, ул. Советская, 1Б</div>
+                        <span class="adress-desc">Залы групповых занятий, чайная зона, массаж</span>
                     </a>
                     <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block">
                         <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
@@ -69,11 +70,13 @@
                 <a href="tel:+79649264147" class="menuItem phone">
                     +7 (964) 926-41-47
                 </a>
-                <a href="https://yandex.ru/maps/-/CLfTYTjy">
+                <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
                     <div class="adress">с. Супсех, ул. Советская, 1Б</div>
+                    <span class="adress-desc">Залы групповых занятий, чайная зона, массаж</span>
                 </a>
-                <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block mt-2">
+                <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block">
                     <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
+                    <span class="adress-desc">Индивидуальные тренировки, массаж, психолог</span>
                 </a>
                 <a href="{{ route('recording') }}" class="button">Получить консультацию</a>
                 <div class="rating">

@@ -17,8 +17,14 @@
                 "ИстокиЯ" - Твой путь к себе начинается с Истока. Здесь соединяются
                 тело, дыхание, звук, осознанность и общение.
             </p>
-            <div class="adress">с. Супсех, ул. Советская, 1Б</div>
-            <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
+            <a href="https://yandex.ru/maps/-/CLfTYTjy" target="_blank">
+                <div class="adress">с. Супсех, ул. Советская, 1Б</div>
+                <span class="adress-desc">Залы групповых занятий, чайная зона, массаж</span>
+            </a>
+            <a href="https://yandex.ru/maps/-/CLvgVLle" target="_blank" class="d-block">
+                <div class="adress">г. Анапа, ул. 40 лет Победы, 1Б, оф. 115</div>
+                <span class="adress-desc">Индивидуальные тренировки, массаж, психолог</span>
+            </a>
             <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
             <div class="social">
                 <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">

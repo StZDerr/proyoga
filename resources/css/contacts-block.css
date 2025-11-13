@@ -48,20 +48,26 @@
 .containerMain .container .text {
     font-size: var(--font-size-text-desc-20px);
     font-weight: 500;
-    color: #1d7d6f;
+    color: var(--secondary-color-1d7d6f);
     text-wrap: balance;
 }
 
 .containerMain .container .adress {
     font-weight: 700;
     font-size: var(--font-size-text-desc-20px);
-    color: #123d4d;
+    color: var(--primary-color-button-123d4d);
+}
+
+.containerMain .container .adress-desc {
+    font-weight: 700;
+    font-size: var(--font-size-text-desc-16px);
+    color: var(--primary-color-button-123d4d);
 }
 
 .containerMain .container .phone {
     font-size: var(--font-size-text-desc-20px);
     font-weight: 700;
-    color: #1d7d6f;
+    color: var(--secondary-color-1d7d6f);
 }
 
 .containerMain .container .social,
