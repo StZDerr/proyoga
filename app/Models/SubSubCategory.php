@@ -27,6 +27,11 @@ class SubSubCategory extends Model
         return $this->belongsTo(SubCategory::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(SubSubCategoryPhoto::class);
+    }
+
     /**
      * Resolve route binding within a scoped parent
      */

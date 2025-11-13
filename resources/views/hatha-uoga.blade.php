@@ -9,7 +9,7 @@
     @include('partials.favicon')
 
     {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/price-list.css', 'resources/js/price-list.js', 'resources/css/hatha-uoga.css', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/hatha-uoga.css', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js', 'resources/js/hatha-uoga.js'])
 </head>
 
 <body>
@@ -39,6 +39,58 @@
                 {{ $subSubCategory->about ?? 'Данное направление включает в себя полный комплекс взаимодействия на физическом и ментальном уровне через выполнение асан, дыхательных упражнений (пранаям), мудр и концентрацию внимания посредством медитации. Это направление стало основоположником многих популярных современных направлений йоги.' }}
             </p>
             <div class="gallery">
+                @if ($subSubCategory->photos->isNotEmpty())
+                    <div class="photo-gallery">
+                        <div class="container">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="text text-center">
+                                    <h2 class="section-title">Фотогалерея</h2>
+                                    <span>
+                                        Каждый кадр — вдох, наполненный светом, движением и гармонией.
+                                        Прикоснитесь к миру {{ $subSubCategory->title }}.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="container mt-5">
+                                <div class="gallery3-wrapper position-relative">
+                                    <div class="swiper-button-prev gallery3-prev">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                                            <polyline points="12 19 5 12 12 5"></polyline>
+                                        </svg>
+                                    </div>
+
+                                    <div class="swiper-button-next gallery3-next">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </div>
+
+                                    <div class="swiper gallery3-swiper">
+                                        <div class="swiper-wrapper align-items-center">
+                                            @foreach ($subSubCategory->photos as $photo)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ asset('storage/' . $photo->image) }}"
+                                                        class="gallery3-item">
+                                                        <img src="{{ asset('storage/' . $photo->image) }}"
+                                                            class="card-img-top" alt="{{ $subSubCategory->title }}"
+                                                            loading="lazy" width="800" height="600">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('photo-galleries') }}" class="btn btn-more mt-4">
+                            Смотреть все <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                @endif
 
             </div>
             @if ($subSubCategory->benefits && count($subSubCategory->benefits) > 0)

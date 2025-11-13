@@ -17,6 +17,7 @@
                     <th>О программе</th>
                     <th>Преимущества</th>
                     <th>Изображение</th>
+                    <th>Сколько фотографий</th>
                     <th>Действия</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
                                 <img src="{{ asset('storage/' . $subSub->image) }}" alt="{{ $subSub->title }}" width="100">
                             @endif
                         </td>
+                        <td>{{ $subSub->photos->count() }}</td>
                         <td>
                             <a href="{{ route('admin.sub-sub-categories.edit', $subSub) }}"
                                 class="btn btn-sm btn-warning">Редактировать</a>

@@ -37,7 +37,7 @@ class PriceCategoryController extends Controller
                 'file',
                 'mimes:jpg,jpeg,png',
                 'max:5120', // размер файла до 5 МБ
-                'dimensions:min_width=1300,min_height=1900,max_width=2000,max_height=2000',
+                'dimensions:min_width=1300,min_height=1000,max_width=2000,max_height=2000',
             ],
         ], [
             'name.required' => 'Название обязательно',
@@ -86,19 +86,18 @@ class PriceCategoryController extends Controller
     public function update(Request $request, PriceCategory $priceCategory)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:price_categories,name',
+            'name' => 'required|string|max:255',
             'file' => [
                 'nullable',
                 'file',
                 'mimes:jpg,jpeg,png',
                 'max:5120', // размер файла до 5 МБ
-                'dimensions:min_width=1300,min_height=1900,max_width=2000,max_height=2000',
+                'dimensions:min_width=1300,min_height=1000,max_width=2000,max_height=2000',
             ],
         ], [
             'name.required' => 'Название обязательно',
             'name.string' => 'Название должно быть строкой',
             'name.max' => 'Название не должно превышать 255 символов',
-            'name.unique' => 'Категория с таким названием уже существует',
             'file.file' => 'Файл должен быть корректным',
             'file.mimes' => 'Допустимые форматы: jpg, jpeg, png',
             'file.max' => 'Файл не должен превышать 5 МБ',
