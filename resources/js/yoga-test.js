@@ -252,9 +252,15 @@ class YogaTest {
         const name = formData.get("name");
         const phone = formData.get("phone");
         const email = formData.get("email");
+        const captchaToken = formData.get("smart-token");
 
         if (!name || !phone) {
             alert("Пожалуйста, заполните обязательные поля (Имя и Телефон)");
+            return;
+        }
+
+        if (!captchaToken) {
+            alert("Пожалуйста, пройдите проверку капчи");
             return;
         }
 
@@ -279,6 +285,7 @@ class YogaTest {
                     phone: phone,
                     email: email,
                     answers: this.answers,
+                    "smart-token": captchaToken,
                 }),
             });
 

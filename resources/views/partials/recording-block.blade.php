@@ -37,6 +37,12 @@
                             Я согласен(-на) на <a href="{{ route('personal-data') }}"> обработку персональных данных</a>
                         </label>
                     </div>
+                    
+                    {{-- Яндекс капча --}}
+                    <div class="mb-4">
+                        <x-yandex-captcha class="mb-3" />
+                        <div class="captcha-error text-danger small" style="display: none;"></div>
+                    </div>
 
                     <button type="submit" class="btn recording-submit-btn w-100">
                         Получить констультацию

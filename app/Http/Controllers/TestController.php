@@ -42,6 +42,7 @@ class TestController extends Controller
             'answers' => 'required|array|min:1',
             'answers.*.question_id' => 'required|integer|exists:test_questions,id',
             'answers.*.option_id' => 'required|integer|exists:test_options,id',
+            'smart-token' => ['required', new \App\Rules\YandexCaptcha()],
         ], [
             'name.required' => 'Имя обязательно',
             'name.string' => 'Имя должно быть строкой',
@@ -66,6 +67,8 @@ class TestController extends Controller
             'answers.*.option_id.required' => 'ID варианта обязателен',
             'answers.*.option_id.integer' => 'ID варианта должен быть числом',
             'answers.*.option_id.exists' => 'Вариант не найден',
+
+            'smart-token.required' => 'Необходимо пройти проверку капчи',
         ]);
 
         if ($validator->fails()) {

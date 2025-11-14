@@ -52,6 +52,20 @@
                                             <label for="user-email" class="form-label">Email</label>
                                             <input type="email" class="form-control" id="user-email" name="email">
                                         </div>
+                                        <div class="form-check mb-3">
+                                            <input type="checkbox" class="form-check-input" id="test-privacy" 
+                                                name="privacy_agreement" required>
+                                            <label class="form-check-label" for="test-privacy">
+                                                Я согласен(-на) на <a href="{{ route('personal-data') }}"> обработку персональных данных</a>
+                                            </label>
+                                        </div>
+
+                                        {{-- Яндекс капча --}}
+                                        <div class="mb-3">
+                                            <x-yandex-captcha class="mb-3" />
+                                            <div class="captcha-error text-danger small" style="display: none;"></div>
+                                        </div>
+
                                         <div class="mb-3">
                                             <small class="text-muted">
                                                 * Обязательные поля. Мы свяжемся с вами для записи на бесплатное

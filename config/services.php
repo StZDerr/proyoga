@@ -16,6 +16,12 @@ return [
     'lightgallery' => [
         'key' => env('LIGHTGALLERY_KEY'),
     ],
+    
+    'yandex_captcha' => [
+        'client_key' => env('YANDEX_CAPTCHA_CLIENT_KEY'),
+        'server_key' => env('YANDEX_CAPTCHA_SERVER_KEY'),
+        'verify_url' => 'https://smartcaptcha.yandexcloud.net/validate',
+    ],
     'vk' => [
         'token' => env('VK_TOKEN'),
         'api_version' => env('VK_API_VERSION', '5.131'),

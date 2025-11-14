@@ -19,6 +19,7 @@ class ContactController extends Controller
             'message' => 'nullable|string|max:1000',
             'service' => 'nullable|string|max:255',
             'privacy_agreement' => 'required|accepted',
+            'smart-token' => ['required', new \App\Rules\YandexCaptcha()],
         ], [
             'name.required' => 'Имя обязательно',
             'name.string' => 'Имя должно быть строкой',
@@ -39,6 +40,8 @@ class ContactController extends Controller
 
             'privacy_agreement.required' => 'Необходимо согласие с политикой конфиденциальности',
             'privacy_agreement.accepted' => 'Вы должны принять политику конфиденциальности',
+
+            'smart-token.required' => 'Необходимо пройти проверку капчи',
         ]);
 
         if ($validator->fails()) {

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const name = formData.get("name");
             const phone = formData.get("phone");
             const privacyAgreement = formData.get("privacy_agreement");
+            const captchaToken = formData.get("smart-token");
 
             const phoneInput = document.getElementById("userPhone");
             const phoneDigits =
@@ -49,6 +50,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            if (!captchaToken) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Ошибка!",
+                    text: "Пожалуйста, пройдите проверку капчи",
+                    confirmButtonColor: "#1D7D6F",
+                });
+                return;
+            }
+
             // Отправка данных на сервер
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
@@ -72,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     email: "",
                     message: `Заявка на запись на занятие от ${name}. Телефон: ${phone}`,
                     privacy_agreement: "on",
+                    "smart-token": captchaToken,
                     page_url: window.location.href,
                     page_title: document.title,
                 }),
