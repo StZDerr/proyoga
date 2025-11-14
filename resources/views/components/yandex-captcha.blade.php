@@ -1,6 +1,5 @@
 @props([
     'id' => 'yandex-captcha-' . uniqid(),
-    'class' => 'yandex-captcha',
     'theme' => 'light', // light, dark
     'size' => 'normal', // normal, compact
 ])
@@ -10,27 +9,36 @@
 @endphp
 
 @if($clientKey)
-    <div {{ $attributes->merge(['class' => $class, 'id' => $id]) }}
+    <div {{ $attributes->merge(['class' => 'yandex-captcha']) }}
+         id="{{ $id }}"
          data-sitekey="{{ $clientKey }}"
          data-theme="{{ $theme }}"
-         data-size="{{ $size }}">
+         data-size="{{ $size }}"
+         style="min-height: 65px;">
     </div>
 
     @once
         @push('scripts')
-            <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
             <script>
-                function onYandexCaptchaLoad() {
-                    const captchas = document.querySelectorAll('.yandex-captcha');
+                function initYandexCaptcha() {
+                    const unrenderedCaptchas = document.querySelectorAll('.yandex-captcha:not([data-rendered])');
                     
-                    captchas.forEach(captcha => {
-                        if (!captcha.hasAttribute('data-rendered')) {
-                            window.smartCaptcha.render(captcha, {
+                    if (unrenderedCaptchas.length === 0) {
+                        return;
+                    }
+                    
+                    if (typeof window.smartCaptcha === 'undefined') {
+                        setTimeout(initYandexCaptcha, 100);
+                        return;
+                    }
+                    
+                    unrenderedCaptchas.forEach(captcha => {
+                        try {
+                            const widgetId = window.smartCaptcha.render(captcha, {
                                 sitekey: captcha.getAttribute('data-sitekey'),
                                 theme: captcha.getAttribute('data-theme') || 'light',
                                 size: captcha.getAttribute('data-size') || 'normal',
                                 callback: function(token) {
-                                    // Найдем ближайшую форму и добавим токен
                                     const form = captcha.closest('form');
                                     if (form) {
                                         let tokenInput = form.querySelector('input[name="smart-token"]');
@@ -42,7 +50,6 @@
                                         }
                                         tokenInput.value = token;
                                         
-                                        // Убираем ошибки капчи если есть
                                         const errorElement = form.querySelector('.captcha-error');
                                         if (errorElement) {
                                             errorElement.style.display = 'none';
@@ -50,7 +57,6 @@
                                     }
                                 },
                                 'expired-callback': function() {
-                                    // Очищаем токен при истечении
                                     const form = captcha.closest('form');
                                     if (form) {
                                         const tokenInput = form.querySelector('input[name="smart-token"]');
@@ -61,18 +67,30 @@
                                 }
                             });
                             captcha.setAttribute('data-rendered', 'true');
+                            captcha.setAttribute('data-widget-id', widgetId);
+                        } catch (error) {
+                            // Капча может не работать на localhost
                         }
                     });
                 }
-
-                // Загружаем капчу когда скрипт готов
+                
+                // Загрузка скрипта
+                if (!document.querySelector('script[src*="smartcaptcha.yandexcloud.net"]')) {
+                    const script = document.createElement('script');
+                    script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js';
+                    script.async = true;
+                    script.defer = true;
+                    script.onload = function() {
+                        setTimeout(initYandexCaptcha, 100);
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    initYandexCaptcha();
+                }
+                
+                // Инициализация при готовности DOM
                 document.addEventListener('DOMContentLoaded', function() {
-                    if (typeof window.smartCaptcha !== 'undefined') {
-                        onYandexCaptchaLoad();
-                    } else {
-                        // Ждем загрузки скрипта капчи
-                        window.onYandexCaptchaLoad = onYandexCaptchaLoad;
-                    }
+                    setTimeout(initYandexCaptcha, 500);
                 });
             </script>
         @endpush

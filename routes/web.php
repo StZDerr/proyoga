@@ -132,6 +132,8 @@ Route::prefix('api/test')->group(function () {
 // API маршруты для отправки форм
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
 
+
+
 // Sitemap.xml
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
