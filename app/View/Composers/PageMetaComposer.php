@@ -56,7 +56,18 @@ class PageMetaComposer
             'tea' => 'tea',
         ];
 
-        // Возвращаем соответствующий slug или имя маршрута как slug
-        return $routeToSlugMap[$routeName] ?? $routeName;
+        // Если есть именованный маршрут
+        if ($routeName && isset($routeToSlugMap[$routeName])) {
+            return $routeToSlugMap[$routeName];
+        }
+
+        // Для динамических страниц проверяем в IndexablePage
+        $indexablePage = IndexablePage::where('url', $path)->first();
+        if ($indexablePage) {
+            return $path; // Используем сам путь как slug для динамических страниц
+        }
+
+        // Фоллбек - используем имя маршрута если есть
+        return $routeName;
     }
 }

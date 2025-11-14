@@ -11,6 +11,7 @@ class PageContentHelper
      */
     public static function getMeta($slug, $defaultTitle = null, $defaultDescription = null)
     {
+        // Сначала пробуем найти в PageContent по slug
         $page = PageContent::getBySlug($slug);
 
         if ($page) {
@@ -21,6 +22,19 @@ class PageContentHelper
                 'og_title' => $page->seo_data['og_title'] ?? $page->title,
                 'og_description' => $page->seo_data['og_description'] ?? $page->description,
                 'og_image' => $page->seo_data['og_image'] ?? null,
+            ];
+        }
+
+        // Если не нашли в PageContent, пробуем найти в IndexablePage (для динамических страниц)
+        $indexablePage = \App\Models\IndexablePage::where('url', $slug)->first();
+        if ($indexablePage) {
+            return [
+                'title' => $indexablePage->title,
+                'description' => $indexablePage->description,
+                'keywords' => null,
+                'og_title' => $indexablePage->title,
+                'og_description' => $indexablePage->description,
+                'og_image' => null,
             ];
         }
 

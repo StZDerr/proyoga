@@ -29,6 +29,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/arrow.js",
                 "resources/js/cookies.js",
+                "resources/js/hatha-uoga.js",
                 "resources/js/lazy-iframe.js",
                 "resources/js/welcome_new.js",
                 "resources/js/navbar.js",
