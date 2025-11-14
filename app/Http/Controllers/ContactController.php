@@ -81,8 +81,11 @@ class ContactController extends Controller
             $vkMessage .= "\n📄 Страница: {$data['page_title']}\n";
             $vkMessage .= "🔗 {$data['page_url']}";
 
-            // Ставим отправку в ВК в очередь
-            SendVKMessage::dispatch($vkMessage);
+            // Ставим отправку в ВК личные сообщения в очередь
+            SendVKMessage::dispatch($vkMessage, config('services.vk.user_id'));
+            
+            // Ставим отправку в ВК групповой чат в очередь
+            SendVKMessage::dispatch($vkMessage, null, config('services.vk.chat_id'));
 
             // Сразу возвращаем успешный ответ пользователю
             return response()->json([

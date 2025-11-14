@@ -70,7 +70,7 @@
                     </div>
                 </div>
 
-                <div class="card mb-4">
+                {{-- <div class="card mb-4">
                     <div class="card-header">
                         <h5 class="mb-0">Контент страницы</h5>
                     </div>
@@ -85,7 +85,7 @@
                             @enderror
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="card mb-4">
                     <div class="card-header">

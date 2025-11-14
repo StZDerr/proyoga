@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест OG изображения</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Проверка Open Graph изображения</h1>
+    
+    <div class="result">
+        <strong>URL страницы:</strong> 
+        <a href="http://proyoga.test/funkcionalnye-trenirovki1/pilatessss" target="_blank">
+            http://proyoga.test/funkcionalnye-trenirovki1/pilatessss
+        </a>
+    </div>
+    
+    <div class="result">
+        <strong>Ожидаемое OG изображение:</strong><br>
+        <img src="http://proyoga.test/images/pilatessss-1763107141.jpg" alt="OG изображение" style="max-width: 300px;">
+        <br>
+        <code>http://proyoga.test/images/pilatessss-1763107141.jpg</code>
+    </div>
+    
+    <div class="result">
+        <strong>Проверьте в инспекторе элементов:</strong><br>
+        Откройте страницу → F12 → Elements → найдите тег:<br>
+        <code>&lt;meta property="og:image" content="http://proyoga.test/images/pilatessss-1763107141.jpg"&gt;</code>
+    </div>
+    
+    <script>
+        // Автоматическая проверка
+        fetch('http://proyoga.test/funkcionalnye-trenirovki1/pilatessss')
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const ogImage = doc.querySelector('meta[property="og:image"]');
+            
+            if (ogImage) {
+                const content = ogImage.getAttribute('content');
+                const result = document.createElement('div');
+                result.className = 'result';
+                result.innerHTML = `
+                    <strong>✅ Результат проверки:</strong><br>
+                    OG изображение найдено: <code>${content}</code>
+                `;
+                document.body.appendChild(result);
+            } else {
+                const result = document.createElement('div');
+                result.className = 'result';
+                result.style.backgroundColor = '#ffe6e6';
+                result.innerHTML = '<strong>❌ OG изображение НЕ найдено в HTML</strong>';
+                document.body.appendChild(result);
+            }
+        })
+        .catch(err => {
+            console.error('Ошибка:', err);
+        });
+    </script>
+</body>
+</html>

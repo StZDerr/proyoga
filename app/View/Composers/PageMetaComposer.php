@@ -56,18 +56,24 @@ class PageMetaComposer
             'tea' => 'tea',
         ];
 
-        // Если есть именованный маршрут
-        if ($routeName && isset($routeToSlugMap[$routeName])) {
+        // Если есть прямой маппинг маршрута
+        if (isset($routeToSlugMap[$routeName])) {
             return $routeToSlugMap[$routeName];
         }
 
-        // Для динамических страниц проверяем в IndexablePage
-        $indexablePage = IndexablePage::where('url', $path)->first();
-        if ($indexablePage) {
-            return $path; // Используем сам путь как slug для динамических страниц
+        // Специальная обработка для динамических маршрутов
+        if ($routeName === 'subSubCategoryDetail' || $routeName === 'PodDirection') {
+            // Для динамических страниц используем полный путь
+            return $path;
         }
 
-        // Фоллбек - используем имя маршрута если есть
+        // Для остальных динамических страниц проверяем, есть ли запись в indexable_pages
+        $indexablePage = IndexablePage::where('url', $path)->first();
+        if ($indexablePage) {
+            return $path; // Используем полный путь как slug
+        }
+
+        // Возвращаем имя маршрута как slug
         return $routeName;
     }
 }

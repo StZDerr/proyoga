@@ -72,7 +72,9 @@
                                 @foreach ($faqs as $faq)
                                     <tr id="faq-row-{{ $faq->id }}">
                                         <td>{{ $faq->id }}</td>
-                                        <td>{{ $faq->subSubCategory->title ?? '—' }}</td>
+                                        <td data-sub-sub-category-id="{{ $faq->sub_sub_category_id }}">
+                                            {{ $faq->subSubCategory->title ?? '—' }}
+                                        </td>
                                         <td style="max-width: 300px;">{{ $faq->question }}</td>
                                         <td class="d-none d-md-table-cell" style="max-width: 300px;">
                                             {!! \Illuminate\Support\Str::limit(strip_tags($faq->answer), 180) !!}

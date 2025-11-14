@@ -16,14 +16,18 @@ class SendVKMessage implements ShouldQueue
 
     protected $message;
     protected $userId;
+    protected $peerId;
+    protected $isGroupChat;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($message, $userId = null)
+    public function __construct($message, $userId = null, $peerId = null)
     {
         $this->message = $message;
         $this->userId = $userId ?? config('services.vk.user_id');
+        $this->peerId = $peerId;
+        $this->isGroupChat = $peerId !== null;
     }
 
     /**
@@ -40,15 +44,22 @@ class SendVKMessage implements ShouldQueue
         }
 
         try {
+            $params = [
+                'access_token' => $token,
+                'v' => $version,
+                'message' => $this->message,
+                'random_id' => random_int(1, 999999999),
+            ];
+
+            if ($this->isGroupChat) {
+                $params['peer_id'] = $this->peerId;
+            } else {
+                $params['user_id'] = $this->userId;
+            }
+
             $response = Http::timeout(30)
                 ->asForm()
-                ->post('https://api.vk.com/method/messages.send', [
-                    'access_token' => $token,
-                    'v' => $version,
-                    'user_id' => $this->userId,
-                    'message' => $this->message,
-                    'random_id' => random_int(1, 999999999),
-                ]);
+                ->post('https://api.vk.com/method/messages.send', $params);
 
             $result = $response->json();
 

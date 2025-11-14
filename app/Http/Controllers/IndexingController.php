@@ -97,6 +97,7 @@ class IndexingController extends Controller
             'url' => 'required|string|unique:indexable_pages,url,'.$indexing->id,
             'title' => 'required|string',
             'description' => 'nullable|string',
+            'og_image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'priority' => 'required|numeric|between:0,1',
             'changefreq' => 'required|in:always,hourly,daily,weekly,monthly,yearly,never',
             'is_indexed' => 'boolean',
@@ -123,9 +124,31 @@ class IndexingController extends Controller
             'notes.string' => 'Примечания должны быть строкой',
         ]);
 
+        // Обработка загрузки OG изображения
+        if ($request->hasFile('og_image_file')) {
+            // Удаляем старое изображение, если оно есть
+            if (!empty($indexing->og_image)) {
+                $oldImagePath = public_path($indexing->og_image);
+                if (file_exists($oldImagePath) && is_file($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            // Загружаем новое изображение
+            $file = $request->file('og_image_file');
+            $fileName = 'og-'.str_replace('/', '-', $indexing->url).'-'.time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileName);
+            $indexing->og_image = '/images/'.$fileName;
+        }
+
         $data = $request->all();
         $data['last_modified'] = now();
         $data['is_indexed'] = $request->has('is_indexed');
+        
+        // Убираем og_image_file из данных для сохранения (это временное поле)
+        unset($data['og_image_file']);
+        // Добавляем обновленный путь к изображению
+        $data['og_image'] = $indexing->og_image;
 
         $indexing->update($data);
 

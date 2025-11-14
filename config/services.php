@@ -20,6 +20,7 @@ return [
         'token' => env('VK_TOKEN'),
         'api_version' => env('VK_API_VERSION', '5.131'),
         'user_id' => env('VK_USER_ID', '135353409'), // Ваш ID для получения уведомлений
+        'chat_id' => env('VK_CHAT_ID', '2000000002'), // ID группового чата
     ],
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
