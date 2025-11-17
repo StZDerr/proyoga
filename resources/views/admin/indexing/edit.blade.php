@@ -61,27 +61,6 @@
                             @enderror
                             <small class="form-hint">Описание используется в sitemap</small>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Open Graph изображение</label>
-                            @if (!empty($indexing->og_image))
-                                <div class="mb-2">
-                                    <div class="border rounded p-2" style="max-width:200px;">
-                                        <img src="{{ asset($indexing->og_image) }}" class="img-fluid rounded"
-                                            style="max-height:100px;" alt="Текущее изображение">
-                                        <div class="text-muted small mt-1">Текущее изображение</div>
-                                    </div>
-                                </div>
-                            @endif
-                            <input type="file" class="form-control @error('og_image_file') is-invalid @enderror"
-                                name="og_image_file" accept="image/*">
-                            <div class="form-text">
-                                Загрузите новое изображение (JPG, PNG, WEBP). Рекомендуемый размер: 1200x630px
-                            </div>
-                            @error('og_image_file')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
                     </div>
                 </div>
 

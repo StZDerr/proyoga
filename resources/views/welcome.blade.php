@@ -711,7 +711,7 @@
 
     {{-- Скрипт теста загружается после Bootstrap --}}
     @vite(['resources/js/yoga-test.js'])
-    
+
     @stack('scripts')
 
 </body>

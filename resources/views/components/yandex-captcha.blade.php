@@ -8,13 +8,10 @@
     $clientKey = config('services.yandex_captcha.client_key');
 @endphp
 
-@if($clientKey)
-    <div {{ $attributes->merge(['class' => 'yandex-captcha']) }}
-         id="{{ $id }}"
-         data-sitekey="{{ $clientKey }}"
-         data-theme="{{ $theme }}"
-         data-size="{{ $size }}"
-         style="min-height: 65px;">
+@if ($clientKey)
+    <div {{ $attributes->merge(['class' => 'yandex-captcha']) }} id="{{ $id }}"
+        data-sitekey="{{ $clientKey }}" data-theme="{{ $theme }}" data-size="{{ $size }}"
+        style="min-height: 65px;">
     </div>
 
     @once
@@ -22,16 +19,16 @@
             <script>
                 function initYandexCaptcha() {
                     const unrenderedCaptchas = document.querySelectorAll('.yandex-captcha:not([data-rendered])');
-                    
+
                     if (unrenderedCaptchas.length === 0) {
                         return;
                     }
-                    
+
                     if (typeof window.smartCaptcha === 'undefined') {
                         setTimeout(initYandexCaptcha, 100);
                         return;
                     }
-                    
+
                     unrenderedCaptchas.forEach(captcha => {
                         try {
                             const widgetId = window.smartCaptcha.render(captcha, {
@@ -49,7 +46,7 @@
                                             form.appendChild(tokenInput);
                                         }
                                         tokenInput.value = token;
-                                        
+
                                         const errorElement = form.querySelector('.captcha-error');
                                         if (errorElement) {
                                             errorElement.style.display = 'none';
@@ -73,7 +70,7 @@
                         }
                     });
                 }
-                
+
                 // Загрузка скрипта
                 if (!document.querySelector('script[src*="smartcaptcha.yandexcloud.net"]')) {
                     const script = document.createElement('script');
@@ -87,7 +84,7 @@
                 } else {
                     initYandexCaptcha();
                 }
-                
+
                 // Инициализация при готовности DOM
                 document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(initYandexCaptcha, 500);

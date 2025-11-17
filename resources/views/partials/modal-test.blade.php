@@ -53,10 +53,11 @@
                                             <input type="email" class="form-control" id="user-email" name="email">
                                         </div>
                                         <div class="form-check mb-3">
-                                            <input type="checkbox" class="form-check-input" id="test-privacy" 
+                                            <input type="checkbox" class="form-check-input" id="test-privacy"
                                                 name="privacy_agreement" required>
                                             <label class="form-check-label" for="test-privacy">
-                                                Я согласен(-на) на <a href="{{ route('personal-data') }}"> обработку персональных данных</a>
+                                                Я согласен(-на) на <a href="{{ route('personal-data') }}"> обработку
+                                                    персональных данных</a>
                                             </label>
                                         </div>
 
@@ -112,7 +113,8 @@
                                             </svg>
                                         </div>
                                     </button>
-                                    <button type="button" id="submit-btn" class="submit-btn d-none">Отправить</button>
+                                    <button type="button" id="submit-btn"
+                                        class="submit-btn d-none">Отправить</button>
                                 </div>
                             </div>
                         </div>

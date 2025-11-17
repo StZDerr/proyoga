@@ -65,29 +65,43 @@ class PageContentController extends Controller
             'og_image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        // Обработка SEO данных
-        $seoData = [];
-        if ($request->filled('og_title')) {
-            $seoData['og_title'] = $request->og_title;
-        }
-        if ($request->filled('og_description')) {
-            $seoData['og_description'] = $request->og_description;
+        // SEO данные
+        $seoData = [
+            'og_title' => $request->og_title ?? null,
+            'og_description' => $request->og_description ?? null,
+        ];
+
+        // Папка для OG изображений
+        $destinationPath = public_path('images/og');
+
+        // Создаем папку, если её нет
+        if (! is_dir($destinationPath)) {
+            mkdir($destinationPath, 0775, true);
         }
 
-        // Обработка загрузки изображения
+        // Загрузка OG изображения
         if ($request->hasFile('og_image_file')) {
             $file = $request->file('og_image_file');
-            $fileName = 'og-'.$request->slug.'-'.time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('images'), $fileName);
-            $seoData['og_image'] = '/images/'.$fileName;
+
+            // Уникальное безопасное имя
+            $fileName = 'og_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+
+            // Перемещаем файл
+            $file->move($destinationPath, $fileName);
+
+            // Путь для базы
+            $seoData['og_image'] = '/images/og/'.$fileName;
         }
 
+        // Записываем SEO в данные
         $validated['seo_data'] = $seoData;
         $validated['is_active'] = $request->has('is_active');
 
+        // Создаем запись
         PageContent::create($validated);
 
-        return redirect()->route('admin.pages.index')
+        return redirect()
+            ->route('admin.pages.index')
             ->with('success', 'Страница успешно создана!');
     }
 
@@ -113,7 +127,12 @@ class PageContentController extends Controller
     public function update(Request $request, PageContent $page)
     {
         $validated = $request->validate([
-            'slug' => ['required', 'string', 'max:255', Rule::unique('page_contents')->ignore($page->id)],
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('page_contents')->ignore($page->id),
+            ],
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'keywords' => 'nullable|string|max:500',
@@ -121,19 +140,25 @@ class PageContentController extends Controller
             'og_image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        // Обработка SEO данных
+        // Текущие SEO данные
         $seoData = $page->seo_data ?? [];
 
-        if ($request->filled('og_title')) {
-            $seoData['og_title'] = $request->og_title;
-        }
-        if ($request->filled('og_description')) {
-            $seoData['og_description'] = $request->og_description;
+        // Текстовые SEO поля
+        $seoData['og_title'] = $request->og_title ?? ($seoData['og_title'] ?? null);
+        $seoData['og_description'] = $request->og_description ?? ($seoData['og_description'] ?? null);
+
+        // Папка для OG изображений
+        $destinationPath = public_path('images/og');
+
+        // Создать папку, если нет
+        if (! is_dir($destinationPath)) {
+            mkdir($destinationPath, 0775, true);
         }
 
-        // Обработка загрузки изображения
+        // Загружаем новое OG изображение
         if ($request->hasFile('og_image_file')) {
-            // Удаляем старое изображение, если оно есть
+
+            // Удаляем старое
             if (! empty($seoData['og_image'])) {
                 $oldImagePath = public_path($seoData['og_image']);
                 if (file_exists($oldImagePath) && is_file($oldImagePath)) {
@@ -141,22 +166,33 @@ class PageContentController extends Controller
                 }
             }
 
-            // Загружаем новое изображение
             $file = $request->file('og_image_file');
-            $fileName = 'og-'.$page->slug.'-'.time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('images'), $fileName);
-            $seoData['og_image'] = '/images/'.$fileName;
+
+            // Уникальное имя файла (без slug)
+            $fileName = 'og_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+
+            // Сохраняем
+            $file->move($destinationPath, $fileName);
+
+            // Путь для базы
+            $seoData['og_image'] = '/images/og/'.$fileName;
+
         } elseif ($request->filled('og_image_current')) {
-            // Если файл не загружен, сохраняем текущее изображение
+            // Если файл не загружён — сохраняем старое изображение
             $seoData['og_image'] = $request->og_image_current;
         }
 
+        // Записываем SEO в основной массив данных
         $validated['seo_data'] = $seoData;
+
+        // Чекбокс активности
         $validated['is_active'] = $request->has('is_active');
 
+        // Обновляем страницу
         $page->update($validated);
 
-        return redirect()->route('admin.pages.index')
+        return redirect()
+            ->route('admin.pages.index')
             ->with('success', 'Страница успешно обновлена!');
     }
 

@@ -37,7 +37,7 @@
                             Я согласен(-на) на <a href="{{ route('personal-data') }}"> обработку персональных данных</a>
                         </label>
                     </div>
-                    
+
                     {{-- Яндекс капча --}}
                     <div class="mb-4">
                         <x-yandex-captcha class="mb-3" />

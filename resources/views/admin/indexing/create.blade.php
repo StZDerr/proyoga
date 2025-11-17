@@ -4,6 +4,7 @@
 
 @section('content')
     @include('admin.partials.success')
+
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
@@ -11,9 +12,7 @@
                     <div class="page-pretitle">
                         <a href="{{ route('admin.indexing.index') }}">Управление индексацией</a>
                     </div>
-                    <h2 class="page-title">
-                        Добавить страницу
-                    </h2>
+                    <h2 class="page-title">Добавить страницу</h2>
                 </div>
             </div>
         </div>
@@ -22,11 +21,12 @@
     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
-                <div class="col-lg-5">
+                <div class="col-12">
                     <form action="{{ route('admin.indexing.store') }}" method="POST">
                         @csrf
 
-                        <div class="card">
+                        <!-- Основная информация -->
+                        <div class="card mb-3">
                             <div class="card-header">
                                 <h3 class="card-title">Основная информация</h3>
                             </div>
@@ -62,7 +62,8 @@
                             </div>
                         </div>
 
-                        <div class="card mt-3">
+                        <!-- SEO настройки -->
+                        <div class="card mb-3">
                             <div class="card-header">
                                 <h3 class="card-title">SEO настройки</h3>
                             </div>
@@ -94,7 +95,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label required">Частота обновления</label>
@@ -142,76 +142,67 @@
                             </div>
                         </div>
 
-                        <div class="card-footer bg-transparent mt-auto">
+                        <!-- Справка -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h3 class="card-title">Справка</h3>
+                            </div>
+                            <div class="card-body">
+                                <h4>Рекомендации по приоритету:</h4>
+                                <ul class="small">
+                                    <li><strong>1.0</strong> - Главная страница сайта</li>
+                                    <li><strong>0.9</strong> - Важные разделы (о нас, услуги)</li>
+                                    <li><strong>0.8</strong> - Основные страницы контента</li>
+                                    <li><strong>0.5-0.7</strong> - Обычные страницы</li>
+                                    <li><strong>0.3</strong> - Служебные страницы</li>
+                                </ul>
+
+                                <h4 class="mt-3">Частота обновления:</h4>
+                                <ul class="small">
+                                    <li><strong>Always/Hourly</strong> - Динамичный контент</li>
+                                    <li><strong>Daily</strong> - Новости, блог</li>
+                                    <li><strong>Weekly</strong> - Главная страница</li>
+                                    <li><strong>Monthly</strong> - Обычные страницы</li>
+                                    <li><strong>Yearly</strong> - Статичные страницы</li>
+                                    <li><strong>Never</strong> - Архивные страницы</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Примеры URL -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h3 class="card-title">Примеры URL</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <span class="form-selectgroup-label"><code>/about</code> - О нас</span>
+                                    </label>
+                                    <label class="form-selectgroup-item">
+                                        <span class="form-selectgroup-label"><code>/services</code> - Услуги</span>
+                                    </label>
+                                    <label class="form-selectgroup-item">
+                                        <span class="form-selectgroup-label"><code>/blog</code> - Блог</span>
+                                    </label>
+                                    <label class="form-selectgroup-item">
+                                        <span class="form-selectgroup-label"><code>/gallery</code> - Галерея</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Кнопки -->
+                        <div class="card-footer bg-transparent mt-3">
                             <div class="btn-list justify-content-end">
-                                <a href="{{ route('admin.indexing.index') }}" class="btn">
-                                    Отменить
-                                </a>
+                                <a href="{{ route('admin.indexing.index') }}" class="btn">Отменить</a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-1"></i>
-                                    Создать страницу
+                                    <i class="fas fa-save me-1"></i> Создать страницу
                                 </button>
                             </div>
                         </div>
+
                     </form>
-                </div>
-
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Справка</h3>
-                        </div>
-                        <div class="card-body">
-                            <h4>Рекомендации по приоритету:</h4>
-                            <ul class="small">
-                                <li><strong>1.0</strong> - Главная страница сайта</li>
-                                <li><strong>0.9</strong> - Важные разделы (о нас, услуги)</li>
-                                <li><strong>0.8</strong> - Основные страницы контента</li>
-                                <li><strong>0.5-0.7</strong> - Обычные страницы</li>
-                                <li><strong>0.3</strong> - Служебные страницы</li>
-                            </ul>
-
-                            <h4 class="mt-3">Частота обновления:</h4>
-                            <ul class="small">
-                                <li><strong>Always/Hourly</strong> - Динамичный контент</li>
-                                <li><strong>Daily</strong> - Новости, блог</li>
-                                <li><strong>Weekly</strong> - Главная страница</li>
-                                <li><strong>Monthly</strong> - Обычные страницы</li>
-                                <li><strong>Yearly</strong> - Статичные страницы</li>
-                                <li><strong>Never</strong> - Архивные страницы</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Примеры URL</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-selectgroup">
-                                <label class="form-selectgroup-item">
-                                    <span class="form-selectgroup-label">
-                                        <code>/about</code> - О нас
-                                    </span>
-                                </label>
-                                <label class="form-selectgroup-item">
-                                    <span class="form-selectgroup-label">
-                                        <code>/services</code> - Услуги
-                                    </span>
-                                </label>
-                                <label class="form-selectgroup-item">
-                                    <span class="form-selectgroup-label">
-                                        <code>/blog</code> - Блог
-                                    </span>
-                                </label>
-                                <label class="form-selectgroup-item">
-                                    <span class="form-selectgroup-label">
-                                        <code>/gallery</code> - Галерея
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

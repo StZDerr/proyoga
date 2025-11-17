@@ -101,13 +101,6 @@
                 </div>
             </div>
 
-            <div class="card mb-3">
-                <div class="card-header">
-                    <h3 class="card-title">SEO информация</h3>
-                </div>
-
-            </div>
-
             <!-- Действия -->
             <div class="card mb-3">
                 <div class="card-header">
