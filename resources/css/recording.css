@@ -127,3 +127,13 @@
         height: auto;
     }
 }
+@media (min-width: 768px) {
+    #recording {
+        scroll-margin-top: 300px; /* немного больше, чем высота navbar */
+    }
+}
+@media (max-width: 768px) {
+    #recording {
+        scroll-margin-top: 200px; /* немного больше, чем высота navbar */
+    }
+}
