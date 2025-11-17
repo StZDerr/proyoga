@@ -2,19 +2,23 @@ a {
     text-decoration: none !important;
 }
 .site-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: sticky;
     top: 0;
-    background: #ffffff;
-    padding: 25px 100px;
-    transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
-    will-change: padding;
+    width: 100%;
+    background: #fff;
+    z-index: 12000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 12000 !important; /* выше всех обычных блоков, включая картинку */
 }
 
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
+
+.headroom--pinned {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 /* Стили для скрытия элементов при скролле */
 .site-header .hideable-content {
     opacity: 1;
@@ -57,6 +61,7 @@ a {
 
 .container .logo {
     transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 1rem 0;
 }
 
 .site-header.scrolled .logo {
@@ -72,7 +77,7 @@ a {
     position: relative;
 }
 
-.site-header .container:before {
+/* .site-header .container:before {
     content: "";
     position: absolute;
     top: auto;
@@ -84,7 +89,7 @@ a {
     background-color: #acd6d2;
     transform: translateX(50%);
     transition: opacity 0.3s ease;
-}
+} */
 
 .site-header.scrolled .container:before {
     opacity: 0;
@@ -95,6 +100,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     /* gap: 25px; */
 }
 
@@ -106,6 +112,12 @@ a {
     align-items: flex-end;
 }
 
+.containerWrapper .wrapper.hideable-content {
+    display: flex;
+    align-items: center; /* центрует вложенные элементы по вертикали */
+    justify-content: center; /* при необходимости и по горизонтали */
+    height: 100%;
+}
 .containerWrapper .wrapper {
     display: flex;
     flex-direction: row;
