@@ -26,8 +26,8 @@
 
             <!-- Навигация верхнего блока -->
             <div class="menu">
-                <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
-                <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
+                <a href="{{ route('welcome') }}" class="menuItem">Главная</a>
+                <a href="{{ route('about') }}" class="menuItem">О Центре</a>
                 <a href="{{ route('direction') }}" class="menuItem">Направления</a>
             </div>
         </div>
@@ -46,8 +46,9 @@
             </div>
 
             <div class="menu">
-                <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a>
-                <a href="{{ route('about') }}" class="menuItem">О Центре</a>
+                <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
+                {{-- <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a> --}}
+                <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
             </div>
         </div>
