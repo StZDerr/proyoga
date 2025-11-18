@@ -12,9 +12,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {{-- Preload критичных шрифтов --}}
+    {{-- Preload критичных ресурсов --}}
     <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap">
+    
+    {{-- Preload главного изображения hero секции --}}
+    <link rel="preload" as="image" href="{{ asset('images/main-hero.jpg') }}" fetchpriority="high">
 
     {{-- Асинхронная загрузка шрифтов --}}
     <link
@@ -28,8 +31,23 @@
             rel="stylesheet">
     </noscript>
 
-    {{-- Общие стили и JS через Vite --}}
-    @vite(['resources/css/app.css', 'resources/css/performance.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/navbar.css', 'resources/css/footer.css', 'resources/css/contacts-block.css', 'resources/js/welcome_new.js', 'resources/js/navbar.js', 'resources/js/recording-form.js', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js', 'resources/css/arrow.css', 'resources/js/arrow.js', 'resources/css/cookies.css', 'resources/js/cookies.js', 'resources/js/lazy-iframe.js'])
+    {{-- Общие стили и JS через Vite (оптимизировано) --}}
+    @vite([
+        'resources/css/app.css', 
+        'resources/css/base.css',
+        'resources/css/performance.css', 
+        'resources/css/welcome.css', 
+        'resources/css/contacts-block.css', 
+        'resources/css/recording.css', 
+        'resources/css/modal-test.css',
+        'resources/js/app.js', 
+        'resources/js/base.js',
+        'resources/js/welcome_new.js', 
+        'resources/js/recording-form.js', 
+        'resources/js/yoga-test.js', 
+        'resources/js/promotion-modal.js', 
+        'resources/js/lazy-iframe.js'
+    ])
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>

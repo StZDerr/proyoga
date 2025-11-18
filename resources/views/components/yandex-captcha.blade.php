@@ -71,8 +71,16 @@
                     });
                 }
 
-                // Загрузка скрипта
-                if (!document.querySelector('script[src*="smartcaptcha.yandexcloud.net"]')) {
+                // Ленивая загрузка: загружаем скрипт только когда пользователь взаимодействует с формой
+                let captchaScriptLoaded = false;
+
+                function loadCaptchaScript() {
+                    if (captchaScriptLoaded || document.querySelector('script[src*="smartcaptcha.yandexcloud.net"]')) {
+                        initYandexCaptcha();
+                        return;
+                    }
+                    captchaScriptLoaded = true;
+
                     const script = document.createElement('script');
                     script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js';
                     script.async = true;
@@ -81,13 +89,31 @@
                         setTimeout(initYandexCaptcha, 100);
                     };
                     document.head.appendChild(script);
-                } else {
-                    initYandexCaptcha();
                 }
 
-                // Инициализация при готовности DOM
+                // Загружаем капчу только при взаимодействии с формой
                 document.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(initYandexCaptcha, 500);
+                    const forms = document.querySelectorAll('form:has(.yandex-captcha)');
+                    
+                    forms.forEach(form => {
+                        // Загружаем при первом фокусе на любом поле формы
+                        const inputs = form.querySelectorAll('input, textarea, select');
+                        inputs.forEach(input => {
+                            input.addEventListener('focus', loadCaptchaScript, { once: true });
+                        });
+
+                        // Загружаем при наведении на форму (для desktop)
+                        form.addEventListener('mouseenter', loadCaptchaScript, { once: true });
+                        
+                        // Загружаем при touch на форму (для mobile)
+                        form.addEventListener('touchstart', loadCaptchaScript, { once: true });
+                    });
+
+                    // Для модальных окон - загружаем при открытии модального окна
+                    const modals = document.querySelectorAll('.modal');
+                    modals.forEach(modal => {
+                        modal.addEventListener('shown.bs.modal', loadCaptchaScript, { once: true });
+                    });
                 });
             </script>
         @endpush

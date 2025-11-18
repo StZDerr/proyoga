@@ -124,4 +124,4 @@
     </div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
-<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+<!-- SmartCaptcha загружается ленивым образом через компонент yandex-captcha -->
