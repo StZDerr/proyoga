@@ -28,7 +28,10 @@
                 <p class="text">
                     {{ $subSubCategory->description ?? '"Исток и Я" - Твой путь к себе начинается с Истока. Здесь соединяются тело, дыхание, звук, осознанность и общение.' }}
                 </p>
-                <a href="#recording" class="button bdi">Получить пробный урок</a>
+                <button type="button" class="button bdi" data-bs-toggle="modal" data-bs-target="#recordingModal">
+                    Получить бесплатный урок
+                </button>
+                {{-- <a href="#recording" class="button bdi">Получить пробный урок</a> --}}
             </div>
             <img src="{{ asset('storage/' . $subSubCategory->image) }}" alt="{{ $subSubCategory->title }}"
                 class="serviceIMG" />
@@ -164,7 +167,8 @@
         </div>
     @endif
     @include('partials.footer')
-
+    @include('partials.recording_popup')
+    @stack('scripts')
 </body>
 
 </html>

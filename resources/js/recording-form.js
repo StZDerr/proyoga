@@ -1,20 +1,28 @@
-// Обработчик формы записи на занятие
+// resources/js/recording-form.js
 document.addEventListener("DOMContentLoaded", function () {
-    const recordingForm = document.getElementById("recordingForm");
+    const forms = document.querySelectorAll(".recording-form");
 
-    if (recordingForm) {
-        recordingForm.addEventListener("submit", function (e) {
+    forms.forEach(function (form) {
+        // Submit handler для каждой формы отдельно
+        form.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const formData = new FormData(this);
-            const name = formData.get("name");
-            const phone = formData.get("phone");
-            const privacyAgreement = formData.get("privacy_agreement");
-            const captchaToken = formData.get("smart-token");
-
-            const phoneInput = document.getElementById("userPhone");
-            const phoneDigits =
-                phoneInput.getAttribute("data-phone-digits") || "";
+            const name = (form.querySelector('input[name="name"]') || {}).value;
+            const phoneInput = form.querySelector('input[name="phone"]');
+            const phoneDigits = phoneInput
+                ? phoneInput.getAttribute("data-phone-digits") || ""
+                : "";
+            const privacyAgreement = form.querySelector(
+                'input[name="privacy_agreement"]'
+            )
+                ? form.querySelector('input[name="privacy_agreement"]').checked
+                : false;
+            const captchaTokenInput = form.querySelector(
+                'input[name="smart-token"]'
+            );
+            const captchaToken = captchaTokenInput
+                ? captchaTokenInput.value
+                : null;
 
             // Валидация
             if (!name || name.trim().length < 2) {
@@ -24,18 +32,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     text: "Пожалуйста, введите корректное имя (минимум 2 символа)",
                     confirmButtonColor: "#1D7D6F",
                 });
-                document.getElementById("userName").focus();
+                (
+                    form.querySelector("#userName") ||
+                    form.querySelector('input[name="name"]')
+                ).focus();
                 return;
             }
 
-            if (!phone || phoneDigits.length !== 11) {
+            if (!phoneInput || phoneDigits.length !== 11) {
                 Swal.fire({
                     icon: "warning",
                     title: "Ошибка!",
                     text: "Введите номер телефона в формате +7 (XXX) XXX-XX-XX",
                     confirmButtonColor: "#1D7D6F",
                 });
-                phoneInput.focus();
+                if (phoneInput) phoneInput.focus();
                 return;
             }
 
@@ -46,7 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     text: "Пожалуйста, согласитесь с политикой конфиденциальности",
                     confirmButtonColor: "#1D7D6F",
                 });
-                document.getElementById("privacyPolicy").focus();
+                (
+                    form.querySelector("#privacyPolicy") ||
+                    form.querySelector('input[name="privacy_agreement"]')
+                ).focus();
                 return;
             }
 
@@ -61,12 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Отправка данных на сервер
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton ? submitButton.textContent : null;
 
-            // Показываем процесс отправки
-            submitButton.disabled = true;
-            submitButton.textContent = "Отправка...";
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Отправка...";
+            }
 
             fetch("/contact/send", {
                 method: "POST",
@@ -79,9 +94,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({
                     name: name,
-                    phone: phone,
+                    phone: phoneInput ? phoneInput.value : "",
                     email: "",
-                    message: `Заявка на запись на занятие от ${name}. Телефон: ${phone}`,
+                    message: `Заявка на запись на занятие от ${name}. Телефон: ${
+                        phoneInput ? phoneInput.value : ""
+                    }`,
+                    service: form.querySelector('input[name="service"]')
+                        ? form.querySelector('input[name="service"]').value
+                        : "",
                     privacy_agreement: "on",
                     "smart-token": captchaToken,
                     page_url: window.location.href,
@@ -89,24 +109,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 }),
             })
                 .then((response) => {
-                    // Быстро возвращаем кнопку в исходное состояние
                     if (submitButton) {
                         submitButton.disabled = false;
                         submitButton.textContent = originalText;
                     }
-
-                    console.log("Response status:", response.status);
-                    if (!response.ok) {
+                    if (!response.ok)
                         throw new Error(
                             `HTTP error! status: ${response.status}`
                         );
-                    }
                     return response.json();
                 })
                 .then((data) => {
-                    console.log("Response data:", data);
                     if (data.success) {
-                        // Редирект на страницу благодарности для отслеживания конверсий
                         window.location.href = "/thanks";
                     } else {
                         throw new Error(data.message || "Ошибка отправки");
@@ -120,8 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         text: "Произошла ошибка при отправке заявки. Попробуйте еще раз.",
                         confirmButtonColor: "#1D7D6F",
                     });
-
-                    // Возвращаем кнопку в исходное состояние при ошибке
                     if (submitButton) {
                         submitButton.disabled = false;
                         submitButton.textContent = originalText;
@@ -129,75 +141,83 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
 
-        // Маска телефона (оставляем без изменений)
-        const phoneInput = document.getElementById("userPhone");
+        // Маска телефона для phone input в этой форме
+        const phoneInput = form.querySelector('input[name="phone"]');
         if (phoneInput) {
-            phoneInput.addEventListener("keydown", function (e) {
-                const allowedKeys = [
-                    "Backspace",
-                    "Delete",
-                    "Tab",
-                    "Escape",
-                    "Enter",
-                    "ArrowLeft",
-                    "ArrowRight",
-                    "ArrowUp",
-                    "ArrowDown",
-                ];
+            // Обернём навешивание, чтобы не дублировать обработчики, если скрипт вызван повторно
+            if (!phoneInput.dataset.maskInitialized) {
+                phoneInput.dataset.maskInitialized = "1";
 
-                if (
-                    e.ctrlKey &&
-                    ["a", "c", "v", "x"].includes(e.key.toLowerCase())
-                ) {
-                    return;
-                }
-
-                if (
-                    !allowedKeys.includes(e.key) &&
-                    (e.key < "0" || e.key > "9")
-                ) {
-                    e.preventDefault();
-                    return false;
-                }
-            });
-
-            phoneInput.addEventListener("input", function (e) {
-                let value = e.target.value.replace(/\D/g, "");
-
-                if (value.length > 0 && value[0] === "8") {
-                    value = "7" + value.slice(1);
-                }
-
-                if (value.length > 11) {
-                    value = value.slice(0, 11);
-                }
-
-                let formatted = "";
-                if (value.length > 0) {
-                    formatted = "+7";
-                    if (value.length > 1) formatted += " (" + value.slice(1, 4);
-                    if (value.length > 4) formatted += ") " + value.slice(4, 7);
-                    if (value.length > 7) formatted += "-" + value.slice(7, 9);
-                    if (value.length > 9) formatted += "-" + value.slice(9, 11);
-                }
-
-                e.target.value = formatted;
-                e.target.setAttribute("data-phone-digits", value);
-            });
-
-            phoneInput.addEventListener("paste", function (e) {
-                // Не блокируем вставку полностью, а обрабатываем после
-                setTimeout(() => {
-                    const paste = phoneInput.value;
-                    const digitsOnly = paste.replace(/\D/g, "");
-
-                    if (digitsOnly) {
-                        const event = new Event("input", { bubbles: true });
-                        phoneInput.value = digitsOnly;
-                        phoneInput.dispatchEvent(event);
+                phoneInput.addEventListener("keydown", function (e) {
+                    const allowedKeys = [
+                        "Backspace",
+                        "Delete",
+                        "Tab",
+                        "Escape",
+                        "Enter",
+                        "ArrowLeft",
+                        "ArrowRight",
+                        "ArrowUp",
+                        "ArrowDown",
+                    ];
+                    if (
+                        e.ctrlKey &&
+                        ["a", "c", "v", "x"].includes(e.key.toLowerCase())
+                    )
+                        return;
+                    if (
+                        !allowedKeys.includes(e.key) &&
+                        (e.key < "0" || e.key > "9")
+                    ) {
+                        e.preventDefault();
+                        return false;
                     }
-                }, 0);
-            });
+                });
+
+                phoneInput.addEventListener("input", function (e) {
+                    let value = e.target.value.replace(/\D/g, "");
+                    if (value.length > 0 && value[0] === "8") {
+                        value = "7" + value.slice(1);
+                    }
+                    if (value.length > 11) value = value.slice(0, 11);
+
+                    let formatted = "";
+                    if (value.length > 0) {
+                        formatted = "+7";
+                        if (value.length > 1)
+                            formatted += " (" + value.slice(1, 4);
+                        if (value.length > 4)
+                            formatted += ") " + value.slice(4, 7);
+                        if (value.length > 7)
+                            formatted += "-" + value.slice(7, 9);
+                        if (value.length > 9)
+                            formatted += "-" + value.slice(9, 11);
+                    }
+
+                    e.target.value = formatted;
+                    e.target.setAttribute("data-phone-digits", value);
+                });
+
+                phoneInput.addEventListener("paste", function (e) {
+                    setTimeout(() => {
+                        const paste = phoneInput.value;
+                        const digitsOnly = paste.replace(/\D/g, "");
+                        if (digitsOnly) {
+                            const event = new Event("input", { bubbles: true });
+                            phoneInput.value = digitsOnly;
+                            phoneInput.dispatchEvent(event);
+                        }
+                    }, 0);
+                });
+            }
         }
-    }
+    });
+
+    // Защита: если модальное окно открывается и капча рендерится динамически,
+    // инициируем повторную инициализацию Yandex SmartCaptcha
+    document.addEventListener("shown.bs.modal", function () {
+        if (typeof initYandexCaptcha === "function") {
+            setTimeout(initYandexCaptcha, 50);
+        }
+    });
 });
