@@ -94,25 +94,33 @@
                 // Загружаем капчу только при взаимодействии с формой
                 document.addEventListener('DOMContentLoaded', function() {
                     const forms = document.querySelectorAll('form:has(.yandex-captcha)');
-                    
+
                     forms.forEach(form => {
                         // Загружаем при первом фокусе на любом поле формы
                         const inputs = form.querySelectorAll('input, textarea, select');
                         inputs.forEach(input => {
-                            input.addEventListener('focus', loadCaptchaScript, { once: true });
+                            input.addEventListener('focus', loadCaptchaScript, {
+                                once: true
+                            });
                         });
 
                         // Загружаем при наведении на форму (для desktop)
-                        form.addEventListener('mouseenter', loadCaptchaScript, { once: true });
-                        
+                        form.addEventListener('mouseenter', loadCaptchaScript, {
+                            once: true
+                        });
+
                         // Загружаем при touch на форму (для mobile)
-                        form.addEventListener('touchstart', loadCaptchaScript, { once: true });
+                        form.addEventListener('touchstart', loadCaptchaScript, {
+                            once: true
+                        });
                     });
 
                     // Для модальных окон - загружаем при открытии модального окна
                     const modals = document.querySelectorAll('.modal');
                     modals.forEach(modal => {
-                        modal.addEventListener('shown.bs.modal', loadCaptchaScript, { once: true });
+                        modal.addEventListener('shown.bs.modal', loadCaptchaScript, {
+                            once: true
+                        });
                     });
                 });
             </script>

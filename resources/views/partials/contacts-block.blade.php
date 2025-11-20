@@ -31,6 +31,10 @@
                     <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" loading="lazy" width="40"
                         height="40" />
                 </a>
+                <a href="https://ok.ru/group/70000041551267" class="socialItem" rel="nofollow" target="_blank">
+                    <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy" width="40"
+                        height="40" />
+                </a>
             </div>
             <div class="rating">
                 <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">

@@ -53,10 +53,7 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     // Vendor chunk для библиотек
-                    'vendor': [
-                        'bootstrap',
-                        'sweetalert2',
-                    ],
+                    vendor: ["bootstrap", "sweetalert2"],
                 },
             },
         },
@@ -65,12 +62,12 @@ export default defineConfig({
         // Минификация CSS
         cssMinify: true,
         // Минификация JS с сохранением производительности
-        minify: 'terser',
+        minify: "terser",
         terserOptions: {
             compress: {
                 drop_console: true, // Удаляем console.log в продакшене
                 drop_debugger: true,
-                pure_funcs: ['console.log', 'console.info'], // Удаляем эти функции
+                pure_funcs: ["console.log", "console.info"], // Удаляем эти функции
             },
         },
     },

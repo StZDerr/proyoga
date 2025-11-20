@@ -1,6 +1,6 @@
 /* Базовый JS, который используется на всех страницах */
 /* Этот файл объединяет общие скрипты для уменьшения количества запросов */
 
-import './navbar.js';
-import './arrow.js';
-import './cookies.js';
+import "./navbar.js";
+import "./arrow.js";
+import "./cookies.js";

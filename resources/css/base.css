@@ -2,7 +2,7 @@
 /* Этот файл объединяет общие стили для уменьшения дублирования */
 
 /* Импортируем только необходимые стили */
-@import './navbar.css';
-@import './footer.css';
-@import './arrow.css';
-@import './cookies.css';
+@import "./navbar.css";
+@import "./footer.css";
+@import "./arrow.css";
+@import "./cookies.css";
