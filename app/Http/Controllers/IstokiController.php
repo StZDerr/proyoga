@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Gallery;
 use App\Models\MainCategory;
 use App\Models\Personal;
@@ -126,6 +127,8 @@ class IstokiController extends Controller
 
     public function taplink()
     {
-        return view('taplink');
+        $companies = Company::all();
+
+        return view('taplink', compact('companies'));
     }
 }

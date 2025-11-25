@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\TestAdminController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\IndexingController;
@@ -64,6 +65,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'personal' => PersonalController::class,
         'gallery' => GalleryController::class,
         'questions' => QuestionController::class,
+        'companies' => CompanyController::class,
         'promotions' => PromotionController::class,
         'price-categories' => PriceCategoryController::class,
         // 'price-tables' => PriceTableController::class,

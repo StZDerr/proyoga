@@ -14,7 +14,7 @@
     {{-- Font Awesome icons --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    @vite(['resources/css/admin/app.css', 'resources/css/admin/admin-gallery.css', 'resources/js/admin/gallery-order.js'])
+    @vite(['resources/css/admin/app.css', 'resources/css/admin/admin-gallery.css', 'resources/js/admin/gallery-order.js', 'resources/js/admin/mask.js'])
     @stack('styles')
 </head>
 
@@ -22,8 +22,10 @@
     <div class="page">
         @include('admin.partials.sidebar')
 
+
         <!-- Основной контент -->
         <div class="page-wrapper">
+            @include('admin.partials.success')
             @yield('content')
 
             <!-- Футер -->

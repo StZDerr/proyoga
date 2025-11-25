@@ -80,9 +80,10 @@
                         </svg>
                         <div class="discountContent">
                             <div class="discountTitle">Скидка 10%</div>
-                            <p class="text">Клубная карта Sumnikoff Group дает вам возможность получить все услуги
-                                холдинга по
-                                спец условиями, как привелигерованному клиенту</p>
+                            <p class="text">
+                                Клубная карта Sumnikoff Group дает вам возможность получить все услуги
+                                холдинга по спец условиями, как привелигерованному клиенту
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -90,173 +91,102 @@
         </div>
         <div class="container">
             <div class="taplinkWrapper">
-                <div class="taplinkItem">
-                    <img src="{{ asset('images/image 2183.webp') }}" class="taplinkIMG">
-                    <div class="taplinkContent">
-                        <div class="subTitle">Центр физического и ментального здоровья</div>
-                        <div class="title">ИстокиЯ</div>
-                        <ul class="list">
-                            <li class="listItem">
-                                Йога и смежные практики
-                            </li>
-                            <li class="listItem">
-                                Тело и здоровье
-                            </li>
-                            <li class="listItem">
-                                Психология и личностный рост
-                            </li>
-                            <li class="listItem">
-                                Авторские и эксклюзивные программы
-                            </li>
-                            <li class="listItem">
-                                Программные пакеты
-                            </li>
-                            <li class="listItem">
-                                Выездные сессии
-                            </li>
-                        </ul>
-                        <div class="contactWrapper">
-                            <a href="tel:+79649264147" class="contactItem">+7 (964) 926-41-47</a>
-                            <a href="mail:istokiya@mail.ru" class="contactItem">istokiya@mail.ru</a>
+                <div class="taplinkWrapper">
+                    @forelse($companies as $company)
+                        @php
+                            // --- photo URL resolution ---
+                            $photoUrl = null;
+                            $raw = $company->photo ?? null;
+
+                            if (!empty($raw)) {
+                                if (Str::startsWith($raw, ['http://', 'https://'])) {
+                                    $photoUrl = $raw;
+                                } elseif (Str::startsWith($raw, '/')) {
+                                    $photoUrl = asset(ltrim($raw, '/'));
+                                } else {
+                                    $p = public_path('images/companies/' . $raw);
+                                    if (file_exists($p)) {
+                                        $photoUrl = asset('images/companies/' . $raw);
+                                    } else {
+                                        $sp = storage_path('app/public/' . $raw);
+                                        if (file_exists($sp)) {
+                                            $photoUrl = asset('storage/' . $raw);
+                                        }
+                                    }
+                                }
+                            }
+                            // fallback image
+                            $photoUrl = $photoUrl ?: asset('images/image 2183.webp');
+
+                            // --- advantages -> array of items ---
+                            $advantagesRaw = $company->advantages ?? '';
+                            $advantagesParts = preg_split('/\r\n|\r|\n|\s*,\s*/u', trim($advantagesRaw));
+                            $advantagesParts = array_filter(array_map('trim', $advantagesParts));
+
+                            // socials array (ensure array)
+                            $socials = is_array($company->socials) ? $company->socials : [];
+                        @endphp
+
+                        <div class="taplinkItem">
+                            <img src="{{ $photoUrl }}" class="taplinkIMG" alt="{{ e($company->name) }}">
+                            <div class="taplinkContent">
+                                <div class="subTitle">{{ $company->category ?? '—' }}</div>
+                                <div class="title">{{ $company->name }}</div>
+
+                                @if (count($advantagesParts))
+                                    <ul class="list">
+                                        @foreach ($advantagesParts as $item)
+                                            <li class="listItem">{{ $item }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
+                                <div class="contactWrapper">
+                                    @if (!empty($company->phone))
+                                        <a href="tel:{{ preg_replace('/\s+/', '', $company->phone) }}"
+                                            class="contactItem">{{ $company->phone }}</a>
+                                    @endif
+                                    @if (!empty($company->email))
+                                        <a href="mailto:{{ $company->email }}"
+                                            class="contactItem">{{ $company->email }}</a>
+                                    @endif
+                                </div>
+
+                                @if (!empty($socials))
+                                    <div class="socialWrapper">
+                                        @foreach ($socials as $key => $link)
+                                            @if (trim((string) $link) !== '')
+                                                @php
+                                                    $slug = Str::slug((string) $key);
+                                                    $iconPath = public_path("images/svg/{$slug}.svg");
+                                                    $iconUrl = file_exists($iconPath)
+                                                        ? asset("images/svg/{$slug}.svg")
+                                                        : null;
+                                                @endphp
+
+                                                <a href="{{ $link }}" class="socialItem" rel="nofollow"
+                                                    target="_blank" title="{{ $key }}">
+                                                    @if ($iconUrl)
+                                                        <img src="{{ $iconUrl }}" alt="{{ $key }}"
+                                                            loading="lazy" width="40" height="40" />
+                                                    @else
+                                                        <span class="small">{{ ucfirst($key) }}</span>
+                                                    @endif
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <div class="socialWrapper">
-                            <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">
-                                <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                            <a href="https://ok.ru/group/70000041551267" class="socialItem" rel="nofollow"
-                                target="_blank">
-                                <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy" width="40"
-                                    height="40" />
-                            </a>
+                    @empty
+                        <div class="taplinkItem">
+                            <img src="{{ asset('images/image 2183.webp') }}" class="taplinkIMG" alt="placeholder">
+                            <div class="taplinkContent">
+                                <div class="title">Компаний пока нет</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="taplinkItem">
-                    <img src="{{ asset('images/image 2183.webp') }}" class="taplinkIMG">
-                    <div class="taplinkContent">
-                        <div class="subTitle">Центр физического и ментального здоровья</div>
-                        <div class="title">ИстокиЯ</div>
-                        <ul class="list">
-                            <li class="listItem">
-                                Йога и смежные практики
-                            </li>
-                            <li class="listItem">
-                                Тело и здоровье
-                            </li>
-                            <li class="listItem">
-                                Психология и личностный рост
-                            </li>
-                            <li class="listItem">
-                                Авторские и эксклюзивные программы
-                            </li>
-                            <li class="listItem">
-                                Программные пакеты
-                            </li>
-                            <li class="listItem">
-                                Выездные сессии
-                            </li>
-                        </ul>
-                        <div class="contactWrapper">
-                            <a href="tel:+79649264147" class="contactItem">+7 (964) 926-41-47</a>
-                            <a href="mail:istokiya@mail.ru" class="contactItem">istokiya@mail.ru</a>
-                        </div>
-                        <div class="socialWrapper">
-                            <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">
-                                <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                            <a href="https://ok.ru/group/70000041551267" class="socialItem" rel="nofollow"
-                                target="_blank">
-                                <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="taplinkItem">
-                    <img src="{{ asset('images/image 2183.webp') }}" class="taplinkIMG">
-                    <div class="taplinkContent">
-                        <div class="subTitle">Центр физического и ментального здоровья</div>
-                        <div class="title">ИстокиЯ</div>
-                        <ul class="list">
-                            <li class="listItem">
-                                Йога и смежные практики
-                            </li>
-                            <li class="listItem">
-                                Тело и здоровье
-                            </li>
-                            <li class="listItem">
-                                Психология и личностный рост
-                            </li>
-                            <li class="listItem">
-                                Авторские и эксклюзивные программы
-                            </li>
-                            <li class="listItem">
-                                Программные пакеты
-                            </li>
-                            <li class="listItem">
-                                Выездные сессии
-                            </li>
-                        </ul>
-                        <div class="contactWrapper">
-                            <a href="tel:+79649264147" class="contactItem">+7 (964) 926-41-47</a>
-                            <a href="mail:istokiya@mail.ru" class="contactItem">istokiya@mail.ru</a>
-                        </div>
-                        <div class="socialWrapper">
-                            <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">
-                                <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                            <a href="https://ok.ru/group/70000041551267" class="socialItem" rel="nofollow"
-                                target="_blank">
-                                <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="taplinkItem">
-                    <img src="{{ asset('images/image 2183.webp') }}" class="taplinkIMG">
-                    <div class="taplinkContent">
-                        <div class="subTitle">Центр физического и ментального здоровья</div>
-                        <div class="title">ИстокиЯ</div>
-                        <ul class="list">
-                            <li class="listItem">
-                                Йога и смежные практики
-                            </li>
-                            <li class="listItem">
-                                Тело и здоровье
-                            </li>
-                            <li class="listItem">
-                                Психология и личностный рост
-                            </li>
-                            <li class="listItem">
-                                Авторские и эксклюзивные программы
-                            </li>
-                            <li class="listItem">
-                                Программные пакеты
-                            </li>
-                            <li class="listItem">
-                                Выездные сессии
-                            </li>
-                        </ul>
-                        <div class="contactWrapper">
-                            <a href="tel:+79649264147" class="contactItem">+7 (964) 926-41-47</a>
-                            <a href="mail:istokiya@mail.ru" class="contactItem">istokiya@mail.ru</a>
-                        </div>
-                        <div class="socialWrapper">
-                            <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">
-                                <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                            <a href="https://ok.ru/group/70000041551267" class="socialItem" rel="nofollow"
-                                target="_blank">
-                                <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy"
-                                    width="40" height="40" />
-                            </a>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -273,13 +203,8 @@
                         <a href="tel:+79997824239" class="contactItem">+7 (999) 782-42-39</a>
                         <a href="https://www.rusprofile.ru/ip/308715430300052" class="contactItem" target="_blank"
                             rel="nofollow">rusprofile.ru</a>
-                        <a href="https://vk.com/myistokiya" class="socialItem" rel="nofollow" target="_blank">
+                        <a href="https://vk.com/isumnikov" class="socialItem" rel="nofollow" target="_blank">
                             <img src="{{ asset('images/svg/vk.svg') }}" alt="VKontakte" loading="lazy"
-                                width="40" height="40" />
-                        </a>
-                        <a href="https://ok.ru/group/70000041551267" class="socialItem" rel="nofollow"
-                            target="_blank">
-                            <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy"
                                 width="40" height="40" />
                         </a>
                     </div>

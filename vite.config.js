@@ -30,6 +30,7 @@ export default defineConfig({
                 "resources/css/admin/admin-gallery.css",
                 "resources/js/app.js",
                 "resources/js/base.js",
+                "resources/js/admin/mask.js",
                 "resources/js/arrow.js",
                 "resources/js/cookies.js",
                 "resources/js/hatha-uoga.js",
