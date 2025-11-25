@@ -222,8 +222,63 @@
 }
 
 @media(max-width: 1200px) {
+    .pageTitle {
+        text-align: center;
+    }
+
     .pageBanner .bannerDiscount {
         grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
         text-align: center;
+    }
+
+    .pageBanner .bannerDiscount svg {
+        width: 100%;
+        height: 75px;
+    }
+
+    .pageBanner .bannerDiscount .discountContent {
+        align-items: center !important;
+    }
+
+    .taplinkWrapper .taplinkItem {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .taplinkWrapper .taplinkItem .taplinkContent .contactWrapper {
+        flex-direction: column;
+    }
+
+    .taplinkWrapper .taplinkItem .taplinkContent {
+        align-items: center;
+    }
+
+    .taplinkWrapper .taplinkItem .taplinkContent .list {
+        width: 100%;
+    }
+
+    .taplinkWrapper .taplinkItem .taplinkContent .subTitle,
+    .taplinkWrapper .taplinkItem .taplinkContent .title {
+        text-align: center;
+    }
+
+    .taplinkWrapper .taplinkItem:nth-child(even) .taplinkIMG {
+        order: unset;
+    }
+
+    .personalBlock {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .personalBlock .personalContent .title,
+    .personalBlock .personalContent .text {
+        text-align: center;
+    }
+}
+
+@media(max-width: 700px) {
+    .personalBlock .personalContent .contactWrapper {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
