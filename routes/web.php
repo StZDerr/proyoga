@@ -106,6 +106,7 @@ Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('p
 Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
+Route::get('/taplink', [IstokiController::class, 'taplink'])->name('taplink');
 
 Route::get('/instruction', [IstokiController::class, 'instruction'])->name('instruction');
 
@@ -136,10 +137,6 @@ Route::get('/tea', function () {
 Route::get('/calendar', function () {
     return view('calendar');
 })->name('calendar');
-
-Route::get('/taplink', function () {
-    return view('taplink');
-})->name('taplink');
 
 // API маршруты для теста
 Route::prefix('api/test')->group(function () {

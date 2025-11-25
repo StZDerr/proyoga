@@ -123,4 +123,9 @@ class IstokiController extends Controller
             return redirect()->route('instruction.desktop');
         }
     }
+
+    public function taplink()
+    {
+        return view('taplink');
+    }
 }

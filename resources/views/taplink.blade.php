@@ -32,7 +32,7 @@
     </noscript>
 
     {{-- Общие стили и JS через Vite (оптимизировано) --}}
-    @vite(['resources/css/app.css', 'resources/css/base.css', 'resources/css/taplink.css', 'resources/css/performance.css', 'resources/css/welcome.css', 'resources/css/contacts-block.css', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/app.js', 'resources/js/base.js', 'resources/js/welcome_new.js', 'resources/js/recording-form.js', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js', 'resources/js/lazy-iframe.js'])
+    @vite(['resources/css/app.css', 'resources/css/base.css', 'resources/css/taplink.css', 'resources/css/welcome.css', 'resources/css/contacts-block.css', 'resources/js/base.js', 'resources/js/lazy-iframe.js'])
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
