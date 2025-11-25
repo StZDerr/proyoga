@@ -1,0 +1,229 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.pageBanner {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.pageBanner .pageTitle {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: clamp(1.875rem, 1.5682rem + 1.3636vw, 3.75rem);
+    text-transform: uppercase;
+    color: #123D4D;
+}
+
+.pageBanner .mainText {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    color: #1D7D6F;
+}
+
+.pageBanner .bannerDiscount {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 20px;
+}
+
+.pageBanner .bannerDiscount svg {
+    width: 100%;
+    height: 100%;
+}
+
+.pageBanner .bannerDiscount .discountContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    font-family: Montserrat;
+}
+
+.pageBanner .bannerDiscount .discountContent .discountTitle {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: var(--font-size-text-desc-20px);
+    padding: 10px 20px;
+    background-color: #1D7D6F;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.pageBanner .bannerDiscount .discountContent .text {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    color: #1D7D6F;
+    text-wrap: balance;
+}
+
+/*  */
+
+.taplinkWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.taplinkWrapper .taplinkItem {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.taplinkWrapper .taplinkItem .taplinkIMG {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.taplinkWrapper .taplinkItem:nth-child(even) .taplinkIMG {
+    order: 1;
+}
+
+.taplinkWrapper .taplinkItem .taplinkContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 25px;
+}
+
+.taplinkWrapper .taplinkItem .taplinkContent .subTitle {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    color: #123D4D;
+    padding: 10px 20px;
+    border: solid 1px #103E4E;
+    border-radius: 20px;
+}
+
+.taplinkWrapper .taplinkItem .taplinkContent .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    color: #123D4D;
+}
+
+.taplinkWrapper .taplinkItem .taplinkContent .list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    color: #1D7D6F;
+    padding-left: 20px;
+}
+
+.taplinkWrapper .taplinkItem .taplinkContent .contactWrapper,
+.taplinkWrapper .taplinkItem .taplinkContent .socialWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.taplinkWrapper .taplinkItem .taplinkContent .contactWrapper .contactItem {
+    padding: 10px 20px;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: var(--font-size-text-desc-20px);
+    color: #FFFFFF;
+    background: #1D7D6F;
+    border-radius: 20px;
+}
+
+/*  */
+
+.personalBlock {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.personalBlock .personalBlockIMG {
+    width: 100%;
+    height: 425px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.personalBlock .personalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px;
+}
+
+.personalBlock .personalContent .title {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    color: #123D4D;
+}
+
+.personalBlock .personalContent .text {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    color: #1D7D6F;
+}
+
+.personalBlock .personalContent .contactWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.personalBlock .personalContent .contactWrapper .contactItem {
+    padding: 10px 20px;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: var(--font-size-text-desc-20px);
+    color: #FFFFFF;
+    background: #1D7D6F;
+    border-radius: 20px;
+}
+
+.personalBlock .personalContent .personalDate {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.personalBlock .personalContent .personalDate .personalName {
+    font-family: Tenor Sans;
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-20px);
+    color: #1A4151;
+}
+
+.personalBlock .personalContent .personalDate .personalVal {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-20px);
+    color: #1D7D6F;
+}
+
+@media(max-width: 1200px) {
+    .pageBanner .bannerDiscount {
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+    }
+}

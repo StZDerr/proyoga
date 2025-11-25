@@ -123,6 +123,10 @@ Route::get('/calendar', function () {
     return view('calendar');
 })->name('calendar');
 
+Route::get('/taplink', function () {
+    return view('taplink');
+})->name('taplink');
+
 // API маршруты для теста
 Route::prefix('api/test')->group(function () {
     Route::get('/questions', [TestController::class, 'getQuestions']);
