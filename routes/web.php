@@ -107,6 +107,20 @@ Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name(
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
 
+Route::get('/instruction', [IstokiController::class, 'instruction'])->name('instruction');
+
+Route::get('/instruction/ios', function () {
+    return view('instruction.ios'); // Или сразу редирект на AppStore
+})->name('instruction.ios');
+
+Route::get('/instruction/android', function () {
+    return view('instruction.android'); // Или редирект на RuStore/Google Play
+})->name('instruction.android');
+
+Route::get('/instruction/desktop', function () {
+    return view('instruction.desktop');
+})->name('instruction.desktop');
+
 Route::get('/dev', function () {
     return view('dev');
 })->name('dev');
@@ -131,8 +145,6 @@ Route::prefix('api/test')->group(function () {
 
 // API маршруты для отправки форм
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
-
-
 
 // Sitemap.xml
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');

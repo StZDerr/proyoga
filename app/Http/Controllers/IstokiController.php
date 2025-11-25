@@ -11,6 +11,7 @@ use App\Models\Question;
 use App\Models\Story;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
+use Illuminate\Http\Request;
 
 class IstokiController extends Controller
 {
@@ -106,5 +107,20 @@ class IstokiController extends Controller
         $photos = Gallery::orderBy('sort_order', 'asc')->get();
 
         return view('photo-galleries', compact('photos'));
+    }
+
+    public function instruction(Request $request)
+    {
+        $userAgent = $request->header('User-Agent');
+        if (preg_match('/iPhone|iPad|iPod/', $userAgent)) {
+            // iOS → редирект на роут AppStore
+            return redirect()->route('instruction.ios');
+        } elseif (preg_match('/Android/', $userAgent)) {
+            // Android → редирект на роут Android
+            return redirect()->route('instruction.android');
+        } else {
+            // Десктоп / другое устройство → редирект на общий роут
+            return redirect()->route('instruction.desktop');
+        }
     }
 }
