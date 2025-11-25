@@ -109,7 +109,8 @@
         text-align: center;
     }
 
-    .containerMain .container .adress {
+    .containerMain .container .adress,
+    .containerMain .container .adress-desc {
         text-align: center;
     }
 
