@@ -338,72 +338,6 @@
             </div>
         </div>
     </div>
-    {{-- <div class="calendar mt-4">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="text">
-                    <h2 class="section-title">Расписание занятий</h2>
-                    <span>Выберите удобное для вас время занятий</span>
-                </div>
-                <a href="{{ route('calendar') }}" class="btn button">
-                    Смотреть полностью
-                </a>
-            </div>
-            <iframe class="aeCustomWidget"
-                src="//appevent.ru/widget/embeded?widget_key=8d72037d71fe2300577cb286d7d4fae7&hall_id=24709"
-                width="100%" height="1120px" style="background: #ffffff;border: none;"></iframe>
-        </div>
-    </div>
-    <div class="price-list mt-3">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-9">
-                    <div class="text">
-                        <h2 class="section-title">Прайс-лист</h2>
-                        <span>Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и
-                            записывайтесь на занятия.</span>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 mb-3">
-                    <div class="d-flex justify-content-center"> <!-- ← ВОЛШЕБНАЯ СТРОКА -->
-                        <a href="{{ route('recording') }}" class="btn button px-5 py-3">
-                            Записаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
-                @foreach ($categories as $index => $category)
-                    <button class="category-btn {{ $index === 0 ? 'active' : 'inactive' }}"
-                        data-target="content-{{ $category->slug }}">
-                        {{ $category->name }}
-                    </button>
-                @endforeach
-            </div>
-
-            <!-- ТЕКСТЫ — ВСЁ В HTML -->
-            @foreach ($categories as $index => $category)
-                <div id="content-{{ $category->slug }}" class="content-text {{ $index === 0 ? 'active' : '' }}">
-                    @foreach ($category->tables as $table)
-                        <table class="custom-table">
-                            <tr class="table-title-row">
-                                <td colspan="2" class="table-title">{{ $table->title }}</td>
-                            </tr>
-                            @foreach ($table->items as $item)
-                                <tr class="table-item-row">
-                                    <td class="table-item-name">{{ $item->name }}</td>
-                                    <td class="table-item-info">
-                                        <div class="table-item-duration">{{ $item->duration }} мин</div>
-                                        <div class="table-item-price">{{ $item->price }} ₽</div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    @endforeach
-                </div>
-            @endforeach
-        </div>
-    </div> --}}
     <div class="directions">
         <div class="container">
             <div class="row align-items-center">
@@ -414,7 +348,6 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
-                    <!-- ВОЛШЕБНАЯ ОБЁРТКА -->
                     <div class="button d-flex justify-content-center h-100 align-items-center mt-3">
                         <a href="{{ route('direction') }}" class="text-decoration-none text-dark">
                             Все направления
@@ -606,7 +539,7 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div class="otziv mt-5">
+    <div class="otziv mt-5">
         <div class="container d-flex justify-content-center">
             <div class="otziv-wrapper" style="width:560px; height:800px; position:relative;">
                 <iframe
@@ -621,7 +554,7 @@
                 </a>
             </div>
         </div>
-    </div> --}}
+    </div>
     @if ($galleries->isNotEmpty())
         <div class="photo-gallery">
             <div class="container">
