@@ -15,6 +15,7 @@ export default defineConfig({
                 "resources/css/contacts.css",
                 "resources/css/price-list.css",
                 "resources/css/direction.css",
+                "resources/css/instruction.css",
                 "resources/css/arrow.css",
                 "resources/css/cookies.css",
                 "resources/css/photoGalleries.css",

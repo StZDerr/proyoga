@@ -1,0 +1,50 @@
+.title-text {
+    font-family: var(--font-standart-TenorSans);
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 1.5em;
+    color: var(--secondary-color-1d7d6f);
+}
+.text-start {
+    font-family: var(--font-standart-Montserrat);
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 1.5em;
+}
+.store-icon {
+    width: 32px; /* общий размер иконок */
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    margin-right: 0.5rem; /* отступ между иконкой и текстом */
+}
+.questions .title {
+    font-family: var(--font-standart-TenorSans);
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 1.5em;
+    color: var(--primary-color-button-123d4d);
+}
+
+.questions .accordion .accordion-header .accordion-button {
+    font-family: var(--font-standart-Montserrat);
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-28px);
+    line-height: 1.5em;
+    color: var(--primary-color-button-123d4d) !important;
+}
+
+.questions .accordion .accordion-body {
+    font-family: var(--font-standart-Montserrat);
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-16px);
+    line-height: 1.5em;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.questions .accordion .accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: inherit;
+    box-shadow: none;
+}
