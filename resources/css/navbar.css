@@ -18,6 +18,7 @@ a {
     z-index: 12000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 12000 !important; /* выше всех обычных блоков, включая картинку */
+    padding-bottom: 0.5rem;
 }
 
 .headroom--unpinned {

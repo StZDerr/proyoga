@@ -472,7 +472,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="about-space-features text-center">
                         <div class="svg mb-3">
-                            <img src="{{ asset('images/svg/people.svg') }}" alt="people" />
+                            <img src="{{ asset('images/svg/people.svg') }}" alt="people" width="80"
+                                height="80" />
                         </div>
                         <div class="about-space-features-text">
                             Разные направления физического и духовного развития
@@ -483,8 +484,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="about-space-features text-center">
                         <div class="svg mb-3">
-                            <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="people" width="39"
-                                height="43" />
+                            <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="people" width="80"
+                                height="80" />
                         </div>
                         <div class="about-space-features-text">
                             Два зала, чайная зона и собственный автобус для путешествий
@@ -499,7 +500,7 @@
                                 width="80" height="80" />
                         </div>
                         <div class="about-space-features-text">
-                            Здесь соединяются тело, дыхание, звук, осознанность и общение.
+                            Здесь соединяются тело, дыхание, звук, осознанность и общение
                         </div>
                     </div>
                 </div>
