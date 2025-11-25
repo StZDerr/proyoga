@@ -318,9 +318,9 @@
     <div class="about py-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-12 about-img mb-4 mb-lg-0 text-center text-lg-start">
+                <div class="col-lg-6 col-12 about-img mb-4 mb-lg-0 text-center">
                     <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Icon" class="img-fluid"
-                        width="144" height="120" />
+                        width="80" height="80" />
                 </div>
                 <div class="col-lg-6 col-12 about-text">
                     <div class="title">
