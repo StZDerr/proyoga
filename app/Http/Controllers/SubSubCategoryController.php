@@ -16,19 +16,19 @@ class SubSubCategoryController extends Controller
     public function index(Request $request)
     {
         $query = SubSubCategory::with('subCategory.mainCategory');
-        
+
         // Фильтр по подкатегории
         if ($request->filled('sub_category_id')) {
             $query->where('sub_category_id', $request->sub_category_id);
         }
-        
+
         // Фильтр по главной категории (через подкатегорию)
         if ($request->filled('main_category_id')) {
-            $query->whereHas('subCategory', function($q) use ($request) {
+            $query->whereHas('subCategory', function ($q) use ($request) {
                 $q->where('main_category_id', $request->main_category_id);
             });
         }
-        
+
         $subSubCategories = $query->orderBy('id', 'desc')->get();
         $mainCategories = MainCategory::orderBy('title')->get();
         $subCategories = SubCategory::orderBy('title')->get();
@@ -55,6 +55,8 @@ class SubSubCategoryController extends Controller
         // Валидация
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'about_title' => 'required|string|max:255',
+            'benefit_title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'about' => 'nullable|string',
             'image' => 'sometimes|image|mimes:webp|max:2048',
@@ -68,6 +70,14 @@ class SubSubCategoryController extends Controller
             'title.required' => 'Название обязательно',
             'title.string' => 'Название должно быть строкой',
             'title.max' => 'Название не должно превышать 255 символов',
+
+            'about_title.required' => 'Название обязательно',
+            'about_title.string' => 'Название должно быть строкой',
+            'about_title.max' => 'Название не должно превышать 255 символов',
+
+            'benefit_title.required' => 'Название обязательно',
+            'benefit_title.string' => 'Название должно быть строкой',
+            'benefit_title.max' => 'Название не должно превышать 255 символов',
 
             'description.string' => 'Описание должно быть строкой',
             'about.string' => 'Поле "о программе" должно быть строкой',
@@ -92,6 +102,8 @@ class SubSubCategoryController extends Controller
         // Основные поля
         $data = [
             'title' => trim($validated['title']),
+            'about_title' => trim($validated['about_title']),
+            'benefit_title' => trim($validated['benefit_title']),
             'description' => $validated['description'] ? trim($validated['description']) : null,
             'about' => $validated['about'] ? trim($validated['about']) : null,
             'sub_category_id' => $validated['sub_category_id'],
@@ -163,6 +175,8 @@ class SubSubCategoryController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'about_title' => 'required|string|max:255',
+            'benefit_title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'about' => 'nullable|string',
             'image' => 'sometimes|image|mimes:webp|max:2048',
@@ -176,6 +190,14 @@ class SubSubCategoryController extends Controller
             'title.required' => 'Название обязательно',
             'title.string' => 'Название должно быть строкой',
             'title.max' => 'Название не должно превышать 255 символов',
+
+            'about_title.required' => 'Название обязательно',
+            'about_title.string' => 'Название должно быть строкой',
+            'about_title.max' => 'Название не должно превышать 255 символов',
+
+            'benefit_title.required' => 'Название обязательно',
+            'benefit_title.string' => 'Название должно быть строкой',
+            'benefit_title.max' => 'Название не должно превышать 255 символов',
 
             'description.string' => 'Описание должно быть строкой',
             'about.string' => 'Поле "о программе" должно быть строкой',
@@ -200,6 +222,8 @@ class SubSubCategoryController extends Controller
         // Основные поля
         $data = [
             'title' => trim($validated['title']),
+            'about_title' => trim($validated['about_title']),
+            'benefit_title' => trim($validated['benefit_title']),
             'description' => $validated['description'] ? trim($validated['description']) : null,
             'about' => $validated['about'] ? trim($validated['about']) : null,
             'sub_category_id' => $validated['sub_category_id'],

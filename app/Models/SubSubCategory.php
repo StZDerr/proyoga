@@ -15,6 +15,8 @@ class SubSubCategory extends Model
         'image',
         'sub_category_id',
         'slug',
+        'about_title',
+        'benefit_title',
     ];
 
     protected $casts = [
@@ -73,12 +75,12 @@ class SubSubCategory extends Model
             if ($model->isDirty('title')) {
                 $oldSlug = $model->getOriginal('slug');
                 $model->slug = $model->generateSlug($model->title);
-                
+
                 // Обновляем URL в indexable_pages, если slug изменился
                 if ($oldSlug && $oldSlug !== $model->slug && $model->subCategory) {
-                    $oldUrl = $model->subCategory->slug . '/' . $oldSlug;
-                    $newUrl = $model->subCategory->slug . '/' . $model->slug;
-                    
+                    $oldUrl = $model->subCategory->slug.'/'.$oldSlug;
+                    $newUrl = $model->subCategory->slug.'/'.$model->slug;
+
                     \App\Models\IndexablePage::where('url', $oldUrl)
                         ->update(['url' => $newUrl]);
                 }

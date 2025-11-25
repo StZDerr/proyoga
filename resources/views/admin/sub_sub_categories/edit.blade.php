@@ -18,6 +18,20 @@
                     required>
             </div>
 
+            {{-- О "Названии" --}}
+            <div class="mb-3">
+                <label class="form-label">О "Названии"</label>
+                <input type="text" name="about_title" class="form-control"
+                    value="{{ old('about_title', $subSubCategory->about_title) }}" required>
+            </div>
+
+            {{-- Польза "Название" --}}
+            <div class="mb-3">
+                <label class="form-label">Польза "Название"</label>
+                <input type="text" name="benefit_title" class="form-control"
+                    value="{{ old('benefit_title', $subSubCategory->benefit_title) }}" required>
+            </div>
+
             {{-- Описание --}}
             <div class="mb-3">
                 <label class="form-label">Описание</label>

@@ -14,6 +14,18 @@
                 <input type="text" name="title" class="form-control" value="{{ old('title') }}" required>
             </div>
 
+            {{-- О "Названии" --}}
+            <div class="mb-3">
+                <label class="form-label">О "Названии"</label>
+                <input type="text" name="about_title" class="form-control" value="{{ old('about_title') }}" required>
+            </div>
+
+            {{-- Польза "Название" --}}
+            <div class="mb-3">
+                <label class="form-label">Польза "Название"</label>
+                <input type="text" name="benefit_title" class="form-control" value="{{ old('benefit_title') }}" required>
+            </div>
+
             <div class="mb-3">
                 <label class="form-label">Описание</label>
                 <textarea name="description" class="form-control">{{ old('description') }}</textarea>
