@@ -1,5 +1,6 @@
 /* Скрыть горизонтальный overflow на мобильных */
 @media (max-width: 1200px) {
+
     html,
     body {
         overflow-x: hidden !important;
@@ -10,6 +11,7 @@
 a {
     text-decoration: none !important;
 }
+
 .site-header {
     position: sticky;
     top: 0;
@@ -17,7 +19,8 @@ a {
     background: #fff;
     z-index: 12000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    z-index: 12000 !important; /* выше всех обычных блоков, включая картинку */
+    z-index: 12000 !important;
+    /* выше всех обычных блоков, включая картинку */
     padding-bottom: 0.5rem;
 }
 
@@ -29,6 +32,7 @@ a {
     transform: translateY(0);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
 /* Стили для скрытия элементов при скролле */
 .site-header .hideable-content {
     opacity: 1;
@@ -124,10 +128,13 @@ a {
 
 .containerWrapper .wrapper.hideable-content {
     display: flex;
-    align-items: center; /* центрует вложенные элементы по вертикали */
-    justify-content: center; /* при необходимости и по горизонтали */
+    align-items: center;
+    /* центрует вложенные элементы по вертикали */
+    justify-content: center;
+    /* при необходимости и по горизонтали */
     height: 100%;
 }
+
 .containerWrapper .wrapper {
     display: flex;
     flex-direction: row;
@@ -138,10 +145,14 @@ a {
 
 .containerWrapper .wrapper a {
     display: flex;
-    flex-direction: column; /* ставим адрес и описание вертикально */
-    align-items: center; /* выравнивание по центру */
-    text-align: center; /* чтобы текст внутри span тоже был по центру */
-    gap: 5px; /* отступ между адресом и описанием */
+    flex-direction: column;
+    /* ставим адрес и описание вертикально */
+    align-items: center;
+    /* выравнивание по центру */
+    text-align: center;
+    /* чтобы текст внутри span тоже был по центру */
+    gap: 5px;
+    /* отступ между адресом и описанием */
 }
 
 .containerWrapper .wrapper .rating {
@@ -203,6 +214,7 @@ a {
     text-transform: uppercase;
     color: #1d7d6f;
 }
+
 
 @media (max-width: 1440px) {
     .site-header {
@@ -290,9 +302,11 @@ a {
     .menu-toggle span:nth-child(1) {
         top: 0;
     }
+
     .menu-toggle span:nth-child(2) {
         top: 10px;
     }
+
     .menu-toggle span:nth-child(3) {
         top: 20px;
     }
@@ -301,9 +315,11 @@ a {
         transform: rotate(45deg);
         top: 10px;
     }
+
     .menu-toggle.active span:nth-child(2) {
         opacity: 0;
     }
+
     .menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg);
         top: 10px;

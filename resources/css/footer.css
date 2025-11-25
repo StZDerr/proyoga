@@ -117,6 +117,35 @@
     margin-left: auto;
 }
 
+.fixedSocial {
+    position: fixed;
+    top: auto;
+    bottom: 50%;
+    right: 0;
+    transform: translateY(50%);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 10000;
+    padding: 30px 10px 30px 15px;
+    background-color: var(--secondary-color-1d7d6f);
+    border-radius: 10px 0 0 10px;
+}
+
+.fixedSocial svg {
+    width: 30px;
+    height: 30px;
+    transition: 0.25s;
+}
+
+.fixedSocial svg:hover {
+    transform: scale(1.25);
+}
+
+.fixedSocial svg path {
+    fill: #fff;
+}
+
 @media (max-width: 1440px) {
     .site-footer {
         padding: 25px 50px;
@@ -155,6 +184,23 @@
 
     .site-footer .container .legalInfo .info:last-child {
         margin-left: 0;
+    }
+
+    .fixedSocial {
+        bottom: 0%;
+        transform: translateY(0%);
+        flex-direction: row;
+        justify-content: center;
+        gap: 25px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 0;
+        z-index: 10;
+    }
+
+    .fixedSocial svg {
+        width: 25px;
+        height: 25px;
     }
 }
 

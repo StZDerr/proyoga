@@ -1,6 +1,6 @@
 .arrow-up {
     position: fixed;
-    bottom: 30px;
+    bottom: 25px;
     right: 30px;
     width: 4rem;
     height: 4rem;
@@ -10,7 +10,8 @@
     border-radius: 50%;
     cursor: pointer;
     font-size: 20px;
-    display: none; /* скрыта по умолчанию */
+    display: none;
+    /* скрыта по умолчанию */
     justify-content: center;
     align-items: center;
     transition: opacity 0.3s;
@@ -25,4 +26,13 @@
 /* Когда нужно показать */
 .arrow-up.show {
     display: flex;
+}
+
+@media(max-width: 1200px) {
+    .arrow-up {
+        position: fixed;
+        bottom: 10px;
+        width: 3rem;
+        height: 3rem;
+    }
 }

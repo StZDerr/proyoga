@@ -46,14 +46,14 @@
             </div>
 
             <div class="menu">
-                <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
+                {{-- <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a> --}}
+                <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
             </div>
         </div>
     </div>
 
-    <!-- Мобильная версия -->
     <div class="containerMobile">
         <a href="/" class="logo">
             <img src="{{ asset('images/logo/IstikiiY.svg') }}" alt="Site Logo" width="144" height="120" />
