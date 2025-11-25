@@ -29,7 +29,7 @@
                     {{ $subSubCategory->description ?? '"Исток и Я" - Твой путь к себе начинается с Истока. Здесь соединяются тело, дыхание, звук, осознанность и общение.' }}
                 </p>
                 <button type="button" class="button bdi" data-bs-toggle="modal" data-bs-target="#recordingModal">
-                    Получить бесплатный урок
+                    Получить бесплатную консультацию
                 </button>
                 {{-- <a href="#recording" class="button bdi">Получить пробный урок</a> --}}
             </div>

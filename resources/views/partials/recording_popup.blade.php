@@ -17,14 +17,14 @@
 
                         <div class="mt-3 col-xl-6 col-12">
                             <div class="title">
-                                Получить бесплатный урок на "{{ $subSubCategory->title }}"
+                                Получить бесплатную консультацию на "{{ $subSubCategory->title }}"
                             </div>
 
                             <!-- Форма записи -->
                             <form class="recording-form mt-4" id="recordingForm">
                                 @csrf
                                 <input type="hidden" name="service"
-                                    value="{{ "Получить бесплатный урок на \"{$subSubCategory->title}\"" }}">
+                                    value="{{ "Получить бесплатную консультацию на \"{$subSubCategory->title}\"" }}">
                                 <div class="form-group mb-3">
                                     <input type="text" class="form-control recording-input" id="userName"
                                         name="name" placeholder="Ваше имя" required autocomplete="name"
