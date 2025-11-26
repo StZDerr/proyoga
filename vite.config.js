@@ -20,6 +20,7 @@ export default defineConfig({
                 "resources/css/cookies.css",
                 "resources/css/photoGalleries.css",
                 "resources/css/404.css",
+                "resources/css/taplink.css",
                 "resources/css/welcome.css",
                 "resources/css/navbar.css",
                 "resources/css/footer.css",
