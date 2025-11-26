@@ -18,7 +18,7 @@ class IstokiController extends Controller
 {
     public function index()
     {
-        $promotions = Promotion::all();
+        $promotions = Promotion::orderBy('created_at', 'desc')->get();
         // $categories = PriceCategory::with(['tables.items'])->get();
         $personals = Personal::all();
         $galleries = Gallery::where('is_active', 1)
