@@ -81,8 +81,9 @@
                         <div class="discountContent">
                             <div class="discountTitle">Скидка 10%</div>
                             <p class="text">
-                                Клубная карта Sumnikoff Group дает вам возможность получить все услуги
-                                холдинга по спец условиями, как привелигерованному клиенту
+                                <b>ИстокиЯ</b> — скидка при предъявлении промокода. <br>
+                                Клубная карта Sumnikoff Group дает вам возможность получать услуги холдинга на
+                                специальных условиях, как привилегированному клиенту.
                             </p>
                         </div>
                     </div>
@@ -190,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        {{-- <div class="container">
             <div class="personalBlock">
                 <img src="{{ asset('images/photo_2025-07-31_13-13-22.jpg.webp') }}" class="personalBlockIMG">
                 <div class="personalContent">
@@ -220,7 +221,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </main>
     @include('partials.footer')
 </body>
