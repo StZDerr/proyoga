@@ -41,6 +41,72 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const viewedMedia = new Map();
 
+        // === ПРЕВЬЮ АВАТАРОВ (видео в кружках) ===
+        const initAvatarPreviews = () => {
+            const avatarVideos = [];
+
+            stories.forEach((story) => {
+                const avatarImg = story.querySelector(".avatar");
+                if (!avatarImg) return;
+
+                const mediaEls = Array.from(
+                    story.querySelectorAll(".story-media")
+                );
+                const videoSrc = mediaEls
+                    .map((el) => el.dataset.src)
+                    .find((src) => src && getMediaType(src) === "video");
+
+                if (!videoSrc) return;
+
+                const video = document.createElement("video");
+                video.className = "avatar avatar-video";
+                video.src = videoSrc;
+                video.muted = true;
+                video.loop = true;
+                video.autoplay = true;
+                video.playsInline = true;
+                video.preload = "metadata";
+
+                video.style.objectFit = "cover";
+                video.style.width = avatarImg.width
+                    ? `${avatarImg.width}px`
+                    : "80px";
+                video.style.height = avatarImg.height
+                    ? `${avatarImg.height}px`
+                    : "80px";
+                video.style.borderRadius = "50%";
+                video.style.display = "block";
+
+                try {
+                    const imgStyle = window.getComputedStyle(avatarImg);
+                    if (imgStyle.border) video.style.border = imgStyle.border;
+                    if (imgStyle.padding)
+                        video.style.padding = imgStyle.padding;
+                } catch (e) {}
+
+                avatarImg.replaceWith(video);
+                avatarVideos.push(video);
+
+                // Некоторый браузеры требуют явного вызова play()
+                video.play().catch(() => {});
+            });
+
+            if (avatarVideos.length) {
+                const io = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            const v = entry.target;
+                            if (entry.isIntersecting) v.play().catch(() => {});
+                            else v.pause();
+                        });
+                    },
+                    { threshold: 0.5 }
+                );
+
+                avatarVideos.forEach((v) => io.observe(v));
+            }
+        };
+
         // === ОПРЕДЕЛЕНИЕ ТИПА ФАЙЛА ===
         const getMediaType = (src) => {
             const ext = src.split(".").pop().toLowerCase();
@@ -196,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             loadCurrentMedia();
             lightbox.classList.add("active");
+            document.body.classList.add("lightbox-open"); // Добавить класс на body
             updateStoryBorders();
             scrollToStory(idx);
         };
@@ -203,6 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // === ЗАКРЫТИЕ ЛАЙТБОКСА ===
         const closeLightbox = () => {
             lightbox.classList.remove("active");
+            document.body.classList.remove("lightbox-open"); // Убрать класс с body
             clearInterval(autoAdvanceInterval);
             mediaContainer.innerHTML = "";
         };
@@ -274,6 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("resize", updateLayout);
 
         // === ИНИЦИАЛИЗАЦИЯ ===
+        initAvatarPreviews();
         updateStoryBorders();
         updateLayout();
         setTimeout(updateLayout, 100);

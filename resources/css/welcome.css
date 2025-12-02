@@ -1394,6 +1394,16 @@
     padding: 20px;
 }
 
+/* Скрыть navbar при открытом лайтбоксе */
+body.lightbox-open .site-header {
+    display: none !important;
+}
+
+/* Повысить z-index лайтбокса для уверенности */
+.lightbox {
+    z-index: 15000 !important;
+}
+
 .lightbox.active {
     display: flex;
 }
