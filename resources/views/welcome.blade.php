@@ -597,13 +597,59 @@
                 </div>
             </div>
             <a href="{{ route('photo-galleries') }}" class="btn btn-more mt-4">
-                Смотреть все <i class="bi bi-arrow-right"></i>
+                Смотреть все
             </a>
         </div>
     @endif
 
 
     @include('partials.recording-block')
+
+    {{-- Блок статей --}}
+    @if ($articles->isNotEmpty())
+        <div class="articles-section mt-5 py-5">
+            <div class="container">
+                <div class="title mb-5 text-center">
+                    Полезные статьи
+                </div>
+                <div class="row g-4">
+                    @foreach ($articles as $article)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="article-card h-100">
+                                @if ($article->image)
+                                    <div class="article-image">
+                                        <img src="{{ asset('storage/' . $article->image) }}"
+                                            alt="{{ $article->title }}" class="img-fluid">
+                                    </div>
+                                @endif
+                                <div class="article-content p-4">
+                                    <h3 class="article-title">{{ $article->title }}</h3>
+                                    <p class="article-excerpt text-muted">
+                                        {{ Str::limit($article->excerpt ?? strip_tags($article->content), 120) }}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="article-date text-muted small">
+                                            {{ $article->created_at->format('d.m.Y') }}
+                                        </span>
+                                        <a href="{{ route('articles.show', $article->slug) }}"
+                                            class="btn btn-link text-decoration-none">
+                                            Читать далее
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{{ route('articles.index') }}" class="btn btn-more mt-4">
+                        Все статьи
+                    </a>
+                </div>
+            </div>
+        </div>
+    @endif
+
     @if ($questions->isNotEmpty())
         <div class="questions mt-5">
             <div class="container">

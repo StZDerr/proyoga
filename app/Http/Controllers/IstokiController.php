@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Company;
 use App\Models\Gallery;
 use App\Models\MainCategory;
@@ -26,8 +27,9 @@ class IstokiController extends Controller
         $stories = Story::all();
         $questions = Question::orderBy('order')->get();
         $mainCategories = MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
+        $articles = Article::orderBy('created_at', 'desc')->take(3)->get();
 
-        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories'));
+        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'articles'));
     }
 
     public function priceList()
@@ -130,5 +132,17 @@ class IstokiController extends Controller
         $companies = Company::all();
 
         return view('taplink', compact('companies'));
+    }
+
+    public function articles()
+    {
+        $articles = Article::orderBy('created_at', 'desc')->paginate(9);
+
+        return view('articles', compact('articles'));
+    }
+
+    public function showArticle(Article $article)
+    {
+        return view('showArticle', compact('article'));
     }
 }

@@ -309,6 +309,25 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.articles.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16" role="img"
+                                aria-label="Список статей">
+                                <title>Список статей</title>
+                                <path
+                                    d="M5 10.5a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5z" />
+                                <path
+                                    d="M3 2.5v11a.5.5 0 0 0 .5.5H13v-1H4a1 1 0 0 1-1-1V3h10v2h1V2.5A1.5 1.5 0 0 0 12.5 1h-8A1.5 1.5 0 0 0 3 2.5z" />
+                            </svg>
+
+                        </span>
+                        <span class="nav-link-title">
+                            Статьи
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

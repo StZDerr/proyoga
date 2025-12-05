@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\TestAdminController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
@@ -38,6 +39,7 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
+    Route::resource('articles', ArticleController::class);
     Route::post('gallery/reorder', [GalleryController::class, 'reorder'])
         ->name('gallery.reorder');
     Route::post('gallery/{gallery}/toggle-active', [GalleryController::class, 'toggleActive'])
@@ -109,6 +111,10 @@ Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name(
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
 Route::get('/taplink', [IstokiController::class, 'taplink'])->name('taplink');
+
+// Статьи
+Route::get('/articles', [IstokiController::class, 'articles'])->name('articles.index');
+Route::get('/articles/{article:slug}', [IstokiController::class, 'showArticle'])->name('articles.show');
 
 Route::get('/instruction', [IstokiController::class, 'instruction'])->name('instruction');
 
