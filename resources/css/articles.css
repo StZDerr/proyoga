@@ -352,6 +352,87 @@
     border-radius: 12px;
     margin: 2rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* CKEditor image styles */
+.article-body figure.image {
+    margin: 2rem 0;
+    display: table;
+    clear: both;
+}
+
+.article-body figure.image img {
+    display: block;
+    margin: 0 auto;
+}
+
+.article-body figure.image > figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    word-break: break-word;
+    color: #666;
+    background-color: #f7f7f7;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    border-radius: 0 0 12px 12px;
+}
+
+/* Image alignment styles */
+.article-body figure.image.image-style-side {
+    float: right;
+    margin-left: 2rem;
+    margin-right: 0;
+    max-width: 50%;
+}
+
+.article-body figure.image.image-style-align-left {
+    float: left;
+    margin-right: 2rem;
+    margin-left: 0;
+}
+
+.article-body figure.image.image-style-align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-body figure.image.image-style-align-right {
+    float: right;
+    margin-left: 2rem;
+    margin-right: 0;
+}
+
+.article-body figure.image.image-style-block-align-right {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.article-body figure.image.image-style-block-align-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Responsive images */
+.article-body figure.image img {
+    width: 100%;
+    height: auto;
+}
+
+.article-body figure.image.image_resized {
+    max-width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+.article-body figure.image.image_resized img {
+    width: 100%;
+}
+
+.article-body figure.image.image_resized > figcaption {
+    display: block;
 }
 
 .article-body blockquote {
@@ -470,4 +551,37 @@
     .related-articles {
         padding: 3rem 0;
     }
+
+    /* Мобильные стили для изображений */
+    .article-body figure.image.image-style-side,
+    .article-body figure.image.image-style-align-left,
+    .article-body figure.image.image-style-align-right {
+        float: none;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .article-body figure.image {
+        margin: 1.5rem 0;
+    }
+
+    .article-body img {
+        margin: 1.5rem 0;
+    }
+}
+.text-tiny {
+    font-size: 0.7rem;
+}
+.text-small {
+    font-size: 0.85rem;
+}
+.text-default {
+    font-size: 1rem;
+}
+.text-big {
+    font-size: 1.25rem;
+}
+.text-huge {
+    font-size: 2rem;
 }

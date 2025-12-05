@@ -104,24 +104,91 @@
 @endsection
 
 @push('scripts')
-    <!-- CKEditor 5 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/translations/ru.js"></script>
+    <!-- CKEditor 5 Superbuild -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
     <script>
-        ClassicEditor
+        class MyUploadAdapter {
+            constructor(loader) {
+                this.loader = loader;
+            }
+
+            upload() {
+                return this.loader.file
+                    .then(file => new Promise((resolve, reject) => {
+                        const data = new FormData();
+                        data.append('upload', file);
+                        data.append('_token', '{{ csrf_token() }}');
+
+                        fetch('{{ route('admin.articles.upload-image') }}', {
+                                method: 'POST',
+                                body: data
+                            })
+                            .then(response => response.json())
+                            .then(result => {
+                                resolve({
+                                    default: result.url
+                                });
+                            })
+                            .catch(error => {
+                                reject(error);
+                            });
+                    }));
+            }
+
+            abort() {
+                // Отмена загрузки
+            }
+        }
+
+        function MyCustomUploadAdapterPlugin(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                return new MyUploadAdapter(loader);
+            };
+        }
+
+        CKEDITOR.ClassicEditor
             .create(document.querySelector('#editor'), {
                 language: 'ru',
-                // height: '500px',
+                extraPlugins: [MyCustomUploadAdapterPlugin],
+                removePlugins: [
+                    'RealTimeCollaborativeEditing',
+                    'RealTimeCollaborativeComments',
+                    'RealTimeCollaborativeTrackChanges',
+                    'RealTimeCollaborativeRevisionHistory',
+                    'PresenceList',
+                    'Comments',
+                    'TrackChanges',
+                    'TrackChangesData',
+                    'RevisionHistory',
+                    'Pagination',
+                    'WProofreader',
+                    'MathType',
+                    'SlashCommand',
+                    'Template',
+                    'DocumentOutline',
+                    'FormatPainter',
+                    'TableOfContents',
+                    'PasteFromOfficeEnhanced',
+                    'CaseChange',
+                    'AIAssistant',
+                    'MultiLevelList'
+                ],
                 toolbar: {
                     items: [
                         'heading', '|',
-                        'bold', 'italic', 'link', '|',
-                        'bulletedList', 'numberedList', '|',
+                        'bold', 'italic', 'underline', 'strikethrough', '|',
+                        'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify', '|',
+                        'link', 'bulletedList', 'numberedList', '|',
                         'outdent', 'indent', '|',
-                        'blockQuote', 'insertTable', '|',
+                        'uploadImage', 'blockQuote', 'insertTable', '|',
+                        'fontSize', 'fontColor', 'fontBackgroundColor', '|',
                         'undo', 'redo', '|',
                         'sourceEditing'
-                    ]
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+                alignment: {
+                    options: ['left', 'center', 'right', 'justify']
                 },
                 heading: {
                     options: [{
@@ -164,6 +231,38 @@
                             view: 'h6',
                             title: 'Заголовок 6 h6',
                             class: 'ck-heading_heading6'
+                        }
+                    ]
+                },
+                image: {
+                    toolbar: [
+                        'imageTextAlternative', '|',
+                        'imageStyle:inline',
+                        'imageStyle:block',
+                        'imageStyle:side', '|',
+                        'toggleImageCaption',
+                        'linkImage'
+                    ],
+                    resizeUnit: 'px',
+                    resizeOptions: [{
+                            name: 'resizeImage:original',
+                            label: 'Оригинал',
+                            value: null
+                        },
+                        {
+                            name: 'resizeImage:custom',
+                            label: 'Произвольно',
+                            value: 'custom'
+                        },
+                        {
+                            name: 'resizeImage:50',
+                            label: '50%',
+                            value: '50'
+                        },
+                        {
+                            name: 'resizeImage:75',
+                            label: '75%',
+                            value: '75'
                         }
                     ]
                 }

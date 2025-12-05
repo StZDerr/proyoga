@@ -38,10 +38,12 @@
 
     {{-- Hero секция с изображением --}}
     <div class="article-hero">
-        <div class="article-hero-image">
-            <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}">
-            <div class="article-hero-overlay"></div>
-        </div>
+        @if ($article->image)
+            <div class="article-hero-image">
+                <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}">
+                <div class="article-hero-overlay"></div>
+            </div>
+        @endif
 
         <div class="container">
             <div class="article-hero-content">

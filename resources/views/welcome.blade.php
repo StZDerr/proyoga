@@ -511,7 +511,7 @@
             </div>
         </div>
     @endif
-    {{-- <div class="main-test mt-5">
+    <div class="main-test mt-5">
         <div class="container">
             <div class="background-color-EBF1EE p-4 rounded">
                 <div class="row">
@@ -538,7 +538,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="otziv mt-5">
         <div class="container d-flex justify-content-center">
             <div class="otziv-wrapper" style="width:560px; height:800px; position:relative;">

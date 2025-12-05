@@ -39,7 +39,11 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
+    
+    // Articles admin
+    Route::post('articles/upload-image', [ArticleController::class, 'uploadImage'])->name('articles.upload-image');
     Route::resource('articles', ArticleController::class);
+    
     Route::post('gallery/reorder', [GalleryController::class, 'reorder'])
         ->name('gallery.reorder');
     Route::post('gallery/{gallery}/toggle-active', [GalleryController::class, 'toggleActive'])

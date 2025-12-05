@@ -111,4 +111,26 @@ class ArticleController extends Controller
         return redirect()->route('admin.articles.index')
             ->with('success', 'Статья удалена');
     }
+
+    /**
+     * Upload image from CKEditor
+     */
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'upload' => 'required|image|max:5120', // макс 5MB
+        ]);
+
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+            $path = $file->store('articles/images', 'public');
+            $url = asset('storage/'.$path);
+
+            return response()->json([
+                'url' => $url,
+            ]);
+        }
+
+        return response()->json(['error' => 'Ошибка загрузки'], 400);
+    }
 }
