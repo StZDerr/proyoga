@@ -104,6 +104,11 @@ class YogaTest {
             if (e.target.type === "radio") {
                 this.saveAnswer(e.target);
                 this.updateNavigation();
+
+                // Автоматический переход к следующему вопросу через 300ms
+                setTimeout(() => {
+                    this.nextQuestion();
+                }, 300);
             }
         });
     }

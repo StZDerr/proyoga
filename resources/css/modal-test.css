@@ -125,53 +125,100 @@
 .test-content-wrapper {
     position: relative;
     min-height: 500px;
+    padding-bottom: 100px; /* Место для кнопок навигации */
 }
 
 /* Навигационные кнопки */
 .test-navigation {
     position: absolute;
     bottom: 20px;
-    width: 100%;
-    left: 0;
-    right: 0;
-    z-index: 10;
+    width: calc(100% - 40px);
+    left: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav-btn {
-    position: absolute;
-    bottom: 0;
-    border-radius: 30px;
-    border: 2px solid #1d7d6f;
-    background-color: #1d7d6f;
-    color: white;
-    display: flex;
+    background-color: #fff;
+    border: 2px solid var(--secondary-color-1d7d6f, #1d7d6f);
+    border-radius: 50%;
+    color: var(--secondary-color-1d7d6f, #1d7d6f);
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 18px;
-    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(29, 125, 111, 0.15);
 }
 
 .nav-btn:hover {
-    background-color: #123d4d;
-    border-color: #123d4d;
-    transform: scale(1.05);
+    background-color: var(--secondary-color-1d7d6f, #1d7d6f);
+    border-color: var(--secondary-color-1d7d6f, #1d7d6f);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 125, 111, 0.3);
 }
 
 .nav-btn:disabled {
-    background-color: #ccc;
-    border-color: #ccc;
+    background-color: #f5f5f5;
+    border-color: #e0e0e0;
+    color: #ccc;
     cursor: not-allowed;
     transform: none;
+    opacity: 0.6;
+    box-shadow: none;
 }
 
 .nav-btn.prev-btn {
-    left: 20px;
+    /* Располагается слева через flexbox */
 }
 
 .nav-btn.next-btn {
-    right: 20px;
+    /* Располагается справа через flexbox */
+    margin-left: auto;
+    background-color: var(--secondary-color-1d7d6f, #1d7d6f);
+    border-color: var(--secondary-color-1d7d6f, #1d7d6f);
+    color: #fff;
+    width: auto;
+    border-radius: 100px;
+    padding: 12px 24px;
+    min-width: 120px;
+}
+
+.nav-btn.next-btn:hover {
+    background-color: var(--primary-color-button-123d4d, #123d4d);
+    border-color: var(--primary-color-button-123d4d, #123d4d);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 61, 77, 0.3);
+}
+
+.nav-btn.next-btn:disabled {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+    color: #999;
+}
+
+.next-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-standart-Montserrat, "Montserrat", sans-serif);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.next-btn-content svg {
+    transition: transform 0.3s ease;
+}
+
+.nav-btn.next-btn:hover .next-btn-content svg {
+    transform: translateX(3px);
 }
 
 .next-btn-content {
@@ -181,9 +228,9 @@
     font-weight: 500;
 }
 
-/* Скрываем стандартные кнопки в footer */
-.modal-footer .btn {
-    display: none !important;
+/* Скрываем кнопку Закрыть в footer только для этого модального окна */
+#testModal .modal-footer {
+    display: none;
 }
 
 /* Стили для формы контактов */
@@ -226,9 +273,8 @@
     font-weight: 500;
     font-size: 16px;
     transition: all 0.3s ease;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    position: relative;
+    margin-left: auto;
 }
 
 .submit-btn:hover {

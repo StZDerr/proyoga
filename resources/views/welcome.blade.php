@@ -691,10 +691,6 @@
     @include('partials.promotion-modal')
     @include('partials.modal-test')
 
-
-    {{-- Скрипт теста загружается после Bootstrap --}}
-    @vite(['resources/js/yoga-test.js'])
-
     @stack('scripts')
 
 </body>

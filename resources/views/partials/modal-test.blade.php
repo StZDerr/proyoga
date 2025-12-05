@@ -93,29 +93,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Навигационные кнопки -->
-                                <div class="test-navigation">
-                                    <button type="button" id="prev-btn" class="nav-btn prev-btn d-none"
-                                        title="Назад">
-                                        <svg width="16" height="16" fill="currentColor"
-                                            class="bi bi-chevron-left" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                                        </svg>
-                                    </button>
-                                    <button type="button" id="next-btn" class="nav-btn next-btn d-none">
-                                        <div class="next-btn-content">
-                                            <span>Далее</span>
-                                            <svg width="16" height="16" fill="currentColor"
-                                                class="bi bi-chevron-right" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                    <button type="button" id="submit-btn"
-                                        class="submit-btn d-none">Отправить</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
