@@ -93,7 +93,11 @@
                                     </div>
                                 </div>
 
+                                <!-- Навигационные кнопки -->
+                                <div class="test-navigation">
 
+                                    <button type="button" id="submit-btn" class="submit-btn d-none">Отправить</button>
+                                </div>
                             </div>
                         </div>
                     </div>

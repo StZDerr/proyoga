@@ -217,18 +217,20 @@ class YogaTest {
         const prevBtn = document.getElementById("prev-btn");
         const submitBtn = document.getElementById("submit-btn");
 
-        if (!nextBtn || !prevBtn || !submitBtn) return;
+        if (!submitBtn) return; // Проверяем только наличие кнопки "Отправить"
 
-        // Кнопка "Назад"
-        if (this.currentQuestionIndex === 0 && !this.isContactFormVisible()) {
-            prevBtn.classList.add("d-none");
-        } else {
-            prevBtn.classList.remove("d-none");
+        // Кнопка "Назад" (если существует)
+        if (prevBtn) {
+            if (this.currentQuestionIndex === 0 && !this.isContactFormVisible()) {
+                prevBtn.classList.add("d-none");
+            } else {
+                prevBtn.classList.remove("d-none");
+            }
         }
 
         // Кнопка "Далее" / "Отправить"
         if (this.isContactFormVisible()) {
-            nextBtn.classList.add("d-none");
+            if (nextBtn) nextBtn.classList.add("d-none");
             submitBtn.classList.remove("d-none");
         } else {
             submitBtn.classList.add("d-none");
@@ -240,12 +242,14 @@ class YogaTest {
                 (answer) => answer.question_id === currentQuestionId
             );
 
-            if (hasAnswer) {
-                nextBtn.classList.remove("d-none");
-                nextBtn.disabled = false;
-            } else {
-                nextBtn.classList.remove("d-none");
-                nextBtn.disabled = true;
+            if (nextBtn) {
+                if (hasAnswer) {
+                    nextBtn.classList.remove("d-none");
+                    nextBtn.disabled = false;
+                } else {
+                    nextBtn.classList.remove("d-none");
+                    nextBtn.disabled = true;
+                }
             }
         }
     }
