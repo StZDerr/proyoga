@@ -88,47 +88,47 @@
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     // Подавляем ошибки WebSocket для Яндекс.Метрики
-    (function() {
-        const originalError = console.error;
-        console.error = function() {
-            const args = Array.from(arguments);
-            const message = args.join(' ');
-            // Игнорируем ошибки WebSocket от Яндекс.Метрики
-            if (message.includes('solid.ws') || message.includes('mc.yandex')) {
-                return;
-            }
-            originalError.apply(console, arguments);
-        };
-    })();
+    // (function() {
+    //     const originalError = console.error;
+    //     console.error = function() {
+    //         const args = Array.from(arguments);
+    //         const message = args.join(' ');
+    //         // Игнорируем ошибки WebSocket от Яндекс.Метрики
+    //         if (message.includes('solid.ws') || message.includes('mc.yandex')) {
+    //             return;
+    //         }
+    //         originalError.apply(console, arguments);
+    //     };
+    // })();
 
-    // Отложенная загрузка Яндекс.Метрики после полной загрузки страницы
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            (function(m, e, t, r, i, k, a) {
-                m[i] = m[i] || function() {
-                    (m[i].a = m[i].a || []).push(arguments)
-                };
-                m[i].l = 1 * new Date();
-                for (var j = 0; j < document.scripts.length; j++) {
-                    if (document.scripts[j].src === r) {
-                        return;
-                    }
-                }
-                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a
-                    .parentNode.insertBefore(
-                        k, a)
-            })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105122403', 'ym');
+    // // Отложенная загрузка Яндекс.Метрики после полной загрузки страницы
+    // window.addEventListener('load', function() {
+    //     setTimeout(function() {
+    //         (function(m, e, t, r, i, k, a) {
+    //             m[i] = m[i] || function() {
+    //                 (m[i].a = m[i].a || []).push(arguments)
+    //             };
+    //             m[i].l = 1 * new Date();
+    //             for (var j = 0; j < document.scripts.length; j++) {
+    //                 if (document.scripts[j].src === r) {
+    //                     return;
+    //                 }
+    //             }
+    //             k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a
+    //                 .parentNode.insertBefore(
+    //                     k, a)
+    //         })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105122403', 'ym');
 
-            ym(105122403, 'init', {
-                ssr: true,
-                webvisor: true,
-                clickmap: true,
-                ecommerce: "dataLayer",
-                accurateTrackBounce: true,
-                trackLinks: true
-            });
-        }, 2000); // Задержка 2 секунды после загрузки страницы для минимизации TBT
-    });
+    //         ym(105122403, 'init', {
+    //             ssr: true,
+    //             webvisor: true,
+    //             clickmap: true,
+    //             ecommerce: "dataLayer",
+    //             accurateTrackBounce: true,
+    //             trackLinks: true
+    //         });
+    //     }, 2000); // Задержка 2 секунды после загрузки страницы для минимизации TBT
+    // });
 </script>
 <noscript>
     <div><img src="https://mc.yandex.ru/watch/105122403" style="position:absolute; left:-9999px;" alt="" />
