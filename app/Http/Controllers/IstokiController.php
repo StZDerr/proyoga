@@ -100,6 +100,11 @@ class IstokiController extends Controller
         return view('privacy-policy');
     }
 
+    public function oferta()
+    {
+        return view('oferta');
+    }
+
     public function thanks()
     {
         return view('thanks');

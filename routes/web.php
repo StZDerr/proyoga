@@ -114,6 +114,7 @@ Route::get('/about', [IstokiController::class, 'about'])->name('about');
 Route::get('/recording', [IstokiController::class, 'recording'])->name('recording');
 Route::get('/personal-data', [IstokiController::class, 'personalData'])->name('personal-data');
 Route::get('/privacy-policy', [IstokiController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/oferta', [IstokiController::class, 'oferta'])->name('oferta');
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
 Route::get('/taplink', [IstokiController::class, 'taplink'])->name('taplink');

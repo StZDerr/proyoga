@@ -53,6 +53,9 @@
             <a href="/personal-data" class="info">
                 Согласие на обработку персональных данных
             </a>
+            <a href="/oferta" class="info">
+                Публичная оферта
+            </a>
             <a href="https://sumnikoff.ru/" class="info" target="_blank">
                 Создание и продвижение сайтов Sumnikoff IT Group
             </a>
