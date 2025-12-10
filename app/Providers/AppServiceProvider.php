@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\ExternalService;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,12 +21,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Добавляем в компилятор класс для автозагрузки
+        // Подключаем Helpers
         if (file_exists(app_path('Helpers/PageContentHelper.php'))) {
             require_once app_path('Helpers/PageContentHelper.php');
         }
 
-        // Регистрируем View Composer для всех страниц
+        // Регистрируем основной View Composer
         View::composer('*', \App\View\Composers\PageMetaComposer::class);
+
+        // Подгружаем активные ExternalService во все view
+        View::composer('*', function ($view) {
+            $view->with('externalServices', ExternalService::active()->get());
+        });
     }
 }

@@ -221,7 +221,10 @@ class YogaTest {
 
         // Кнопка "Назад" (если существует)
         if (prevBtn) {
-            if (this.currentQuestionIndex === 0 && !this.isContactFormVisible()) {
+            if (
+                this.currentQuestionIndex === 0 &&
+                !this.isContactFormVisible()
+            ) {
                 prevBtn.classList.add("d-none");
             } else {
                 prevBtn.classList.remove("d-none");

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\TestAdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ExternalServiceController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\IndexingController;
 use App\Http\Controllers\IstokiController;
@@ -39,11 +40,11 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
-    
+
     // Articles admin
     Route::post('articles/upload-image', [ArticleController::class, 'uploadImage'])->name('articles.upload-image');
     Route::resource('articles', ArticleController::class);
-    
+
     Route::post('gallery/reorder', [GalleryController::class, 'reorder'])
         ->name('gallery.reorder');
     Route::post('gallery/{gallery}/toggle-active', [GalleryController::class, 'toggleActive'])
@@ -79,6 +80,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'main-categories' => MainCategoryController::class,
         'sub-categories' => SubCategoryController::class,
         'sub-sub-categories' => SubSubCategoryController::class,
+        'external-services' => ExternalServiceController::class,
     ]);
     Route::delete('sub-sub-categories/photos/{photo}', [SubSubCategoryPhotoController::class, 'destroy'])
         ->name('sub-sub-categories.photos.destroy');

@@ -328,6 +328,22 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.external-services.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                fill="currentColor" class="bi bi-plug" viewBox="0 0 16 16" role="img"
+                                aria-label="Внешние сервисы">
+                                <title>Внешние сервисы</title>
+                                <path
+                                    d="M6 0h4v2h1a1 1 0 0 1 1 1v3a3 3 0 0 1-2 2.83V11h1v1H5v-1h1V8.83A3 3 0 0 1 4 6V3a1 1 0 0 1 1-1h1V0z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Внешние сервисы
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -72,7 +72,18 @@
     <meta property="og:site_name" content="ИстокиЯ - Студия йоги">
 @endif
 
+
+{{-- Подключаем все активные ExternalService --}}
+@if (isset($externalServices) && $externalServices->isNotEmpty())
+    @foreach ($externalServices as $service)
+        @if (!empty($service->script) && $service->active)
+            {!! $service->script !!}
+        @endif
+    @endforeach
+@endif
+
 <meta name="yandex-verification" content="fc4ba4d3bd46a5ee" />
+
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
