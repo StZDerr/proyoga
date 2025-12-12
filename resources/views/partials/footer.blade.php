@@ -79,12 +79,27 @@
             </svg>
         </a>
         <a href="{{ route('instruction') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-tablet" viewBox="0 0 16 16">
-                <path
-                    d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-            </svg>
+            @php
+                $ua = strtolower(request()->header('User-Agent') ?? '');
+                if (strpos($ua, 'android') !== false) {
+                    $svgPath = public_path('images/logo/android_h934ogykvqsj 1.svg');
+                } elseif (
+                    strpos($ua, 'iphone') !== false ||
+                    strpos($ua, 'ipad') !== false ||
+                    strpos($ua, 'ipod') !== false
+                ) {
+                    $svgPath = public_path('images/logo/logotip_apple_4ihwb0rzknhx 1.svg');
+                } else {
+                    $svgPath = public_path('images/logo/windows_66vizbaznjal 1.svg');
+                }
+            @endphp
+
+            @if (file_exists($svgPath))
+                {!! file_get_contents($svgPath) !!}
+            @else
+                <img src="{{ asset('images/logo/windows_66vizbaznjal 1.svg') }}" alt="logo" loading="lazy"
+                    width="16" height="16" />
+            @endif
         </a>
     </div>
 </footer>
