@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\ExternalService;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,5 +38,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['partials.navbar', 'partials.footer'], function ($view) {
             $view->with('setting', Setting::current());
         });
+
+        $setting = Cache::remember('site_settings', now()->addDay(), function () {
+            return Setting::current();
+        });
+
+        View::share('setting', $setting);
     }
 }
