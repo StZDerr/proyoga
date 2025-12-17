@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\ExternalService;
+use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
         // Подгружаем активные ExternalService во все view
         View::composer('*', function ($view) {
             $view->with('externalServices', ExternalService::active()->get());
+        });
+        View::composer(['partials.navbar', 'partials.footer'], function ($view) {
+            $view->with('setting', Setting::current());
         });
     }
 }

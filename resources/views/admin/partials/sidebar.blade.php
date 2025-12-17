@@ -345,7 +345,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.external-services.index') }}">
+                    <a class="nav-link" href="{{ route('admin.settings.edit') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-amazon" viewBox="0 0 16 16">

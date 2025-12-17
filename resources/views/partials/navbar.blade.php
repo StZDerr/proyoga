@@ -34,7 +34,7 @@
 
         <!-- Логотип -->
         <a href="/" class="logo">
-            <img src="{{ asset('images/logo/ngist.svg') }}" alt="Site Logo" />
+            <img src="{{ $setting->navbar_logo_url ?? asset('images/logo/ngist.svg') }}" alt="Site Logo" />
         </a>
 
         <!-- Нижний блок с контактами и кнопкой -->
@@ -56,7 +56,8 @@
 
     <div class="containerMobile">
         <a href="/" class="logo">
-            <img src="{{ asset('images/logo/ngist.svg') }}" alt="Site Logo" width="144" height="120" />
+            <img src="{{ $setting->navbar_logo_url ?? asset('images/logo/ngist.svg') }}" alt="Site Logo" width="144"
+                height="120" loading="lazy">
         </a>
         <a href="tel:+79649264147" class="phone">+7 (964) 926-41-47</a>
         <div class="menuMobile">

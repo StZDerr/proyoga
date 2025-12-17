@@ -17,6 +17,7 @@ use App\Http\Controllers\PriceCategoryController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SubCategoryController;
@@ -82,6 +83,10 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'sub-sub-categories' => SubSubCategoryController::class,
         'external-services' => ExternalServiceController::class,
     ]);
+    // routes/web.php (в админской группе)
+    Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
+    Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+
     Route::delete('sub-sub-categories/photos/{photo}', [SubSubCategoryPhotoController::class, 'destroy'])
         ->name('sub-sub-categories.photos.destroy');
     Route::delete('stories/{story}/media/{media}', [StoryController::class, 'destroyMedia'])->name('stories.media.destroy');
