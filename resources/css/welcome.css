@@ -8,6 +8,501 @@
     --font-size-text-desc-16px: clamp(0.5rem, 0.4182rem + 0.3636vw, 1rem);
 } */
 
+.back-color-ns {
+    background-color: #041a28;
+}
+
+/* Секция снежинок */
+.back-color-ns {
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(20px, 4vw, 60px); /* адаптивный отступ под гирлянду */
+    min-height: 280px; /* минимальная высота для hero-блока */
+}
+
+/* Гарантируем, что фон и картинка не вызовут сдвигов при загрузке */
+.back-color-ns img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Небольшие правила для предотвращения CLS в смежных блоках */
+.marquee {
+    min-height: 48px;
+}
+.my-custom-swiper-container {
+    min-height: 360px;
+}
+
+/* Контейнер для снежинок */
+.holiday-snow {
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Элемент снежинки (используем emoji ❄️ — кроссбраузерно) */
+.holiday-snow .snowflake {
+    position: absolute;
+    top: -10vh;
+    user-select: none;
+    will-change: transform, opacity;
+    transform-origin: center;
+    display: inline-block;
+    line-height: 1;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.date {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 44.65px;
+    line-height: 117%;
+    text-align: center;
+    color: #ffffff;
+    padding-left: 2rem;
+}
+/* Анимация падения + поворот */
+@keyframes holiday-fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.9;
+    }
+}
+
+/* Плавный небольшой горизонтальный «плавание» через псевдо-перемещение */
+@keyframes holiday-drift {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(12px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Включаем по инлайновым параметрам (duration, delay) */
+.holiday-snow .snowflake {
+    animation-name: holiday-fall, holiday-drift;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: 1, infinite;
+}
+
+/* Уважение к пользовательским настройкам уменьшенного движения */
+@media (prefers-reduced-motion: reduce) {
+    .holiday-snow,
+    .holiday-snow .snowflake {
+        animation: none !important;
+        opacity: 0.9;
+    }
+}
+
+/* Снижение нагрузки на мобильных устройствах (меньше и спокойнее) */
+@media (max-width: 768px) {
+    .holiday-snow .snowflake {
+        font-size: 12px !important;
+        opacity: 0.9;
+    }
+}
+
+/* Garland */
+.holiday-garland {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 999; /* поверх фона */
+}
+
+.holiday-garland .garland-string {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    height: 60px;
+    overflow: visible;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.holiday-garland .bulb {
+    width: 18px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--color, #fff);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25),
+        0 0 12px rgba(255, 255, 255, 0.9);
+    transform-origin: center top;
+    animation: bulb-glow var(--duration, 1.6s) ease-in-out infinite alternate;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* легкий раскач / пульс свечения */
+@keyframes bulb-glow {
+    0% {
+        transform: translateY(0) scale(0.95);
+        opacity: 0.6;
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+    }
+    100% {
+        transform: translateY(-4px) scale(1);
+        opacity: 1;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.2));
+    }
+}
+
+/* визуальная "нить" */
+.holiday-garland .garland-string::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 16px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0));
+    opacity: 0.6;
+}
+
+/* уменьшение анимации при reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .holiday-garland .bulb {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+}
+/* Garland */
+.holiday-garland {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 999; /* поверх фона */
+}
+
+.holiday-garland .garland-string {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    height: 60px;
+    overflow: visible;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.holiday-garland .bulb {
+    width: 18px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--color, #fff);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25),
+        0 0 12px rgba(255, 255, 255, 0.9);
+    transform-origin: center top;
+    animation: bulb-glow var(--duration, 1.6s) ease-in-out infinite alternate;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* легкий раскач / пульс свечения */
+@keyframes bulb-glow {
+    0% {
+        transform: translateY(0) scale(0.95);
+        opacity: 0.6;
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+    }
+    100% {
+        transform: translateY(-4px) scale(1);
+        opacity: 1;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.2));
+    }
+}
+
+/* визуальная "нить" */
+.holiday-garland .garland-string::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 16px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0));
+    opacity: 0.6;
+}
+
+/* уменьшение анимации при reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .holiday-garland .bulb {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+}
+
+/* Обёртка картинки — позиционируем содержимое */
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16 / 6; /* адаптивное соотношение сторон */
+    min-height: 320px;
+    max-height: 720px;
+    height: auto;
+}
+
+/* Гарантируем, что картинка не вызывает смещение при загрузке */
+.hero-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* картинка покрывает контейнер */
+    object-position: center center;
+}
+
+/* Центрируем заголовок поверх картинки */
+.title-ng {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    width: 100%;
+    max-width: 1100px; /* по вкусу */
+    text-align: center;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+}
+
+/* На узких экранах немного уменьшить отступы */
+@media (max-width: 576px) {
+    .title-ng {
+        padding: 0.35rem 0.6rem;
+    }
+}
+
+.gifts {
+    font-family: Orelega One;
+    font-weight: 400;
+    font-size: 51.86px;
+    line-height: 117%;
+    color: #84eb84;
+    text-shadow: 0.5px 0 currentColor, -0.5px 0 currentColor;
+}
+.gifts-desc {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: clamp(1rem, 0.7174rem + 1.2059vw, 2.646875rem);
+    line-height: 117%;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Контейнер нижней строки */
+.gifts-row {
+    display: flex;
+    align-items: stretch; /* чтобы элементы имели одинаковую высоту */
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: nowrap;
+}
+
+/* Большой процент, будет по центру вертикально */
+.gifts-number {
+    font-family: Orelega One;
+    font-style: Regular;
+    line-height: 117%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: #84eb84;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: clamp(62px, 6vw, 112.93px);
+    padding: 0 0.6rem;
+    box-sizing: border-box;
+    /* Интенсивное мигание для привлечения внимания */
+    animation: gifts-pulse 1.2s ease-in-out infinite;
+    text-shadow: 0 0 12px rgba(132, 235, 132, 0.8), 
+                 0 0 24px rgba(132, 235, 132, 0.6),
+                 0 0 36px rgba(132, 235, 132, 0.4);
+}
+
+/* Keyframes для интенсивного мигания */
+@keyframes gifts-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 12px rgba(132, 235, 132, 0.8), 
+                     0 0 24px rgba(132, 235, 132, 0.6),
+                     0 0 36px rgba(132, 235, 132, 0.4);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.08);
+        text-shadow: 0 0 20px rgba(132, 235, 132, 1), 
+                     0 0 40px rgba(132, 235, 132, 0.8),
+                     0 0 60px rgba(132, 235, 132, 0.6);
+    }
+}
+
+/* Описание: максимум 2 строки, фиксированная высота и скрытие излишка */
+.gifts-desc {
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.15;
+    /* height: calc(2 * 1.15em); совпадает с height у .gifts-number */
+    max-width: 280px; /* подберите под дизайн */
+    text-align: left;
+    align-self: center;
+    box-sizing: border-box;
+}
+
+/* Новый подпункт: выровнять по центру относительно соседних блоков */
+.gifts-sub {
+    align-self: center; /* вертикально центрирован */
+    display: inline-flex;
+    overflow: hidden; /* если не влезает — скрыть */
+    text-overflow: ellipsis; /* добавить троеточие при переполнении */
+    white-space: nowrap; /* запрет переноса */
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* или другой цвет по дизайну */
+    padding-left: 0.3rem;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 42.35px;
+    line-height: 117%;
+    text-transform: uppercase;
+}
+/* Адаптив: на маленьких экранах — стекать */
+@media (max-width: 576px) {
+    .gifts-row {
+        flex-direction: column;
+        gap: 0.35rem;
+        align-items: center;
+    }
+    .gifts-number,
+    .gifts-desc,
+    .gifts-sub {
+        height: auto;
+        line-height: 1.1;
+    }
+    .gifts-desc {
+        -webkit-line-clamp: 2;
+        text-align: center;
+    }
+}
+/* Немного уменьшить высоту на планшетах и мобильных */
+@media (max-width: 1024px) {
+    .title-ng .gifts-sub {
+        display: block; /* перенос на новую строку */
+        /* width: 100%; */
+        margin-top: 0.35rem; /* отступ сверху */
+        text-align: center; /* по центру (по желанию) */
+        font-size: clamp(14px, 4.2vw, 20px);
+        line-height: 1.2;
+    }
+    .hero-image-wrapper {
+        min-height: 360px;
+    }
+}
+@media (max-width: 768px) {
+    .hero-image-wrapper {
+        min-height: 280px;
+    }
+    .title-ng {
+        font-size: clamp(16px, 4vw, 28px);
+    }
+}
+@media (max-width: 420px) {
+    .hero-image-wrapper {
+        min-height: 220px;
+    }
+    .gifts-row {
+        gap: 0.5rem;
+    }
+    .gifts-desc,
+    .gifts-sub {
+        font-size: 14px;
+    }
+}
+/* --- Mobile fix: центрируем заголовок и корректируем гирлянду --- */
+@media (max-width: 768px) {
+    /* убираем лишний верхний отступ, чтобы центр стал видимым */
+    .back-color-ns {
+        padding-top: 20px !important;
+    }
+
+    /* на мобильных задаём конкретную высоту hero (гарантирует корректный центр) */
+    .hero-image-wrapper {
+        min-height: 280px;
+        height: 280px; /* фиксированная высота для стабильного центрирования */
+    }
+
+    /* Картинка кадрируется по центру */
+    .hero-image-wrapper img {
+        object-fit: cover !important;
+        object-position: center center !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* Заголовок — точно по центру и выше гирлянды */
+    .title-ng {
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 2000 !important;
+    }
+
+    /* Гирлянда компактнее и ниже, чтобы не мешать тексту */
+    .holiday-garland {
+        top: 8px !important;
+        height: 48px !important;
+        z-index: 100 !important;
+    }
+
+    .holiday-garland .garland-string {
+        padding: 0 12px !important;
+    }
+    .title-ng .date {
+        display: block; /* перенос на новую строку */
+        width: 100%;
+        margin-top: 0.35rem; /* отступ сверху */
+        text-align: center; /* по центру (по желанию) */
+        font-size: clamp(14px, 4.2vw, 20px);
+        line-height: 1.2;
+    }
+}
 .background-gor {
     background: url("/public/images/svg/gory.svg") no-repeat center bottom;
     background-size: cover;
@@ -261,6 +756,51 @@
         text-align: center;
         margin-bottom: 10px;
     }
+}
+
+/* --- CLS fixes: reserve space and fix icon sizes --- */
+/* Стабильная ширина для номера телефона, чтобы текст не вызывал смещений */
+.containerWrapper .wrapper .phone,
+.site-footer .phone,
+.containerMain .phone,
+.phone {
+    display: inline-block;
+    min-width: 140px; /* резервируем место */
+    text-align: left;
+}
+@media (max-width: 576px) {
+    .containerWrapper .wrapper .phone,
+    .site-footer .phone,
+    .containerMain .phone,
+    .phone {
+        min-width: 100px;
+    }
+}
+
+/* Фиксированные размеры для мелких внутренних SVG (пагинация, иконки управления) */
+.swiper-button-prev svg,
+.swiper-button-next svg,
+.nav-btn svg,
+.navbar svg,
+.site-footer svg {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+/* Гарантируем фиксированный размер пагинации Swiper */
+.my-custom-swiper-container .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 6px !important;
+}
+
+/* Минимальные размеры для контейнеров, чтобы избежать CLS при динамических изменениях */
+.marquee {
+    min-height: 48px;
+}
+.my-custom-swiper-container {
+    min-height: 360px;
 }
 
 .marquee-wrapper {

@@ -42,250 +42,274 @@
     @include('partials.navbar')
     @include('partials.arrow')
     @include('partials.cookies')
-    <div class="background-gor">
-        <div class="container text-center py-5">
-            <div class="main">
-                <h1 class="display-4 mb-3 title-text">Центр физического и ментального здоровья</h1>
-                <p class="lead mb-4">ИстокиЯ</p>
+    <div class="back-color-ns">
+        <div class="holiday-garland" aria-hidden="true"></div>
+        <div class="holiday-snow" aria-hidden="true"></div>
 
-                {{-- Swiper слайдер --}}
-                <div class="swiper my-custom-swiper-container mt-5">
-                    <div class="swiper-button-prev stock-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg>
-                    </div>
-                    <div class="swiper-button-next stock-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="swiper-wrapper">
-                        @foreach ($promotions as $promotion)
-                            <div class="swiper-slide">
-                                <div class="card shadow-sm promotion-card" data-title="{{ $promotion->title }}"
-                                    data-description="{{ $promotion->description }}"
-                                    data-photo="{{ asset('storage/' . $promotion->photo) }}"
-                                    data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
-                                    <img src="{{ asset('storage/' . $promotion->photo) }}" alt="{{ $promotion->title }}"
-                                        loading="lazy" width="800" height="450">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="swiper-pagination mt-4"></div>
-                </div>
-                <div class="swiper-info-text">
-                    Твой путь к себе начинается с Истока
-                </div>
-                <a href="{{ route('calendar') }}" class="button-bid button-text button mt-4">
-                    Расписание занятий
-                </a>
-                <a href="{{ route('price-list') }}" class="btn button-text button mt-4">
-                    Наши цены
-                </a>
-            </div>
-        </div>
-        <div class="marquee-wrapper">
-            <!-- Первая лента -->
-            <div class="marquee marquee-light">
-                <div class="marquee-content">
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Функциональные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Мастер-классы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Растяжка</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Аэройога</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Пилатес</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Танцы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Джампинг</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Массаж</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Услуги психолога</span>
-                    </div>
+        <div class="hero-image-wrapper">
+            <img src="{{ asset('images/backNg2.png') }}" alt="">
+            <div class="title-ng">
+                <span class="gifts">ДАРИ ПОДАРКИ</span>
+                <span class="date">
+                    себе и близким
+                </span>
 
-                    <!-- Повторяем элементы для бесконечного эффекта -->
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Функциональные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Мастер-классы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Растяжка</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Аэройога</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Пилатес</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Танцы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Джампинг</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Массаж</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Услуги психолога</span>
-                    </div>
-                </div>
-            </div>
+                <div class="gifts-row">
+                    <span class="gifts-sub"> с 17 по 31 декабря</span>
 
-            <!-- Вторая лента -->
-            <div class="marquee marquee-dark">
-                <div class="marquee-content">
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Функциональные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Мастер-классы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Растяжка</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Аэройога</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Пилатес</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Танцы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Джампинг</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Массаж</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Услуги психолога</span>
-                    </div>
-
-                    <!-- Повторяем элементы для бесконечного эффекта -->
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Функциональные тренировки</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Мастер-классы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Растяжка</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Аэройога</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Пилатес</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Танцы</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Джампинг</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Массаж</span>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
-                            height="43" />
-                        <span>Услуги психолога</span>
-                    </div>
+                    <span class="gifts-number">-26%</span>
+                    <span class="gifts-desc">на все абонементы</span>
                 </div>
             </div>
         </div>
     </div>
+    {{-- <div class="background-gor-ng">
+        <div class="banner"></div>
+    </div> --}}
+    {{-- <div class="background-gor"> --}}
+    <div class="container text-center py-5">
+        <div class="main">
+            <h1 class="display-4 mb-3 title-text">Центр физического и ментального здоровья</h1>
+            <p class="lead mb-4">ИстокиЯ</p>
+
+            {{-- Swiper слайдер --}}
+            <div class="swiper my-custom-swiper-container mt-5">
+                <div class="swiper-button-prev stock-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </div>
+                <div class="swiper-button-next stock-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+                <div class="swiper-wrapper">
+                    @foreach ($promotions as $promotion)
+                        <div class="swiper-slide">
+                            <div class="card shadow-sm promotion-card" data-title="{{ $promotion->title }}"
+                                data-description="{{ $promotion->description }}"
+                                data-photo="{{ asset('storage/' . $promotion->photo) }}"
+                                data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
+                                <img src="{{ asset('storage/' . $promotion->photo) }}" alt="{{ $promotion->title }}"
+                                    loading="lazy" width="800" height="450">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination mt-4"></div>
+            </div>
+            <div class="swiper-info-text">
+                Твой путь к себе начинается с Истока
+            </div>
+            <a href="{{ route('calendar') }}" class="button-bid button-text button mt-4">
+                Расписание занятий
+            </a>
+            <a href="{{ route('price-list') }}" class="btn button-text button mt-4">
+                Наши цены
+            </a>
+        </div>
+    </div>
+    <div class="marquee-wrapper">
+        <!-- Первая лента -->
+        <div class="marquee marquee-light">
+            <div class="marquee-content">
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Функциональные тренировки</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Мастер-классы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Растяжка</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Аэройога</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Пилатес</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Танцы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Джампинг</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Массаж</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Услуги психолога</span>
+                </div>
+
+                <!-- Повторяем элементы для бесконечного эффекта -->
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Функциональные тренировки</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Мастер-классы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Растяжка</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Аэройога</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Пилатес</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Танцы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Джампинг</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Массаж</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Услуги психолога</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вторая лента -->
+        <div class="marquee marquee-dark">
+            <div class="marquee-content">
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Функциональные тренировки</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Мастер-классы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Растяжка</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Аэройога</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Пилатес</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Танцы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Джампинг</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Массаж</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Услуги психолога</span>
+                </div>
+
+                <!-- Повторяем элементы для бесконечного эффекта -->
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Функциональные тренировки</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Мастер-классы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Растяжка</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Аэройога</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Пилатес</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Танцы</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Джампинг</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Массаж</span>
+                </div>
+                <div class="marquee-item">
+                    <img src="{{ asset('images/svg/ClipPathGroup.svg') }}" alt="Icon" width="39"
+                        height="43" />
+                    <span>Услуги психолога</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- </div> --}}
     @if ($stories->isNotEmpty())
         <div class="stories-container">
             <button class="nav-btn nav-prev" id="navPrev">&lt;</button>

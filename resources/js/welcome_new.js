@@ -511,4 +511,311 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    // === HOLIDAY GARLAND: мигающая гирлянда с цветными лампочками ===
+    (function initHolidayGarland() {
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        )
+            return;
+
+        const root = document.querySelector(".back-color-ns");
+        if (!root) return;
+
+        let container = root.querySelector(".holiday-garland");
+        if (!container) {
+            container = document.createElement("div");
+            container.className = "holiday-garland";
+            container.setAttribute("aria-hidden", "true");
+            root.appendChild(container);
+        }
+
+        // Inline стили для гирлянды
+        container.style.position = "absolute";
+        container.style.top = "30px";
+        container.style.left = "0";
+        container.style.width = "100%";
+        container.style.height = "60px";
+        container.style.pointerEvents = "none";
+        container.style.zIndex = "10000";
+        container.style.overflow = "visible";
+
+        // Добавляем CSS стили для гирлянды
+        if (!document.getElementById("holiday-garland-styles")) {
+            const style = document.createElement("style");
+            style.id = "holiday-garland-styles";
+            style.textContent = `
+.holiday-garland { position: relative; }
+.holiday-garland .wire { position: absolute; top: 0; left: 0; width: 100%; height: 30px; }
+.holiday-garland .bulb { position: relative; width: 14px; height: 20px; border-radius: 40% 40% 50% 50%; background: currentColor; box-shadow: 0 6px 18px currentColor, 0 0 28px currentColor; animation: bulb-blink 1.5s ease-in-out infinite; transform-origin: top center; border: 1px solid rgba(255,255,255,0.12); }
+.holiday-garland .bulb::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 2px; height: 8px; background: #eee; border-radius: 1px; }
+.holiday-garland .bulb::after { content: ''; position: absolute; top: 3px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.85); filter: blur(0.8px); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
+@keyframes bulb-blink { 0%, 100% { opacity: 1; filter: brightness(1.6) saturate(1.4); } 50% { opacity: 0.32; filter: brightness(0.35) saturate(0.7); } }
+@media (prefers-reduced-motion: reduce) { .holiday-garland .bulb { animation: none; opacity: 1; transform: none; filter: none; } }
+`;
+            document.head.appendChild(style);
+        }
+
+        // Генерация волнистого провода через SVG
+        const colors = [
+            "#ff0044", // яркий красный
+            "#00ff66", // яркий зелёный
+            "#0066ff", // насыщенный синий
+            "#fff200", // насыщенный жёлтый
+            "#ff00c8", // фуксия
+            "#00f0ff", // яркий бирюзовый
+            "#ff7a00", // насыщенный оранжевый
+            "#ff1493", // ярко-розовый
+        ];
+        const bulbCount = window.innerWidth <= 768 ? 10 : 20;
+        const wire = document.createElement("div");
+        wire.className = "wire";
+
+        // Создаем SVG с волнистой линией
+        const svg = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+        );
+        svg.setAttribute("viewBox", "0 0 100 30");
+        svg.setAttribute("preserveAspectRatio", "none");
+        svg.style.position = "absolute";
+        svg.style.top = "0";
+        svg.style.left = "0";
+        svg.style.width = "100%";
+        svg.style.height = "30px";
+
+        const path = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path"
+        );
+        const amplitude = 7; // амплитуда волны
+        const frequency = 3; // количество волн
+        let pathData = "M 0 15 ";
+        for (let i = 0; i <= 100; i++) {
+            const x = i;
+            const y =
+                15 + amplitude * Math.sin((i / 100) * frequency * Math.PI * 2);
+            pathData += `L ${x} ${y} `;
+        }
+        path.setAttribute("d", pathData);
+        path.setAttribute("stroke", "#fff");
+        path.setAttribute("stroke-width", "0.5");
+        path.setAttribute("fill", "none");
+        path.setAttribute("vector-effect", "non-scaling-stroke");
+        svg.appendChild(path);
+        wire.appendChild(svg);
+
+        container.appendChild(wire);
+
+        for (let i = 0; i < bulbCount; i++) {
+            const bulb = document.createElement("div");
+            bulb.className = "bulb";
+            const color = colors[i % colors.length];
+            bulb.style.color = color;
+            const leftPercent = (i / (bulbCount - 1)) * 100;
+            bulb.style.left = `${leftPercent}%`;
+            // Позиционируем лампочки по волне (синхронизируем с параметрами SVG)
+            const amplitude = 7;
+            const frequency = 3;
+            const waveY =
+                15 +
+                amplitude *
+                    Math.sin((leftPercent / 100) * frequency * Math.PI * 2);
+            bulb.style.top = `${waveY}px`;
+            bulb.style.position = "absolute";
+            bulb.style.transform = "translateX(-50%)";
+            bulb.style.animationDelay = `${Math.random() * 1.5}s`;
+            bulb.style.animationDuration = `${1.2 + Math.random() * 0.8}s`;
+            container.appendChild(bulb);
+        }
+    })();
+
+    // === HOLIDAY SNOW: бесконечные снежинки в .back-color-ns ===
+    (function initHolidaySnow() {
+        // Уважение к prefers-reduced-motion
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        )
+            return;
+
+        const root = document.querySelector(".back-color-ns");
+        if (!root) return;
+
+        // Создаём контейнер для снежинок, если его нет
+        let container = root.querySelector(".holiday-snow");
+        if (!container) {
+            container = document.createElement("div");
+            container.className = "holiday-snow";
+            container.setAttribute("aria-hidden", "true");
+            // Помещаем контейнер в конец, чтобы он отрисовывался поверх фонового изображения
+            root.appendChild(container);
+
+            // Гарантируем inline-стили, если внешние CSS не подхватятся
+            container.style.position = "absolute";
+            container.style.inset = "0";
+            container.style.pointerEvents = "none";
+            container.style.zIndex = "99999";
+            container.style.width = "100%";
+            container.style.height = "100%";
+
+            // Убедимся, что фон (img) находится под снежинками
+            const bgImg = root.querySelector("img");
+            if (bgImg) {
+                bgImg.style.position = "relative";
+                bgImg.style.zIndex = "1";
+                bgImg.style.display = "block";
+            }
+
+            // Временная отладочная снежинка для проверки видимости (удалится через 5 сек)
+            const debugFlake = document.createElement("span");
+            debugFlake.className = "snowflake debug-flake";
+            debugFlake.style.position = "absolute";
+            debugFlake.style.left = "50%";
+            debugFlake.style.top = "8px";
+            debugFlake.style.fontSize = "40px";
+            debugFlake.style.zIndex = "100000";
+            debugFlake.style.lineHeight = "0";
+            debugFlake.innerHTML = snowSVG(40);
+            container.appendChild(debugFlake);
+            setTimeout(() => {
+                if (debugFlake.parentNode)
+                    debugFlake.parentNode.removeChild(debugFlake);
+            }, 5000);
+        }
+
+        // Добавляем стили один раз
+        if (!document.getElementById("holiday-snow-styles")) {
+            const style = document.createElement("style");
+            style.id = "holiday-snow-styles";
+            style.textContent = `
+.holiday-snow { position: absolute; inset: 0; pointer-events: none; z-index: 9999; }
+.back-color-ns { position: relative; overflow: hidden; }
+.back-color-ns > img { position: relative; z-index: 1; display: block; }
+/* Снежинки начинаются немного выше контейнера и падают вниз (анимация по top) */
+.holiday-snow .snowflake { position: absolute; top: -10%; user-select: none; will-change: top, opacity; transform-origin: center; display: inline-block; line-height: 1; text-shadow: 0 2px 6px rgba(0,0,0,0.15); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
+.holiday-snow .snowflake svg { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; pointer-events: none; }
+@keyframes holiday-fall { 0% { top: -10%; transform: rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { top: 110%; transform: rotate(360deg); opacity: 0.9; } }
+@keyframes holiday-drift { 0% { transform: translateX(0); } 50% { transform: translateX(12px); } 100% { transform: translateX(0); } }
+.holiday-snow .snowflake { animation-name: holiday-fall, holiday-drift; animation-timing-function: linear, ease-in-out; animation-iteration-count: 1, infinite; }
+@media (prefers-reduced-motion: reduce) { .holiday-snow, .holiday-snow .snowflake { animation: none !important; opacity: .9; } }
+@media (max-width: 768px) { .holiday-snow .snowflake { font-size: 12px !important; opacity: .9; } }
+`;
+            document.head.appendChild(style);
+        }
+
+        // Настройки генерации (увеличена плотность)
+        const MIN_INTERVAL = 60; // ms
+        const MAX_INTERVAL = 350; // ms
+        const MAX_ACTIVE = window.innerWidth <= 768 ? 80 : 300;
+        let active = 0;
+        let running = true;
+
+        function rand(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Генерирует SVG снежинки белого цвета заданного размера
+        function snowSVG(size) {
+            const s = Math.max(8, Math.round(size));
+            const stroke = Math.max(1, Math.round(s / 12));
+            return `<svg viewBox="0 0 24 24" width="${s}" height="${s}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g stroke="#ffffff" stroke-width="${stroke}" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.5" y1="4.5" x2="19.5" y2="19.5"/><line x1="19.5" y1="4.5" x2="4.5" y2="19.5"/></g></svg>`;
+        }
+
+        function createFlake() {
+            if (!running || active >= MAX_ACTIVE) return;
+            const el = document.createElement("span");
+            el.className = "snowflake";
+            el.setAttribute("aria-hidden", "true");
+            // определяем размер сначала
+            const size = Math.floor(
+                rand(
+                    window.innerWidth <= 768 ? 9 : 12,
+                    window.innerWidth <= 768 ? 18 : 40
+                )
+            );
+            el.innerHTML = snowSVG(size);
+            el.style.lineHeight = "0";
+            el.style.left = Math.random() * 100 + "%";
+            el.style.fontSize = size + "px";
+            const duration = rand(6.5, 14.5);
+            el.style.animationDuration = duration + "s, " + rand(3, 7) + "s";
+            el.style.animationDelay = "0s, " + rand(0, 1.2) + "s";
+            el.style.opacity = rand(0.45, 0.98).toFixed(2);
+            container.appendChild(el);
+            active++;
+
+            // Небольшой кластер рядом иногда
+            if (Math.random() < 0.14) {
+                const extraCount = Math.floor(rand(1, 4));
+                for (let i = 0; i < extraCount; i++) {
+                    if (active >= MAX_ACTIVE) break;
+                    const ex = document.createElement("span");
+                    ex.className = "snowflake";
+                    ex.setAttribute("aria-hidden", "true");
+                    ex.innerHTML = snowSVG(12);
+                    ex.style.lineHeight = "0";
+                    const baseLeft = parseFloat(el.style.left);
+                    const offset = (Math.random() - 0.5) * 6; // небольшой сдвиг
+                    ex.style.left = `calc(${baseLeft}% + ${offset}px)`;
+                    const exSize = Math.floor(
+                        rand(Math.max(8, size - 6), size)
+                    );
+                    ex.style.fontSize = exSize + "px";
+                    ex.style.animationDuration =
+                        rand(duration * 0.75, duration * 1.1) +
+                        "s, " +
+                        rand(3, 7) +
+                        "s";
+                    ex.style.animationDelay = "0s, " + rand(0, 1.2) + "s";
+                    ex.style.opacity = rand(0.4, 0.9).toFixed(2);
+                    container.appendChild(ex);
+                    active++;
+                    ex.addEventListener(
+                        "animationend",
+                        function onEndEx() {
+                            ex.removeEventListener("animationend", onEndEx);
+                            if (ex.parentNode) ex.parentNode.removeChild(ex);
+                            active--;
+                        },
+                        { once: true }
+                    );
+                }
+            }
+
+            el.addEventListener(
+                "animationend",
+                function onEnd() {
+                    el.removeEventListener("animationend", onEnd);
+                    if (el.parentNode) el.parentNode.removeChild(el);
+                    active--;
+                },
+                { once: true }
+            );
+        }
+
+        // Быстрый старт — начальный всплеск снежинок
+        function initialBurst() {
+            const burstCount = window.innerWidth <= 768 ? 18 : 60;
+            for (let i = 0; i < burstCount; i++) {
+                setTimeout(createFlake, Math.floor(rand(0, 900)));
+            }
+        }
+
+        function scheduleNext() {
+            const interval = Math.floor(rand(MIN_INTERVAL, MAX_INTERVAL));
+            setTimeout(function () {
+                createFlake();
+                scheduleNext();
+            }, interval);
+        }
+
+        initialBurst();
+        scheduleNext();
+
+        document.addEventListener("visibilitychange", function () {
+            running = !document.hidden;
+        });
+    })();
 });
