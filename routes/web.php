@@ -30,6 +30,14 @@ use Illuminate\Support\Facades\Route;
 
 // === СИСТЕМНЫЕ МАРШРУТЫ (должны быть ДО catch-all) ===
 
+Route::redirect('/feisfitnes', '/massaz-i-telesnye-praktiki/feisfitnes', 301);
+
+Route::redirect(
+    '/feisfitnes/feisfitnes',
+    '/massaz-i-telesnye-praktiki/feisfitnes',
+    301
+);
+
 // Только аутентификация, без регистрации
 Auth::routes(['register' => false]);
 
