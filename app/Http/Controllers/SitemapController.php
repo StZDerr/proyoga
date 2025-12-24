@@ -24,8 +24,15 @@ class SitemapController extends Controller
         // Получаем динамические страницы
         $dynamicPages = $this->getDynamicPages();
 
-        // Объединяем все страницы
-        $allPages = $staticPages->concat($dynamicPages);
+        // Объединяем все страницы и удаляем дубликаты по нормализованному URL
+        $allPages = $staticPages->concat($dynamicPages)
+            ->unique(function ($item) {
+                // Нормализуем URL: убираем ведущие слеши и приводим к нижнему регистру
+                $url = isset($item->url) ? (string) $item->url : '';
+
+                return strtolower(trim($url, '/'));
+            })
+            ->values();
 
         // Генерируем XML-контент
         $xmlContent = '<?xml version="1.0" encoding="UTF-8"?>'."\n".
@@ -48,7 +55,7 @@ class SitemapController extends Controller
         foreach ($subCategories as $subCategory) {
             if ($subCategory->slug) {
                 $url = $subCategory->slug;
-                
+
                 // Синхронизируем с indexable_pages
                 $indexablePage = IndexablePage::firstOrCreate(
                     ['url' => $url],
@@ -61,12 +68,12 @@ class SitemapController extends Controller
                         'last_modified' => $subCategory->updated_at,
                     ]
                 );
-                
+
                 // Обновляем last_modified
                 if ($indexablePage->last_modified < $subCategory->updated_at) {
                     $indexablePage->update(['last_modified' => $subCategory->updated_at]);
                 }
-                
+
                 // Добавляем только если индексируется
                 if ($indexablePage->is_indexed) {
                     $pages->push((object) [
@@ -85,7 +92,7 @@ class SitemapController extends Controller
             if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
                 $url = $subSubCategory->subCategory->slug.'/'.
                        $subSubCategory->slug;
-                
+
                 // Синхронизируем с indexable_pages
                 $indexablePage = IndexablePage::firstOrCreate(
                     ['url' => $url],
@@ -98,12 +105,12 @@ class SitemapController extends Controller
                         'last_modified' => $subSubCategory->updated_at,
                     ]
                 );
-                
+
                 // Обновляем last_modified
                 if ($indexablePage->last_modified < $subSubCategory->updated_at) {
                     $indexablePage->update(['last_modified' => $subSubCategory->updated_at]);
                 }
-                
+
                 // Добавляем только если индексируется
                 if ($indexablePage->is_indexed) {
                     $pages->push((object) [
