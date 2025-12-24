@@ -136,7 +136,7 @@
                                     </div>
                                 </a>
 
-                                <a href="{{ route('admin.indexing.sync-dynamic') }}"
+                                {{-- <a href="{{ route('admin.indexing.sync-dynamic') }}"
                                     class="list-group-item list-group-item-action">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
@@ -149,7 +149,7 @@
                                             <div class="text-muted">Добавить страницы направлений йоги</div>
                                         </div>
                                     </div>
-                                </a>
+                                </a> --}}
 
                                 <a href="{{ route('admin.indexing.cleanup') }}"
                                     class="list-group-item list-group-item-action"

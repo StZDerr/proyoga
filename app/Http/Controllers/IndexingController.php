@@ -292,68 +292,68 @@ class IndexingController extends Controller
     /**
      * Синхронизировать все динамические страницы с indexable_pages
      */
-    public function syncDynamicPages()
-    {
-        $synced = 0;
+    // public function syncDynamicPages()
+    // {
+    //     $synced = 0;
 
-        // Собираем все существующие URL
-        $validUrls = [];
+    //     // Собираем все существующие URL
+    //     $validUrls = [];
 
-        // Синхронизируем подкатегории
-        $subCategories = \App\Models\SubCategory::all();
-        foreach ($subCategories as $subCategory) {
-            if ($subCategory->slug) {
-                $validUrls[] = $subCategory->slug;
+    //     // Синхронизируем подкатегории
+    //     $subCategories = \App\Models\SubCategory::all();
+    //     foreach ($subCategories as $subCategory) {
+    //         if ($subCategory->slug) {
+    //             $validUrls[] = $subCategory->slug;
 
-                IndexablePage::updateOrCreate(
-                    ['url' => $subCategory->slug],
-                    [
-                        'title' => $subCategory->title ?? 'Подкатегория',
-                        'description' => $subCategory->description ?? '',
-                        'priority' => 0.8,
-                        'changefreq' => 'weekly',
-                        'is_indexed' => true,
-                        'last_modified' => $subCategory->updated_at,
-                    ]
-                );
-                $synced++;
-            }
-        }
+    //             IndexablePage::updateOrCreate(
+    //                 ['url' => $subCategory->slug],
+    //                 [
+    //                     'title' => $subCategory->title ?? 'Подкатегория',
+    //                     'description' => $subCategory->description ?? '',
+    //                     'priority' => 0.8,
+    //                     'changefreq' => 'weekly',
+    //                     'is_indexed' => true,
+    //                     'last_modified' => $subCategory->updated_at,
+    //                 ]
+    //             );
+    //             $synced++;
+    //         }
+    //     }
 
-        // Синхронизируем под-подкатегории
-        $subSubCategories = \App\Models\SubSubCategory::with('subCategory')->get();
-        foreach ($subSubCategories as $subSubCategory) {
-            if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
-                $url = $subSubCategory->subCategory->slug.'/'.$subSubCategory->slug;
-                $validUrls[] = $url;
+    //     // Синхронизируем под-подкатегории
+    //     $subSubCategories = \App\Models\SubSubCategory::with('subCategory')->get();
+    //     foreach ($subSubCategories as $subSubCategory) {
+    //         if ($subSubCategory->subCategory && $subSubCategory->subCategory->slug && $subSubCategory->slug) {
+    //             $url = $subSubCategory->subCategory->slug.'/'.$subSubCategory->slug;
+    //             $validUrls[] = $url;
 
-                IndexablePage::updateOrCreate(
-                    ['url' => $url],
-                    [
-                        'title' => $subSubCategory->title ?? 'Направление',
-                        'description' => $subSubCategory->description ?? '',
-                        'priority' => 0.7,
-                        'changefreq' => 'weekly',
-                        'is_indexed' => true,
-                        'last_modified' => $subSubCategory->updated_at,
-                    ]
-                );
-                $synced++;
-            }
-        }
+    //             IndexablePage::updateOrCreate(
+    //                 ['url' => $url],
+    //                 [
+    //                     'title' => $subSubCategory->title ?? 'Направление',
+    //                     'description' => $subSubCategory->description ?? '',
+    //                     'priority' => 0.7,
+    //                     'changefreq' => 'weekly',
+    //                     'is_indexed' => true,
+    //                     'last_modified' => $subSubCategory->updated_at,
+    //                 ]
+    //             );
+    //             $synced++;
+    //         }
+    //     }
 
-        // Удаляем устаревшие динамические страницы (которых уже нет в БД)
-        $staticPages = ['/', '/about', '/direction', '/price-list', '/contacts', '/tea', '/calendar', '/recording', '/privacy-policy', '/personal-data'];
+    //     // Удаляем устаревшие динамические страницы (которых уже нет в БД)
+    //     $staticPages = ['/', '/about', '/direction', '/price-list', '/contacts', '/tea', '/calendar', '/recording', '/privacy-policy', '/personal-data'];
 
-        $deleted = IndexablePage::whereNotIn('url', array_merge($validUrls, $staticPages))->delete();
+    //     $deleted = IndexablePage::whereNotIn('url', array_merge($validUrls, $staticPages))->delete();
 
-        $message = "Синхронизировано страниц: {$synced}";
-        if ($deleted > 0) {
-            $message .= ". Удалено устаревших: {$deleted}";
-        }
+    //     $message = "Синхронизировано страниц: {$synced}";
+    //     if ($deleted > 0) {
+    //         $message .= ". Удалено устаревших: {$deleted}";
+    //     }
 
-        return redirect()->back()->with('success', $message);
-    }
+    //     return redirect()->back()->with('success', $message);
+    // }
 
     /**
      * Очистить устаревшие записи страниц

@@ -349,26 +349,24 @@
     box-sizing: border-box;
     /* Интенсивное мигание для привлечения внимания */
     animation: gifts-pulse 1.2s ease-in-out infinite;
-    text-shadow: 0 0 12px rgba(132, 235, 132, 0.8), 
-                 0 0 24px rgba(132, 235, 132, 0.6),
-                 0 0 36px rgba(132, 235, 132, 0.4);
+    text-shadow: 0 0 12px rgba(132, 235, 132, 0.8),
+        0 0 24px rgba(132, 235, 132, 0.6), 0 0 36px rgba(132, 235, 132, 0.4);
 }
 
 /* Keyframes для интенсивного мигания */
 @keyframes gifts-pulse {
-    0%, 100% {
+    0%,
+    100% {
         opacity: 1;
         transform: scale(1);
-        text-shadow: 0 0 12px rgba(132, 235, 132, 0.8), 
-                     0 0 24px rgba(132, 235, 132, 0.6),
-                     0 0 36px rgba(132, 235, 132, 0.4);
+        text-shadow: 0 0 12px rgba(132, 235, 132, 0.8),
+            0 0 24px rgba(132, 235, 132, 0.6), 0 0 36px rgba(132, 235, 132, 0.4);
     }
     50% {
         opacity: 0.5;
         transform: scale(1.08);
-        text-shadow: 0 0 20px rgba(132, 235, 132, 1), 
-                     0 0 40px rgba(132, 235, 132, 0.8),
-                     0 0 60px rgba(132, 235, 132, 0.6);
+        text-shadow: 0 0 20px rgba(132, 235, 132, 1),
+            0 0 40px rgba(132, 235, 132, 0.8), 0 0 60px rgba(132, 235, 132, 0.6);
     }
 }
 
