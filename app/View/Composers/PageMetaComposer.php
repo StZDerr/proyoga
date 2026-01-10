@@ -5,6 +5,7 @@ namespace App\View\Composers;
 use Illuminate\View\View;
 use App\Helpers\PageContentHelper;
 use App\Models\IndexablePage;
+use Illuminate\Support\Facades\Cache;
 
 class PageMetaComposer
 {
@@ -21,19 +22,24 @@ class PageMetaComposer
         // Определяем slug
         $slug = $this->getSlugFromRoute($routeName, $path);
 
-        if ($slug) {
-            // Загружаем мета-данные
-            $pageMeta = PageContentHelper::getMeta($slug);
-            $pageContent = PageContentHelper::getContent($slug);
-
-            // Проверяем индексацию страницы
-            $isPageIndexed = IndexablePage::isPageIndexed($path);
-
-            // Передаём в view
-            $view->with('pageMeta', $pageMeta);
-            $view->with('pageContent', $pageContent);
-            $view->with('isPageIndexed', $isPageIndexed);
+        if (! $slug) {
+            return;
         }
+
+        // Кешируем мета-данные и флаги индексации по конкретному URL
+        $cacheKey = 'page_meta:' . md5($request->fullUrl());
+
+        $metaPayload = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($slug, $path) {
+            return [
+                'pageMeta' => PageContentHelper::getMeta($slug),
+                'pageContent' => PageContentHelper::getContent($slug),
+                'isPageIndexed' => IndexablePage::isPageIndexed($path),
+            ];
+        });
+
+        $view->with('pageMeta', $metaPayload['pageMeta']);
+        $view->with('pageContent', $metaPayload['pageContent']);
+        $view->with('isPageIndexed', $metaPayload['isPageIndexed']);
     }
 
     /**

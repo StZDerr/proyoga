@@ -10,6 +10,7 @@ use App\Models\TestSubmission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,12 +21,14 @@ class TestController extends Controller
      */
     public function getQuestions(): JsonResponse
     {
-        $questions = TestQuestion::active()
-            ->ordered()
-            ->with(['options' => function ($query) {
-                $query->orderBy('order_position');
-            }])
-            ->get();
+        $questions = Cache::remember('test_questions_active', 300, function () {
+            return TestQuestion::active()
+                ->ordered()
+                ->with(['options' => function ($query) {
+                    $query->orderBy('order_position');
+                }])
+                ->get();
+        });
 
         return response()->json([
             'success' => true,

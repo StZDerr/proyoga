@@ -28,21 +28,25 @@ class AppServiceProvider extends ServiceProvider
             require_once app_path('Helpers/PageContentHelper.php');
         }
 
-        // Регистрируем основной View Composer
-        View::composer('*', \App\View\Composers\PageMetaComposer::class);
-
-        // Подгружаем активные ExternalService во все view
-        View::composer('*', function ($view) {
-            $view->with('externalServices', ExternalService::active()->get());
-        });
-        View::composer(['partials.navbar', 'partials.footer'], function ($view) {
-            $view->with('setting', Setting::current());
-        });
-
+        // Общие настройки сайта кешируем единоразово
         $setting = Cache::remember('site_settings', now()->addDay(), function () {
             return Setting::current();
         });
-
         View::share('setting', $setting);
+
+        // Мета и внешние сервисы подключаем только там, где реально рендерится <head>
+        View::composer(['components.seo-meta', 'layouts.app'], \App\View\Composers\PageMetaComposer::class);
+
+        View::composer(['components.seo-meta', 'layouts.app'], function ($view) {
+            $externalServices = Cache::remember('external_services_active', now()->addMinutes(60), function () {
+                return ExternalService::active()->get();
+            });
+
+            $view->with('externalServices', $externalServices);
+        });
+
+        View::composer(['partials.navbar', 'partials.footer'], function ($view) use ($setting) {
+            $view->with('setting', $setting);
+        });
     }
 }

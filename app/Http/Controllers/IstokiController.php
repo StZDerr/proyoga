@@ -14,20 +14,43 @@ use App\Models\Story;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class IstokiController extends Controller
 {
     public function index()
     {
-        $promotions = Promotion::orderBy('created_at', 'desc')->get();
-        // $categories = PriceCategory::with(['tables.items'])->get();
-        $personals = Personal::all();
-        $galleries = Gallery::where('is_active', 1)
-            ->orderBy('sort_order', 'desc')->get();
-        $stories = Story::all();
-        $questions = Question::orderBy('order')->get();
-        $mainCategories = MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
-        $articles = Article::orderBy('created_at', 'desc')->take(3)->get();
+        // Домашние данные кешируем, чтобы не собирать их на каждый визит
+        $promotions = Cache::remember('home:promotions', now()->addMinutes(30), function () {
+            return Promotion::orderBy('created_at', 'desc')->get();
+        });
+
+        $personals = Cache::remember('home:personals', now()->addMinutes(30), function () {
+            return Personal::all();
+        });
+
+        $galleries = Cache::remember('home:galleries', now()->addMinutes(30), function () {
+            return Gallery::where('is_active', 1)
+                ->orderBy('sort_order', 'desc')
+                ->get();
+        });
+
+        // Истории отдаём все, но кешируем выборку, чтобы разгрузить БД
+        $stories = Cache::remember('home:stories', now()->addMinutes(15), function () {
+            return Story::all();
+        });
+
+        $questions = Cache::remember('home:questions', now()->addMinutes(30), function () {
+            return Question::orderBy('order')->get();
+        });
+
+        $mainCategories = Cache::remember('home:main_categories', now()->addMinutes(30), function () {
+            return MainCategory::with('subCategories')->orderBy('id', 'desc')->get();
+        });
+
+        $articles = Cache::remember('home:articles', now()->addMinutes(15), function () {
+            return Article::orderBy('created_at', 'desc')->take(3)->get();
+        });
 
         return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'articles'));
     }
