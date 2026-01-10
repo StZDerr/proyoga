@@ -2,10 +2,10 @@
 
 namespace App\View\Composers;
 
-use Illuminate\View\View;
 use App\Helpers\PageContentHelper;
 use App\Models\IndexablePage;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\View\View;
 
 class PageMetaComposer
 {
@@ -27,7 +27,7 @@ class PageMetaComposer
         }
 
         // Кешируем мета-данные и флаги индексации по конкретному URL
-        $cacheKey = 'page_meta:' . md5($request->fullUrl());
+        $cacheKey = 'page_meta:'.md5($request->fullUrl());
 
         $metaPayload = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($slug, $path) {
             return [
