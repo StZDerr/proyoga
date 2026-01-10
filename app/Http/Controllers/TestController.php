@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendTestSubmissionEmail;
+use App\Jobs\SendVKMessage;
 use App\Models\TestAnswer;
 use App\Models\TestQuestion;
 use App\Models\TestSubmission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class TestController extends Controller
@@ -42,6 +45,7 @@ class TestController extends Controller
             'answers' => 'required|array|min:1',
             'answers.*.question_id' => 'required|integer|exists:test_questions,id',
             'answers.*.option_id' => 'required|integer|exists:test_options,id',
+            'privacy_agreement' => 'required|accepted',
             'smart-token' => ['required', new \App\Rules\YandexCaptcha()],
         ], [
             'name.required' => 'Имя обязательно',
@@ -68,6 +72,9 @@ class TestController extends Controller
             'answers.*.option_id.integer' => 'ID варианта должен быть числом',
             'answers.*.option_id.exists' => 'Вариант не найден',
 
+            'privacy_agreement.required' => 'Необходимо согласие с политикой конфиденциальности',
+            'privacy_agreement.accepted' => 'Подтвердите согласие с политикой конфиденциальности',
+
             'smart-token.required' => 'Необходимо пройти проверку капчи',
         ]);
 
@@ -81,7 +88,7 @@ class TestController extends Controller
         $validated = $validator->validated();
 
         try {
-            DB::transaction(function () use ($validated) {
+            $submission = DB::transaction(function () use ($validated) {
                 $submission = TestSubmission::create([
                     'name' => $validated['name'],
                     'phone' => $validated['phone'],
@@ -96,18 +103,62 @@ class TestController extends Controller
                         'test_option_id' => $answer['option_id'],
                     ]);
                 }
+
+                return $submission->load(['answers.question', 'answers.option']);
             });
+
+            $emailsString = env('CONTACT_EMAIL', env('ADMIN_EMAIL', 'it@sumnikoff.ru'));
+            $adminEmails = array_filter(array_map('trim', explode(',', (string) $emailsString)));
+
+            SendTestSubmissionEmail::dispatch($submission, $adminEmails);
+
+            $vkMessage = $this->buildVkMessage($submission);
+            SendVKMessage::dispatch($vkMessage, config('services.vk.user_id'));
+            SendVKMessage::dispatch($vkMessage, null, config('services.vk.chat_id'));
 
             return response()->json([
                 'success' => true,
                 'message' => 'Тест успешно отправлен! Мы свяжемся с вами в ближайшее время.',
             ]);
         } catch (\Exception $e) {
-            // Можно логировать $e->getMessage() для отладки
+            Log::error('Test submission failed', [
+                'message' => $e->getMessage(),
+            ]);
+
             return response()->json([
                 'success' => false,
                 'message' => 'Произошла ошибка при сохранении данных. Попробуйте еще раз.',
             ], 500);
         }
+    }
+
+    private function buildVkMessage(TestSubmission $submission): string
+    {
+        $lines = [];
+
+        $lines[] = '🧘 Новый результат теста на гибкость';
+        $lines[] = '';
+        $lines[] = '👤 Имя: '.$submission->name;
+        $lines[] = '📱 Телефон: '.$submission->phone;
+
+        if (! empty($submission->email)) {
+            $lines[] = '📧 Email: '.$submission->email;
+        }
+
+        $lines[] = '🕒 Отправлен: '.($submission->completed_at?->format('d.m.Y H:i') ?? now()->format('d.m.Y H:i'));
+
+        if ($submission->answers->isNotEmpty()) {
+            $lines[] = '';
+            $lines[] = '📋 Ответы:';
+
+            foreach ($submission->answers as $index => $answer) {
+                $questionText = $answer->question->question ?? ('Вопрос '.$answer->test_question_id);
+                $optionText = $answer->option->option_text ?? ('Вариант '.$answer->test_option_id);
+
+                $lines[] = ($index + 1).'. '.$questionText.' — '.$optionText;
+            }
+        }
+
+        return implode("\n", $lines);
     }
 }

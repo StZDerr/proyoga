@@ -264,6 +264,7 @@ class YogaTest {
         const name = formData.get("name");
         const phone = formData.get("phone");
         const email = formData.get("email");
+        const privacyAgreement = formData.get("privacy_agreement");
         const captchaToken = formData.get("smart-token");
 
         if (!name || !phone) {
@@ -273,6 +274,13 @@ class YogaTest {
 
         if (!captchaToken) {
             alert("Пожалуйста, пройдите проверку капчи");
+            return;
+        }
+
+        if (!privacyAgreement) {
+            alert(
+                "Пожалуйста, подтвердите согласие с политикой конфиденциальности"
+            );
             return;
         }
 
@@ -297,6 +305,7 @@ class YogaTest {
                     phone: phone,
                     email: email,
                     answers: this.answers,
+                    privacy_agreement: !!privacyAgreement,
                     "smart-token": captchaToken,
                 }),
             });
