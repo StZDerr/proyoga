@@ -36,14 +36,14 @@ class StoryController extends Controller
             'title' => 'required|string|max:255',
             'preview' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'media' => 'required|array|min:1',
-            'media.*' => 'file|mimes:jpeg,png,jpg,mp4,webm,ogg,avi|max:51200',
+            'media.*' => 'file|mimes:jpeg,png,jpg,mp4,webm,ogg,avi|max:10200',
         ], [
             'title.required' => 'Поле "Название" обязательно для заполнения.',
             'preview.required' => 'Превью обязательно.',
             'preview.image' => 'Превью должно быть изображением.',
             'media.required' => 'Пожалуйста, загрузите хотя бы одно фото или видео.',
             'media.*.mimes' => 'Медиа: разрешены только фото (jpeg, png, jpg) и видео (mp4, webm, ogg, avi).',
-            'media.*.max' => 'Размер каждого медиафайла не должен превышать 50 МБ.',
+            'media.*.max' => 'Размер каждого медиафайла не должен превышать 10 МБ.',
         ]);
 
         $data = [
@@ -103,12 +103,12 @@ class StoryController extends Controller
             'title' => 'required|string|max:255',
             'preview' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'media' => 'nullable|array',
-            'media.*' => 'file|mimes:jpeg,png,jpg,mp4,webm,ogg,avi|max:51200',
+            'media.*' => 'file|mimes:jpeg,png,jpg,mp4,webm,ogg,avi|max:10200',
         ], [
             'title.required' => 'Поле "Название" обязательно для заполнения.',
             'preview.image' => 'Превью должно быть изображением.',
             'media.*.mimes' => 'Медиа: разрешены только фото (jpeg, png, jpg) и видео (mp4, webm, ogg, avi).',
-            'media.*.max' => 'Размер каждого медиафайла не должен превышать 50 МБ.',
+            'media.*.max' => 'Размер каждого медиафайла не должен превышать 10 МБ.',
         ]);
 
         $data = ['title' => $request->title];
