@@ -58,9 +58,9 @@ class SettingController extends Controller
         $setting = Setting::current();
 
         $data = $request->validate([
-            'logo_navbar' => 'nullable|file|mimes:svg,svgz,webp|mimetypes:image/svg+xml,image/webp|max:200',
-            'logo_footer' => 'nullable|file|mimes:svg,svgz,webp|mimetypes:image/svg+xml,image/webp|max:200',
-            'favicon' => 'nullable|file|mimes:svg,svgz,webp|mimetypes:image/svg+xml,image/webp|max:200',
+            'logo_navbar' => 'nullable|file|mimes:svg,svgz,webp|mimetypes:image/svg+xml,image/webp|max:500',
+            'logo_footer' => 'nullable|file|mimes:svg,svgz,webp|mimetypes:image/svg+xml,image/webp|max:500',
+            'favicon' => 'nullable|file|mimes:svg,svgz,webp|mimetypes:image/svg+xml,image/webp|max:500',
         ]);
 
         // Обработка загрузок (если есть) и удаление старых файлов
