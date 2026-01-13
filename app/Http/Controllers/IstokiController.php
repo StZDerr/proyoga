@@ -35,12 +35,9 @@ class IstokiController extends Controller
                 ->get();
         });
 
-        // Истории отдаём все, но кешируем выборку, чтобы разгрузить БД
-        $stories = Cache::remember('home:stories', now()->addMinutes(15), function () {
-            return Story::orderByDesc('created_at')
-                ->limit(5)
-                ->get();
-        });
+        $stories = Story::inRandomOrder()
+            ->limit(5)
+            ->get();
 
         $questions = Cache::remember('home:questions', now()->addMinutes(30), function () {
             return Question::orderBy('order')->get();
