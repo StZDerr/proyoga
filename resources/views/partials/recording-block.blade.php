@@ -2,8 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-12">
-                <img src="{{ asset('images/recording-img.webp') }}" alt="" loading="lazy" width="600"
-                    height="400">
+                <img src="{{ asset('images/3.webp') }}" alt="" loading="lazy" width="600" height="400">
             </div>
             <div class="mt-3 col-xl-6 col-12">
                 <div class="title">

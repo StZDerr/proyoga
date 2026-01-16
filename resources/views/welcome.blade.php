@@ -466,8 +466,8 @@
                     </a>
                 </div>
                 <div class="col-12 col-xl-5 text-end mt-5">
-                    <img src="{{ asset('images/Off-siteSessions.webp') }}" alt="Off-siteSessions" loading="lazy"
-                        width="500" height="400">
+                    <img src="{{ asset('images/1.webp') }}" alt="Off-siteSessions" loading="lazy" width="500"
+                        height="400">
                 </div>
             </div>
         </div>
@@ -521,7 +521,7 @@
             <div class="background-color-EBF1EE p-4 rounded">
                 <div class="row">
                     <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('images/test.webp') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('images/2.webp') }}" alt="" class="img-fluid">
                     </div>
                     <div class="col-12 col-lg-6 d-flex flex-column justify-content-between">
                         <div class="m-3">

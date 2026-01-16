@@ -51,45 +51,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    // Server config — make dev server accessible on local network
-    // IMPORTANT: replace '192.168.1.100' with your machine's local IPv4 address (ipconfig)
-    server: {
-        // listen on all addresses
-        host: "0.0.0.0",
-        port: 5173,
-        // HMR client should connect back to this host when accessing the site from other LAN machines
-        hmr: {
-            // HMR host — читается из env при возможности, иначе используется ваш IPv4
-            host:
-                process.env.DEV_HOST ||
-                process.env.VITE_DEV_HOST ||
-                "192.168.0.214",
-            protocol: "ws",
-            port: 5173,
-        },
-    },
-    build: {
-        // Code splitting для уменьшения размера бандлов
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    // Vendor chunk для библиотек
-                    vendor: ["bootstrap", "sweetalert2"],
-                },
-            },
-        },
-        // Увеличиваем лимит для предупреждений о размере чанков
-        chunkSizeWarningLimit: 1000,
-        // Минификация CSS
-        cssMinify: true,
-        // Минификация JS с сохранением производительности
-        minify: "terser",
-        terserOptions: {
-            compress: {
-                drop_console: true, // Удаляем console.log в продакшене
-                drop_debugger: true,
-                pure_funcs: ["console.log", "console.info"], // Удаляем эти функции
-            },
-        },
-    },
 });
