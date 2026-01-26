@@ -90,6 +90,10 @@ class SettingController extends Controller
 
         $setting->save();
 
+        // Обновляем кеш настроек, чтобы изменения сразу попали в view composers
+        \Illuminate\Support\Facades\Cache::forget('site_settings');
+        \Illuminate\Support\Facades\Cache::put('site_settings', $setting, now()->addDay());
+
         return redirect()->route('admin.settings.edit')->with('success', 'Настройки сохранены');
     }
 
