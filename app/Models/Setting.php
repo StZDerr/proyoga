@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ClearsHomeCache;
 use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
+    use ClearsHomeCache;
+
     // Явно указываем имя таблицы (по желанию)
     protected $table = 'settings';
+
+    /** Cache keys to forget on model changes */
+    protected static $homeCacheKeys = ['site_settings'];
 
     protected $fillable = [
         'logo_navbar',
