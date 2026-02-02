@@ -7,6 +7,11 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
+    use \App\Models\Traits\ClearsHomeCache;
+
+    /** Cache keys to forget on model changes */
+    protected static $homeCacheKeys = ['home:articles'];
+
     protected $fillable = [
         'title',
         'slug',
@@ -14,7 +19,6 @@ class Article extends Model
         'content',
         'image',
     ];
-
     // Генерация slug по title, если не задан
     protected static function boot()
     {

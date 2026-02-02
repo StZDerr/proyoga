@@ -7,7 +7,12 @@ use Illuminate\Support\Str;
 
 class MainCategory extends Model
 {
+    use \App\Models\Traits\ClearsHomeCache;
+
     protected $fillable = ['title', 'slug'];
+
+    /** Cache keys to forget on model changes */
+    protected static $homeCacheKeys = ['home:main_categories'];
 
     // Связь с подкатегориями
     public function subCategories()

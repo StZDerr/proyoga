@@ -1,5 +1,4 @@
 <script src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
-<script src="//code.jivo.ru/widget/JPrxlTo7vA" async></script>
 <header class="site-header">
     <div class="container">
         <!-- Верхний блок с рейтингом и адресами -->

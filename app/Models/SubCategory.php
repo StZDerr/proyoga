@@ -4,9 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Traits\ClearsHomeCache;
 
 class SubCategory extends Model
 {
+    use ClearsHomeCache;
+
+    /** Cache keys to forget on model changes */
+    protected static $homeCacheKeys = ['home:main_categories'];
+
     protected $fillable = ['main_category_id', 'title', 'description', 'image', 'slug'];
 
     // Связь с главной категорией
