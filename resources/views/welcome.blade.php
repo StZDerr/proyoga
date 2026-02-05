@@ -565,15 +565,30 @@
                         <div class="swiper-wrapper">
                             @foreach ($personals as $personal)
                                 <div class="swiper-slide">
-                                    <div class="teacher-card">
-                                        <img src="{{ asset('storage/' . $personal->photo) }}"
-                                            alt="{{ $personal->first_name }}" width="50" height="50"
-                                            class="rounded-circle" loading="lazy">
-                                        <h5 class="teacher-name">{{ $personal->first_name }}
-                                            {{ $personal->last_name }}
-                                        </h5>
-                                        <p class="teacher-position">{{ $personal->position }}</p>
-                                    </div>
+                                    @if (!empty($personal->slug))
+                                        <a href="{{ route('personal', $personal) }}"
+                                            class="text-decoration-none text-dark">
+                                            <div class="teacher-card">
+                                                <img src="{{ asset('storage/' . $personal->photo) }}"
+                                                    alt="{{ $personal->first_name }}" width="50" height="50"
+                                                    class="rounded-circle" loading="lazy">
+                                                <h5 class="teacher-name">{{ $personal->first_name }}
+                                                    {{ $personal->last_name }}
+                                                </h5>
+                                                <p class="teacher-position">{{ $personal->position }}</p>
+                                            </div>
+                                        </a>
+                                    @else
+                                        <div class="teacher-card">
+                                            <img src="{{ asset('storage/' . $personal->photo) }}"
+                                                alt="{{ $personal->first_name }}" width="50" height="50"
+                                                class="rounded-circle" loading="lazy">
+                                            <h5 class="teacher-name">{{ $personal->first_name }}
+                                                {{ $personal->last_name }}
+                                            </h5>
+                                            <p class="teacher-position">{{ $personal->position }}</p>
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

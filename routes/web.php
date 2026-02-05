@@ -101,6 +101,10 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
     Route::delete('sub-sub-categories/photos/{photo}', [SubSubCategoryPhotoController::class, 'destroy'])
         ->name('sub-sub-categories.photos.destroy');
+
+    // Удаление фото из галереи персонала
+    Route::delete('personal/{personal}/photos/{photo}', [\App\Http\Controllers\PersonalController::class, 'destroyPhoto'])
+        ->name('personal.photos.destroy');
     Route::delete('stories/{story}/media/{media}', [StoryController::class, 'destroyMedia'])->name('stories.media.destroy');
     Route::post('price-tables/{priceTable}/move-up', [PriceTableController::class, 'moveUp'])->name('price-tables.move-up');
     Route::post('price-tables/{priceTable}/move-down', [PriceTableController::class, 'moveDown'])->name('price-tables.move-down');
@@ -135,6 +139,7 @@ Route::get('/oferta', [IstokiController::class, 'oferta'])->name('oferta');
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
 Route::get('/taplink', [IstokiController::class, 'taplink'])->name('taplink');
+Route::get('/personal/{personal}', [IstokiController::class, 'personal'])->name('personal');
 
 // Статьи
 Route::get('/articles', [IstokiController::class, 'articles'])->name('articles.index');

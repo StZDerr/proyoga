@@ -26,7 +26,7 @@ class IstokiController extends Controller
         });
 
         $personals = Cache::remember('home:personals', now()->addMinutes(30), function () {
-            return Personal::all();
+            return Personal::orderBy('sort_order')->get();
         });
 
         $galleries = Cache::remember('home:galleries', now()->addMinutes(30), function () {
@@ -180,5 +180,12 @@ class IstokiController extends Controller
     public function showArticle(Article $article)
     {
         return view('showArticle', compact('article'));
+    }
+
+    public function personal(Personal $personal)
+    {
+        $personal->load('photos');
+
+        return view('personal', compact('personal'));
     }
 }

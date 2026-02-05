@@ -62,3 +62,9 @@ Breadcrumbs::for('subSubCategoryDetail', function (BreadcrumbTrail $trail, SubSu
 //     $trail->parent('welcome');
 //     $trail->push('Хатха йога', route('hatha-uoga'));
 // });
+
+// Персональная страница преподавателя
+Breadcrumbs::for('personal', function (BreadcrumbTrail $trail, $personal) {
+    $trail->parent('about');
+    $trail->push($personal->first_name.' '.$personal->last_name, route('personal', $personal));
+});
