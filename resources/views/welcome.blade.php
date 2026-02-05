@@ -400,38 +400,61 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-4 main-directions mt-2 mb-3">
-                @foreach ($mainCategories as $mainCategory)
-                    @foreach ($mainCategory->subCategories as $subCategory)
-                        <div class="col-lg-4 col-md-6 col-12 mb-1">
-                            <a href="{{ route('PodDirection', $subCategory->slug) }}"
-                                class="text-decoration-none text-dark">
-                                <div class="card-directions">
-                                    @if ($subCategory->image)
-                                        <img src="{{ asset('storage/' . $subCategory->image) }}"
-                                            alt="{{ $subCategory->title }}" loading="lazy" width="600"
-                                            height="338" />
-                                    @else
-                                        <img src="{{ asset('images/directions-background.webp') }}"
-                                            alt="directions-background" loading="lazy" width="600"
-                                            height="338" />
-                                    @endif
-                                    <div class="d-flex justify-content-between p-3">
-                                        <div class="title">
-                                            {{ $subCategory->title }}
+            <div class="gallery3-wrapper position-relative mt-2 mb-3">
+                <div class="swiper-button-prev gallery3-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </div>
+                <div class="swiper-button-next gallery3-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+
+                <div class="swiper directions-swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        @foreach ($mainCategories as $mainCategory)
+                            @foreach ($mainCategory->subCategories as $subCategory)
+                                <div class="swiper-slide">
+                                    <a href="{{ route('PodDirection', $subCategory->slug) }}"
+                                        class="text-decoration-none text-dark">
+                                        <div class="card-directions">
+                                            <div class="card-image">
+                                                @if ($subCategory->image)
+                                                    <img src="{{ asset('storage/' . $subCategory->image) }}"
+                                                        alt="{{ $subCategory->title }}" loading="lazy"
+                                                        width="600" height="338" class="card-directions-img" />
+                                                @else
+                                                    <img src="{{ asset('images/directions-background.webp') }}"
+                                                        alt="directions-background" loading="lazy" width="600"
+                                                        height="338" class="card-directions-img" />
+                                                @endif
+                                            </div>
+
+                                            <div class="card-info">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-start card-info-top">
+                                                    <div class="card-title">
+                                                        {{ $subCategory->title }}
+                                                    </div>
+                                                    <div class="arrow">
+                                                        <i class="bi bi-arrow-right fs-4"></i>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="card-desc">
+                                                    {{ Str::limit(strip_tags($subCategory->description ?? ''), 20, '') }}
+                                                </div> --}}
+                                            </div>
                                         </div>
-                                        <div class="arrow">
-                                            <i class="bi bi-arrow-right fs-4"></i>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="text">
-                                        {{ $subCategory->description ?? 'Описание направления' }}
-                                    </div> --}}
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                    @endforeach
-                @endforeach
+                            @endforeach
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

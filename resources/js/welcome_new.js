@@ -479,6 +479,36 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // === ИНИЦИАЛИЗАЦИЯ SWIPER (направления) ===
+    const directionsContainer = document.querySelector(".directions-swiper");
+    if (directionsContainer) {
+        const slideCount =
+            directionsContainer.querySelectorAll(".swiper-slide").length;
+        const enableLoop = slideCount >= 3;
+
+        const directionsSwiper = new Swiper(".directions-swiper", {
+            modules: [Navigation],
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            spaceBetween: 12,
+            centeredSlides: false,
+            roundLengths: true,
+            watchOverflow: true,
+            loop: enableLoop,
+            navigation: {
+                nextEl: ".gallery3-next",
+                prevEl: ".gallery3-prev",
+            },
+            breakpoints: {
+                0: { slidesPerView: 1, spaceBetween: 8 },
+                420: { slidesPerView: 1, spaceBetween: 12 },
+                576: { slidesPerView: 1, spaceBetween: 12 },
+                768: { slidesPerView: 2, spaceBetween: 16 },
+                992: { slidesPerView: 3, spaceBetween: 24 },
+            },
+        });
+    }
+
     // === ИНИЦИАЛИЗАЦИЯ lightGallery ===
     const galleryWrapper = document.querySelector(
         ".gallery3-swiper .swiper-wrapper",

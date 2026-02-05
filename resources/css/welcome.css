@@ -1522,6 +1522,228 @@
     color: white !important;
 }
 
+/* Стили для секции 'Направления' — аналогично фотогалерее (стрелки, отступы, промежутки) */
+.directions .gallery3-wrapper {
+    position: relative;
+    padding: 0 80px;
+}
+
+.directions .directions-swiper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.directions .directions-swiper .swiper-slide {
+    transition: all 0.3s ease;
+    transform: none;
+    opacity: 1;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.directions .directions-swiper .swiper-slide-active {
+    transform: none;
+    opacity: 1;
+    z-index: auto;
+}
+
+/* Устанавливаем карточке одинаковую высоту и поведение */
+.directions .card-directions {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+}
+.directions .card-image {
+    flex: 0 0 auto;
+}
+.directions .card-info {
+    flex: 0 0 auto;
+}
+.directions .card-info {
+    margin-top: 12px;
+}
+
+.directions .card-image {
+    overflow: hidden;
+    border-radius: 32px;
+}
+.directions .card-directions-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-radius: 32px;
+    transition: all 0.3s ease;
+}
+
+.directions .card-directions-img:hover {
+    transform: scale(1.02);
+}
+
+/* Информационная панель под картинкой */
+.directions .card-info {
+    background: #ebf2ee;
+    padding: 12px 14px 16px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Минимальная высота обеспечивает одинаковый размер блока с информацией */
+    min-height: 92px; /* 2 линии заголовка (2*32px) + вертикальные паддинги */
+}
+
+.directions .card-info-top {
+    gap: 12px;
+}
+
+.directions .card-title {
+    font-family: var(--font-standart-TenorSans, "Tenor Sans", serif);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 32px;
+    color: #123d4d;
+    /* Ограничение до двух строк и единая высота */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 64px; /* на случай, если line-clamp не поддерживается */
+}
+
+.directions .card-desc {
+    font-family: var(--font-standart-Montserrat, "Montserrat", sans-serif);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #007677;
+    margin-top: 8px;
+    /* Ограничим визуально длину, но обрезка сделана серверно */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Используем те же кастомные стрелки */
+.directions .gallery3-prev,
+.directions .gallery3-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.directions .gallery3-prev {
+    left: 0;
+}
+.directions .gallery3-next {
+    right: 0;
+}
+
+.directions .gallery3-prev svg,
+.directions .gallery3-next svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #000000;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.directions .gallery3-prev:hover,
+.directions .gallery3-next:hover {
+    transform: translateY(-50%);
+    background: #f8f9fa;
+}
+
+/* Адаптивность и уменьшение боковых отступов для предотвращения наложений */
+@media (max-width: 1199px) {
+    .directions .gallery3-wrapper {
+        padding: 0 40px;
+    }
+}
+
+/* Немного больше отступа на небольших десктопах */
+@media (max-width: 992px) {
+    .directions .gallery3-wrapper {
+        padding: 0 36px;
+    }
+}
+
+/* Для узких планшетов уменьшение отступов */
+@media (max-width: 768px) {
+    .directions .gallery3-wrapper {
+        padding: 0 28px;
+    }
+}
+
+/* Очень узкие экраны — минимальные боковые отступы */
+@media (max-width: 420px) {
+    .directions .gallery3-wrapper {
+        padding: 0 12px;
+    }
+    .directions .gallery3-prev,
+    .directions .gallery3-next {
+        width: 32px;
+        height: 32px;
+    }
+    .directions .gallery3-prev svg,
+    .directions .gallery3-next svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .directions .gallery3-prev,
+    .directions .gallery3-next {
+        width: 40px;
+        height: 40px;
+    }
+    .directions .gallery3-prev svg,
+    .directions .gallery3-next svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+/* Надёжные правила: исключаем внутренние paddings у слайдов и гарантируем box-sizing */
+.directions .directions-swiper,
+.directions .directions-swiper .swiper-wrapper,
+.directions .directions-swiper .swiper-slide {
+    box-sizing: border-box;
+}
+.directions .directions-swiper .swiper-slide {
+    padding: 0;
+    min-width: 0;
+}
+/* На случай дробных вычислений — обрезаем возможные пиксельные наложения по краям */
+.directions .directions-swiper {
+    overflow: hidden;
+}
+
 .questions .title {
     font-family: var(--font-standart-TenorSans);
     font-weight: 400;
