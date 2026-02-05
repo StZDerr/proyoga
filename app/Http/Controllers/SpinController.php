@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendSpinEmail;
+use App\Jobs\SendVKMessage;
 use App\Models\Prize;
 use App\Services\WheelService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class SpinController extends Controller
@@ -25,6 +28,37 @@ class SpinController extends Controller
         try {
             $spin = $wheel->spinByPhone($validated['phone'], ['ip' => $request->ip()]);
             $prize = $spin->prize;
+
+            $data = [
+                'phone' => $validated['phone'],
+                'prize_name' => $prize?->name ?? 'Не указан',
+                'prize_description' => $prize?->description,
+                'page_url' => $request->input('page_url', $request->headers->get('referer', 'Не указана')),
+                'page_title' => $request->input('page_title', 'Не указан'),
+            ];
+
+            $emailsString = env('CONTACT_EMAIL', env('ADMIN_EMAIL', 'it@sumnikoff.ru'));
+            $adminEmails = array_filter(array_map('trim', explode(',', $emailsString)));
+
+            try {
+                SendSpinEmail::dispatch($data, $adminEmails);
+
+                $vkMessage = "🎯 Новое вращение колеса!\n\n";
+                $vkMessage .= "📱 Телефон: {$data['phone']}\n";
+                $vkMessage .= "🏆 Приз: {$data['prize_name']}\n";
+                if (!empty($data['prize_description'])) {
+                    $vkMessage .= "📝 Описание: {$data['prize_description']}\n";
+                }
+                $vkMessage .= "\n📄 Страница: {$data['page_title']}\n";
+                $vkMessage .= "🔗 {$data['page_url']}";
+
+                SendVKMessage::dispatch($vkMessage, config('services.vk.user_id'));
+                SendVKMessage::dispatch($vkMessage, null, config('services.vk.chat_id'));
+            } catch (\Throwable $e) {
+                Log::warning('Spin notifications failed', [
+                    'message' => $e->getMessage(),
+                ]);
+            }
 
             return response()->json([
                 'success' => true,
