@@ -51,7 +51,16 @@ class IstokiController extends Controller
             return Article::orderBy('created_at', 'desc')->take(3)->get();
         });
 
-        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'articles'));
+        // Spin visibility: check active prizes and total chance
+        $spinPrizes = \App\Models\Prize::where('is_active', true)->get(['id', 'chance']);
+        $spinPrizesCount = $spinPrizes->count();
+        $spinPrizesChanceTotal = (int) $spinPrizes->sum('chance');
+
+        // By default require total chances >= 100 to show the spin block.
+        // This prevents showing the wheel when no prizes configured or chances not set.
+        $showSpin = $spinPrizesCount > 0 && $spinPrizesChanceTotal >= 100;
+
+        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'articles', 'showSpin', 'spinPrizesCount', 'spinPrizesChanceTotal'));
     }
 
     public function priceList()

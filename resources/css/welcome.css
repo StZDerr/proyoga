@@ -29,6 +29,246 @@
     color: var(--primary-color-button-123d4d);
 }
 
+/* Текст под заголовком — запрошенные стили */
+.main .lead-subtext {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-style: normal; /* 'ExtraBold' реализуется через font-weight:800 */
+    font-size: 22px;
+    line-height: 31px;
+    leading-trim: none;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #123d4d;
+    margin-top: 16px;
+}
+
+/* Полная ширина — продольная линия под блоком */
+.full-width-divider {
+    width: 100%;
+    height: 4px;
+    background-color: #123d4d;
+    margin: 24px 0;
+}
+
+@media (max-width: 576px) {
+    .full-width-divider {
+        height: 3px;
+        margin: 16px 0;
+    }
+}
+
+/* Описание под линией */
+.main .lead-description {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-style: normal; /* Medium -> font-weight 500 */
+    font-size: 16px;
+    line-height: 22px;
+    leading-trim: none;
+    letter-spacing: 0;
+    text-align: center;
+    color: #1d7d6f;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+/* CTA: кнопка "Крутить колесо" */
+.spin-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.spin-cta-button {
+    background: linear-gradient(
+        359.67deg,
+        #175369 -6.6%,
+        #0e4255 25.44%,
+        #2a8eb3 184.43%
+    );
+    padding: 14px 5rem;
+    border-radius: 121.52px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 260px;
+    cursor: pointer;
+}
+
+.spin-cta-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(34, 139, 153, 0.15);
+}
+
+.spin-cta-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 49.89px;
+    letter-spacing: 0.05em; /* approx 5% */
+    color: #c7fe2e;
+    text-transform: uppercase;
+}
+
+.spin-cta-subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 32.79px;
+    color: #d5e8e5;
+    margin-top: 4px;
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .spin-cta-button {
+        padding: 12px 22px;
+        min-width: 220px;
+    }
+    .spin-cta-title {
+        font-size: 20px;
+        line-height: 40px;
+    }
+    .spin-cta-subtitle {
+        font-size: 14px;
+        line-height: 28px;
+    }
+}
+
+/* Текст "ДО КОНЦА АКЦИИ" */
+.promo-countdown {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-style: normal; /* Medium -> weight 500 */
+    font-size: 40.75px;
+    line-height: 40.75px;
+    letter-spacing: 0.05em; /* approx 5% */
+    text-align: center;
+    color: #123d4d;
+    margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+    .promo-countdown {
+        font-size: 28px;
+        line-height: 32px;
+    }
+}
+
+/* Таймер промо */
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+.countdown-inner {
+    background: #acda2c; /* заданный фон */
+    border-radius: 34px;
+    padding: 12px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+.countdown-item {
+    text-align: center;
+}
+.count-number {
+    background: #ffffff;
+    color: #123d4d;
+    min-width: 110px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 53.86px;
+    line-height: 53.86px;
+    letter-spacing: 0.05em; /* approx 5% */
+}
+.count-label {
+    font-size: 12px;
+    color: #1d7d6f;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+@media (max-width: 576px) {
+    .countdown-inner {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+    .count-number {
+        min-width: 66px;
+        height: 64px;
+        font-size: 32px;
+        line-height: 32px;
+    }
+    .count-label {
+        font-size: 11px;
+    }
+}
+
+/* Модальное окно спина */
+.spin-popup {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 16000 !important;
+}
+.spin-popup.is-open {
+    display: block;
+}
+.spin-popup__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 16010;
+}
+.spin-popup__content {
+    position: relative;
+    max-width: 980px;
+    margin: 6vh auto;
+    background: transparent;
+    outline: none;
+    padding: 0 16px;
+    z-index: 16020;
+}
+.spin-popup__close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 16030;
+}
+.spin-popup .spin {
+    background: #e1f0ed;
+    border-radius: 82.89px;
+    padding: 22px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+.spin-popup .wheel-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Стили для Swiper */
 .my-custom-swiper-container {
     width: 100%;
@@ -2018,9 +2258,7 @@ body.lightbox-open .site-header {
 }
 
 /* --- Static wheel styling --- */
-.spin-visual {
-    padding: 48px 0;
-}
+
 .wheel-static {
     display: flex;
     align-items: center;

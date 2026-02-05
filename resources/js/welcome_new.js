@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const stories = wrapper.querySelectorAll(".story");
         const lightbox = document.getElementById("lightbox");
         const mediaContainer = lightbox.querySelector(
-            ".lightbox-media-container"
+            ".lightbox-media-container",
         );
         const progressContainer = lightbox.querySelector(".progress-container");
         const closeBtn = lightbox.querySelector(".lightbox-close");
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!avatarImg) return;
 
                 const mediaEls = Array.from(
-                    story.querySelectorAll(".story-media")
+                    story.querySelectorAll(".story-media"),
                 );
                 const videoSrc = mediaEls
                     .map((el) => el.dataset.src)
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             else v.pause();
                         });
                     },
-                    { threshold: 0.5 }
+                    { threshold: 0.5 },
                 );
 
                 avatarVideos.forEach((v) => io.observe(v));
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (progressBars[currentMediaIndex]) {
                     progressBars[currentMediaIndex].style.width = `${Math.min(
                         percent,
-                        100
+                        100,
                     )}%`;
                 }
                 if (elapsed >= mediaDuration) {
@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 (el) => ({
                     src: el.dataset.src,
                     type: getMediaType(el.dataset.src),
-                })
+                }),
             );
             currentMediaIndex = 0;
 
@@ -315,27 +315,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // === СОБЫТИЯ ===
         stories.forEach((s, i) =>
-            s.addEventListener("click", () => openLightbox(i))
+            s.addEventListener("click", () => openLightbox(i)),
         );
         mediaContainer.addEventListener("click", goToNextMedia);
         closeBtn.addEventListener("click", closeLightbox);
         lightbox.addEventListener(
             "click",
-            (e) => e.target === lightbox && closeLightbox()
+            (e) => e.target === lightbox && closeLightbox(),
         );
         document.addEventListener(
             "keydown",
             (e) =>
                 e.key === "Escape" &&
                 lightbox.classList.contains("active") &&
-                closeLightbox()
+                closeLightbox(),
         );
 
         navPrev.addEventListener("click", () =>
-            wrapper.scrollBy({ left: -wrapper.clientWidth, behavior: "smooth" })
+            wrapper.scrollBy({
+                left: -wrapper.clientWidth,
+                behavior: "smooth",
+            }),
         );
         navNext.addEventListener("click", () =>
-            wrapper.scrollBy({ left: wrapper.clientWidth, behavior: "smooth" })
+            wrapper.scrollBy({ left: wrapper.clientWidth, behavior: "smooth" }),
         );
 
         wrapper.addEventListener("scroll", updateNavButtons);
@@ -351,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // === ИНИЦИАЛИЗАЦИЯ SWIPER (основной) ===
     setTimeout(() => {
         const swiperContainer = document.querySelector(
-            ".my-custom-swiper-container"
+            ".my-custom-swiper-container",
         );
         if (swiperContainer) {
             try {
@@ -396,7 +399,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 this.update();
                             },
                         },
-                    }
+                    },
                 );
             } catch (error) {
                 console.error("Error initializing Swiper:", error);
@@ -478,7 +481,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // === ИНИЦИАЛИЗАЦИЯ lightGallery ===
     const galleryWrapper = document.querySelector(
-        ".gallery3-swiper .swiper-wrapper"
+        ".gallery3-swiper .swiper-wrapper",
     );
     if (galleryWrapper) {
         lightGallery(galleryWrapper, {
@@ -575,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Создаем SVG с волнистой линией
         const svg = document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "svg"
+            "svg",
         );
         svg.setAttribute("viewBox", "0 0 100 30");
         svg.setAttribute("preserveAspectRatio", "none");
@@ -587,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const path = document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "path"
+            "path",
         );
         const amplitude = 7; // амплитуда волны
         const frequency = 3; // количество волн
@@ -732,8 +735,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const size = Math.floor(
                 rand(
                     window.innerWidth <= 768 ? 9 : 12,
-                    window.innerWidth <= 768 ? 18 : 40
-                )
+                    window.innerWidth <= 768 ? 18 : 40,
+                ),
             );
             el.innerHTML = snowSVG(size);
             el.style.lineHeight = "0";
@@ -760,7 +763,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const offset = (Math.random() - 0.5) * 6; // небольшой сдвиг
                     ex.style.left = `calc(${baseLeft}% + ${offset}px)`;
                     const exSize = Math.floor(
-                        rand(Math.max(8, size - 6), size)
+                        rand(Math.max(8, size - 6), size),
                     );
                     ex.style.fontSize = exSize + "px";
                     ex.style.animationDuration =
@@ -779,7 +782,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (ex.parentNode) ex.parentNode.removeChild(ex);
                             active--;
                         },
-                        { once: true }
+                        { once: true },
                     );
                 }
             }
@@ -791,7 +794,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (el.parentNode) el.parentNode.removeChild(el);
                     active--;
                 },
-                { once: true }
+                { once: true },
             );
         }
 
@@ -816,6 +819,140 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.addEventListener("visibilitychange", function () {
             running = !document.hidden;
+        });
+    })();
+
+    // === ИНИЦИАЛИЗАЦИЯ ТАЙМЕРА ПРОМО ===
+    (function initPromoCountdown() {
+        const STORAGE_KEY = "promo_target_ts";
+        const timerRoot = document.getElementById("promo-timer");
+        if (!timerRoot) return;
+
+        function parseDateString(s) {
+            if (!s) return null;
+            s = s.trim();
+            if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return new Date(s + "T23:59:59");
+            const d = new Date(s);
+            return isNaN(d.getTime()) ? null : d;
+        }
+
+        const promoCards = Array.from(
+            document.querySelectorAll(".promotion-card"),
+        );
+        const now = new Date();
+        let target = null;
+
+        // Try to load stored target first — prevents restart on page reload
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                const ts = Date.parse(stored);
+                if (!isNaN(ts)) {
+                    target = new Date(ts);
+                } else {
+                    localStorage.removeItem(STORAGE_KEY);
+                }
+            }
+        } catch (e) {
+            // localStorage may be unavailable (privacy mode) — ignore
+            console.warn("localStorage unavailable for promo timer", e);
+        }
+
+        // If no stored target, compute from promo cards or fallback and store it
+        if (!target) {
+            promoCards.forEach((card) => {
+                const end = card.dataset.end;
+                const d = parseDateString(end);
+                if (d && d > now && (!target || d < target)) target = d;
+            });
+
+            if (!target) {
+                // fallback: 3 days from now
+                target = new Date(Date.now() + 3 * 24 * 3600 * 1000);
+            }
+
+            try {
+                localStorage.setItem(STORAGE_KEY, target.toISOString());
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        const elDays = document.getElementById("count-days");
+        const elHours = document.getElementById("count-hours");
+        const elMin = document.getElementById("count-minutes");
+        const elSec = document.getElementById("count-seconds");
+
+        function pad(v) {
+            return String(v).padStart(2, "0");
+        }
+
+        function update() {
+            const diff = target - new Date();
+            if (diff <= 0) {
+                elDays.textContent = "00";
+                elHours.textContent = "00";
+                elMin.textContent = "00";
+                elSec.textContent = "00";
+                clearInterval(interval);
+                return;
+            }
+            let s = Math.floor(diff / 1000);
+            const days = Math.floor(s / 86400);
+            s %= 86400;
+            const hours = Math.floor(s / 3600);
+            s %= 3600;
+            const minutes = Math.floor(s / 60);
+            const seconds = s % 60;
+
+            elDays.textContent = pad(days);
+            elHours.textContent = pad(hours);
+            elMin.textContent = pad(minutes);
+            elSec.textContent = pad(seconds);
+        }
+
+        update();
+        const interval = setInterval(update, 1000);
+    })();
+
+    // === SPIN POPUP: open/close handlers ===
+    (function initSpinPopup() {
+        const spinBtn = document.querySelector(".spin-cta-button");
+        const spinPopup = document.getElementById("spinPopup");
+        if (!spinBtn || !spinPopup) return;
+
+        const spinClose = spinPopup.querySelector(".spin-popup__close");
+        const spinBackdrop = spinPopup.querySelector(".spin-popup__backdrop");
+
+        function openSpinPopup() {
+            try {
+                if (spinPopup.parentElement !== document.body)
+                    document.body.appendChild(spinPopup);
+            } catch (e) {}
+            spinPopup.classList.add("is-open");
+            spinPopup.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            const phone = spinPopup.querySelector(".spin-input");
+            if (phone) phone.focus();
+        }
+
+        function closeSpinPopup() {
+            spinPopup.classList.remove("is-open");
+            spinPopup.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+        }
+
+        spinBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openSpinPopup();
+        });
+
+        if (spinClose) spinClose.addEventListener("click", closeSpinPopup);
+        if (spinBackdrop)
+            spinBackdrop.addEventListener("click", closeSpinPopup);
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && spinPopup.classList.contains("is-open"))
+                closeSpinPopup();
         });
     })();
 });

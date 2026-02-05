@@ -16,9 +16,6 @@
     <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap">
 
-    {{-- Preload главного изображения hero секции --}}
-    <link rel="preload" as="image" href="{{ asset('images/main-hero.jpg') }}" fetchpriority="high">
-
     {{-- Асинхронная загрузка шрифтов --}}
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans:wght@400&display=swap"
@@ -48,48 +45,49 @@
             <div class="main">
                 <h1 class="display-4 mb-3 title-text">Центр физического и ментального здоровья</h1>
                 <p class="lead mb-4">ИстокиЯ</p>
-
-                {{-- Swiper слайдер --}}
-                <div class="swiper my-custom-swiper-container mt-5">
-                    <div class="swiper-button-prev stock-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg>
-                    </div>
-                    <div class="swiper-button-next stock-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="swiper-wrapper">
-                        @foreach ($promotions as $promotion)
-                            <div class="swiper-slide">
-                                <div class="card shadow-sm promotion-card" data-title="{{ $promotion->title }}"
-                                    data-description="{{ $promotion->description }}"
-                                    data-photo="{{ asset('storage/' . $promotion->photo) }}"
-                                    data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
-                                    <img src="{{ asset('storage/' . $promotion->photo) }}" alt="{{ $promotion->title }}"
-                                        loading="lazy" width="800" height="450">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="swiper-pagination mt-4"></div>
+                <div class="lead-subtext">
+                    25 направлений по единому абонементу<br>
+                    Занятия для взрослых и детей<br>
+                    Массажный кабинет и психолог<br>
+                    Чайная зона
                 </div>
-                <div class="swiper-info-text">
-                    Твой путь к себе начинается с Истока
+                <div class="full-width-divider" aria-hidden="true"></div>
+                <div class="lead-description">
+                    «ИстокиЯ» — это точка возврата.
+                    К ресурсности. К осознанности. К себе.
+                    Здесь не нужно быть “правильным” — достаточно быть настоящим.
                 </div>
-                <a href="{{ route('calendar') }}" class="button-bid button-text button mt-4">
-                    Расписание занятий
-                </a>
-                <a href="{{ route('price-list') }}" class="btn button-text button mt-4">
-                    Наши цены
-                </a>
+                <div class="spin-cta text-center mt-4">
+                    <button class="spin-cta-button" type="button" aria-label="Крутить колесо">
+                        <span class="spin-cta-title">КРУТИТЬ КОЛЕСО</span>
+                        <span class="spin-cta-subtitle">ПОЛУЧИ ПОДАРОК</span>
+                    </button>
+                </div>
+                <div class="promo-countdown mt-3">ДО КОНЦА АКЦИИ</div>
+                <div class="countdown-wrapper mt-3" aria-hidden="false">
+                    <div class="countdown-inner" id="promo-timer">
+                        <div class="countdown-item">
+                            <div class="count-number" id="count-days">00</div>
+                            <div class="count-label">дней</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="count-number" id="count-hours">00</div>
+                            <div class="count-label">часов</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="count-number" id="count-minutes">00</div>
+                            <div class="count-label">минут</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="count-number" id="count-seconds">00</div>
+                            <div class="count-label">секунд</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="marquee-wrapper">
         <!-- Первая лента -->
         <div class="marquee marquee-light">
@@ -287,6 +285,48 @@
             </div>
         </div>
     </div>
+    <div class="container text-center py-5">
+        <div class="main">
+            {{-- Swiper слайдер --}}
+            <div class="swiper my-custom-swiper-container mt-5">
+                <div class="swiper-button-prev stock-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </div>
+                <div class="swiper-button-next stock-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+                <div class="swiper-wrapper">
+                    @foreach ($promotions as $promotion)
+                        <div class="swiper-slide">
+                            <div class="card shadow-sm promotion-card" data-title="{{ $promotion->title }}"
+                                data-description="{{ $promotion->description }}"
+                                data-photo="{{ asset('storage/' . $promotion->photo) }}"
+                                data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
+                                <img src="{{ asset('storage/' . $promotion->photo) }}" alt="{{ $promotion->title }}"
+                                    loading="lazy" width="800" height="450">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination mt-4"></div>
+            </div>
+            <div class="swiper-info-text">
+                Твой путь к себе начинается с Истока
+            </div>
+            <a href="{{ route('calendar') }}" class="button-bid button-text button mt-4">
+                Расписание занятий
+            </a>
+            <a href="{{ route('price-list') }}" class="btn button-text button mt-4">
+                Наши цены
+            </a>
+        </div>
+    </div>
     {{-- </div> --}}
     @if ($stories->isNotEmpty())
         <div class="stories-container">
@@ -341,73 +381,7 @@
         </div>
     </div>
 
-    <div class="spin">
-        <div class="container">
-            <div class="spin-layout">
-                <div class="spin-left">
-                    <div class="spin-visual">
-                        <div class="wheel-frame" role="img" aria-label="Колесо удачи">
-                            <div id="wheelDynamic" class="wheel-dynamic" aria-hidden="true"></div>
-                            <div class="wheel-center" aria-hidden="true">
-                                <img src="{{ asset('images/podarok.png') }}" alt="Подарок"
-                                    class="wheel-center-img" />
-                            </div>
-                            <svg class="wheel-pointer" aria-hidden="true" width="105" height="120"
-                                viewBox="0 0 105 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g filter="url(#filter0_d_1447_1535)">
-                                    <path
-                                        d="M55.1274 101.207L8.12988 0C46.3993 13.3828 82.8223 5.57617 96.2502 0L55.1274 101.207Z"
-                                        fill="#CCFF3F" />
-                                    <path
-                                        d="M55.1274 101.207L8.12988 0C46.3993 13.3828 82.8223 5.57617 96.2502 0L55.1274 101.207Z"
-                                        stroke="white" />
-                                </g>
-                                <defs>
-                                    <filter id="filter0_d_1447_1535" x="0.000447273" y="0" width="104.379"
-                                        height="119.778" filterUnits="userSpaceOnUse"
-                                        color-interpolation-filters="sRGB">
-                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                        <feColorMatrix in="SourceAlpha" type="matrix"
-                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                        <feOffset dy="10.4415" />
-                                        <feGaussianBlur stdDeviation="4.06472" />
-                                        <feComposite in2="hardAlpha" operator="out" />
-                                        <feColorMatrix type="matrix"
-                                            values="0 0 0 0 0.101961 0 0 0 0 0.254902 0 0 0 0 0.317647 0 0 0 0.52 0" />
-                                        <feBlend mode="normal" in2="BackgroundImageFix"
-                                            result="effect1_dropShadow_1447_1535" />
-                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1447_1535"
-                                            result="shape" />
-                                    </filter>
-                                </defs>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="spin-right">
-                    <div class="spin-form">
-                        <div class="spin-title">ПОЛУЧИТЕ ПОДАРОК</div>
-                        <div class="spin-subtitle">
-                            Введите номер вашего телефона,<br>
-                            вращайте колесо и получите бонус!
-                        </div>
-                        <form class="spin-form-fields" action="{{ route('spin') }}" method="POST">
-                            @csrf
-                            <input type="tel" name="phone" class="spin-input"
-                                placeholder="Введите номер телефона" required />
-                            <div class="spin-error" role="alert" aria-live="polite"></div>
-                            <label class="spin-consent">
-                                <input type="checkbox" name="agree" value="1" required />
-                                <span>Я согласен(-на) с <a href="{{ route('privacy-policy') }}">политикой
-                                        конфиденциальности</a></span>
-                            </label>
-                            <button type="submit" class="spin-button" disabled>Вращать колесо</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="directions">
         <div class="container">
@@ -764,6 +738,83 @@
     {{-- Модальное окно теста --}}
     @include('partials.promotion-modal')
     @include('partials.modal-test')
+
+    @if (!empty($showSpin) && $showSpin)
+        <div class="spin-popup" id="spinPopup" aria-hidden="true" role="dialog" aria-labelledby="spinPopupTitle">
+            <div class="spin-popup__backdrop"></div>
+            <div class="spin-popup__content">
+                <button class="spin-popup__close" type="button" aria-label="Закрыть">×</button>
+                <div class="spin" role="document">
+                    <div class="container">
+                        <div class="spin-layout">
+                            <div class="spin-left">
+                                <div class="spin-visual">
+                                    <div class="wheel-frame" role="img" aria-label="Колесо удачи">
+                                        <div id="wheelDynamic" class="wheel-dynamic" aria-hidden="true"></div>
+                                        <div class="wheel-center" aria-hidden="true">
+                                            <img src="{{ asset('images/podarok.png') }}" alt="Подарок"
+                                                class="wheel-center-img" />
+                                        </div>
+                                        <svg class="wheel-pointer" aria-hidden="true" width="105" height="120"
+                                            viewBox="0 0 105 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g filter="url(#filter0_d_1447_1535)">
+                                                <path
+                                                    d="M55.1274 101.207L8.12988 0C46.3993 13.3828 82.8223 5.57617 96.2502 0L55.1274 101.207Z"
+                                                    fill="#CCFF3F" />
+                                                <path
+                                                    d="M55.1274 101.207L8.12988 0C46.3993 13.3828 82.8223 5.57617 96.2502 0L55.1274 101.207Z"
+                                                    stroke="white" />
+                                            </g>
+                                            <defs>
+                                                <filter id="filter0_d_1447_1535" x="0.000447273" y="0" width="104.379"
+                                                    height="119.778" filterUnits="userSpaceOnUse"
+                                                    color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                        result="hardAlpha" />
+                                                    <feOffset dy="10.4415" />
+                                                    <feGaussianBlur stdDeviation="4.06472" />
+                                                    <feComposite in2="hardAlpha" operator="out" />
+                                                    <feColorMatrix type="matrix"
+                                                        values="0 0 0 0 0.101961 0 0 0 0 0.254902 0 0 0 0 0.317647 0 0 0 0.52 0" />
+                                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                                        result="effect1_dropShadow_1447_1535" />
+                                                    <feBlend mode="normal" in="SourceGraphic"
+                                                        in2="effect1_dropShadow_1447_1535" result="shape" />
+                                                </filter>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spin-right">
+                                <div class="spin-form">
+                                    <div class="spin-title">ПОЛУЧИТЕ ПОДАРОК</div>
+                                    <div class="spin-subtitle">
+                                        Введите номер вашего телефона,<br>
+                                        вращайте колесо и получите бонус!
+                                    </div>
+                                    <form class="spin-form-fields" action="{{ route('spin') }}" method="POST">
+                                        @csrf
+                                        <input type="tel" name="phone" class="spin-input"
+                                            placeholder="Введите номер телефона" required />
+                                        <div class="spin-error" role="alert" aria-live="polite"></div>
+                                        <label class="spin-consent">
+                                            <input type="checkbox" name="agree" value="1" required />
+                                            <span>Я согласен(-на) с <a href="{{ route('privacy-policy') }}">политикой
+                                                    конфиденциальности</a></span>
+                                        </label>
+                                        <button type="submit" class="spin-button" disabled>Вращать колесо</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="spin-modal" aria-hidden="true" role="dialog" aria-labelledby="spinModalTitle">
         <div class="spin-modal__backdrop"></div>
