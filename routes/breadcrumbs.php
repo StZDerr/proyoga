@@ -43,19 +43,18 @@ Breadcrumbs::for('mainCategory', function (BreadcrumbTrail $trail, MainCategory 
 
 // Подкатегория направления
 Breadcrumbs::for('PodDirection', function (BreadcrumbTrail $trail, SubCategory $subCategory) {
-    // Показываем путь: Главная → Направления → Основная категория → Подкатегория
+    // Показываем путь: Главная → Направления → Подкатегория
     $trail->parent('direction');
-    if ($subCategory->mainCategory) {
-        $trail->push($subCategory->mainCategory->title);
-    }
+    // Убираем основной раздел (mainCategory) из хлебных крошек
     $trail->push($subCategory->title, route('PodDirection', $subCategory->slug));
 });
 
 // Детальная страница подподкатегории
 Breadcrumbs::for('subSubCategoryDetail', function (BreadcrumbTrail $trail, SubSubCategory $subSubCategory) {
-    // Показываем путь: Главная → Направления → Основная категория → Подкатегория → Подподкатегория
+    // Показываем путь: Главная → Направления → Подкатегория → Подподкатегория(текст)
+    // Оставляем Подкатегорию ссылкой, а саму Подподкатегорию добавляем как обычный текст (без route)
     $trail->parent('PodDirection', $subSubCategory->subCategory);
-    $trail->push($subSubCategory->title, route('subSubCategoryDetail', [$subSubCategory->subCategory->slug, $subSubCategory->slug]));
+    $trail->push($subSubCategory->title);
 });
 
 // Хатха йога
