@@ -6,6 +6,7 @@ use App\Models\ExternalService;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,9 +30,15 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Общие настройки сайта кешируем единоразово
-        $setting = Cache::remember('site_settings', now()->addDay(), function () {
-            return Setting::current();
-        });
+        if (Schema::hasTable('settings')) {
+            $setting = Cache::remember('site_settings', now()->addDay(), function () {
+                return Setting::current();
+            });
+        } else {
+            // during early migrations/tests the table may be missing
+            $setting = new Setting();
+        }
+
         View::share('setting', $setting);
 
         // Мета и внешние сервисы подключаем только там, где реально рендерится <head>

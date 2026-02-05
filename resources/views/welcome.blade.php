@@ -32,7 +32,7 @@
     </noscript>
 
     {{-- Общие стили и JS через Vite (оптимизировано) --}}
-    @vite(['resources/css/app.css', 'resources/css/base.css', 'resources/css/performance.css', 'resources/css/welcome.css', 'resources/css/contacts-block.css', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/app.js', 'resources/js/base.js', 'resources/js/welcome_new.js', 'resources/js/recording-form.js', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js', 'resources/js/lazy-iframe.js'])
+    @vite(['resources/css/app.css', 'resources/css/base.css', 'resources/css/performance.css', 'resources/css/welcome.css', 'resources/css/contacts-block.css', 'resources/css/recording.css', 'resources/css/modal-test.css', 'resources/js/app.js', 'resources/js/base.js', 'resources/js/welcome_new.js', 'resources/js/recording-form.js', 'resources/js/yoga-test.js', 'resources/js/promotion-modal.js', 'resources/js/spin-mask.js', 'resources/js/wheel.js', 'resources/js/lazy-iframe.js'])
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -340,6 +340,75 @@
             </div>
         </div>
     </div>
+
+    <div class="spin">
+        <div class="container">
+            <div class="spin-layout">
+                <div class="spin-left">
+                    <div class="spin-visual">
+                        <div class="wheel-frame" role="img" aria-label="Колесо удачи">
+                            <div id="wheelDynamic" class="wheel-dynamic" aria-hidden="true"></div>
+                            <div class="wheel-center" aria-hidden="true">
+                                <img src="{{ asset('images/podarok.png') }}" alt="Подарок"
+                                    class="wheel-center-img" />
+                            </div>
+                            <svg class="wheel-pointer" aria-hidden="true" width="105" height="120"
+                                viewBox="0 0 105 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_1447_1535)">
+                                    <path
+                                        d="M55.1274 101.207L8.12988 0C46.3993 13.3828 82.8223 5.57617 96.2502 0L55.1274 101.207Z"
+                                        fill="#CCFF3F" />
+                                    <path
+                                        d="M55.1274 101.207L8.12988 0C46.3993 13.3828 82.8223 5.57617 96.2502 0L55.1274 101.207Z"
+                                        stroke="white" />
+                                </g>
+                                <defs>
+                                    <filter id="filter0_d_1447_1535" x="0.000447273" y="0" width="104.379"
+                                        height="119.778" filterUnits="userSpaceOnUse"
+                                        color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="10.4415" />
+                                        <feGaussianBlur stdDeviation="4.06472" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.101961 0 0 0 0 0.254902 0 0 0 0 0.317647 0 0 0 0.52 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix"
+                                            result="effect1_dropShadow_1447_1535" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1447_1535"
+                                            result="shape" />
+                                    </filter>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="spin-right">
+                    <div class="spin-form">
+                        <div class="spin-title">ПОЛУЧИТЕ ПОДАРОК</div>
+                        <div class="spin-subtitle">
+                            Введите номер вашего телефона,<br>
+                            вращайте колесо и получите бонус!
+                        </div>
+                        <form class="spin-form-fields" action="{{ route('spin') }}" method="POST">
+                            @csrf
+                            <input type="tel" name="phone" class="spin-input"
+                                placeholder="Введите номер телефона" required />
+                            <div class="spin-error" role="alert" aria-live="polite"></div>
+                            <label class="spin-consent">
+                                <input type="checkbox" name="agree" value="1" required />
+                                <span>Я согласен(-на) с <a href="{{ route('privacy-policy') }}">политикой
+                                        конфиденциальности</a></span>
+                            </label>
+                            <button type="submit" class="spin-button" disabled>Вращать колесо</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="directions">
         <div class="container">
             <div class="row align-items-center">
@@ -695,6 +764,20 @@
     {{-- Модальное окно теста --}}
     @include('partials.promotion-modal')
     @include('partials.modal-test')
+
+    <div class="spin-modal" aria-hidden="true" role="dialog" aria-labelledby="spinModalTitle">
+        <div class="spin-modal__backdrop"></div>
+        <div class="spin-modal__content">
+            <button class="spin-modal__close" type="button" aria-label="Закрыть">×</button>
+            <div class="spin-modal__title" id="spinModalTitle">Ваш выигрыш</div>
+            <div class="spin-modal__prize" data-spin-prize>—</div>
+            <div class="spin-modal__phone">Телефон: <span data-spin-phone>—</span></div>
+            <div class="spin-modal__note">
+                Наш менеджер свяжется с вами для подтверждения подарка.
+            </div>
+            <button class="spin-modal__action" type="button">Отлично</button>
+        </div>
+    </div>
 
     @stack('scripts')
 

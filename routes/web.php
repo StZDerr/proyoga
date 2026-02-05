@@ -19,6 +19,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SpinController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
@@ -49,6 +50,9 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
+
+    // Управление сегментами колеса (CRUD)
+    Route::resource('spins', \App\Http\Controllers\Admin\SpinController::class);
 
     // Articles admin
     Route::post('articles/upload-image', [ArticleController::class, 'uploadImage'])->name('articles.upload-image');
@@ -171,6 +175,10 @@ Route::prefix('api/test')->group(function () {
     Route::get('/questions', [TestController::class, 'getQuestions']);
     Route::post('/submit', [TestController::class, 'submitTest']);
 });
+
+// Маршруты для колеса удачи (публичные)
+Route::get('/spin/prizes', [SpinController::class, 'prizes']);
+Route::post('/spin', [SpinController::class, 'spin'])->name('spin');
 
 // API маршруты для отправки форм
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
