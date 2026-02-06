@@ -8,6 +8,7 @@
                 <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a>
                 <a href="{{ route('about') }}" class="menuItem">О Центре</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
+                <a href="{{ route('photo-galleries') }}" class="menuItem">Фотогалерея</a>
             </div>
 
             <div class="footerContent">

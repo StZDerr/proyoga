@@ -47,6 +47,7 @@ export default defineConfig({
                 "resources/js/admin/app.js",
                 "resources/js/admin/gallery-order.js",
                 "resources/js/promotion-modal.js",
+                "resources/js/spin-mask.js",
             ],
             refresh: true,
         }),

@@ -26,7 +26,7 @@ class IstokiController extends Controller
         });
 
         $personals = Cache::remember('home:personals', now()->addMinutes(30), function () {
-            return Personal::all();
+            return Personal::orderBy('sort_order')->get();
         });
 
         $galleries = Cache::remember('home:galleries', now()->addMinutes(30), function () {
@@ -51,12 +51,25 @@ class IstokiController extends Controller
             return Article::orderBy('created_at', 'desc')->take(3)->get();
         });
 
-        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'articles'));
+        // Spin visibility: check active prizes and total chance
+        $spinPrizes = \App\Models\Prize::where('is_active', true)->get(['id', 'chance']);
+        $spinPrizesCount = $spinPrizes->count();
+        $spinPrizesChanceTotal = (int) $spinPrizes->sum('chance');
+
+        // By default require total chances >= 100 to show the spin block.
+        // This prevents showing the wheel when no prizes configured or chances not set.
+        $showSpin = $spinPrizesCount > 0 && $spinPrizesChanceTotal >= 100;
+
+        return view('welcome', compact('promotions', 'stories', 'personals', 'galleries', 'questions', 'mainCategories', 'articles', 'showSpin', 'spinPrizesCount', 'spinPrizesChanceTotal'));
     }
 
     public function priceList()
     {
-        $categories = PriceCategory::select('id', 'name', 'file')->get();
+        $categories = PriceCategory::with(['tables' => function ($q) {
+            $q->ordered()->select('id','category_id','title','sort_order')->with(['items' => function ($q2) {
+                $q2->select('id','table_id','name','duration','price');
+            }]);
+        }])->get(['id','name','file']);
 
         return view('price-list', compact('categories'));
     }
@@ -171,5 +184,12 @@ class IstokiController extends Controller
     public function showArticle(Article $article)
     {
         return view('showArticle', compact('article'));
+    }
+
+    public function personal(Personal $personal)
+    {
+        $personal->load('photos');
+
+        return view('personal', compact('personal'));
     }
 }

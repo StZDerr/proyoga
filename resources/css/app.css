@@ -70,6 +70,11 @@ body {
     line-height: 1.25em;
     letter-spacing: 0%;
 }
+@media (max-width: 576px) {
+    .breadcrumb-item {
+        font-size: 12px;
+    }
+}
 
 /* Все ссылки, кроме последнего элемента */
 .breadcrumb-item a {

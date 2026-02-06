@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ClearsHomeCache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Traits\ClearsHomeCache;
 
 class Personal extends Model
 {
-    use HasFactory, ClearsHomeCache;
+    use ClearsHomeCache, HasFactory;
 
     /** Cache keys to forget on model changes */
     protected static $homeCacheKeys = ['home:personals'];
@@ -19,5 +19,21 @@ class Personal extends Model
         'middle_name',
         'photo',
         'position',
+        'sort_order',
+        'description',
+        'slug',
     ];
-}
+
+    public function photos()
+    {
+        return $this->hasMany(PersonalPhoto::class)->orderBy('sort_order')->orderBy('id');
+    }
+
+    /**
+     * Use slug for route model binding
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+} 

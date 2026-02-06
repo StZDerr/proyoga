@@ -35,6 +35,11 @@
                     <img src="{{ asset('images/svg/ok.svg') }}" alt="ok" loading="lazy" width="40"
                         height="40" />
                 </a>
+                <a href="https://max.ru/u/f9LHodD0cOLobQRP2LQr7s1xxpTnVf69u5w9UL8npcDi-iJkYnVFDxQVsC0"
+                    class="socialItem" rel="nofollow" target="_blank">
+                    <img src="{{ asset('images/svg/max.svg') }}" alt="max" loading="lazy" width="40"
+                        height="40" />
+                </a>
             </div>
             <div class="rating">
                 <a href="https://yandex.ru/maps/-/CLfTYTjy" rel="nofollow" target="_blank">

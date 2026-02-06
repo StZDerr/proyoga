@@ -45,7 +45,7 @@
     .breadcrumbsItem {
     font-family: Montserrat;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     color: #1d7d6f;
 }
 
@@ -156,7 +156,7 @@
         .serviceContent
         .breadcrumbs
         .breadcrumbsItem {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .containerMain .container.serviceBanner .serviceContent .mainTitle {
@@ -200,7 +200,7 @@
         .serviceContent
         .breadcrumbs
         .breadcrumbsItem {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .containerMain .container.serviceBanner .serviceContent .mainTitle {
