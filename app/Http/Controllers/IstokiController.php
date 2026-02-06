@@ -65,7 +65,11 @@ class IstokiController extends Controller
 
     public function priceList()
     {
-        $categories = PriceCategory::select('id', 'name', 'file')->get();
+        $categories = PriceCategory::with(['tables' => function ($q) {
+            $q->ordered()->select('id','category_id','title','sort_order')->with(['items' => function ($q2) {
+                $q2->select('id','table_id','name','duration','price');
+            }]);
+        }])->get(['id','name','file']);
 
         return view('price-list', compact('categories'));
     }

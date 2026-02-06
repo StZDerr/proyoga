@@ -19,53 +19,56 @@
 <body>
 
     @include('partials.navbar')
-    @include('partials.arrow')
-    @include('partials.cookies')
-    <div class="background-gor-price-list">
-        <div class="container ">
-            {{ Breadcrumbs::render('price-list') }}
-            <div class="title mt-5">
-                Прайс-лист
-            </div>
-            <div class="desc">
-                Занимайтесь один раз в неделю или каждый день, выбирайте подходящий абонемент и записывайтесь на
-                занятия.
+    <div class="background-gor">
+        <div class="headerTeaZone mt-5">
+            <div class="container ">
+                {{ Breadcrumbs::render('price-list') }}
+                <div class="title mt-5">
+                    Прайс-лист
+                </div>
+                <div class="desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa voluptatum, facilis
+                    accusamus explicabo nihil deserunt minus odit molestiae dolore quis.
+                </div>
             </div>
         </div>
-    </div>
+        <div class="price-list">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
+                    @foreach ($categories as $index => $category)
+                        <button class="category-btn {{ $index === 0 ? 'active' : 'inactive' }}"
+                            data-target="content-{{ $category->slug }}">
+                            {{ $category->name }}
+                        </button>
+                    @endforeach
+                </div>
 
-    <div class="price-list">
-        <div class="container">
-            <!-- Кнопки категорий -->
-            <div class="d-flex flex-wrap justify-content-center btn-container mt-5" id="categoryButtons">
+                <!-- ТЕКСТЫ — ВСЁ В HTML -->
                 @foreach ($categories as $index => $category)
-                    <button class="category-btn {{ $index === 0 ? 'active' : 'inactive' }}"
-                        data-target="content-{{ $category->slug }}">
-                        {{ $category->name }}
-                    </button>
+                    <div id="content-{{ $category->slug }}" class="content-text {{ $index === 0 ? 'active' : '' }}">
+                        @foreach ($category->tables as $table)
+                            <table class="custom-table">
+                                <tr class="table-title-row">
+                                    <td colspan="2" class="table-title">{{ $table->title }}</td>
+                                </tr>
+                                @forelse ($table->items as $item)
+                                    <tr class="table-item-row">
+                                        <td class="table-item-name">{{ $item->name }}</td>
+                                        <td class="table-item-info">
+                                            {{-- <div class="table-item-duration">{{ $item->duration }}</div> --}}
+                                            <div class="table-item-price">{{ $item->price }}</div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="table-item-row">
+                                        <td colspan="2" class="table-item-empty">Прайс пока пустой</td>
+                                    </tr>
+                                @endforelse
+                            </table>
+                        @endforeach
+                    </div>
                 @endforeach
             </div>
-
-            <!-- Контент категорий -->
-            @foreach ($categories as $index => $category)
-                <div id="content-{{ $category->slug }}" class="content-text {{ $index === 0 ? 'active' : '' }}">
-                    @if ($category->file)
-                        @if (Str::endsWith($category->file, '.pdf'))
-                            <iframe src="{{ asset('storage/' . $category->file) }}" width="100%" height="800"
-                                style="border: none;"></iframe>
-                        @else
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ asset('storage/' . $category->file) }}" class="lightbox">
-                                    <img src="{{ asset('storage/' . $category->file) }}" alt="{{ $category->name }}"
-                                        class="img-fluid rounded shadow price-image">
-                                </a>
-                            </div>
-                        @endif
-                    @else
-                        <p class="text-center text-muted mt-4">Файл для этой категории ещё не загружен.</p>
-                    @endif
-                </div>
-            @endforeach
         </div>
     </div>
     <div class="mb-5">

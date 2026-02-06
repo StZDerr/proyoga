@@ -241,7 +241,7 @@
                                     Прайс-лист (Категории)
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link ms-3" href="{{ route('admin.price-tables.index') }}">
                                     Прайс-лист (Таблицы)
                                 </a>
@@ -250,7 +250,7 @@
                                 <a class="nav-link ms-3" href="{{ route('admin.price-items.index') }}">
                                     Прайс-лист (Элементы)
                                 </a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </div>
                 </li>

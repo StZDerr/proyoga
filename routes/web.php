@@ -14,6 +14,7 @@ use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PriceCategoryController;
+use App\Http\Controllers\PriceItemController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
@@ -88,8 +89,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'companies' => CompanyController::class,
         'promotions' => PromotionController::class,
         'price-categories' => PriceCategoryController::class,
-        // 'price-tables' => PriceTableController::class,
-        // 'price-items' => PriceItemController::class,
+        'price-tables' => PriceTableController::class,
+        'price-items' => PriceItemController::class,
         'main-categories' => MainCategoryController::class,
         'sub-categories' => SubCategoryController::class,
         'sub-sub-categories' => SubSubCategoryController::class,
