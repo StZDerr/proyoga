@@ -42,12 +42,12 @@
                         @endif
                     </div>
                     <div class="col-lg-7 col-12 about-text">
-                        <div class="title">
+                        {{-- <div class="title">
                             {{ $personal->first_name }} {{ $personal->last_name }}
                             @if ($personal->middle_name)
                                 <span class="text-muted">{{ $personal->middle_name }}</span>
                             @endif
-                        </div>
+                        </div> --}}
                         <div class="desc mt-3">
                             <strong>{{ $personal->position }}</strong>
                         </div>

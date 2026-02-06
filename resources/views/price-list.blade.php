@@ -26,10 +26,10 @@
                 <div class="title mt-5">
                     Прайс-лист
                 </div>
-                <div class="desc">
+                {{-- <div class="desc">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa voluptatum, facilis
                     accusamus explicabo nihil deserunt minus odit molestiae dolore quis.
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="price-list">
