@@ -220,6 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let li = 0; li < lines.length; li++)
                 lines[li] = lines[li].toLowerCase();
 
+            // When flipped, we need to reverse the visual stacking of lines so the
+            // top-to-bottom reading order remains the same as the original text.
+            const renderLines = isFlipped ? lines.slice().reverse() : lines;
+
             const text = document.createElementNS(
                 "http://www.w3.org/2000/svg",
                 "text",
@@ -228,7 +232,15 @@ document.addEventListener("DOMContentLoaded", () => {
             text.setAttribute("y", textY);
             text.setAttribute("text-anchor", "middle");
             // keep a fixed readable font size (do not decrease for multiple lines)
-            const baseFont = 15.66;
+            // Increase font on small viewports for better readability
+            const viewportWidth = Math.max(
+                document.documentElement.clientWidth || 0,
+                window.innerWidth || 0,
+            );
+            let baseFont = 15.66;
+            if (viewportWidth <= 420) baseFont = 19.2;
+            else if (viewportWidth <= 520) baseFont = 18;
+            else if (viewportWidth <= 768) baseFont = 17;
             const fontSize = baseFont;
             text.setAttribute("font-size", String(fontSize));
             text.setAttribute("font-family", "Montserrat, sans-serif");
@@ -247,20 +259,20 @@ document.addEventListener("DOMContentLoaded", () => {
             );
             first.setAttribute("x", textX);
             first.setAttribute("dy", "0");
-            first.textContent = lines[0];
+            first.textContent = renderLines[0];
             text.appendChild(first);
 
             // subsequent lines — move outward (or inward when flipped)
             // line-height 83% -> 0.83em
             const step = "0.83em";
-            for (let li = 1; li < lines.length; li++) {
+            for (let li = 1; li < renderLines.length; li++) {
                 const t = document.createElementNS(
                     "http://www.w3.org/2000/svg",
                     "tspan",
                 );
                 t.setAttribute("x", textX);
                 t.setAttribute("dy", isFlipped ? `-${step}` : step);
-                t.textContent = lines[li];
+                t.textContent = renderLines[li];
                 text.appendChild(t);
             }
 

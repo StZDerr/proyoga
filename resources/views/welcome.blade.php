@@ -565,7 +565,7 @@
                         <div class="swiper-wrapper">
                             @foreach ($personals as $personal)
                                 <div class="swiper-slide">
-                                    @if (!empty($personal->slug))
+                                    @if (!empty(trim(strip_tags($personal->description ?? ''))) && !empty($personal->slug))
                                         <a href="{{ route('personal', $personal) }}"
                                             class="text-decoration-none text-dark">
                                             <div class="teacher-card">
