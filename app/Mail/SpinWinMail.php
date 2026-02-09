@@ -12,6 +12,8 @@ class SpinWinMail extends Mailable
 
     public $phone;
 
+    public $name;
+
     public $prizeName;
 
     public $prizeDescription;
@@ -27,6 +29,7 @@ class SpinWinMail extends Mailable
      */
     public function __construct(array $data)
     {
+        $this->name = $data['name'] ?? 'Не указан';
         $this->phone = $data['phone'] ?? 'Не указан';
         $this->prizeName = $data['prize_name'] ?? 'Не указан';
         $this->prizeDescription = $data['prize_description'] ?? null;

@@ -116,6 +116,11 @@
             <div class="badge">Колесо удачи — результат</div>
 
             <div class="field">
+                <div class="field-label">👤 Имя</div>
+                <div class="field-value">{{ $name }}</div>
+            </div>
+
+            <div class="field">
                 <div class="field-label">📞 Телефон</div>
                 <div class="field-value">{{ $phone }}</div>
             </div>

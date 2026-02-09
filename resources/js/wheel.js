@@ -337,6 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.querySelector(".spin-form-fields");
     if (form) {
+        const nameInput = form.querySelector('input[name="name"]');
         const phoneInput = form.querySelector('input[name="phone"]');
         const agreeInput = form.querySelector('input[name="agree"]');
         const button = form.querySelector(".spin-button");
@@ -347,12 +348,30 @@ document.addEventListener("DOMContentLoaded", () => {
             errorBox.textContent = msg || "";
         };
 
+        const isValidName = (value) => {
+            const trimmed = (value || "").trim();
+            if (!trimmed) return false;
+            return /^[A-Za-zА-Яа-яЁё\s-]+$/.test(trimmed);
+        };
+
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             if (isSpinning) return;
             setError("");
 
             if (!agreeInput || !agreeInput.checked) return;
+
+            if (!nameInput || !nameInput.value.trim()) {
+                setError("Введите имя");
+                if (nameInput) nameInput.focus();
+                return;
+            }
+
+            if (!isValidName(nameInput.value)) {
+                setError("Имя должно содержать только буквы");
+                if (nameInput) nameInput.focus();
+                return;
+            }
             if (!phoneInput || !phoneInput.value.trim()) {
                 setError("Введите номер телефона");
                 if (phoneInput) phoneInput.focus();
@@ -384,6 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (res.status === 422) {
                     const data = await res.json();
                     const msg =
+                        data?.errors?.name?.[0] ||
                         data?.errors?.phone?.[0] ||
                         data?.errors?.agree?.[0] ||
                         "Проверьте данные";

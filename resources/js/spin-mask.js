@@ -1,7 +1,9 @@
 import IMask from "imask";
 
 document.addEventListener("DOMContentLoaded", function () {
-    const input = document.querySelector(".spin-input");
+    const input = document.querySelector(
+        '.spin-form-fields input[name="phone"]',
+    );
     if (!input) return;
     try {
         IMask(input, {

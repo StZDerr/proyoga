@@ -10,12 +10,8 @@ class WheelService
 {
     /**
      * Perform a spin for a phone number. Only one spin allowed per phone.
-     *
-     * @param string $phone
-     * @param array $payload
-     * @return Spin
      */
-    public function spinByPhone(string $phone, array $payload = []): Spin
+    public function spinByPhone(string $phone, string $name, array $payload = []): Spin
     {
         // enforce single spin per phone
         if (Spin::where('phone', $phone)->exists()) {
@@ -27,6 +23,7 @@ class WheelService
         $prize = Prize::pickOne();
 
         $spin = Spin::create([
+            'name' => $name,
             'phone' => $phone,
             'prize_id' => $prize?->id,
             'payload' => $payload,

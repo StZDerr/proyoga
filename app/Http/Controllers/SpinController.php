@@ -21,15 +21,17 @@ class SpinController extends Controller
     public function spin(Request $request, WheelService $wheel)
     {
         $validated = $request->validate([
+            'name' => ['required', 'string', 'max:80', 'regex:/^[\p{L}\s-]+$/u'],
             'phone' => 'required|string|max:32',
             'agree' => 'accepted',
         ]);
 
         try {
-            $spin = $wheel->spinByPhone($validated['phone'], ['ip' => $request->ip()]);
+            $spin = $wheel->spinByPhone($validated['phone'], $validated['name'], ['ip' => $request->ip()]);
             $prize = $spin->prize;
 
             $data = [
+                'name' => $validated['name'],
                 'phone' => $validated['phone'],
                 'prize_name' => $prize?->name ?? 'Не указан',
                 'prize_description' => $prize?->description,
@@ -44,6 +46,7 @@ class SpinController extends Controller
                 SendSpinEmail::dispatch($data, $adminEmails);
 
                 $vkMessage = "🎯 Новое вращение колеса!\n\n";
+                $vkMessage .= "👤 Имя: {$data['name']}\n";
                 $vkMessage .= "📱 Телефон: {$data['phone']}\n";
                 $vkMessage .= "🏆 Приз: {$data['prize_name']}\n";
                 if (!empty($data['prize_description'])) {
