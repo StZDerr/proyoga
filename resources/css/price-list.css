@@ -119,3 +119,229 @@
         margin-bottom: 10px;
     }
 }
+
+.price-list .text .section-title {
+    font-family: var(--font-standart-TenorSans);
+    font-weight: 400;
+    font-size: var(--font-size-text-desc-40px);
+    line-height: 1.5em;
+    color: var(--primary-color-button-123d4d);
+}
+
+@media (max-width: 700px) {
+    .price-list > div > div > div:last-child {
+        order: -1;
+    }
+}
+
+.price-list span {
+    font-family: var(--font-standart-Montserrat);
+    font-weight: 500;
+    font-size: var(--font-size-text-desc-28px);
+    color: var(--secondary-color-1d7d6f);
+}
+
+.price-list .button {
+    flex-grow: 1;
+    padding: 1rem;
+    border: 0.1rem solid var(--primary-color-button-123d4d);
+    border-radius: 1.8rem;
+    color: var(--primary-color-button-123d4d);
+    font-size: var(--font-size-text-desc-28px);
+    color: white;
+    background-color: var(--primary-color-button-123d4d);
+}
+
+.price-list .category-btn {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: var(--font-size-text-desc-20px);
+    line-height: 1.5em;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 10px !important;
+    border: none;
+    transition: all 0.3s ease;
+    min-width: 220px;
+    cursor: pointer;
+}
+
+.price-list .category-btn.inactive {
+    background-color: #ebf1ee;
+    color: var(--secondary-color-1d7d6f);
+}
+
+.price-list .category-btn.active {
+    background-color: #123d4d;
+    color: #fefefc;
+    box-shadow: 0 6px 12px rgba(18, 61, 77, 0.25);
+    transform: translateY(-2px);
+}
+
+.price-list .category-btn:hover:not(.active) {
+    background-color: #dde8e4;
+    color: #16665a;
+    transform: translateY(-1px);
+}
+
+.price-list .content-text {
+    display: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size-text-desc-20px);
+    margin-top: 2rem;
+    padding: 1.8rem 0;
+}
+
+.price-list .content-text.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.price-list .btn-container {
+    gap: 1.5rem;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Изменили на collapse для правильного отображения границ */
+    margin-top: 1rem;
+}
+
+/* Границы для всех строк */
+/* Заголовочная строка — без линий */
+.table-title-row {
+    border: none;
+}
+
+/* Строки элементов — сами строки не имеют внешней границы; линии ставятся у ячеек */
+.table-item-row {
+    border: none;
+}
+
+/* Границы для ячеек */
+.table-title-row td {
+    padding: 0 2rem;
+    border: none;
+}
+.table-item-row td {
+    padding: 0 2rem;
+    border: none;
+    border-bottom: 1px solid #acd6d2;
+}
+
+/* Убираем двойную границу между строками */
+.table-item-row + .table-item-row {
+    border-top: none;
+}
+
+.table-item-row + .table-item-row td {
+    border-top: none;
+}
+
+/* Заголовок */
+.table-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 28px;
+    line-height: 40px;
+    leading-trim: none;
+    letter-spacing: 0.02em; /* ≈ 2% */
+    text-align: center;
+    color: #2d3134;
+    padding: 12px 0;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+/* Название занятия */
+.table-item-name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal; /* SemiBold */
+    font-size: 20px;
+    leading-trim: none;
+    line-height: 28px;
+    letter-spacing: 0.02em; /* ≈2% */
+    color: #103e4e;
+    padding: 12px 0;
+    width: 65%;
+}
+
+/* Правая колонка */
+.table-item-info {
+    text-align: right;
+    padding: 12px 0;
+    width: 35%;
+}
+
+.table-item-duration {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5em;
+    letter-spacing: 0.02em;
+    color: #888888;
+}
+
+.table-item-price {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5em;
+    letter-spacing: 0.02em;
+    color: #2d3134;
+    margin-top: 4px;
+}
+
+/* Стиль для сообщения о пустом прайсе */
+.table-item-empty {
+    text-align: center;
+    color: #6b6b6b;
+    font-style: italic;
+    padding: 12px 0;
+}
+
+/* Адаптивность: на мобильных — название слева, цена справа в одной строке */
+@media (max-width: 768px) {
+    .table-item-row {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #acd6d2;
+        padding-bottom: 12px;
+    }
+
+    .table-item-name {
+        flex: 1 1 auto;
+        width: auto;
+        text-align: left;
+        padding-right: 0.5rem;
+    }
+
+    .table-item-info {
+        flex: 0 0 auto;
+        width: auto;
+        text-align: right;
+        margin-top: 0;
+    }
+    /* Убираем бордеры у ячеек — он теперь на самой строке */
+    .table-item-row td {
+        border-bottom: none;
+        padding: 8px 0; /* сохраняем вертикальные отступы внутри ячеек */
+    }
+}

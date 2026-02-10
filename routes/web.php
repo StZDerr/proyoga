@@ -14,11 +14,13 @@ use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PriceCategoryController;
+use App\Http\Controllers\PriceItemController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SpinController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
@@ -49,6 +51,9 @@ Route::get('/admin', function () {
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // Управление страницами
     Route::resource('pages', PageContentController::class);
+
+    // Управление сегментами колеса (CRUD)
+    Route::resource('spins', \App\Http\Controllers\Admin\SpinController::class);
 
     // Articles admin
     Route::post('articles/upload-image', [ArticleController::class, 'uploadImage'])->name('articles.upload-image');
@@ -84,8 +89,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         'companies' => CompanyController::class,
         'promotions' => PromotionController::class,
         'price-categories' => PriceCategoryController::class,
-        // 'price-tables' => PriceTableController::class,
-        // 'price-items' => PriceItemController::class,
+        'price-tables' => PriceTableController::class,
+        'price-items' => PriceItemController::class,
         'main-categories' => MainCategoryController::class,
         'sub-categories' => SubCategoryController::class,
         'sub-sub-categories' => SubSubCategoryController::class,
@@ -97,6 +102,10 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
     Route::delete('sub-sub-categories/photos/{photo}', [SubSubCategoryPhotoController::class, 'destroy'])
         ->name('sub-sub-categories.photos.destroy');
+
+    // Удаление фото из галереи персонала
+    Route::delete('personal/{personal}/photos/{photo}', [\App\Http\Controllers\PersonalController::class, 'destroyPhoto'])
+        ->name('personal.photos.destroy');
     Route::delete('stories/{story}/media/{media}', [StoryController::class, 'destroyMedia'])->name('stories.media.destroy');
     Route::post('price-tables/{priceTable}/move-up', [PriceTableController::class, 'moveUp'])->name('price-tables.move-up');
     Route::post('price-tables/{priceTable}/move-down', [PriceTableController::class, 'moveDown'])->name('price-tables.move-down');
@@ -131,6 +140,7 @@ Route::get('/oferta', [IstokiController::class, 'oferta'])->name('oferta');
 Route::get('/thanks', [IstokiController::class, 'thanks'])->name('thanks');
 Route::get('/photo-galleries', [IstokiController::class, 'photoGalleries'])->name('photo-galleries');
 Route::get('/taplink', [IstokiController::class, 'taplink'])->name('taplink');
+Route::get('/personal/{personal}', [IstokiController::class, 'personal'])->name('personal');
 
 // Статьи
 Route::get('/articles', [IstokiController::class, 'articles'])->name('articles.index');
@@ -171,6 +181,10 @@ Route::prefix('api/test')->group(function () {
     Route::get('/questions', [TestController::class, 'getQuestions']);
     Route::post('/submit', [TestController::class, 'submitTest']);
 });
+
+// Маршруты для колеса удачи (публичные)
+Route::get('/spin/prizes', [SpinController::class, 'prizes']);
+Route::post('/spin', [SpinController::class, 'spin'])->name('spin');
 
 // API маршруты для отправки форм
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');

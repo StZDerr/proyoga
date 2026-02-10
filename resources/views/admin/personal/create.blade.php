@@ -2,12 +2,10 @@
 
 @section('content')
     <div class="container">
-        @include('admin.partials.success')
         <div class="mb-4">
             <h2>Добавить сотрудника</h2>
             <a href="{{ route('admin.personal.index') }}" class="btn btn-secondary">Назад к списку</a>
         </div>
-        @include('admin.partials.success')
 
         <div class="card p-4">
             <form action="{{ route('admin.personal.store') }}" method="POST" enctype="multipart/form-data">
@@ -32,6 +30,15 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="slug" class="form-label">Slug (optional)</label>
+                    <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug') }}">
+                    <small class="text-muted">Если оставить пустым — сгенерируется автоматически</small>
+                    @error('slug')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label for="middle_name" class="form-label">Отчество</label>
                     <input type="text" name="middle_name" id="middle_name" class="form-control"
                         value="{{ old('middle_name') }}">
@@ -50,9 +57,34 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="photo" class="form-label">Фотография</label>
+                    <label for="sort_order" class="form-label">Порядок</label>
+                    <input type="number" name="sort_order" id="sort_order" class="form-control"
+                        value="{{ old('sort_order', 0) }}">
+                    @error('sort_order')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Описание</label>
+                    <textarea name="description" id="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+                    @error('description')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Фото (главное)</label>
                     <input type="file" name="photo" id="photo" class="form-control">
                     @error('photo')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="photos" class="form-label">Дополнительные фотографии</label>
+                    <input type="file" name="photos[]" id="photos" class="form-control" multiple>
+                    @error('photos.*')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>

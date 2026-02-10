@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,
             UserSeeder::class,
             PageContentSeeder::class,
+            \Database\Seeders\PrizeSeeder::class,
         ]);
     }
 }

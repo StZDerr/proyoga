@@ -2,13 +2,11 @@
 
 @section('content')
     <div class="container mt-5">
-        @include('admin.partials.success')
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Сотрудники</h2>
             <a href="{{ route('admin.personal.create') }}" class="btn btn-primary">Добавить сотрудника</a>
         </div>
 
-        @include('admin.partials.success')
 
         <div class="card">
             <div class="card-body">
@@ -19,9 +17,12 @@
                             <th>Фото</th>
                             <th>Фамилия</th>
                             <th>Имя</th>
+                            <th>Slug</th>
                             <th>Отчество</th>
                             <th>Должность</th>
-                            <th>Действия</th>
+                            <th>Порядок</th>
+                            <th>Фотографии</th>
+                            <th></th>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,13 +39,16 @@
                                 </td>
                                 <td>{{ $personal->last_name }}</td>
                                 <td>{{ $personal->first_name }}</td>
+                                <td>{{ $personal->slug ?? '-' }}</td>
                                 <td>{{ $personal->middle_name ?? '-' }}</td>
                                 <td>{{ $personal->position }}</td>
+                                <td>{{ $personal->sort_order }}</td>
+                                <td>{{ $personal->photos_count }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{ route('admin.personal.edit', $personal->id) }}"
+                                    <a href="{{ route('admin.personal.edit', $personal) }}"
                                         class="btn btn-sm btn-warning">Редактировать</a>
 
-                                    <form action="{{ route('admin.personal.destroy', $personal->id) }}" method="POST"
+                                    <form action="{{ route('admin.personal.destroy', $personal) }}" method="POST"
                                         onsubmit="return confirm('Вы уверены, что хотите удалить сотрудника?');">
                                         @csrf
                                         @method('DELETE')
@@ -54,7 +58,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Сотрудники не найдены</td>
+                                <td colspan="9" class="text-center">Сотрудники не найдены</td>
                             </tr>
                         @endforelse
                     </tbody>

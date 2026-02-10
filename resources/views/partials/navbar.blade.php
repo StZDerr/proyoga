@@ -47,8 +47,8 @@
 
             <div class="menu">
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
-                {{-- <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a> --}}
                 <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
+                <a href="{{ route('photo-galleries') }}" class="menuItem">Фото</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
             </div>
         </div>
@@ -66,9 +66,10 @@
                 <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
                 <a href="{{ route('direction') }}" class="menuItem">Направления</a>
-                <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a>
+                <a href="{{ route('tea') }}" class="menuItem">Чайная зона</a>
                 <a href="{{ route('about') }}" class="menuItem">О студии</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
+                <a href="{{ route('photo-galleries') }}" class="menuItem">Фотогалерея</a>
                 <a href="tel:+79649264147" class="menuItem phone">+7 (964) 926-41-47</a>
                 <a href="{{ route('recording') }}" class="button">Получить консультацию</a>
                 <div class="rating">
