@@ -47,7 +47,6 @@
 
             <div class="menu">
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
-                {{-- <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a> --}}
                 <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('photo-galleries') }}" class="menuItem">Фото</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
@@ -67,7 +66,7 @@
                 <a href="{{ route('calendar') }}" class="menuItem">Расписание</a>
                 <a href="{{ route('price-list') }}" class="menuItem">Цены</a>
                 <a href="{{ route('direction') }}" class="menuItem">Направления</a>
-                <a href="{{ route('dev') }}" class="menuItem">Чайная зона</a>
+                <a href="{{ route('tea') }}" class="menuItem">Чайная зона</a>
                 <a href="{{ route('about') }}" class="menuItem">О студии</a>
                 <a href="{{ route('contacts') }}" class="menuItem">Контакты</a>
                 <a href="{{ route('photo-galleries') }}" class="menuItem">Фотогалерея</a>
