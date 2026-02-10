@@ -72,7 +72,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 25px;
+    gap: 14.400px;
     padding: 25px;
     background-color: #1d7d6f;
     border-radius: 20px;
@@ -84,6 +84,7 @@
 
 .containerMain .container .parent .text-block .title {
     font-family: Tenor Sans;
+    line-height: 1em;
     font-weight: 400;
     font-size: 40px;
     color: #fff;
@@ -95,7 +96,7 @@
 
 .containerMain .container .parent .text-block .text {
     font-family: Montserrat;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 18px;
     color: #fff;
     text-wrap: balance;
@@ -126,6 +127,7 @@
     font-size: 18px;
     color: #123d4d;
     line-height: 1.5em;
+    margin: 0;
 }
 
 .containerMain .container .text-block {
@@ -207,7 +209,6 @@
     font-family: Tenor Sans;
     font-weight: 400;
     font-size: var(--font-size-text-desc-40px);
-    line-height: 56px;
     color: var(--primary-color-button-123d4d);
 }
 
