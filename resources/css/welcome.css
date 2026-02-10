@@ -33,14 +33,9 @@
 .main .lead-subtext {
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
-<<<<<<< HEAD
-    font-style: normal; /* 'ExtraBold' реализуется через font-weight:800 */
-    font-size: clamp(16px, 2vw, 22px);
-=======
     font-style: normal;
     /* 'ExtraBold' реализуется через font-weight:800 */
     font-size: 22px;
->>>>>>> spin
     line-height: 31px;
     leading-trim: none;
     letter-spacing: 0;
@@ -261,7 +256,8 @@
     outline: none;
     padding: 0 16px;
     z-index: 16020;
-    box-sizing: border-box; /* чтобы padding учитывался в размерах */
+    box-sizing: border-box;
+    /* чтобы padding учитывался в размерах */
 }
 
 /* Mobile: make the spin popup content scrollable if it exceeds viewport height */
@@ -269,7 +265,8 @@
     .spin-popup__content {
         max-height: calc(100vh - 40px);
         overflow-y: auto;
-        -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
+        -webkit-overflow-scrolling: touch;
+        /* плавная прокрутка на iOS */
         padding: 12px;
         margin: 4vh auto;
     }
@@ -278,7 +275,8 @@
     .spin {
         max-height: calc(100vh - 110px);
         overflow-y: auto;
-        padding-bottom: 20px; /* дополнительный отступ для элементов внизу */
+        padding-bottom: 20px;
+        /* дополнительный отступ для элементов внизу */
     }
 
     /* Wheel frame should fit and not cause horizontal overflow */
@@ -305,30 +303,6 @@
     z-index: 16030;
 }
 
-<<<<<<< HEAD
-/* Mobile: keep the close button inside the visible area and increase touch target */
-@media (max-width: 768px) {
-    .spin-popup__close {
-        top: 8px; /* move inside visible content */
-        right: 8px;
-        width: 44px;
-        height: 44px;
-        font-size: 21px;
-    }
-}
-
-/* Very small screens: make touch target slightly larger */
-@media (max-width: 420px) {
-    .spin-popup__close {
-        top: 10px;
-        right: 10px;
-        width: 52px;
-        height: 52px;
-        font-size: 24px;
-    }
-}
-=======
->>>>>>> spin
 .spin-popup .spin {
     background: #e1f0ed;
     border-radius: 82.89px;
@@ -2394,6 +2368,7 @@ body.lightbox-open .site-header {
 }
 
 @media (max-width: 768px) {
+
     /* Make the wheel responsive on small screens: use viewport width and cap to a sensible max */
     .wheel-frame {
         width: min(360px, 82vw);
