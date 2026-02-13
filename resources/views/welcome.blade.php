@@ -840,11 +840,13 @@
                                 <div class="spin-form">
                                     <div class="spin-title">ПОЛУЧИТЕ ПОДАРОК</div>
                                     <div class="spin-subtitle">
-                                        Введите номер вашего телефона,<br>
+                                        Введите имя и номер телефона,<br>
                                         вращайте колесо и получите бонус!
                                     </div>
                                     <form class="spin-form-fields" action="{{ route('spin') }}" method="POST">
                                         @csrf
+                                        <input type="text" name="name" class="spin-input"
+                                            placeholder="Введите имя" required />
                                         <input type="tel" name="phone" class="spin-input"
                                             placeholder="Введите номер телефона" required />
                                         <div class="spin-error" role="alert" aria-live="polite"></div>
