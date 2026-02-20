@@ -1,6 +1,7 @@
 import "@tabler/core/dist/js/tabler.min.js";
 import lightGallery from "lightgallery";
 import "lightgallery/css/lightgallery.css";
+import "./ckeditor";
 
 document.addEventListener("DOMContentLoaded", function () {
     // === Анимация чисел на карточках ===

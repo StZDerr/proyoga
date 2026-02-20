@@ -305,9 +305,9 @@
                     @foreach ($promotions as $promotion)
                         <div class="swiper-slide">
                             <div class="card shadow-sm promotion-card" data-title="{{ $promotion->title }}"
-                                data-description="{{ $promotion->description }}"
                                 data-photo="{{ asset('storage/' . $promotion->photo) }}"
                                 data-start="{{ $promotion->start_date }}" data-end="{{ $promotion->end_date }}">
+                                <div class="promotion-description-template d-none">{!! $promotion->description !!}</div>
                                 <img src="{{ asset('storage/' . $promotion->photo) }}" alt="{{ $promotion->title }}"
                                     loading="lazy" width="800" height="450">
                             </div>

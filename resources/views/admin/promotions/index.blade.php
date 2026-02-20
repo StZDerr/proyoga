@@ -39,7 +39,7 @@
                     <tr>
                         <td>{{ $promotion->id }}</td>
                         <td>{{ $promotion->title }}</td>
-                        <td>{{ $promotion->description }}</td>
+                        <td>{!! $promotion->description !!}</td>
                         <td>{{ $promotion->start_date }}</td>
                         <td>{{ $promotion->end_date }}</td>
                         <td>{{ $formatSize($promotion->photo_size) }}</td>

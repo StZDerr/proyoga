@@ -47,6 +47,10 @@
         color: #666;
     }
 
+    #promotionModalDescription {
+        white-space: pre-wrap;
+    }
+
     @keyframes fadeInUp {
         from {
             transform: translateY(20px);

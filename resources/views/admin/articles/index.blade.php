@@ -64,8 +64,9 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="text-muted small">
-                                                    {{ Str::limit($article->excerpt ?? strip_tags($article->content), 80) }}
+                                                <div class="text-muted small"
+                                                    style="white-space: pre-wrap; max-width: 420px;">
+                                                    {!! $article->excerpt ?: $article->content !!}
                                                 </div>
                                             </td>
                                             <td class="text-muted">

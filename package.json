@@ -24,6 +24,7 @@
         "vite-plugin-purgecss": "^0.2.13"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
         "@fontsource/montserrat": "^5.2.8",
         "@fontsource/tenor-sans": "^5.2.8",
         "@tabler/core": "^1.4.0",

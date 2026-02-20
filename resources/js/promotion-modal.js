@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalImage = document.getElementById("promotionModalImage");
     const modalTitle = document.getElementById("promotionModalTitle");
     const modalDescription = document.getElementById(
-        "promotionModalDescription"
+        "promotionModalDescription",
     );
     const modalDates = document.querySelector(".promotion-modal-dates");
     const closeBtn = document.querySelector(".promotion-modal-close");
@@ -12,8 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
         card.addEventListener("click", () => {
             modalImage.src = card.dataset.photo;
             modalTitle.textContent = card.dataset.title;
-            modalDescription.textContent =
-                card.dataset.description || "Описание отсутствует";
+            const descriptionTemplate = card.querySelector(
+                ".promotion-description-template",
+            );
+
+            if (descriptionTemplate?.innerHTML?.trim()) {
+                modalDescription.innerHTML = descriptionTemplate.innerHTML;
+            } else {
+                modalDescription.textContent = "Описание отсутствует";
+            }
 
             let start = card.dataset.start
                 ? new Date(card.dataset.start).toLocaleDateString()

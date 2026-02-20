@@ -19,7 +19,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Описание</label>
-                <textarea name="description" class="form-control">{{ old('description', $promotion->description) }}</textarea>
+                <textarea name="description" class="form-control" data-ckeditor="true">{{ old('description', $promotion->description) }}</textarea>
             </div>
 
             <div class="mb-3">
