@@ -49,6 +49,7 @@ export default defineConfig({
                 "resources/js/promotion-modal.js",
                 "resources/js/spin-mask.js",
                 "resources/js/wheel.js",
+                "resources/js/admin/ckeditor.js",
             ],
             refresh: true,
         }),
